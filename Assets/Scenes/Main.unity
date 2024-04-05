@@ -40110,6 +40110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1771583505}
   - component: {fileID: 1771583506}
+  - component: {fileID: 1771583507}
   m_Layer: 0
   m_Name: Food_Spawns
   m_TagString: Untagged
@@ -40146,6 +40147,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2ff0218dd217b4ebdefa2325d27e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 1771583507}
+  _networkObjectCache: {fileID: 1771583507}
+  food_prefab: {fileID: 3430438424208488013, guid: 34f8f1367936f794892f629c791e2ca0, type: 3}
+  trash_prefab: {fileID: 6203678770711478126, guid: d0731e38b82610044a8a77500cafc52c, type: 3}
+  spawnedObject: []
+--- !u!114 &1771583507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771583504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 1771583506}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: -7.050232, y: 18.486404, z: 1.8994147}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 394288251
+  <SceneId>k__BackingField: 1693455146201793985
+  <AssetPathHash>k__BackingField: 0
 --- !u!1001 &1772481655
 PrefabInstance:
   m_ObjectHideFlags: 0
