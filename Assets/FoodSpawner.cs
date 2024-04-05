@@ -14,11 +14,9 @@ public class FoodSpawner : NetworkBehaviour
     List<GameObject> trash_list = new List<GameObject>();
 
 
-    public override void OnStartClient()
+    public override void OnStartServer()
     {
-        base.OnStartClient();
-        if (!base.IsOwner)
-            GetComponent<FoodSpawner>().enabled = false;
+        Debug.Log("Starting food spawner?");
         SpawnFoodTrash();
     }
 
@@ -29,24 +27,22 @@ public class FoodSpawner : NetworkBehaviour
 
     public void SpawnFoodTrash()
     {
-        int num_spawns;
-
-        num_spawns = transform.childCount;
         foreach (Transform spawn_point in transform)
         {
             SpawnObject(Random.value > 0.5, spawn_point.position, spawn_point.rotation, this);
         }
     }
 
-    [ServerRpc]
+    //[ServerRpc]
     public void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
+        Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
         GameObject spawned = Instantiate(food_or_trash ? food_prefab : trash_prefab, position, rotation);
         ServerManager.Spawn(spawned);
         SetSpawnedObject(spawned, script, food_or_trash);
     }
 
-    [ObserversRpc]
+    //[ObserversRpc]
     public void SetSpawnedObject(GameObject spawned, FoodSpawner script, bool food_or_trash)
     {
         if (food_or_trash)
@@ -60,7 +56,7 @@ public class FoodSpawner : NetworkBehaviour
         script.spawnedObject.Add(spawned);
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    //[ServerRpc(RequireOwnership = false)]
     public void DespawnObject(GameObject obj)
     {
         ServerManager.Despawn(obj);
