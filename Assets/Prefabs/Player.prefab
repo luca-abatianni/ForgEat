@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3252535994773736344}
   - component: {fileID: -8236390473868420945}
   - component: {fileID: 746409093068880939}
+  - component: {fileID: 5064347402816963343}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -53,9 +54,14 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  _camera: {fileID: 0}
-  _moveRate: 4
-  _clientAuth: 1
+  walkingSpeed: 7.5
+  runningSpeed: 11.5
+  jumpSpeed: 8
+  gravity: 20
+  lookSpeed: 2
+  lookXLimit: 45
+  canMove: 1
+  cameraYOffset: 1
 --- !u!114 &4909591337073164744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +152,7 @@ MonoBehaviour:
   - {fileID: 2176458008890118076}
   - {fileID: 4909591337073164744}
   - {fileID: 746409093068880939}
+  - {fileID: 5064347402816963343}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -157,7 +164,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 7
+  <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -192,7 +199,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2147122664987308133}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd03cc4be3fda2045850f767ffd43c8b, type: 3}
   m_Name: 
@@ -202,6 +209,22 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 3252535994773736344}
   objToSpawn: {fileID: 7279261604974057880, guid: 04b5114aa3454d04fb1d756e0972762c, type: 3}
   spawnedObject: []
+--- !u!114 &5064347402816963343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b98aa82583074449bfe25d8502df6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 3252535994773736344}
+  _networkObjectCache: {fileID: 3252535994773736344}
+  pick_distance: 2
 --- !u!1 &4282416118004479581
 GameObject:
   m_ObjectHideFlags: 0

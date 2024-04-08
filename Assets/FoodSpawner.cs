@@ -14,10 +14,9 @@ public class FoodSpawner : NetworkBehaviour
     List<GameObject> trash_list = new List<GameObject>();
 
 
-    public override void OnStartServer()
+    public override void OnStartServer() // This method is called when the server initializes the object.
     {
-        Debug.Log("Starting food spawner?");
-        SpawnFoodTrash();
+        SpawnFoodTrash(); // So this function will be called and executed only by the server by definition. 
     }
 
     private void Update()
@@ -33,7 +32,7 @@ public class FoodSpawner : NetworkBehaviour
         }
     }
 
-    //[ServerRpc]
+    
     public void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
         Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
@@ -42,7 +41,6 @@ public class FoodSpawner : NetworkBehaviour
         SetSpawnedObject(spawned, script, food_or_trash);
     }
 
-    //[ObserversRpc]
     public void SetSpawnedObject(GameObject spawned, FoodSpawner script, bool food_or_trash)
     {
         if (food_or_trash)
@@ -56,9 +54,18 @@ public class FoodSpawner : NetworkBehaviour
         script.spawnedObject.Add(spawned);
     }
 
-    //[ServerRpc(RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = false)] // A client can call this function to despawn the object.
     public void DespawnObject(GameObject obj)
     {
+        if (obj.GetComponent<Food>().value > 0)
+        {
+            food_list.Remove(obj);
+        }
+        else
+        {
+            trash_list.Remove(obj);
+        }
+        spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
     }
 }
