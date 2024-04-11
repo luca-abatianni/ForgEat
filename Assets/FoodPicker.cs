@@ -18,16 +18,6 @@ public class FoodPicker : NetworkBehaviour
             return;
         }
         score_counter = FindObjectOfType<ScoreCounter>();
-        /* NOT SURE IF I SHOULD FIND THE SCORE COUNTER THAT THE CLIENT OWNS OR NOT...
-        foreach (ScoreCounter sc in score_counters)
-        {
-            if (sc.IsOwner)
-            {
-
-                score_counter = sc;
-            }
-        }
-        */
     }
 
     // Update is called once per frame
@@ -39,23 +29,14 @@ public class FoodPicker : NetworkBehaviour
             if (food != null)
             {
                 points += food.GetComponent<Food>().value;
-                Debug.Log("Got some food! My score is: " + points);
+                NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
-                FindObjectOfType<FoodSpawner>().Despawn(food);
+                FoodSpawner fs = FindObjectOfType<FoodSpawner>();
+                fs.RemoveObject(food);
             }
         }
     }
 
-    /*
-    private void OnMouseDown()
-    {
-        GameObject food = CheckFoodCollision();
-        if (food != null)
-        {
-            Debug.Log("Got some food!");
-        }
-    }
-    */
 
     private GameObject CheckFoodCollision()
     {

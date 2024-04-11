@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Demo.AdditiveScenes;
+using FishNet;
 
-//Made by Bobsi Unity - Youtube
 public class FoodSpawner : NetworkBehaviour
 {
     public GameObject food_prefab;
@@ -14,17 +14,21 @@ public class FoodSpawner : NetworkBehaviour
     List<GameObject> trash_list = new List<GameObject>();
 
 
-    public override void OnStartServer() // This method is called when the server initializes the object.
+    public override void OnStartServer()
     {
-        SpawnFoodTrash(); // So this function will be called and executed only by the server by definition. 
+        SpawnFoodTrash();
     }
 
-    private void Update()
+    public override void OnStartClient()
     {
-
+        if (!base.IsOwner)
+        {
+            GetComponent<FoodSpawner>().enabled = false;
+            return;
+        }
     }
 
-    public void SpawnFoodTrash()
+    private void SpawnFoodTrash()
     {
         foreach (Transform spawn_point in transform)
         {
@@ -33,7 +37,7 @@ public class FoodSpawner : NetworkBehaviour
     }
 
     
-    public void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
+    private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
         Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
         GameObject spawned = Instantiate(food_or_trash ? food_prefab : trash_prefab, position, rotation);
@@ -41,7 +45,8 @@ public class FoodSpawner : NetworkBehaviour
         SetSpawnedObject(spawned, script, food_or_trash);
     }
 
-    public void SetSpawnedObject(GameObject spawned, FoodSpawner script, bool food_or_trash)
+    [ObserversRpc]
+    private void SetSpawnedObject(GameObject spawned, FoodSpawner script, bool food_or_trash)
     {
         if (food_or_trash)
         {
@@ -54,9 +59,10 @@ public class FoodSpawner : NetworkBehaviour
         script.spawnedObject.Add(spawned);
     }
 
-    [ServerRpc(RequireOwnership = false)] // A client can call this function to despawn the object.
-    public void DespawnObject(GameObject obj)
+    [ServerRpc(RequireOwnership = false)]
+    public void RemoveObject(GameObject obj)
     {
+        NetworkManager.Log("Despawning object: " + obj);
         if (obj.GetComponent<Food>().value > 0)
         {
             food_list.Remove(obj);
