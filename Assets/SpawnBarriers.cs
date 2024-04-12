@@ -4,12 +4,14 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Demo.AdditiveScenes;
 using FishNet;
+using System.Threading;
 
 public class SpawnBarriers : NetworkBehaviour
 {
-    private List<GameObject> barriers = new List<GameObject>();
+    public List<GameObject> barriers = new List<GameObject>(); // set private later. now public for debugging.
     private bool barriers_on;
     // Start is called before the first frame update
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -18,22 +20,31 @@ public class SpawnBarriers : NetworkBehaviour
         {
             barriers.Add(t.gameObject);
         }
+
     }
 
     public override void OnStartClient()
     {
         base.OnStartClient();
-        if (base.IsOwner)
+        barriers_on = true;
+        foreach (Transform t in transform)
+        {
+            barriers.Add(t.gameObject);
+        }
+        if (!base.IsOwner)
         {
             GetComponent<SpawnBarriers>().enabled = false;
         }
+
     }
-    
+
+    [ObserversRpc(BufferLast = true)]
     public void BarriersOn()
     {
         if (!barriers_on) SetBarriers(true);
     }
 
+    [ObserversRpc(BufferLast = true)]
     public void BarriersOff()
     {
         if (barriers_on) SetBarriers(false);
@@ -41,9 +52,11 @@ public class SpawnBarriers : NetworkBehaviour
 
     private void SetBarriers(bool setting)
     {
+        NetworkManager.Log($"Setting barriers to {setting}");
         foreach (GameObject barrier in barriers)
         {
-            barrier.SetActive(setting);
+            NetworkManager.Log($"{barrier.name} is set to {setting}");
+            barrier.GetComponent<BoxCollider>().enabled = setting;
         }
     }
 }
