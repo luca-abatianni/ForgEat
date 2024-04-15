@@ -93,4 +93,15 @@ public class PlayerController : NetworkBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
     }
+
+    [ObserversRpc]
+    public void TransportPlayerToPosition(Vector3 new_position)
+    {
+        if (!base.IsOwner) return;
+        Debug.Log("Changing player position");
+        this.characterController.enabled = false;
+        this.transform.position = new_position;
+        this.characterController.enabled = true;
+        return;
+    }
 }

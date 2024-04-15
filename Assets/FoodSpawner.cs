@@ -4,21 +4,21 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Demo.AdditiveScenes;
 using FishNet;
+using FishNet.Connection;
 
 public class FoodSpawner : NetworkBehaviour
 {
     public GameObject food_prefab;
     public GameObject trash_prefab;
-    [HideInInspector] public List<GameObject> spawnedObject = new List<GameObject>();
-    List<GameObject> food_list = new List<GameObject>();
-    List<GameObject> trash_list = new List<GameObject>();
-
-
+    public GameObject food_parent;
+    public GameObject spawn_points;
+    public List<GameObject> spawnedObject = new List<GameObject>();
+    public List<GameObject> food_list = new List<GameObject>();     // Set private later... Public for testing.
+    public List<GameObject> trash_list = new List<GameObject>();    // Set private later... Public for testing.
     public override void OnStartServer()
     {
         SpawnFoodTrash();
     }
-
     public override void OnStartClient()
     {
         if (!base.IsOwner)
@@ -26,11 +26,13 @@ public class FoodSpawner : NetworkBehaviour
             GetComponent<FoodSpawner>().enabled = false;
             return;
         }
+        SetClientsFoodTrashList();
     }
 
-    private void SpawnFoodTrash()
+    public void SpawnFoodTrash()
     {
-        foreach (Transform spawn_point in transform)
+        NetworkManager.Log("Spawning food!");
+        foreach (Transform spawn_point in spawn_points.transform)
         {
             SpawnObject(Random.value > 0.5, spawn_point.position, spawn_point.rotation, this);
         }
@@ -40,14 +42,8 @@ public class FoodSpawner : NetworkBehaviour
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
         Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
-        GameObject spawned = Instantiate(food_or_trash ? food_prefab : trash_prefab, position, rotation);
+        GameObject spawned = Instantiate((food_or_trash ? food_prefab : trash_prefab), position, rotation, food_parent.transform);
         ServerManager.Spawn(spawned);
-        SetSpawnedObject(spawned, script, food_or_trash);
-    }
-
-    [ObserversRpc]
-    private void SetSpawnedObject(GameObject spawned, FoodSpawner script, bool food_or_trash)
-    {
         if (food_or_trash)
         {
             script.food_list.Add(spawned);
@@ -56,7 +52,22 @@ public class FoodSpawner : NetworkBehaviour
         {
             script.trash_list.Add(spawned);
         }
-        script.spawnedObject.Add(spawned);
+    }
+
+    private void SetClientsFoodTrashList()
+    {
+        FoodSpawner script = GetComponent<FoodSpawner>();
+        foreach (Transform t in food_parent.transform)
+        {
+            if(t.GetComponent<Food>().is_food)
+            {
+                food_list.Add(t.gameObject);
+            }
+            else
+            {
+                trash_list.Add(t.gameObject);
+            }
+        }
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -73,5 +84,26 @@ public class FoodSpawner : NetworkBehaviour
         }
         spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
+    }
+
+    //[ObserversRpc]
+    public void Server_TransformTrashInFood()
+    {
+        foreach (var trash in trash_list)
+        {
+            NetworkManager.Log("Changing trash into food." + trash.name);
+            trash.GetComponent<Food>().SetFood();
+        }
+    }
+
+    [ObserversRpc]
+    public void Observer_TransformTrashInFood()
+    {
+        if (trash_list.Count == 0) SetClientsFoodTrashList();
+        foreach (var trash in trash_list)
+        {
+            NetworkManager.Log("Changing trash into food." + trash.name);
+            trash.GetComponent<Food>().SetFood();
+        }
     }
 }

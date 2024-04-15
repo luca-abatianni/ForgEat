@@ -8,7 +8,7 @@ using System.Threading;
 
 public class SpawnBarriers : NetworkBehaviour
 {
-    public List<GameObject> barriers = new List<GameObject>(); // set private later. now public for debugging.
+    private List<GameObject> barriers = new List<GameObject>(); 
     private bool barriers_on;
     // Start is called before the first frame update
 
