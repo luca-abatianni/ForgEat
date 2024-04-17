@@ -31,6 +31,7 @@ public class FoodSpawner : NetworkBehaviour
 
     public void SpawnFoodTrash()
     {
+        //GlobalConsole.Instance.Log("Spawning food!");
         NetworkManager.Log("Spawning food!");
         foreach (Transform spawn_point in spawn_points.transform)
         {

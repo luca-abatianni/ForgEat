@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Score
+  - ice_effect
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - players
   - Water
   - UI
   - food

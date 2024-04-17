@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 //This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour
@@ -19,7 +20,6 @@ public class PlayerController : NetworkBehaviour
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
-    [HideInInspector]
     public bool canMove = true;
 
     [SerializeField]
@@ -103,5 +103,11 @@ public class PlayerController : NetworkBehaviour
         this.transform.position = new_position;
         this.characterController.enabled = true;
         return;
+    }
+
+    [TargetRpc]
+    public void SetCanMove(NetworkConnection net_connection, bool setting)
+    {
+        this.canMove = setting;
     }
 }
