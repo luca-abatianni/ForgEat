@@ -53,6 +53,7 @@ public class SpawnBarriers : NetworkBehaviour
     private void SetBarriers(bool setting)
     {
         NetworkManager.Log($"Setting barriers to {setting}");
+        barriers_on = setting;
         foreach (GameObject barrier in barriers)
         {
             NetworkManager.Log($"{barrier.name} is set to {setting}");

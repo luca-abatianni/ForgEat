@@ -24829,10 +24829,11 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1074502301}
   _networkObjectCache: {fileID: 1074502301}
   num_clients: 0
-  max_clients: 1
+  max_clients: 5
   player_spawns: {fileID: 1464414992}
   phase_one_period: 120
-  phase_two_period: 5
+  between_phase_period: 5
+  phase_two_period: 120
   spawn_barriers: {fileID: 1085483743}
 --- !u!4 &1074502303
 Transform:
