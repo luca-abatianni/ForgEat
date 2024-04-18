@@ -6597,7 +6597,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 1597691174}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -159, y: -246.6, z: 0}
+    Position: {x: -209, y: -296.6, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 0
@@ -6737,11 +6737,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1597691173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -159, y: -246.6}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 331, y: 7.399994}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!4 &282438355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4825765323918928, guid: 2cba268cefb022c4bbda1f7a3d8b5968, type: 3}
@@ -45711,7 +45711,7 @@ GameObject:
   - component: {fileID: 1957894768}
   - component: {fileID: 1957894769}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Score
   m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

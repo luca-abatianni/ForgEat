@@ -13,7 +13,7 @@ public class PowerUI : NetworkBehaviour
     {
         base.OnStartClient();
         if (!base.IsOwner)
-            GetComponent<ScoreCounter>().enabled = false;
+            GetComponent<PowerUI>().enabled = false;
     }
 
 

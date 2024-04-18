@@ -11,7 +11,7 @@ public class MagicPower : NetworkBehaviour
     [SerializeField]
     private float magic_effect_period, cooldown_period, max_target_distance;
 
-    PowerUI powerUI;
+    //PowerUI powerUI;
 
     private bool on_cooldown;
     // Start is called before the first frame update
@@ -24,8 +24,8 @@ public class MagicPower : NetworkBehaviour
             return;
         }
         on_cooldown = false;
-        powerUI = FindObjectOfType<PowerUI>();
-        powerUI.ready();
+        //powerUI = FindObjectOfType<PowerUI>();
+        //powerUI.ready();
         if (!this.enabled) this.enabled = true;
     }
 
@@ -101,10 +101,10 @@ public class MagicPower : NetworkBehaviour
     IEnumerator CooldownTimer() 
     {
         on_cooldown = true;
-        powerUI.cooldown();
+        //powerUI.cooldown();
         yield return new WaitForSeconds(cooldown_period);
         on_cooldown = false;
-        powerUI.ready();
+        //powerUI.ready();
         yield return null;
     }
 }
