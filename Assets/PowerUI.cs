@@ -5,9 +5,8 @@ using UnityEngine;
 using TMPro;
 using FishNet.Object;
 
-public class ScoreCounter : NetworkBehaviour
+public class PowerUI : NetworkBehaviour
 {
-    private int score;
     public TextMeshProUGUI tmpro;
     // Start is called before the first frame update
     public override void OnStartClient()
@@ -19,22 +18,24 @@ public class ScoreCounter : NetworkBehaviour
 
 
     // Update is called once per frame
-    public void AddPoints(int amount)
+    public void cooldown()
     {
-
-        score += amount;
-        UpdateText();
+        UpdateText("ON COOLDOWN");
     }
 
-    public void SetPoints(int amount)
+    public void ready()
     {
-        score = amount;
-        UpdateText();
+        UpdateText("READY");
     }
 
-    void UpdateText()
+    public void frozen ()
     {
-        tmpro.text = "Score: " +  score;
+        UpdateText("FROZEN");
+    }
+
+    void UpdateText(string text)
+    {
+        tmpro.text = "POWER: " + text;
     }
 
 }

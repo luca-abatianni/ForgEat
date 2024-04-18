@@ -23,7 +23,7 @@ public class FoodPicker : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GameObject food = CheckFoodCollision();
             if (food != null)
