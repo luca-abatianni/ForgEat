@@ -242,8 +242,8 @@ MonoBehaviour:
   _componentIndexCache: 4
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  magic_effect_period: 10
-  cooldown_period: 2
+  magic_effect_period: 5
+  cooldown_period: 15
   max_target_distance: 20
 --- !u!1 &4282416118004479581
 GameObject:

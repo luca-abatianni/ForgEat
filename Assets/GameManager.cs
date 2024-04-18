@@ -29,6 +29,9 @@ public class GameManager : NetworkBehaviour
     private float phase_one_period;
 
     [SerializeField]
+    private float between_phase_period;
+
+    [SerializeField]
     private float phase_two_period;
 
     private bool phase_timer;
@@ -58,7 +61,7 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (base.IsServer)
+        if (base.IsServer && !phase_timer)
         {
             switch (game_state)
             { 
@@ -70,6 +73,12 @@ public class GameManager : NetworkBehaviour
                     break;
                 case GameState.WaitingSecondPhase:
                     WaitingSecondPhase();
+                    break;
+                case GameState.SecondPhase:
+                    SecondPhase();
+                    break;
+                case GameState.End:
+                    EndRound();
                     break;
                 default:
                     return;
@@ -103,24 +112,33 @@ public class GameManager : NetworkBehaviour
 
     void PhaseOne()
     {
-        if (phase_timer == false)
-        {
-            phase_timer = true;
-            StartCoroutine(PhaseTimer(phase_one_period));
-            return;
-        }
+        phase_timer = true;
+        StartCoroutine(PhaseTimer(phase_one_period));
+        return;
     }
 
     void WaitingSecondPhase()
     {
-        if (phase_timer == false)
-        {
-            phase_timer = true;
-            FindAnyObjectByType<FoodSpawner>().Server_TransformTrashInFood();
-            FindAnyObjectByType<FoodSpawner>().Observer_TransformTrashInFood();
-            PlayersBackToSpawn();
-            StartCoroutine(PhaseTimer(phase_two_period));
-        }
+        phase_timer = true;
+        FindAnyObjectByType<FoodSpawner>().Server_TransformTrashInFood();
+        FindAnyObjectByType<FoodSpawner>().Observer_TransformTrashInFood();
+        PlayersBackToSpawn();
+        spawn_barriers.BarriersOn();
+        StartCoroutine(PhaseTimer(between_phase_period));
+    }
+
+    void SecondPhase()
+    {
+        phase_timer = true;
+        spawn_barriers.BarriersOff();
+        StartCoroutine(PhaseTimer(phase_two_period));
+    }
+
+    void EndRound()
+    {
+        phase_timer = true;
+        PlayersBackToSpawn();
+        spawn_barriers.BarriersOn();
     }
 
     IEnumerator PhaseTimer(float time)
