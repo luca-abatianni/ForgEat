@@ -6576,7 +6576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &282340239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25014,7 +25014,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1074502301}
   _networkObjectCache: {fileID: 1074502301}
   num_clients: 0
-  max_clients: 2
+  max_clients: 5
   player_spawns: {fileID: 1464414992}
   phase_one_period: 120
   between_phase_period: 5
