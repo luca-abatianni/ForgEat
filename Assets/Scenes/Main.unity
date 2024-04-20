@@ -6576,7 +6576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &282340239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6597,7 +6597,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 1597691174}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -209, y: -296.6, z: 0}
+    Position: {x: -52, y: 253, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 0
@@ -6673,11 +6673,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.3
+  m_fontSize: 30
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 50
+  m_fontSizeMin: 30
   m_fontSizeMax: 100
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -6709,7 +6709,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -320.0133, y: 0, z: 59.994568, w: 47.772522}
+  m_margin: {x: -320.0133, y: 0, z: 59.994568, w: 70.89615}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6737,11 +6737,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1597691173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 331, y: 7.399994}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 488, y: -51}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!4 &282438355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4825765323918928, guid: 2cba268cefb022c4bbda1f7a3d8b5968, type: 3}
@@ -25014,7 +25014,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1074502301}
   _networkObjectCache: {fileID: 1074502301}
   num_clients: 0
-  max_clients: 5
+  max_clients: 1
   player_spawns: {fileID: 1464414992}
   phase_one_period: 120
   between_phase_period: 5
@@ -45731,11 +45731,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1597691173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 381, y: 2}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 488, y: 8}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1957894766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45783,11 +45783,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.3
+  m_fontSize: 30.85
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 50
+  m_fontSizeMin: 30
   m_fontSizeMax: 100
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -45819,7 +45819,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -320.0133, y: 0, z: 59.994568, w: 47.772522}
+  m_margin: {x: -320.0133, y: 20.81131, z: 227.64099, w: 47.772522}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -45869,7 +45869,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 1597691174}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -159, y: -302, z: 0}
+    Position: {x: -52, y: 312, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 0
