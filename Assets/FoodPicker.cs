@@ -65,5 +65,13 @@ public class FoodPicker : NetworkBehaviour
     {
         return this.points;
     }
+
+    [ObserversRpc]
+    public void Client_FoodPickerSetEnabled(bool setting)
+    {
+        Debug.Log($"FoodPicker enabled? : {setting}");
+        this.enabled = setting;
+        return;
+    }
 }
 

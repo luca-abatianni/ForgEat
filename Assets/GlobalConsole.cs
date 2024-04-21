@@ -6,6 +6,8 @@ using FishNet.Object;
 using Unity.VisualScripting.FullSerializer;
 using Unity.VisualScripting;
 
+// Sadly not working... Feel free to fix.
+// The idea is to have a way to print a log on every console currently connected.
 public class GlobalConsole : NetworkBehaviour
 {
     public static GlobalConsole instance;
