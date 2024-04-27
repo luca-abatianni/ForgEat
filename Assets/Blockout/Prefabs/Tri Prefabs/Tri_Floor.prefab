@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33603307674005174}
   - component: {fileID: 23379997207136404}
   - component: {fileID: 65428509053445582}
-  - component: {fileID: 114183972545852236}
+  - component: {fileID: 114794804182386356}
   m_Layer: 0
   m_Name: Tri_Floor
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.000001, y: 1.0000012, z: 0.25000006}
   m_Center: {x: 0.5000005, y: -0.5000006, z: -0.1250008}
---- !u!114 &114183972545852236
+--- !u!114 &114794804182386356
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1227435413890840}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: dab00a7ac6fdc984ebc7bf831015ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialBlockoutSection: 1

@@ -7,11 +7,12 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Custom_Blockout_Depth_Blend 1
-  m_Shader: {fileID: 4800000, guid: d62fdfc5751f97443ad77a8d8401e9a9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9d2e72fcebfeda44e9da4610b8ff290c, type: 3}
   m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
-  m_CustomRenderQueue: -1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -26,6 +27,8 @@ Material:
     - _Depth_Blend: 0.19
     - _Glossiness: 0.5
     - _Metallic: 0
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_1: {r: 0.7516182, g: 0.6536549, b: 0.9558824, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

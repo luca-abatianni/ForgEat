@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33100408221189688}
   - component: {fileID: 23494867167643742}
   - component: {fileID: 65492368050660832}
-  - component: {fileID: 114808772501382376}
+  - component: {fileID: 114397084117134286}
   m_Layer: 0
   m_Name: Block_05x3x3
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5000005, y: 3.0000007, z: 3.0000007}
   m_Center: {x: -0.250001, y: -1.5000008, z: 1.5000004}
---- !u!114 &114808772501382376
+--- !u!114 &114397084117134286
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -102,9 +102,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692681128261606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: dab00a7ac6fdc984ebc7bf831015ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialBlockoutSection: 2
   ReapplyMaterialTheme: 1
-  IsTriAsset: 0
