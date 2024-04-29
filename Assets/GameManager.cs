@@ -21,7 +21,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private int num_clients;
     [SerializeField]
-    private int max_clients;
+    public static int max_clients;
 
     [SerializeField]
     private GameObject player_spawns;
@@ -41,9 +41,20 @@ public class GameManager : NetworkBehaviour
 
     [SerializeField] private SpawnBarriers spawn_barriers; 
 
+    public void RetrieveFirstPhaseLen()
+    {
+        Debug.Log("1st phase length: " + SetupMenu.firstPhaseLen);
+        phase_one_period = SetupMenu.firstPhaseLen;
+    }
+
+    public void RetrieveSecondPhaseLen()
+    {
+        
+    }
 
     public override void OnStartServer()
     {
+        RetrieveFirstPhaseLen();
         base.OnStartServer();
         phase_timer = false;
         game_state = GameState.WaitingOnClients;
