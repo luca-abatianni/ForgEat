@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2080200441, guid: 914972a38297ede40ab5aaf0e4d2a873, type: 3}
+  m_Script: {fileID: 11500000, guid: 12cee7fa11d96cc458376237fc722407, type: 3}
   m_Name: BlockoutSuggestionDatabase
   m_EditorClassIdentifier: 
   Database: []

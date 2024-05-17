@@ -11,6 +11,7 @@ public class GameManager : NetworkBehaviour
     enum GameState
     {
         WaitingOnClients,
+        WaitingFirstPhase,
         FirstPhase,
         WaitingSecondPhase,
         SecondPhase,
@@ -68,6 +69,9 @@ public class GameManager : NetworkBehaviour
                 case GameState.WaitingOnClients:
                     WaitForPlayers();
                     break;
+                case GameState.WaitingFirstPhase:
+                    WaitingFirstPhase();
+                    break;
                 case GameState.FirstPhase:
                     PhaseOne();
                     break;
@@ -94,25 +98,25 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
-            StartPhaseOne(); // First phase.
+            game_state++; 
         }
         return;
     }
 
-    void StartPhaseOne()
+    void WaitingFirstPhase ()
     {
-        //FoodSpawner fs = FindAnyObjectByType<FoodSpawner>();
-        //NetworkManager.Log("FoodSpawner is null? -> " + (fs == null));
-        //fs.SpawnFoodTrash();
-        spawn_barriers.BarriersOff();
-        NetworkManager.Log("Barriers off!");
-        game_state++;
+        phase_timer = true;
+        StartCoroutine(PhaseTimer(between_phase_period));
         return;
     }
+
 
     void PhaseOne()
     {
         phase_timer = true;
+        spawn_barriers.BarriersOff();
+        EnableFoodPicking(false);
+        NetworkManager.Log("Barriers off!");
         StartCoroutine(PhaseTimer(phase_one_period));
         return;
     }
@@ -131,6 +135,7 @@ public class GameManager : NetworkBehaviour
     {
         phase_timer = true;
         spawn_barriers.BarriersOff();
+        EnableFoodPicking(true);
         StartCoroutine(PhaseTimer(phase_two_period));
     }
 
@@ -164,6 +169,16 @@ public class GameManager : NetworkBehaviour
                 i++;
             }
             else break;
+        }
+    }
+
+    void EnableFoodPicking(bool setting)
+    {
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            FoodPicker f_picker = player.GetComponent<FoodPicker>();
+            f_picker.Client_FoodPickerSetEnabled(setting);
+            f_picker.enabled = setting;
         }
     }
 }

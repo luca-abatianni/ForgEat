@@ -7,10 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Blockout_Wireframe
-  m_Shader: {fileID: 4800000, guid: b6927bd8e840d354bae2c3e4598f62cf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 845cebb26cc572b46b4443660c6aeee2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -71,6 +72,8 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
     - _Color: {r: 0.31617647, g: 0.40578118, b: 1, a: 0.653}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

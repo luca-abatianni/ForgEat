@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33323988924465200}
   - component: {fileID: 23712134469965286}
   - component: {fileID: 64438933665497034}
-  - component: {fileID: 114474032895253050}
+  - component: {fileID: 114586406732837046}
   m_Layer: 0
   m_Name: Block_05x025x2
   m_TagString: Untagged
@@ -96,7 +96,7 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 37b6d7faef17ef4488b525479c56ac76, type: 3}
---- !u!114 &114474032895253050
+--- !u!114 &114586406732837046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -104,9 +104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1750538512819714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: dab00a7ac6fdc984ebc7bf831015ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
+  ReapplyMaterialTheme: 0
   IsTriAsset: 0

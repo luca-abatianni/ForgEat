@@ -273,7 +273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1140355294856366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2018051215, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: ac6b2013036164be9852b2874faae5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!120 &120099592543153102
@@ -359,6 +359,5 @@ LineRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 0
