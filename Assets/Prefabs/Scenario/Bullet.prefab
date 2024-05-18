@@ -140,7 +140,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 4573550808790962227
+  <AssetPathHash>k__BackingField: 9607154643361582278
 --- !u!135 &300628852466132651
 SphereCollider:
   m_ObjectHideFlags: 0

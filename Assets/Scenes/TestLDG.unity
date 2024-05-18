@@ -373,16 +373,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &22402250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -562,16 +552,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &25608095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -759,16 +739,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &28686899
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -887,16 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &29493853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1397,16 +1357,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &45816151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1651,16 +1601,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &55143792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1901,16 +1841,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &61472139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2159,16 +2089,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &65766406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2619,7 +2539,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 5
 --- !u!1001 &74345510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2759,16 +2678,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &76877875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3119,16 +3028,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &88908600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3308,16 +3207,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &94797143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3532,16 +3421,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &100222377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3726,16 +3605,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &105782945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4042,16 +3911,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &115306882
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4687,16 +4546,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &168450687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5066,16 +4915,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &190751207
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5604,7 +5443,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 0
 --- !u!114 &232980763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5617,9 +5455,6 @@ MonoBehaviour:
   m_Script: {fileID: 1436782365, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generalNotes: 
-  toDoNotes: 
-  otherNotes: 
 --- !u!114 &232980764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5632,21 +5467,6 @@ MonoBehaviour:
   m_Script: {fileID: -314646501, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inGameToggle: 293
-  pinGameToggle: 292
-  areaGameToggle: 291
-  areaComments: []
-  pinComments: []
-  intialVisabilityStateArea: 0
-  intialVisabilityStatePin: 0
-  textColor:
-    r: 1
-    g: 1
-    b: 1
-    a: 0.5
-  currentGlobalState: 1
-  target: {fileID: 0}
-  GlobalNotes: {fileID: 0}
 --- !u!4 &232980765
 Transform:
   m_ObjectHideFlags: 0
@@ -5861,16 +5681,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &244492566
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5994,16 +5804,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &245596311
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6275,16 +6075,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &257226600
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7264,16 +7054,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &299705682
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7392,16 +7172,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &300107631
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8206,16 +7976,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &323685270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8339,16 +8099,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &327708096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8528,16 +8278,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &334994905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9056,6 +8796,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788bf2b2b96572f4da161aa978d360c4, type: 3}
+--- !u!1 &357055822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+  m_PrefabInstance: {fileID: 1942757361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &357055826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357055822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: -0.91, y: 10.295624, z: -1.85}
+    Rotation: {x: 0, y: -0, z: -0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 2624678613
+  <SceneId>k__BackingField: 11272908806124065062
+  <AssetPathHash>k__BackingField: 0
+--- !u!114 &357055827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357055822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2421794f38c264984efca806daf789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 0}
+  _listVFX:
+  - {fileID: 1436932734}
 --- !u!1001 &359216644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10070,16 +9862,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &403795672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10366,16 +10148,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &415814992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11078,16 +10850,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &451751213
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11206,16 +10968,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &453695728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11461,16 +11213,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &458318044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11657,7 +11399,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 8
 --- !u!1001 &474387709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11943,16 +11684,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &495401572
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12376,16 +12107,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &513603920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12562,16 +12283,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &523339643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12950,16 +12661,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &537455698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13078,16 +12779,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &539409945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13159,6 +12850,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 539409942}
   m_Mesh: {fileID: 4300000, guid: 4036c277db2266e469999c80c0e6280e, type: 3}
+--- !u!1 &540733653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540733657}
+  - component: {fileID: 540733656}
+  - component: {fileID: 540733655}
+  - component: {fileID: 540733654}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &540733654
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540733653}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &540733655
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540733653}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bdf001070330e4848b0e201f1b092ab1, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &540733656
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540733653}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &540733657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540733653}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.98, y: 11.66, z: 9.48}
+  m_LocalScale: {x: 11.143, y: 3.75, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &541523129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13341,16 +13137,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &546701375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13474,16 +13260,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &555922027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13765,16 +13541,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &585897128
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14745,6 +14511,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2099683098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &619527591
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 778671512}
+    m_Modifications:
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144647493770579239, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: m_Name
+      value: IceMuzzle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
 --- !u!1001 &619743428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15061,16 +14884,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &636787717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15342,16 +15155,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &646582995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15913,16 +15716,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &656832931
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16484,16 +16277,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &686363187
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16744,16 +16527,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &691971412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17018,16 +16791,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &699393943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17398,16 +17161,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &710067622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17642,16 +17395,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &727107618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18115,16 +17858,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &753609675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18243,16 +17976,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &757095980
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18583,6 +18306,112 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
+--- !u!1 &778671508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778671512}
+  - component: {fileID: 778671511}
+  - component: {fileID: 778671510}
+  - component: {fileID: 778671509}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &778671509
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778671508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &778671510
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778671508}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 49a3799e31595ea478b5dd6fa163fcbd, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &778671511
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778671508}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &778671512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778671508}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.761, y: 0.264, z: 0.974}
+  m_LocalScale: {x: 0.4078, y: 0.4078, z: 0.4078}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1911257317}
+  m_Father: {fileID: 1255605510}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &783784365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4724362463671690, guid: bc23d85d9b1ce1a4d96c6a0450c1a504, type: 3}
@@ -19157,6 +18986,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
+--- !u!1001 &809191951
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
+      propertyPath: m_Name
+      value: SnoFlak
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc60bc313c9e23842a713642211dd47f, type: 3}
 --- !u!1001 &810127687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19627,16 +19513,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &826255593
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20000,16 +19876,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &841902240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20194,16 +20060,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &845903159
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20444,16 +20300,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &851179779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21184,16 +21030,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &890742371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21589,16 +21425,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &908419200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21717,16 +21543,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &910148617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21850,16 +21666,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &910701250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22141,16 +21947,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &924652924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22335,16 +22131,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &927939923
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22670,16 +22456,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &943558801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23175,16 +22951,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &960007515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23303,16 +23069,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &960812390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23528,16 +23284,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &970751304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24168,16 +23914,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1003525370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24322,7 +24058,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 1
 --- !u!4 &1010526759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4186648555938650, guid: 06c321a703a138e44b064bf827e78c52, type: 3}
@@ -25167,16 +24902,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1056966378
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25906,7 +25631,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 6
 --- !u!4 &1090962236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4825765323918928, guid: 2cba268cefb022c4bbda1f7a3d8b5968, type: 3}
@@ -25964,16 +25688,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1091370017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26158,16 +25872,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1100607912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26291,16 +25995,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1102590102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26419,16 +26113,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1103233231
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26766,16 +26450,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1113036841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27280,16 +26954,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1136451188
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27469,16 +27133,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1141737472
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28762,7 +28416,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 9
 --- !u!1001 &1230959929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29013,16 +28666,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1244420238
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29430,6 +29073,163 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
+--- !u!1 &1255605504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1255605510}
+  - component: {fileID: 1255605509}
+  - component: {fileID: 1255605508}
+  - component: {fileID: 1255605507}
+  - component: {fileID: 1255605506}
+  - component: {fileID: 1255605505}
+  m_Layer: 0
+  m_Name: Capsule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1255605505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours: []
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: 0.12, y: 11.13589, z: 0.34}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 2624678613
+  <SceneId>k__BackingField: 11272908808536319139
+  <AssetPathHash>k__BackingField: 0
+--- !u!114 &1255605506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2421794f38c264984efca806daf789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firePoint: {fileID: 778671508}
+  _listVFX:
+  - {fileID: 1436932734}
+--- !u!136 &1255605507
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1255605508
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6273444b68d517449aadb36abebaf561, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1255605509
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1255605510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255605504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.12, y: 11.13589, z: 0.34}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 778671512}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263044328
 GameObject:
   m_ObjectHideFlags: 0
@@ -29477,16 +29277,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1263044331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30037,16 +29827,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1286221127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30717,7 +30497,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 2
 --- !u!4 &1316089658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317664735389580, guid: 53c0f5b99c4af484793939e534c558b5, type: 3}
@@ -30770,16 +30549,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1318058368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30898,16 +30667,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1319731363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31167,16 +30926,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1326709799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31633,16 +31382,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1362242589
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32065,16 +31804,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1391853289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32193,16 +31922,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1393838898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32591,16 +32310,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1412904017
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32872,16 +32581,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1418084186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33289,16 +32988,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1430656912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33497,6 +33186,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
+--- !u!1 &1436932734 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  m_PrefabInstance: {fileID: 7126168017427931449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1437032122
 GameObject:
   m_ObjectHideFlags: 0
@@ -33544,16 +33238,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1437032125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34069,16 +33753,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1460756502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34275,16 +33949,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1465625342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34857,16 +34521,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1485384254
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35117,16 +34771,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1489174837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35543,16 +35187,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1515808622
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36119,16 +35753,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1546889510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36247,16 +35871,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1548186215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36531,16 +36145,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1563701738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36725,16 +36329,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1566491343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36894,16 +36488,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1574529416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37572,7 +37156,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 4
 --- !u!1001 &1588357594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37829,16 +37412,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1590935947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38061,7 +37634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1597691170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38168,7 +37741,7 @@ MonoBehaviour:
   - {fileID: 1957894769}
   - {fileID: 282340239}
   SerializedTransformProperties:
-    Position: {x: 403, y: 226.75, z: 0}
+    Position: {x: 116, y: 65.25, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -38655,16 +38228,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1625338477
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39104,16 +38667,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1643836212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39232,16 +38785,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1645647192
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39430,16 +38973,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1649148102
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39690,16 +39223,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1664859007
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39818,16 +39341,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1665676277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40011,16 +39524,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1666050287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40144,16 +39647,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1670808796
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40595,7 +40088,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 3
 --- !u!4 &1682480377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4196826731335058, guid: 86e59d579c1432e4a9b0697e84670969, type: 3}
@@ -40937,16 +40429,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1695060934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41096,16 +40578,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1698138865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41555,16 +41027,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1713223385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41683,16 +41145,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1716971769
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41893,16 +41345,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1724392966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42541,16 +41983,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1745916917
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42769,16 +42201,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1767444768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43322,16 +42744,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1795135234
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43465,16 +42877,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1807027309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43786,16 +43188,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1821143731
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43914,16 +43306,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1822738858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44223,16 +43605,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1839409015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44624,16 +43996,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1866278274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45508,6 +44870,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2099683098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1911257317 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+  m_PrefabInstance: {fileID: 619527591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1914112746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45729,16 +45096,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1926752869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46046,7 +45403,6 @@ MonoBehaviour:
   m_Script: {fileID: -1364368062, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Section: 7
 --- !u!1 &1938252149
 GameObject:
   m_ObjectHideFlags: 0
@@ -46094,16 +45450,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1938252152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46240,6 +45586,69 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 602a2ebc219966b4aa63c71f00fb29a9, type: 3}
+--- !u!1001 &1942757361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.295624
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      propertyPath: m_Name
+      value: IceProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 357055827}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 357055826}
+  m_SourcePrefab: {fileID: 100100000, guid: eacdca17230e9a649a3ee4a2f6ae923f, type: 3}
 --- !u!1 &1943102930
 GameObject:
   m_ObjectHideFlags: 0
@@ -46287,16 +45696,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1943102933
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46451,16 +45850,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1947538665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46709,7 +46098,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 1597691174}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: -22, y: -224.75, z: 0}
+    Position: {x: 265, y: -63.25, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 0
@@ -47057,16 +46446,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1967587845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47482,16 +46861,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1989065809
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47805,16 +47174,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &1993855026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48443,16 +47802,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2034133200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48641,6 +47990,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7443408887813606051, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7443408887813606060, guid: 0b650fca685f2eb41a86538aa883e4c1, type: 3}
       propertyPath: _playerPrefab
       value: 
@@ -48708,16 +48061,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2046101129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49039,16 +48382,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2059904795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49233,16 +48566,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 1
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2070162832
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49397,16 +48720,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2075849874
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49525,16 +48838,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2076323182
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49653,16 +48956,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2078130184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49781,16 +49074,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2081010956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49929,16 +49212,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2091020355
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50149,16 +49422,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2095478036
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50564,16 +49827,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2116519664
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50932,16 +50185,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 2
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2126955181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51060,16 +50303,6 @@ MonoBehaviour:
   m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialBlockoutSection: 3
-  ReapplyMaterialTheme: 1
-  reapplyMaterialThemeInternal: 1
-  IsTriAsset: 1
-  valid: 1
-  locked: 0
-  lockedPosition: {x: 0, y: 0, z: 0}
-  lockedRotation: {x: 0, y: 0, z: 0, w: 0}
-  mesh: {fileID: 0}
-  colors: []
 --- !u!65 &2127741205
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51348,6 +50581,281 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53c0f5b99c4af484793939e534c558b5, type: 3}
+--- !u!1001 &3136668606753064071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763104276526612800, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968186181790940009, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+      propertyPath: m_Name
+      value: IceImpact
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 147b4e94a05316f48938cef28aa43fcb, type: 3}
+--- !u!1001 &4172156006659931068
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.0555835
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.050004
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.5988615
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3595862539376959886, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227966635413273396, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+      propertyPath: m_Name
+      value: SnowFlake
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a1db09963f57704ba99ff1defcf58a0, type: 3}
+--- !u!1001 &7126168017427931449
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -7825425616316583466, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7825425616316583466, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -7825425616316583466, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_Size.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_BurstCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PreInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PostInfinity
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_RotationOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2171780302244276110, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970602416638479455, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+      propertyPath: m_Name
+      value: IceBullet_VFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84686585f70384444800899d97fa54c5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -51363,3 +50871,10 @@ SceneRoots:
   - {fileID: 1085483741}
   - {fileID: 1464414993}
   - {fileID: 141946696}
+  - {fileID: 1942757361}
+  - {fileID: 7126168017427931449}
+  - {fileID: 1255605510}
+  - {fileID: 3136668606753064071}
+  - {fileID: 809191951}
+  - {fileID: 540733657}
+  - {fileID: 4172156006659931068}
