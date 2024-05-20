@@ -8,9 +8,12 @@ public class PowerBehavior : NetworkBehaviour
 {
     [SerializeField] PowerType _powerType;
     [SerializeField] GameObject _impact;
+    [SerializeField] GameObject _muzzle;
+
     GameObject _spawner;
     float _speed = 20f;
     private Vector3 _direction;
+    private GameObject _initialPosition;
     enum PowerType
     {
         IceBullet,
@@ -18,7 +21,8 @@ public class PowerBehavior : NetworkBehaviour
     // Start is called before the first frame update
     public override void OnStartClient()
     {
-
+        if (_muzzle != null)
+            SRPC_Muzzle(this, gameObject, _muzzle, _initialPosition);
         base.OnStartClient();
         if (!base.IsServer)
         {
@@ -39,6 +43,10 @@ public class PowerBehavior : NetworkBehaviour
         }
     }
 
+    public void SetParent(GameObject pos)
+    {
+        _initialPosition=pos;
+    }
     public void SetDirection(Vector3 direction)
     {
         _direction = direction;
@@ -58,14 +66,25 @@ public class PowerBehavior : NetworkBehaviour
         Vector3 pos = contact.point;
         if (_impact != null)
         {
-            OnImpact(this, _impact, pos, rot);
+            ORPC_OnImpact(this, _impact, pos, rot);
         }
         else
             return;
-        //Destroy(gameObject);
+        ServerManager.Despawn(gameObject);
+        Destroy(gameObject);
     }
-    [ServerRpc]
-    public void OnImpact(PowerBehavior script, GameObject _impact, Vector3 pos, Quaternion rot)
+
+  
+    [ObserversRpc]
+    public void SRPC_Muzzle(PowerBehavior script, GameObject bulletObj, GameObject muzzle, GameObject parent)
+    {
+        var obj = Instantiate(muzzle, parent.transform.position, Camera.main.transform.rotation);
+        obj.transform.forward = bulletObj.transform.forward;
+        ServerManager.Spawn(obj);
+        //obj.transform.SetParent(parent.transform);  
+    }
+    [ObserversRpc]
+    public void ORPC_OnImpact(PowerBehavior script, GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);

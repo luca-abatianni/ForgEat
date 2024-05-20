@@ -14718,7 +14718,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9144647493770579239}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 225e4e74ec6fcd046840b1a8a368a78f, type: 3}
   m_Name: 
@@ -14726,4 +14726,4 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 462560711032328671}
   _networkObjectCache: {fileID: 462560711032328671}
-  timeout: 1
+  timeout: 5

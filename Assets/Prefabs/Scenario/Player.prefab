@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1583900551122322469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.73, y: 1.69, z: 1.12}
+  m_LocalPosition: {x: 0.28, y: 1.81, z: 1.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,17 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsNested>k__BackingField: 1
-  <ComponentIndex>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 1
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours: []
-  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ParentNetworkObject>k__BackingField: {fileID: 3252535994773736344}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
     Position: {x: 0.73, y: 1.69, z: 1.12}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
-  _isGlobal: 0
+  _isGlobal: 1
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
@@ -231,7 +231,7 @@ MonoBehaviour:
   - {fileID: -658878598068961507}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 3087662861834824202}
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -437,7 +437,6 @@ MonoBehaviour:
   _componentIndexCache: 7
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  _muzzle: {fileID: 9144647493770579239, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
   _firePoint: {fileID: 1583900551122322469}
   _listVFX:
   - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}

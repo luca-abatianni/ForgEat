@@ -7,11 +7,9 @@ using FishNet.Object.Synchronizing;
 using UnityEngine.VFX;
 public class PrimaryPower : NetworkBehaviour
 {
-    [SerializeField] GameObject _muzzle;
     public GameObject _firePoint;
     public List<GameObject> _listVFX = new List<GameObject>();
     private GameObject _effectToSpawn;
-
 
     private float _cooldown = 0f;
     public override void OnStartClient()
@@ -35,24 +33,20 @@ public class PrimaryPower : NetworkBehaviour
             _cooldown = Time.time + 1f;
             _effectToSpawn = _listVFX[0];//Left click - Power 1
             SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject);
-            SRPC_Muzzle(this,gameObject, _muzzle, _firePoint.transform.position);
         }
     }
-    [ServerRpc]
-    public void SRPC_Muzzle(PrimaryPower script, GameObject GO, GameObject muzzle, Vector3 pos)
-    {
-        var obj = Instantiate(muzzle, pos, Camera.main.transform.rotation);
-        obj.transform.forward = GO.transform.forward;
-        ServerManager.Spawn(obj);
-    }
+
     [ServerRpc]
     void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player)
     {
+        Debug.Log("SRPC_SM");
         GameObject spawned;
         if (_firePoint != null)
         {
-            spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, Camera.main.transform.rotation);
-            spawned.GetComponent<PowerBehavior>().SetDirection(Camera.main.transform.forward);
+            var camera = player.GetComponentInChildren<Camera>();
+            spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, camera.transform.rotation);
+            spawned.GetComponent<PowerBehavior>().SetDirection(camera.transform.forward);
+            spawned.GetComponent<PowerBehavior>().SetParent(_firePoint);
             spawned.GetComponent<PowerBehavior>().SetSpawner(player);
             Physics.IgnoreCollision(player.GetComponent<Collider>(), spawned.GetComponent<Collider>(), true);
             ServerManager.Spawn(spawned);
