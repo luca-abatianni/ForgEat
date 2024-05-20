@@ -4,11 +4,11 @@ using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
-public class PowerBehavior : MonoBehaviour
+public class PowerBehavior : NetworkBehaviour
 {
     [SerializeField] PowerType _powerType;
     [SerializeField] GameObject _impact;
-    [SerializeField] GameObject _muzzle;
+    GameObject _spawner;
     float _speed = 20f;
     private Vector3 _direction;
     enum PowerType
@@ -16,14 +16,17 @@ public class PowerBehavior : MonoBehaviour
         IceBullet,
     }
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartClient()
     {
-        if (_muzzle != null)
+
+        base.OnStartClient();
+        if (!base.IsServer)
         {
-            var muzzle = Instantiate(_muzzle, transform.position, Quaternion.identity);
-            muzzle.transform.forward = gameObject.transform.forward;
+            GetComponent<PowerBehavior>().enabled = false;
+            return;
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -40,16 +43,31 @@ public class PowerBehavior : MonoBehaviour
     {
         _direction = direction;
     }
+    public void SetSpawner(GameObject spawner)
+    {
+        _spawner = spawner;
+    }
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider == _spawner.GetComponent<Collider>())
+            return;
+        Debug.Log("Ice collision");
         _speed = 0f;
-        Destroy(gameObject);
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
         if (_impact != null)
         {
-            Instantiate(_impact, pos, rot);
+            OnImpact(this, _impact, pos, rot);
         }
+        else
+            return;
+        //Destroy(gameObject);
+    }
+    [ServerRpc]
+    public void OnImpact(PowerBehavior script, GameObject _impact, Vector3 pos, Quaternion rot)
+    {
+        var obj = Instantiate(_impact, pos, rot);
+        ServerManager.Spawn(obj);
     }
 }
