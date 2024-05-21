@@ -36,7 +36,9 @@ public class PrimaryPower : NetworkBehaviour
         {
             _cooldown = Time.time + 1f;
             _effectToSpawn = _listVFX[0];//Left click - Power 1
-            SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject);
+            Vector3 spawn_forward = Camera.main.transform.forward;
+            Quaternion spawn_rot = Camera.main.transform.rotation;
+            SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
             //SRPC_SpawnSigil(_castVFX, _firePoint);
             animator.SetBool("attackFreeze", true);
         }
@@ -54,13 +56,13 @@ public class PrimaryPower : NetworkBehaviour
         ServerManager.Spawn(spawned);
     }
     [ServerRpc]
-    void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player)
+    void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player, Vector3 spawn_forward, Quaternion spawn_rot)
     {
         GameObject spawned;
         if (_firePoint != null)
         {
             spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
-            spawned.GetComponent<PowerBehavior>().SetDirection(_firePoint.transform.forward);
+            spawned.GetComponent<PowerBehavior>().SetDirection(spawn_forward);
             spawned.GetComponent<PowerBehavior>().SetParent(_firePoint);
             spawned.GetComponent<PowerBehavior>().SetSpawner(player);
             Physics.IgnoreCollision(player.GetComponent<Collider>(), spawned.GetComponent<Collider>(), true);

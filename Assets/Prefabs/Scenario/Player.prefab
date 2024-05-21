@@ -78,7 +78,6 @@ GameObject:
   - component: {fileID: 2909655211685544663}
   - component: {fileID: 3252535994773736344}
   - component: {fileID: -8236390473868420945}
-  - component: {fileID: 746409093068880939}
   - component: {fileID: 5064347402816963343}
   - component: {fileID: 3531994882973546020}
   - component: {fileID: -1953266018061299003}
@@ -223,7 +222,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 2176458008890118076}
   - {fileID: 4909591337073164744}
-  - {fileID: 746409093068880939}
+  - {fileID: 0}
   - {fileID: 5064347402816963343}
   - {fileID: 3531994882973546020}
   - {fileID: -1953266018061299003}
@@ -271,23 +270,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1.35, z: 0}
---- !u!114 &746409093068880939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147122664987308133}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd03cc4be3fda2045850f767ffd43c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 3252535994773736344}
-  _networkObjectCache: {fileID: 3252535994773736344}
-  objToSpawn: {fileID: 7279261604974057880, guid: 04b5114aa3454d04fb1d756e0972762c, type: 3}
-  spawnedObject: []
 --- !u!114 &5064347402816963343
 MonoBehaviour:
   m_ObjectHideFlags: 0
