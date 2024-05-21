@@ -4,6 +4,7 @@ using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Component.Animating;
 using UnityEngine.VFX;
 public class PrimaryPower : NetworkBehaviour
 {
@@ -12,6 +13,8 @@ public class PrimaryPower : NetworkBehaviour
     private GameObject _effectToSpawn;
 
     private float _cooldown = 0f;
+    public Animator animator;
+    public NetworkAnimator netAnim;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -33,6 +36,11 @@ public class PrimaryPower : NetworkBehaviour
             _cooldown = Time.time + 1f;
             _effectToSpawn = _listVFX[0];//Left click - Power 1
             SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject);
+            animator.SetBool("attackFreeze", true);
+        }
+        else
+        {
+            animator.SetBool("attackFreeze", false);
         }
     }
 

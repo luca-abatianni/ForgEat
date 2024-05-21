@@ -170,6 +170,10 @@ MonoBehaviour:
   playerCanMove: 1
   walkSpeed: 5
   maxVelocityChange: 10
+  isWalking: 0
+  isMoonwalking: 0
+  isWalkingLeft: 0
+  isWalkingRight: 0
   enableSprint: 1
   unlimitedSprint: 1
   sprintKey: 304
