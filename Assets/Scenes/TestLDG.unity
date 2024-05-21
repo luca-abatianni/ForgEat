@@ -14479,6 +14479,14 @@ PrefabInstance:
       propertyPath: <IsNested>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 462560711032328671, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: <ComponentIndex>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462560711032328671, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 1255605505}
     - target: {fileID: 5876715655537424142, guid: cfb5ba570e4aa804bbd38b0063a82a7c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -29053,6 +29061,9 @@ MonoBehaviour:
   _firePoint: {fileID: 778671508}
   _listVFX:
   - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  _castVFX: {fileID: 0}
+  animator: {fileID: 0}
+  netAnim: {fileID: 0}
 --- !u!136 &1255605507
 CapsuleCollider:
   m_ObjectHideFlags: 0

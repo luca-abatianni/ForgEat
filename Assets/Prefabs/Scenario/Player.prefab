@@ -243,7 +243,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 3
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -446,6 +446,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1583900551122322469}
   _listVFX:
   - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  _castVFX: {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!1 &4282416118004479581
