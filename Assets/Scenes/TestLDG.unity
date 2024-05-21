@@ -29061,7 +29061,6 @@ MonoBehaviour:
   _firePoint: {fileID: 778671508}
   _listVFX:
   - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
-  _castVFX: {fileID: 0}
   animator: {fileID: 0}
   netAnim: {fileID: 0}
 --- !u!136 &1255605507

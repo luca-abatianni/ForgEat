@@ -6,6 +6,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Component.Animating;
 using UnityEngine.VFX;
+using Unity.VisualScripting;
 public class PrimaryPower : NetworkBehaviour
 {
     public GameObject _firePoint;
@@ -58,7 +59,6 @@ public class PrimaryPower : NetworkBehaviour
         GameObject spawned;
         if (_firePoint != null)
         {
-            //var camera = player.GetComponentInChildren<Camera>();
             spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
             spawned.GetComponent<PowerBehavior>().SetDirection(_firePoint.transform.forward);
             spawned.GetComponent<PowerBehavior>().SetParent(_firePoint);
