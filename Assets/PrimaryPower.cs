@@ -12,6 +12,7 @@ public class PrimaryPower : NetworkBehaviour
     public GameObject _firePoint;
     public List<GameObject> _listVFX = new List<GameObject>();
     private GameObject _effectToSpawn;
+    private GameObject _sigilToSpawn;
 
     private float _cooldown = 0f;
     public Animator animator;
@@ -34,26 +35,36 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _cooldown = Time.time + 1f;
-            _effectToSpawn = _listVFX[0];//Left click - Power 1
-            Vector3 spawn_forward = Camera.main.transform.forward;
-            Quaternion spawn_rot = Camera.main.transform.rotation;
-            SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
-            //SRPC_SpawnSigil(_castVFX, _firePoint);
-            animator.SetBool("attackFreeze", true);
+            StartCoroutine(SpawnMagic());
         }
         else
         {
             animator.SetBool("attackFreeze", false);
         }
     }
+    private IEnumerator SpawnMagic()
+    {
+        _cooldown = Time.time + 1f;
+        _effectToSpawn = _listVFX[0];//Left click - Power 1
+        _sigilToSpawn = _listVFX[1];
+        Vector3 spawn_forward = Camera.main.transform.forward;
+        Quaternion spawn_rot = Camera.main.transform.rotation;
+
+        SRPC_SpawnSigil(_sigilToSpawn, _firePoint);
+        animator.SetBool("attackFreeze", true);
+        yield return new WaitForSeconds(.3f);
+        SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
+
+        yield return null;
+    }
 
     [ServerRpc]
     void SRPC_SpawnSigil(GameObject _effectToSpawn, GameObject _firePoint)
     {
-        var spawned = Instantiate(_effectToSpawn);//, _firePoint.transform.position, _firePoint.transform.rotation);
-        spawned.transform.SetParent(_firePoint.transform);
+        var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
+
         ServerManager.Spawn(spawned);
+        spawned.transform.SetParent(_firePoint.transform);
     }
     [ServerRpc]
     void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player, Vector3 spawn_forward, Quaternion spawn_rot)
