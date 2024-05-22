@@ -51,6 +51,7 @@ public class PrimaryPower : NetworkBehaviour
         Quaternion spawn_rot = Camera.main.transform.rotation;
 
         SRPC_SpawnSigil(_sigilToSpawn, _firePoint);
+        SRPC_SpawnSigilFoot(_sigilToSpawn, gameObject);
         animator.SetBool("attackFreeze", true);
         yield return new WaitForSeconds(.3f);
         SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
@@ -62,6 +63,15 @@ public class PrimaryPower : NetworkBehaviour
     void SRPC_SpawnSigil(GameObject _effectToSpawn, GameObject _firePoint)
     {
         var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
+
+        ServerManager.Spawn(spawned);
+        spawned.transform.SetParent(_firePoint.transform);
+    }
+    [ServerRpc]
+    void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
+    {
+        var p = _firePoint.transform.position;
+        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y+.38f, p.z), Quaternion.LookRotation(Vector3.up));
 
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);

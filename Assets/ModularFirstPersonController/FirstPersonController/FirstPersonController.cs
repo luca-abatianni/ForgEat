@@ -113,10 +113,10 @@ public class FirstPersonController : NetworkBehaviour
 
     #endregion
 
-    #region Crouch
+    #region Crouch  
 
-    public bool enableCrouch = true;
-    public bool holdToCrouch = true;
+    public bool enableCrouch = false;
+    public bool holdToCrouch = false;
     public KeyCode crouchKey = KeyCode.LeftControl;
     public float crouchHeight = .75f;
     public float speedReduction = .5f;
@@ -345,7 +345,7 @@ public class FirstPersonController : NetworkBehaviour
 
         #region Crouch
 
-        if (enableCrouch)
+        if (false)//(enableCrouch)
         {
             if (Input.GetKeyDown(crouchKey) && !holdToCrouch)
             {
