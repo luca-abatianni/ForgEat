@@ -9,8 +9,10 @@ using UnityEngine.VFX;
 using Unity.VisualScripting;
 public class PrimaryPower : NetworkBehaviour
 {
-    public GameObject _firePoint;
-    public List<GameObject> _listVFX = new List<GameObject>();
+    [SerializeField] public GameObject _firePoint;
+    [SerializeField] public List<GameObject> _listEffects = new List<GameObject>();
+    [SerializeField] public List<GameObject> _listSigils = new List<GameObject>();
+    [SerializeField] public PowerBehavior.PowerType primaryPower = PowerBehavior.PowerType.IceBullet;
     private GameObject _effectToSpawn;
     private GameObject _sigilToSpawn;
 
@@ -25,7 +27,7 @@ public class PrimaryPower : NetworkBehaviour
             GetComponent<PrimaryPower>().enabled = false;
             return;
         }
-        if (_listVFX.Count == 0)
+        if (_listEffects.Count == 0)
             return;
     }
 
@@ -35,6 +37,10 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0))
         {
+
+            _cooldown = Time.time + 1f;
+            _effectToSpawn = _listEffects[(int)PowerBehavior.PowerType.IceBullet];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)PowerBehavior.PowerType.IceBullet];
             StartCoroutine(SpawnMagic());
         }
         else
@@ -44,9 +50,6 @@ public class PrimaryPower : NetworkBehaviour
     }
     private IEnumerator SpawnMagic()
     {
-        _cooldown = Time.time + 1f;
-        _effectToSpawn = _listVFX[0];//Left click - Power 1
-        _sigilToSpawn = _listVFX[1];
         Vector3 spawn_forward = Camera.main.transform.forward;
         Quaternion spawn_rot = Camera.main.transform.rotation;
 
@@ -71,7 +74,7 @@ public class PrimaryPower : NetworkBehaviour
     void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
     {
         var p = _firePoint.transform.position;
-        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y+.38f, p.z), Quaternion.LookRotation(Vector3.up));
+        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y + .37f, p.z), Quaternion.LookRotation(Vector3.up));
 
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);

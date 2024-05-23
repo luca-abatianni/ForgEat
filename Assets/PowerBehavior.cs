@@ -14,9 +14,9 @@ public class PowerBehavior : NetworkBehaviour
     float _speed = 20f;
     private Vector3 _direction;
     private GameObject _initialPosition;
-    enum PowerType
+    public enum PowerType
     {
-        IceBullet,
+        IceBullet=0,
     }
     // Start is called before the first frame update
     public override void OnStartClient()

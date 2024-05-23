@@ -29008,7 +29008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1255605505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29059,8 +29059,9 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1255605505}
   _networkObjectCache: {fileID: 1255605505}
   _firePoint: {fileID: 778671508}
-  _listVFX:
-  - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  _listEffects: []
+  _listSigils: []
+  primaryPower: 1
   animator: {fileID: 0}
   netAnim: {fileID: 0}
 --- !u!136 &1255605507
