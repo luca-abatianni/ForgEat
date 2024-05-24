@@ -17,6 +17,7 @@ public class PowerBehavior : NetworkBehaviour
     public enum PowerType
     {
         IceBullet=0,
+        MindBullet=1,
     }
     // Start is called before the first frame update
     public override void OnStartClient()

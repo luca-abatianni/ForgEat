@@ -39,13 +39,25 @@ public class PrimaryPower : NetworkBehaviour
         {
 
             _cooldown = Time.time + 1f;
-            _effectToSpawn = _listEffects[(int)PowerBehavior.PowerType.IceBullet];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)PowerBehavior.PowerType.IceBullet];
+            _effectToSpawn = _listEffects[(int)primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)primaryPower];
             StartCoroutine(SpawnMagic());
         }
         else
         {
             animator.SetBool("attackFreeze", false);
+        }
+        SwitchPower();
+    }
+    void SwitchPower()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            primaryPower = PowerBehavior.PowerType.IceBullet;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            primaryPower = PowerBehavior.PowerType.MindBullet;
         }
     }
     private IEnumerator SpawnMagic()

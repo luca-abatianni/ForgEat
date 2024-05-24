@@ -427,8 +427,10 @@ MonoBehaviour:
   _firePoint: {fileID: 1583900551122322469}
   _listEffects:
   - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
   _listSigils:
   - {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
+  - {fileID: 4151754271603140014, guid: 951306b980b448242a585282cb8ee997, type: 3}
   primaryPower: 1
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
