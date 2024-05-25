@@ -6,8 +6,8 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 public class PowerBehavior : NetworkBehaviour
 {
-    [SerializeField] PowerType _powerType;
-    [SerializeField] GameObject _impact;
+    [SerializeField] public PowerType _powerType;
+    [SerializeField] GameObject _impactEffect;
     [SerializeField] GameObject _muzzle;
 
     GameObject _spawner;
@@ -16,8 +16,8 @@ public class PowerBehavior : NetworkBehaviour
     private GameObject _initialPosition;
     public enum PowerType
     {
-        IceBullet=0,
-        MindBullet=1,
+        IceBullet = 0,
+        MindBullet = 1,
     }
     // Start is called before the first frame update
     public override void OnStartClient()
@@ -39,6 +39,7 @@ public class PowerBehavior : NetworkBehaviour
         switch (_powerType)
         {
             case PowerType.IceBullet:
+            case PowerType.MindBullet:
                 transform.position += _direction * (_speed * Time.deltaTime);
                 break;
         }
@@ -46,11 +47,16 @@ public class PowerBehavior : NetworkBehaviour
 
     public void SetParent(GameObject pos)
     {
-        _initialPosition=pos;
+        _initialPosition = pos;
     }
     public void SetDirection(Vector3 direction)
     {
         _direction = direction;
+    }
+    public void SetPowerType(PowerBehavior.PowerType type)
+    {
+        _powerType = type;
+        Debug.Log("Set "+_powerType);
     }
     public void SetSpawner(GameObject spawner)
     {
@@ -58,24 +64,26 @@ public class PowerBehavior : NetworkBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider == _spawner.GetComponent<Collider>())
-            return;
-        Debug.Log("Ice collision");
+        Debug.Log("P1 collision");
         _speed = 0f;
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
-        if (_impact != null)
+        var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
+        if (powerEffect != null)
         {
-            ORPC_OnImpact(this, _impact, pos, rot);
+            powerEffect.Hit(_powerType);
+            Debug.Log("Collision " + _powerType);
         }
-        else
-            return;
+        if (_impactEffect != null)
+        {
+            ORPC_OnImpact( _impactEffect, pos, rot);
+        }
         ServerManager.Despawn(gameObject);
         Destroy(gameObject);
     }
 
-  
+
     [ObserversRpc]
     public void SRPC_Muzzle(PowerBehavior script, GameObject bulletObj, GameObject muzzle, GameObject parent)
     {
@@ -84,8 +92,9 @@ public class PowerBehavior : NetworkBehaviour
         ServerManager.Spawn(obj);
         //obj.transform.SetParent(parent.transform);  
     }
+    
     [ObserversRpc]
-    public void ORPC_OnImpact(PowerBehavior script, GameObject _impact, Vector3 pos, Quaternion rot)
+    public void ORPC_OnImpact( GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);

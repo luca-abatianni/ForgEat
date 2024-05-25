@@ -10,9 +10,10 @@ using Unity.VisualScripting;
 public class PrimaryPower : NetworkBehaviour
 {
     [SerializeField] public GameObject _firePoint;
+    [SerializeField] public GameObject _sigilPoint;
     [SerializeField] public List<GameObject> _listEffects = new List<GameObject>();
     [SerializeField] public List<GameObject> _listSigils = new List<GameObject>();
-    [SerializeField] public PowerBehavior.PowerType primaryPower = PowerBehavior.PowerType.IceBullet;
+    [SerializeField] public PowerBehavior.PowerType _primaryPower = PowerBehavior.PowerType.IceBullet;
     private GameObject _effectToSpawn;
     private GameObject _sigilToSpawn;
 
@@ -35,12 +36,12 @@ public class PrimaryPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && _listEffects.Count > 0)
         {
 
             _cooldown = Time.time + 1f;
-            _effectToSpawn = _listEffects[(int)primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)primaryPower];
+            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)_primaryPower];
             StartCoroutine(SpawnMagic());
         }
         else
@@ -53,12 +54,19 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            primaryPower = PowerBehavior.PowerType.IceBullet;
+            _primaryPower = PowerBehavior.PowerType.IceBullet;
+            SRPC_SwitchPower(this, PowerBehavior.PowerType.IceBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            primaryPower = PowerBehavior.PowerType.MindBullet;
+            _primaryPower = PowerBehavior.PowerType.MindBullet;
+            SRPC_SwitchPower(this, PowerBehavior.PowerType.MindBullet);
         }
+    }
+    [ServerRpc (RequireOwnership =false)]
+    void SRPC_SwitchPower(PrimaryPower script,PowerBehavior.PowerType type)
+    {
+        script._primaryPower = type;
     }
     private IEnumerator SpawnMagic()
     {
@@ -66,7 +74,7 @@ public class PrimaryPower : NetworkBehaviour
         Quaternion spawn_rot = Camera.main.transform.rotation;
 
         SRPC_SpawnSigil(_sigilToSpawn, _firePoint);
-        SRPC_SpawnSigilFoot(_sigilToSpawn, gameObject);
+        SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
         animator.SetBool("attackFreeze", true);
         yield return new WaitForSeconds(.3f);
         SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
@@ -78,7 +86,6 @@ public class PrimaryPower : NetworkBehaviour
     void SRPC_SpawnSigil(GameObject _effectToSpawn, GameObject _firePoint)
     {
         var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
-
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);
     }
@@ -86,8 +93,7 @@ public class PrimaryPower : NetworkBehaviour
     void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
     {
         var p = _firePoint.transform.position;
-        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y + .37f, p.z), Quaternion.LookRotation(Vector3.up));
-
+        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);
     }
@@ -98,11 +104,12 @@ public class PrimaryPower : NetworkBehaviour
         if (_firePoint != null)
         {
             spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
+            ServerManager.Spawn(spawned);
             spawned.GetComponent<PowerBehavior>().SetDirection(spawn_forward);
             spawned.GetComponent<PowerBehavior>().SetParent(_firePoint);
             spawned.GetComponent<PowerBehavior>().SetSpawner(player);
+            spawned.GetComponent<PowerBehavior>().SetPowerType(_primaryPower);
             Physics.IgnoreCollision(player.GetComponent<Collider>(), spawned.GetComponent<Collider>(), true);
-            ServerManager.Spawn(spawned);
         }
         else
         {

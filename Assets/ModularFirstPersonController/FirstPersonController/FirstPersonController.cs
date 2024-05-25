@@ -58,6 +58,8 @@ public class FirstPersonController : NetworkBehaviour
     #region Movement Variables
 
     public bool playerCanMove = true;
+    public bool confusePlayerMovement = false;
+    private bool confuseType = false;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
 
@@ -218,7 +220,6 @@ public class FirstPersonController : NetworkBehaviour
         if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
-
             if (!invertCamera)
             {
                 pitch -= mouseSensitivity * Input.GetAxis("Mouse Y");
@@ -227,6 +228,12 @@ public class FirstPersonController : NetworkBehaviour
             {
                 // Inverted Y
                 pitch += mouseSensitivity * Input.GetAxis("Mouse Y");
+            }
+            if (confusePlayerMovement && !confuseType)
+            {
+                yaw = transform.localEulerAngles.y - Input.GetAxis("Mouse X") * mouseSensitivity;
+                pitch += 2 * (mouseSensitivity * Input.GetAxis("Mouse Y"));
+
             }
 
             // Clamp pitch between lookAngle
@@ -373,7 +380,18 @@ public class FirstPersonController : NetworkBehaviour
             HeadBob();
         }
     }
-
+    public void SetConfuseMovement(bool confuse)
+    {
+        confusePlayerMovement = confuse;
+        if (confuse)
+        {//Randomizzo la confusione
+            confuseType = !confuseType;
+        }
+    }
+    public void SetPlayerCanMove(bool canMove)
+    {
+        playerCanMove = canMove;
+    }
     void FixedUpdate()
     {
         #region Movement
@@ -382,7 +400,11 @@ public class FirstPersonController : NetworkBehaviour
         {
             // Calculate how fast we should be moving
             Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+            if (confusePlayerMovement)
+            {
+                if (confuseType)
+                    targetVelocity = new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+            }
             // Checks if player is walking and isGrounded
             // Will allow head bob
             if (targetVelocity.z < 0 && isGrounded)

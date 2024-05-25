@@ -201,7 +201,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 263517703158268434}
   _networkObjectCache: {fileID: 263517703158268434}
   _powerType: 0
-  _impact: {fileID: 5358492753972987438, guid: 4c9377ba459e13b47945bcb1b8525ce9, type: 3}
+  _impactEffect: {fileID: 5358492753972987438, guid: 4c9377ba459e13b47945bcb1b8525ce9, type: 3}
   _muzzle: {fileID: 9144647493770579239, guid: e79d29b6ab85edc4eb6eabd71b633010, type: 3}
 --- !u!54 &-2428957788094947788
 Rigidbody:
@@ -259,7 +259,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 13
+  <PrefabId>k__BackingField: 18
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
