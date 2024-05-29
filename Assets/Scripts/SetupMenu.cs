@@ -9,7 +9,7 @@ public class SetupMenu : MonoBehaviour
 
     public static void SetServerIP (string serverIP_selected) 
     {
-        Debug.Log(serverIP_selected);
+        Debug.Log("SetupMenu script received " + serverIP_selected + " as serverIp");
         serverIP = serverIP_selected;
     }
 

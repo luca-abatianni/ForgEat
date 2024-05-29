@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
 
     public int ServerIP;
+    public static bool amIServer = false;
 
     private void Awake()
     {
@@ -18,5 +19,11 @@ public class MainManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public static void SetMeAsServer() 
+    {
+        Debug.Log("Correctly changed to server in MainManager");
+        amIServer = true;
     }
 }
