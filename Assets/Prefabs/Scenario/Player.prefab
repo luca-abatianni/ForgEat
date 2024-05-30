@@ -325,7 +325,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   playerCamera: {fileID: 0}
-  fov: 60
+  fov: 100
   invertCamera: 0
   cameraCanMove: 1
   mouseSensitivity: 2
@@ -354,7 +354,7 @@ MonoBehaviour:
   sprintSpeed: 7
   sprintDuration: 5
   sprintCooldown: 0.5
-  sprintFOV: 80
+  sprintFOV: 100
   sprintFOVStepTime: 10
   useSprintBar: 0
   hideBarWhenFull: 1

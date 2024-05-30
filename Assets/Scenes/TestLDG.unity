@@ -25102,11 +25102,11 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1074502301}
   _networkObjectCache: {fileID: 1074502301}
   num_clients: 0
-  max_clients: 5
+  max_clients: 2
   player_spawns: {fileID: 1464414992}
-  phase_one_period: 120
+  phase_one_period: 20
   between_phase_period: 5
-  phase_two_period: 120
+  phase_two_period: 20
   spawn_barriers: {fileID: 1085483743}
 --- !u!4 &1074502303
 Transform:
@@ -25429,7 +25429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1085483741
 Transform:
   m_ObjectHideFlags: 0
@@ -29059,9 +29059,10 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1255605505}
   _networkObjectCache: {fileID: 1255605505}
   _firePoint: {fileID: 778671508}
+  _sigilPoint: {fileID: 0}
   _listEffects: []
   _listSigils: []
-  primaryPower: 1
+  _primaryPower: 0
   animator: {fileID: 0}
   netAnim: {fileID: 0}
 --- !u!136 &1255605507
@@ -37552,7 +37553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1597691170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37659,7 +37660,7 @@ MonoBehaviour:
   - {fileID: 1957894769}
   - {fileID: 282340239}
   SerializedTransformProperties:
-    Position: {x: 116, y: 65.25, z: 0}
+    Position: {x: 540, y: 304, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -45953,7 +45954,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 1597691174}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 265, y: -63.25, z: 0}
+    Position: {x: -159, y: -302, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 0
