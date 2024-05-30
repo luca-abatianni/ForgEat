@@ -16,7 +16,7 @@ public class ClientScript : MonoBehaviour
     private const float broadcast_interval = 1f;
     private float broadcast_timer;
 
-    public static String serverText;
+    public static string serverText;
 
     public void OnClientSearchStart()
     {

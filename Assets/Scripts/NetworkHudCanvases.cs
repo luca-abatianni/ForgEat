@@ -225,6 +225,7 @@ namespace FishNet.Example
                 _networkManager.ClientManager.StopConnection();
             else
                 _networkManager.ClientManager.StartConnection();
+            
 
             DeselectButtons();
         }

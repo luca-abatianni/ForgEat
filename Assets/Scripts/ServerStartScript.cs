@@ -15,6 +15,7 @@ public class ServerStartScript : MonoBehaviour
         foreach (IPAddress ip in hostEntry.AddressList) {
             if (ip.AddressFamily==AddressFamily.InterNetwork) {
                 serverIP=ip.ToString();
+                Debug.Log("We are starting with server " + serverIP);
                 break;
             } 
         } 

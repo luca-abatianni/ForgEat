@@ -7,16 +7,7 @@ public class SelectServerButton : MonoBehaviour
 {
     public TMP_Text text;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (ClientScript.serverText != null)
-            text.text = ClientScript.serverText;
-        else 
-            text.text = "No server found";
-    }
-
-    public void onClickServerOption()
+    public void OnClickServerOption()
     {
         if (ClientScript.serverText != null){
             SetupMenu.SetServerIP(text.text);

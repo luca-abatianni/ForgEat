@@ -10,29 +10,32 @@ public class ClientServerSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WaitABit(1));
+        StartCoroutine(WaitABitThenSet(1));
     }
 
-    IEnumerator WaitABit(float duration)
+    IEnumerator WaitABitThenSet(float duration)
     {
-        Debug.Log("We are waiting a bit");
         yield return new WaitForSeconds(duration);
-        Debug.Log("We ended waiting");
-        SetClientAndServer();
+        SetServer();
+        yield return new WaitForSeconds(duration);
+        SetClient();
     }
 
-    void SetClientAndServer()
+    void SetServer()
     {
         canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
         if (canvas != null)
         {
-            Debug.Log("We have a canvas game object, maybe");
-
             if (MainManager.amIServer)
                 canvas.OnClick_Server();
-            canvas.OnClick_Client();
+        }
+    }
 
-            return;
+    void SetClient()
+    {
+        if (canvas != null)
+        {
+            canvas.OnClick_Client();
         }
     }
 }

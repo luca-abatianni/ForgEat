@@ -38,11 +38,11 @@ Material:
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0
-    - _OutlineWidth: 0.1
+    - _OutlineWidth: 0.21
     - _PerspectiveFilter: 0.875
     - _ScaleRatioA: 0.9
     - _ScaleRatioB: 1
-    - _ScaleRatioC: 0.73125
+    - _ScaleRatioC: 0.59451216
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -54,10 +54,10 @@ Material:
     - _StencilWriteMask: 255
     - _TextureHeight: 1024
     - _TextureWidth: 1024
-    - _UnderlayDilate: 0
+    - _UnderlayDilate: 0.73
     - _UnderlayOffsetX: 0.5
     - _UnderlayOffsetY: -0.5
-    - _UnderlaySoftness: 0.359
+    - _UnderlaySoftness: 0
     - _VertexOffsetX: 0
     - _VertexOffsetY: 0
     - _WeightBold: 0.75

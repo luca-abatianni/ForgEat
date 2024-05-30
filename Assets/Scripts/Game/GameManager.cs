@@ -49,12 +49,15 @@ public class GameManager : NetworkBehaviour
 
     public void RetrieveSecondPhaseLen()
     {
-        
+        Debug.Log("1st phase length: " + SetupMenu.firstPhaseLen);
+        // From minutes to seconds
+        phase_one_period = SetupMenu.firstPhaseLen * 60;
     }
 
     public override void OnStartServer()
     {
         RetrieveFirstPhaseLen();
+        RetrieveSecondPhaseLen();
         base.OnStartServer();
         phase_timer = false;
         game_state = GameState.WaitingOnClients;

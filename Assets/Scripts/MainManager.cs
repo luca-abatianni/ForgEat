@@ -23,7 +23,7 @@ public class MainManager : MonoBehaviour
 
     public static void SetMeAsServer() 
     {
-        Debug.Log("Correctly changed to server in MainManager");
+        Debug.Log("You have been setted as server in MainManager");
         amIServer = true;
     }
 }
