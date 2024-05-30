@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: -6898850313665061967}
   - component: {fileID: -658878598068961507}
   - component: {fileID: -7526638300079609564}
+  - component: {fileID: 710697898253784533}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -230,6 +231,7 @@ MonoBehaviour:
   - {fileID: -6898850313665061967}
   - {fileID: -658878598068961507}
   - {fileID: -7526638300079609564}
+  - {fileID: 710697898253784533}
   - {fileID: 181231208194721968}
   - {fileID: 8613745216421192631}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -429,15 +431,15 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  _firePoint: {fileID: 1583900551122322469}
+  _fireOffset: 1
   _sigilPoint: {fileID: 4095230670155074645}
   _listEffects:
-  - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  - {fileID: 5035807379073529396, guid: f45f48c0911864f4bb46245d4becba1d, type: 3}
   - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
   _listSigils:
   - {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
   - {fileID: 4151754271603140014, guid: 951306b980b448242a585282cb8ee997, type: 3}
-  primaryPower: 1
+  _primaryPower: 0
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &-7526638300079609564
@@ -458,6 +460,22 @@ MonoBehaviour:
   _hitEffects:
   - {fileID: 9017484664307500583, guid: 9813e24821b56244db2aee4506b5b00c, type: 3}
   - {fileID: 7053385775836331393, guid: d966c44d4e695bc4ea09313c4f04e970, type: 3}
+--- !u!114 &710697898253784533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba869152113df84d9634941f9336698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 8
+  _addedNetworkObject: {fileID: 3252535994773736344}
+  _networkObjectCache: {fileID: 3252535994773736344}
+  bullet_speed: 20
 --- !u!1 &4095230670155074645
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +527,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 3252535994773736344}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 0.28, y: 1.81, z: 1.12}
+    Position: {x: 0, y: 0.361, z: 0}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -872,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6828b52d25b4a50ba7e06e698c1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 8
+  _componentIndexCache: 9
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   fpc: {fileID: -1953266018061299003}
@@ -888,7 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 9
+  _componentIndexCache: 10
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   IgnoredParameters: []

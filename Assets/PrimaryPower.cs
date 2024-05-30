@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 using Unity.VisualScripting;
 public class PrimaryPower : NetworkBehaviour
 {
-    [SerializeField] public GameObject _firePoint;
+    [SerializeField] public float _fireOffset;
     [SerializeField] public GameObject _sigilPoint;
     [SerializeField] public List<GameObject> _listEffects = new List<GameObject>();
     [SerializeField] public List<GameObject> _listSigils = new List<GameObject>();
@@ -70,33 +70,33 @@ public class PrimaryPower : NetworkBehaviour
     }
     private IEnumerator SpawnMagic()
     {
-        Vector3 spawn_forward = Camera.main.transform.forward;
-        Quaternion spawn_rot = Camera.main.transform.rotation;
-
-        SRPC_SpawnSigil(_sigilToSpawn, _firePoint);
-        SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+        Vector3 _firePoint = Camera.main.transform.position + Camera.main.transform.forward*_fireOffset;
+        Quaternion rotation = Camera.main.transform.rotation;
+        SRPC_SpawnSigil(_sigilToSpawn, _firePoint, rotation);
+        SRPC_SpawnSigilFoot(_sigilToSpawn, _firePoint);
         animator.SetBool("attackFreeze", true);
         yield return new WaitForSeconds(.3f);
-        SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
+        GetComponent<PerformantBullet>().Shoot(_effectToSpawn, _fireOffset, _primaryPower);
 
         yield return null;
     }
 
     [ServerRpc]
-    void SRPC_SpawnSigil(GameObject _effectToSpawn, GameObject _firePoint)
+    void SRPC_SpawnSigil(GameObject _effectToSpawn, Vector3 _firePoint, Quaternion rotation)
     {
-        var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
+        var spawned = Instantiate(_effectToSpawn, _firePoint, rotation);
         ServerManager.Spawn(spawned);
-        spawned.transform.SetParent(_firePoint.transform);
+        spawned.transform.SetParent(transform);
     }
     [ServerRpc]
-    void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
+    void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, Vector3 _firePoint)
     {
-        var p = _firePoint.transform.position;
-        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
+        var spawned = Instantiate(_effectToSpawn, _firePoint, Quaternion.LookRotation(Vector3.up));
         ServerManager.Spawn(spawned);
-        spawned.transform.SetParent(_firePoint.transform);
+        spawned.transform.SetParent(transform);
     }
+
+    /*
     [ServerRpc]
     void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player, Vector3 spawn_forward, Quaternion spawn_rot)
     {
@@ -121,4 +121,5 @@ public class PrimaryPower : NetworkBehaviour
     //{
     //    script._effectToSpawn = spawned;
     //}
+    */
 }
