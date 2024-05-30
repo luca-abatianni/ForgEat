@@ -5,8 +5,6 @@ using UnityEngine;
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
-
-    public int ServerIP;
     public static bool amIServer = false;
 
     private void Awake()

@@ -26,7 +26,7 @@ public class ServerScript : MonoBehaviour
         if (message == "FORGEAT-CLIENT-BROADCAST")
         {
             Debug.Log($"Client {sender.Address} has reached the server");
-            string responseMessage = "FORGEAT-SERVER-RESPONSE";
+            string responseMessage = "FORGEAT-SERVER-RESPONSE/" + GameNameConfigurator.gameName;
             byte[] responseData = Encoding.UTF8.GetBytes(responseMessage);
             Server.Send(responseData, responseData.Length, sender);
         } 

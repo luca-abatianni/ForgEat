@@ -17,6 +17,7 @@ public class ClientScript : MonoBehaviour
     private float broadcast_timer;
 
     public static string serverText;
+    public static string gameName;
 
     public void OnClientSearchStart()
     {
@@ -56,11 +57,14 @@ public class ClientScript : MonoBehaviour
         IPEndPoint sender = new IPEndPoint(IPAddress.Any, port);
         byte[] data = Client.EndReceive(result, ref sender);
         string message = Encoding.UTF8.GetString(data);
+        Debug.Log(message);
 
-        if (message == "FORGEAT-SERVER-RESPONSE")
+        if (message.Contains("FORGEAT-SERVER-RESPONSE"))
         {
             Debug.Log($"Server found at {sender.Address}");
             serverText = sender.Address.ToString();
+            int substringLen = "FORGEAT-SERVER-RESPONSE/".Length;
+            gameName = message.Remove(0, substringLen);
         } 
         
         Client.BeginReceive(OnReceive, null);
