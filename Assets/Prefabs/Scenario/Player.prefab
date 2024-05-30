@@ -289,6 +289,8 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pick_distance: 2
+  animator: {fileID: 2943575670645553969}
+  netAnim: {fileID: 8613745216421192631}
 --- !u!114 &3531994882973546020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +347,7 @@ MonoBehaviour:
   isMoonwalking: 0
   isWalkingLeft: 0
   isWalkingRight: 0
+  isJumping: 0
   enableSprint: 1
   unlimitedSprint: 1
   sprintKey: 304
@@ -437,7 +440,7 @@ MonoBehaviour:
   _listSigils:
   - {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
   - {fileID: 4151754271603140014, guid: 951306b980b448242a585282cb8ee997, type: 3}
-  primaryPower: 1
+  _primaryPower: 0
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &-7526638300079609564
@@ -509,7 +512,7 @@ MonoBehaviour:
   <ParentNetworkObject>k__BackingField: {fileID: 3252535994773736344}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
-    Position: {x: 0.28, y: 1.81, z: 1.12}
+    Position: {x: 0, y: 0.361, z: 0}
     Rotation: {x: -0, y: -0, z: -0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1

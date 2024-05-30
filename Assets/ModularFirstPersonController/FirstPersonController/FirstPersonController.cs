@@ -73,6 +73,8 @@ public class FirstPersonController : NetworkBehaviour
     public bool isWalkingLeft = false;
     [HideInInspector]
     public bool isWalkingRight = false;
+    [HideInInspector]
+    public bool isJumping = false;
 
     #region Sprint
 
@@ -346,6 +348,11 @@ public class FirstPersonController : NetworkBehaviour
         if (enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
         {
             Jump();
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
         }
 
         #endregion
@@ -409,19 +416,19 @@ public class FirstPersonController : NetworkBehaviour
             // Will allow head bob
             if (targetVelocity.z < 0 && isGrounded)
             {
-                isWalking = true;
-            }
-            else
-            {
-                isWalking = false;
-            }
-            if (targetVelocity.z > 0 && isGrounded)
-            {
                 isMoonwalking = true;
             }
             else
             {
                 isMoonwalking = false;
+            }
+            if (targetVelocity.z > 0 && isGrounded)
+            {
+                isWalking = true;
+            }
+            else
+            {
+                isWalking = false;
             }
             if (targetVelocity.x > 0 && isGrounded)
             {
