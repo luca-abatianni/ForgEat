@@ -7,6 +7,9 @@ TagManager:
   - Score
   - ice_effect
   - PowerUI
+  - Laser
+  - Bullet
+  - Shield
   layers:
   - Default
   - TransparentFX

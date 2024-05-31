@@ -56,7 +56,7 @@ public class PowerBehavior : NetworkBehaviour
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;
-        Debug.Log("Set "+_powerType);
+        Debug.Log("Set " + _powerType);
     }
     public void SetSpawner(GameObject spawner)
     {
@@ -65,19 +65,30 @@ public class PowerBehavior : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("P1 collision");
-        _speed = 0f;
-        ContactPoint contact = collision.contacts[0];
-        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-        Vector3 pos = contact.point;
         var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
-        if (powerEffect != null)
+        if (collision.transform.tag == "Player")
         {
-            powerEffect.Hit(_powerType);
-            Debug.Log("Collision " + _powerType);
-        }
-        if (_impactEffect != null)
-        {
-            ORPC_OnImpact( _impactEffect, pos, rot);
+            _speed = 0f;
+            ContactPoint contact = collision.contacts[0];
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+            Vector3 pos = contact.point;
+            var shield = collision.gameObject.GetComponent<ShieldPower>();
+            if (shield != null)
+            {
+                if (powerEffect != null && !shield._isShielded)
+                {
+                    powerEffect.Hit(_powerType);
+                    Debug.Log("Collision " + _powerType);
+                }
+            }
+            else
+            {
+                Debug.Log("SHIELD NULL");
+            }
+            if (_impactEffect != null)// se è uno scudo l'impatto non ha effetto
+            {
+                ORPC_OnImpact(_impactEffect, pos, rot);
+            }
         }
         ServerManager.Despawn(gameObject);
         Destroy(gameObject);
@@ -92,9 +103,9 @@ public class PowerBehavior : NetworkBehaviour
         ServerManager.Spawn(obj);
         //obj.transform.SetParent(parent.transform);  
     }
-    
+
     [ObserversRpc]
-    public void ORPC_OnImpact( GameObject _impact, Vector3 pos, Quaternion rot)
+    public void ORPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);
