@@ -27,6 +27,7 @@ public class ShieldPower : NetworkBehaviour
         if (_shieldObj == null)
         {
             _shieldObj = gameObject.GetComponentInChildren<ShieldCollision>();
+            StartCoroutine(SpawnShield());
         }
         else
         {
@@ -34,41 +35,67 @@ public class ShieldPower : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 _isShielded = true;
-                _shieldObj.ActivateShield(true);
+                SRPC_ActivateShield(_shieldObj, true);
             }
             else if (Input.GetKeyUp(KeyCode.Mouse1))
             {
                 _isShielded = false;
-                _shieldObj.ActivateShield(false);
+                SRPC_ActivateShield(_shieldObj, false);
             }
         }
     }
     private IEnumerator SpawnShield()
     {
-        //animator.SetBool("attackFreeze", true);
-        SRPC_SpawnShield(this, _shieldPrefab, gameObject);
+        yield return new WaitForSeconds(1);
+        SRPC_ActivateShield(_shieldObj, false);
 
         yield return null;
     }
+    //[ObserversRpc]
+    //void ORPC_AssignShield(ShieldPower script, GameObject spawned)
+    //{
+    //    script._shieldObj = spawned.GetComponent<ShieldCollision>();
+    //    script._shieldObj.ActivateShield(false);
+    //}
+    //[ServerRpc]
+    //void SRPC_SpawnShield(ShieldPower script, GameObject shield, GameObject player)
+    //{
+    //    GameObject spawned;
+    //    if (player != null && shield != null)
+    //    {
+    //        spawned = Instantiate(shield, player.transform.position, player.transform.rotation);
+    //        ServerManager.Spawn(spawned);
+    //        spawned.transform.SetParent(player.transform);
+    //        ORPC_AssignShield(script, spawned);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("ERR ShieldPower - Missing FirePoint");
+    //    }
+    //}
     [ObserversRpc]
-    void ORPC_AssignShield(ShieldPower script, GameObject spawned)
+    void ORPC_ActivateShield(ShieldCollision script, bool bActivate)
     {
-        script._shieldObj = spawned.GetComponent<ShieldCollision>();
-    }
-    [ServerRpc]
-    void SRPC_SpawnShield(ShieldPower script, GameObject shield, GameObject player)
-    {
-        GameObject spawned;
-        if (player != null && shield != null)
+        if (script != null)
         {
-            spawned = Instantiate(shield, player.transform.position, player.transform.rotation);
-            ServerManager.Spawn(spawned);
-            spawned.transform.SetParent(player.transform);
-            ORPC_AssignShield(script, spawned);
+            script.ActivateShield(bActivate);
         }
         else
         {
-            Debug.LogError("ERR ShieldPower - Missing FirePoint");
+            Debug.LogError("ERR ORPC ShieldPower - Missing script");
+        }
+    }
+    [ServerRpc]
+    void SRPC_ActivateShield(ShieldCollision script, bool bActivate)
+    {
+        if (script != null)
+        {
+            script.ActivateShield(bActivate);
+            ORPC_ActivateShield(_shieldObj, bActivate);
+        }
+        else
+        {
+            Debug.LogError("ERR SRPC ShieldPower - Missing script");
         }
     }
 }
