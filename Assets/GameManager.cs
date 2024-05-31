@@ -165,7 +165,7 @@ public class GameManager : NetworkBehaviour
         {
             if (i < player_list.Length)
             {
-                player_list[i].GetComponent<PlayerController>().TransportPlayerToPosition(spawn.position);
+                player_list[i].GetComponent<TeletransportPlayer>().TransportPlayerToPosition(spawn.position);
                 i++;
             }
             else break;
