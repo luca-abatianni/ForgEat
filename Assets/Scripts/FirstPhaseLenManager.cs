@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FirstPhaseLength: MonoBehaviour {
+public class FirstPhaseLenManager: MonoBehaviour {
   TMP_Text lenText;
   void Start() {
     lenText = GetComponent < TMP_Text > ();

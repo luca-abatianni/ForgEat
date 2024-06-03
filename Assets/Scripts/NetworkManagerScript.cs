@@ -1,10 +1,11 @@
+using System.ComponentModel.Design;
 using FishNet.Transporting.Tugboat;
 using UnityEngine;
 
 public class NetworkManagerScript : MonoBehaviour
 {
     public static Tugboat _tugboat;
-    string serverIP = SetupMenu.serverIP;
+    string serverIP = MenuChoices.serverIP;
 
     private void Start() 
     {

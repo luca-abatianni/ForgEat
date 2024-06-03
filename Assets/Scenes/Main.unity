@@ -18728,7 +18728,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 803802085}
   _networkObjectCache: {fileID: 803802085}
-  tmpro: {fileID: 803802087}
+  text: {fileID: 803802087}
 --- !u!114 &803802087
 MonoBehaviour:
   m_ObjectHideFlags: 0

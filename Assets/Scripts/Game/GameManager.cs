@@ -21,7 +21,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     private int num_clients;
     [SerializeField]
-    public static int max_clients;
+    public static int max_clients = 1;
 
     [SerializeField]
     private GameObject player_spawns;
@@ -35,7 +35,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     public static float phase_two_period;
 
-    private bool phase_timer;
+    public static bool phase_timer;
 
     private GameState game_state;
 
@@ -43,15 +43,15 @@ public class GameManager : NetworkBehaviour
 
     public void RetrieveFirstPhaseLen()
     {
-        Debug.Log("1st phase length: " + SetupMenu.firstPhaseLen);
-        phase_one_period = SetupMenu.firstPhaseLen;
+        Debug.Log("1st phase length: " + MenuChoices.firstPhaseLen);
+        phase_one_period = MenuChoices.firstPhaseLen;
     }
 
     public void RetrieveSecondPhaseLen()
     {
-        Debug.Log("1st phase length: " + SetupMenu.firstPhaseLen);
+        Debug.Log("2nd phase length: " + MenuChoices.secondPhaseLen);
         // From minutes to seconds
-        phase_one_period = SetupMenu.firstPhaseLen * 60;
+        phase_two_period = MenuChoices.secondPhaseLen * 60;
     }
 
     public override void OnStartServer()
@@ -106,8 +106,7 @@ public class GameManager : NetworkBehaviour
 
     void WaitForPlayers()
     {
-
-        //num_clients = GameObject.FindGameObjectsWithTag("Player").Length;
+        Debug.Log(game_state.ToString() + " phase started");
         num_clients = InstanceFinder.ServerManager.Clients.Count;
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
@@ -119,6 +118,7 @@ public class GameManager : NetworkBehaviour
 
     void WaitingFirstPhase ()
     {
+        Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
         StartCoroutine(PhaseTimer(between_phase_period));
         return;
@@ -127,6 +127,7 @@ public class GameManager : NetworkBehaviour
 
     void PhaseOne()
     {
+        Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
@@ -137,6 +138,7 @@ public class GameManager : NetworkBehaviour
 
     void WaitingSecondPhase()
     {
+        Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
         FindAnyObjectByType<FoodSpawner>().Server_TransformTrashInFood();
         FindAnyObjectByType<FoodSpawner>().Observer_TransformTrashInFood();
@@ -147,6 +149,7 @@ public class GameManager : NetworkBehaviour
 
     void SecondPhase()
     {
+        Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
         spawn_barriers.BarriersOff();
         EnableFoodPicking(true);
@@ -155,6 +158,7 @@ public class GameManager : NetworkBehaviour
 
     void EndRound()
     {
+        Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
@@ -164,7 +168,7 @@ public class GameManager : NetworkBehaviour
     {
         yield return new WaitForSeconds(time);
         phase_timer = false;
-        NetworkManager.Log("Timer finished.");
+        NetworkManager.Log(game_state.ToString() + " phase finished, timer is over");
         game_state++;
         yield return null;
     }

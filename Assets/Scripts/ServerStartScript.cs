@@ -21,8 +21,8 @@ public class ServerStartScript : MonoBehaviour
         } 
 
         if (serverIP != "" && serverIP != null) {
-            SetupMenu.serverIP = serverIP;
-            MainManager.SetMeAsServer();
+            MenuChoices.serverIP = serverIP;
+            MenuChoices.SetMeAsServer();
         }
     }
 }

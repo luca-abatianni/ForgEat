@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        if (SetupMenu.serverIP != null && SetupMenu.serverIP != "")
+        if (MenuChoices.serverIP != null && MenuChoices.serverIP != "")
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

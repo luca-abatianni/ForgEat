@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class ClientScript : MonoBehaviour
 {
     private bool startSearch = false;
 
-    private UdpClient Client;
+    private static UdpClient Client;
     private IPEndPoint broadcast_endpoint;
     private const int port = 8888;
     private const float broadcast_interval = 1f;
@@ -63,11 +64,18 @@ public class ClientScript : MonoBehaviour
         {
             Debug.Log($"Server found at {sender.Address}");
             serverText = sender.Address.ToString();
+            // Nella stringa invio sia il messaggio sia il nome della partita
             int substringLen = "FORGEAT-SERVER-RESPONSE/".Length;
             gameName = message.Remove(0, substringLen);
         } 
         
         Client.BeginReceive(OnReceive, null);
+    }
+
+    // Se il client torna al menu principale ferma il broadcast
+    public static void OnBackButtonClickedClient()
+    {
+        Client.Close();
     }
 
     void OnApplicationQuit()

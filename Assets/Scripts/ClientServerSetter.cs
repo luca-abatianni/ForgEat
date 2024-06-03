@@ -26,7 +26,7 @@ public class ClientServerSetter : MonoBehaviour
         canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
         if (canvas != null)
         {
-            if (MainManager.amIServer)
+            if (MenuChoices.amIServer)
                 canvas.OnClick_Server();
         }
     }
