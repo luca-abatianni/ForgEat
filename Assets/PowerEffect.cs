@@ -9,6 +9,7 @@ public class PowerEffect : NetworkBehaviour
 {
     [SerializeField] public List<GameObject> _hitEffects = new List<GameObject>();
     [HideInInspector] public List<(GameObject, float)> _listSpawned = new List<(GameObject, float)>();
+    private ShieldPower _shield;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -31,6 +32,8 @@ public class PowerEffect : NetworkBehaviour
     }
     public void Hit(PowerBehavior.PowerType powerType)
     {
+        if (_shield != null && _shield._isShielded)//Client spawna comunque l'effetto di Hit
+            return;
         if (powerType == PowerBehavior.PowerType.IceBullet)
         {
             Debug.Log("Hit ICE" + powerType);
@@ -93,6 +96,9 @@ public class PowerEffect : NetworkBehaviour
     void Update()
     {
         CheckEffectsDuration();
+        if (_shield == null)
+            _shield = gameObject.GetComponent<ShieldPower>();
+
     }
     //List non è modificabile, per cui
     //ad ogni ciclo controllo le durate degli effetti e aggiorno sottraendo il tempo dall'ultimo frame

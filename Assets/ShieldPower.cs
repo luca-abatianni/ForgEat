@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShieldPower : NetworkBehaviour
 {
     [SerializeField] public GameObject _shieldPrefab;
-    [SerializeField] public bool _isShielded = false;
+    [HideInInspector] public bool _isShielded = false;
     [HideInInspector] public ShieldCollision _shieldObj;
     public override void OnStartClient()
     {
