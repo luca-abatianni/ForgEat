@@ -72,7 +72,7 @@ public class PowerEffect : NetworkBehaviour
     {
         ServerManager.Despawn(_effectToSpawn);
     }
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     void SRPC_SpawnHitEffect(PowerEffect script, GameObject _effectToSpawn, GameObject _spawnPoint, float duration)
     {
         if (_effectToSpawn != null)
@@ -81,8 +81,8 @@ public class PowerEffect : NetworkBehaviour
             var spawned = Instantiate(_effectToSpawn, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
 
             ServerManager.Spawn(spawned);
-            ORPC_SetSpawnedEffect(script, spawned, duration);
             spawned.transform.SetParent(_spawnPoint.transform);
+            ORPC_SetSpawnedEffect(script, spawned, duration);
         }
         else
             Debug.LogError("HitEffect is Null");
