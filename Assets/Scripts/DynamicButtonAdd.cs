@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,9 @@ public class DynamicButtonAdd : MonoBehaviour
         
         GameObject newButton = Instantiate(PrefabServerButton);
         newButton.GetComponentInChildren<TMP_Text>().text = name + " - " + ip;
+        
+        SelectServerButton script = newButton.GetComponentInChildren<SelectServerButton>();
+        script.Initialize(ip);
         
         newButton.transform.SetParent(Parent);
     }

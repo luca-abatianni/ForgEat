@@ -39,6 +39,8 @@ public class GameManager : NetworkBehaviour
 
     private GameState game_state;
 
+    private bool isPaused = false;
+
     [SerializeField] private SpawnBarriers spawn_barriers; 
 
     public void RetrieveFirstPhaseLen()
@@ -102,6 +104,8 @@ public class GameManager : NetworkBehaviour
                     return;
             }
         }
+
+        PauseGame();
     }
 
     void WaitForPlayers()
@@ -197,6 +201,24 @@ public class GameManager : NetworkBehaviour
             FoodPicker f_picker = player.GetComponent<FoodPicker>();
             f_picker.Client_FoodPickerSetEnabled(setting);
             f_picker.enabled = setting;
+        }
+    }
+
+    void PauseGame()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            isPaused = !isPaused;
+            if(isPaused)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else 
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 }

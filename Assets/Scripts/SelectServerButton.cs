@@ -6,12 +6,18 @@ using UnityEngine;
 public class SelectServerButton : MonoBehaviour
 {
     public TMP_Text text;
+    private string ip;
+
+    public void Initialize(string tmpIp)
+    {
+        ip = tmpIp;
+    }
 
     public void OnClickServerOption()
     {
         if (ClientScript.serverText != null){
-            MenuChoices.SetServerIP(text.text);
-            Debug.Log("Correctly selected server " + text.text);
+            MenuChoices.SetServerIP(ip);
+            Debug.Log("Correctly selected server " + ip);
         }
             
     }
