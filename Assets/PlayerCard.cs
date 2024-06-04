@@ -10,6 +10,7 @@ public class PlayerCard : MonoBehaviour
     public void Initialize(string name)
     {
         nameText.text = name;
+        scoreText.text = "0";
     }
 
     public void SetScore(int score)
