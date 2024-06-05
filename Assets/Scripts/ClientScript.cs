@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ClientScript : MonoBehaviour
 {
-    private bool startSearch = false;
+    private static bool startSearch = false;
 
     private static UdpClient Client;
     private IPEndPoint broadcast_endpoint;
@@ -73,11 +73,13 @@ public class ClientScript : MonoBehaviour
     // Se il client torna al menu principale ferma il broadcast
     public static void OnBackButtonClickedClient()
     {
+        startSearch = false;
         Client.Close();
     }
 
     void OnApplicationQuit()
     {
+        startSearch = false;
         Client.Close();
     }
 }
