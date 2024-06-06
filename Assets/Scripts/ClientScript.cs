@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -16,12 +15,12 @@ public class ClientScript : MonoBehaviour
     private const float broadcast_interval = 1f;
     private float broadcast_timer;
 
-    public static Dictionary<string, string> serversFound;
+    public static string serverText;
+    public static string gameName;
 
     public void OnClientSearchStart()
     {
         startSearch = true;
-        serversFound = new Dictionary<string, string>();
 
         Client = new UdpClient();
         Client.EnableBroadcast = true;
@@ -37,7 +36,6 @@ public class ClientScript : MonoBehaviour
             broadcast_timer -= Time.deltaTime;
             if (broadcast_timer <= 0f)
             {
-                serversFound.Clear();
                 SendMatchBroadcast();
                 broadcast_timer = broadcast_interval;
             }
@@ -63,31 +61,14 @@ public class ClientScript : MonoBehaviour
         if (message.Contains("FORGEAT-SERVER-RESPONSE"))
         {
             Debug.Log($"Server found at {sender.Address}");
-            string serverText = sender.Address.ToString();
-
+            serverText = sender.Address.ToString();
             // Nella stringa invio sia il messaggio sia il nome della partita
             int substringLen = "FORGEAT-SERVER-RESPONSE/".Length;
-            string gameName = message.Remove(0, substringLen);
-            
-            if(!serversFound.ContainsKey(serverText))
-            {
-                if (gameName == "")
-                    gameName = GetRandomGameName();
-                    
-                serversFound.Add(serverText, gameName);
-            }
+            gameName = message.Remove(0, substringLen);
         } 
         
         Client.BeginReceive(OnReceive, null);
     }
-
-    string GetRandomGameName()
-    {
-        var random = new System.Random();
-        var list = new List<string>{"MazzAglio", "MazZuccaGlia", "BatteGazzosa", "BatTheGazzorre"};
-
-        return list[random.Next(list.Count)];
-    }  
 
     // Se il client torna al menu principale ferma il broadcast
     public static void OnBackButtonClickedClient()

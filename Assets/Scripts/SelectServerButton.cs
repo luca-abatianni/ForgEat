@@ -15,7 +15,7 @@ public class SelectServerButton : MonoBehaviour
 
     public void OnClickServerOption()
     {
-        if (ClientScript.serversFound.ContainsKey(ip)){
+        if (ClientScript.serverText != null){
             MenuChoices.SetServerIP(ip);
             Debug.Log("Correctly selected server " + ip);
         }

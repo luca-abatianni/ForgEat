@@ -7,16 +7,8 @@ using UnityEngine.UI;
 
 public class ServerScript : MonoBehaviour
 {
-    public static ServerScript Instance;
     private UdpClient Server;
     private const int port = 8888;
-
-    void Awake()
-    {
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-        Debug.Log("Server script started");
-    }
 
     public void OnServerStart()
     {
@@ -44,7 +36,6 @@ public class ServerScript : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        Debug.Log("Server closed");
         Server.Close();
     }
 }
