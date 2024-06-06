@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using UnityEngine;
@@ -18,10 +19,36 @@ public class ClientScript : MonoBehaviour
 
     public static Dictionary<string, string> serversFound;
 
+    private List<IPAddress> GetEndpoints()
+    {
+        List<IPAddress> AddressList = new List<IPAddress>();
+        NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
+        foreach(NetworkInterface I in Interfaces)
+        {
+            if ((I.NetworkInterfaceType == NetworkInterfaceType.Ethernet || I.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) && I.OperationalStatus == OperationalStatus.Up)
+            {
+                foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
+                {
+                    if (Unicast.Address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        AddressList.Add(Unicast.Address);
+                    }
+                }
+            }
+        }
+        return AddressList;
+    }
+
     public void OnClientSearchStart()
     {
         startSearch = true;
         serversFound = new Dictionary<string, string>();
+
+        // List<IPAddress> list = GetEndpoints();
+        // foreach (IPAddress l in list)
+        // {
+
+        // }
 
         Client = new UdpClient();
         Client.EnableBroadcast = true;
