@@ -23,7 +23,6 @@ public class TimeRemainingManager : NetworkBehaviour
         {
             if (TimeRemaining > 0)
             {
-                Debug.Log("ENTERED IF and time remaining");
                 TimeRemaining -= Time.deltaTime;
                 UpdateText();
             }
