@@ -10,6 +10,7 @@ public class ClientServerSetter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
         StartCoroutine(WaitABitThenSet(1));
     }
 
@@ -23,7 +24,6 @@ public class ClientServerSetter : MonoBehaviour
 
     void SetServer()
     {
-        canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
         if (canvas != null)
         {
             if (MenuChoices.amIServer)
