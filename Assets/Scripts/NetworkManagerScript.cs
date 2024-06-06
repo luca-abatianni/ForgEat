@@ -9,6 +9,17 @@ public class NetworkManagerScript : MonoBehaviour
 
     public GameObject GameManager;
 
+    void Awake()
+    {
+        Debug.Log("Is game manager active? " + GameManager.activeSelf);
+        if(!GameManager.activeSelf)
+        {
+            Debug.Log("Game manager is not active");
+            GameManager.SetActive(true);
+        }
+        
+    }
+
     private void Start() 
     {
         if (TryGetComponent(out Tugboat _t)) {
@@ -22,6 +33,11 @@ public class NetworkManagerScript : MonoBehaviour
         _tugboat.SetClientAddress(serverIP);
 
         GameManager.SetActive(true);
+    }
+
+    private void Update()
+    {
+        Debug.Log("Is game manager active? " + GameManager.activeSelf);
     }
 
 }

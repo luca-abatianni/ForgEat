@@ -5,14 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClientServerSetter : MonoBehaviour
-{
-    GameObject GameManager;
+{    
     NetworkHudCanvases canvas;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true);
         canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
+        Debug.Log("We found canvas: " + canvas);
         StartCoroutine(WaitABitThenSet(1));
     }
 
