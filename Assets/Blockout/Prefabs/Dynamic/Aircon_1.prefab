@@ -104,9 +104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1355149428836982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 581817693, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: dab00a7ac6fdc984ebc7bf831015ca11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   initialBlockoutSection: 4
-  ReapplyMaterialTheme: 1
+  ReapplyMaterialTheme: 0
   IsTriAsset: 0

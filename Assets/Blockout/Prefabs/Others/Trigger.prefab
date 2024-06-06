@@ -102,22 +102,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1619022385394572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -751018482, guid: e06a193c50359fd438d7742ef2819252, type: 3}
+  m_Script: {fileID: 11500000, guid: 367a3ceb6931b409388e241177cde18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   visibleInGame: 0
   m_OnTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Blockout, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_OnTriggerStay:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Blockout, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_OnTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Blockout, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: RadicalForge.Blockout.BlockoutTrigger+OnTriggerEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

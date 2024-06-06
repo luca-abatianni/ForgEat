@@ -7,10 +7,11 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Blockout_Area_Comment_Base
-  m_Shader: {fileID: 4800000, guid: e3dbd4e3586ff59448b918202c434faf, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0d7efef7182535f4e8da869db2041f1f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
@@ -30,8 +31,12 @@ Material:
     - _Cutoff: 0.5
     - _Depth_Blend: 0.1
     - _Drop_Value: 0.2
+    - _Float3: 0
     - _Gloss: 0.395
     - _Metalic: 1
+    - _Metallic: 0.5
+    - _TilingFactor: 2
+    - __dirty: 0
     - _node_1784: 0
     - _node_2492: 0.45
     - _node_6970: 1.88
