@@ -44,4 +44,5 @@ public class MenuChoices : MonoBehaviour
         Debug.Log("You have been setted as server in MainManager");
         amIServer = true;
     }
+    
 }

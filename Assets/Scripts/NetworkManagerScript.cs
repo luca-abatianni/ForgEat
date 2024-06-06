@@ -7,6 +7,8 @@ public class NetworkManagerScript : MonoBehaviour
     public static Tugboat _tugboat;
     string serverIP = MenuChoices.serverIP;
 
+    public GameObject GameManager;
+
     private void Start() 
     {
         if (TryGetComponent(out Tugboat _t)) {
@@ -18,6 +20,8 @@ public class NetworkManagerScript : MonoBehaviour
 
         Debug.Log("Server selected in menu: " + serverIP);
         _tugboat.SetClientAddress(serverIP);
+
+        GameManager.SetActive(true);
     }
 
 }

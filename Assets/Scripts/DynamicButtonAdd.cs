@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,22 +9,35 @@ public class DynamicButtonAdd : MonoBehaviour
 {
     public Transform Parent;
     public GameObject PrefabServerButton;
-    public bool buttonAdded = false;
+    public Dictionary<string, GameObject> buttonAdded;
 
-    void Update()
+    void Start()
     {
-        if (ClientScript.serverText != null && ClientScript.serverText != "" && ClientScript.gameName != null &&!buttonAdded)
+        buttonAdded = new Dictionary<string, GameObject>();
+    }
+
+    void LateUpdate()
+    {
+        buttonAdded.Clear();
+        foreach (KeyValuePair<string, string> server in ClientScript.serversFound)
         {
-            AddButton(ClientScript.gameName, ClientScript.serverText);
-            buttonAdded = true;
-        }    
+            if (!buttonAdded.ContainsKey(server.Key))
+            {
+                AddButton(server.Value, server.Key);
+            }
+        }
+
+        foreach (KeyValuePair<string, GameObject> button in buttonAdded)
+        {
+            if (!ClientScript.serversFound.ContainsKey(button.Key))
+            {
+                // Destroy object
+            }
+        }  
     }
 
     void AddButton(string name, string ip)
     {
-        if (name == "")
-            name = GetRandomGameName();
-        
         GameObject newButton = Instantiate(PrefabServerButton);
         newButton.GetComponentInChildren<TMP_Text>().text = name + " - " + ip;
         
@@ -33,13 +45,8 @@ public class DynamicButtonAdd : MonoBehaviour
         script.Initialize(ip);
         
         newButton.transform.SetParent(Parent);
+
+        buttonAdded.Add(ip, newButton);
     }
 
-    string GetRandomGameName()
-    {
-        var random = new System.Random();
-        var list = new List<string>{"MazzAglio", "MazZuccaGlia", "BatteGazzosa", "BatTheGazzorre"};
-
-        return list[random.Next(list.Count)];
-    }   
 }
