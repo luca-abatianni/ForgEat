@@ -18,7 +18,6 @@ public class DynamicButtonAdd : MonoBehaviour
 
     void LateUpdate()
     {
-        buttonAdded.Clear();
         foreach (KeyValuePair<string, string> server in ClientScript.serversFound)
         {
             if (!buttonAdded.ContainsKey(server.Key))
@@ -27,13 +26,13 @@ public class DynamicButtonAdd : MonoBehaviour
             }
         }
 
-        foreach (KeyValuePair<string, GameObject> button in buttonAdded)
-        {
-            if (!ClientScript.serversFound.ContainsKey(button.Key))
-            {
-                // Destroy object
-            }
-        }  
+        // foreach (KeyValuePair<string, GameObject> button in buttonAdded)
+        // {
+        //     if (!ClientScript.serversFound.ContainsKey(button.Key))
+        //     {
+        //         // Destroy object
+        //     }
+        // }  
     }
 
     void AddButton(string name, string ip)
