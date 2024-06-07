@@ -9,15 +9,22 @@ public class DynamicButtonAdd : MonoBehaviour
 {
     public Transform Parent;
     public GameObject PrefabServerButton;
+    public GameObject Loading;
     public Dictionary<string, GameObject> buttonAdded;
 
     void Start()
     {
+        Debug.Log("DynamicButtonAdd started");
+        Loading.SetActive(true);
         buttonAdded = new Dictionary<string, GameObject>();
     }
 
     void LateUpdate()
     {
+        if (buttonAdded.Count > 0)
+            Loading.SetActive(false);
+            
+        
         foreach (KeyValuePair<string, string> server in ClientScript.serversFound)
         {
             if (!buttonAdded.ContainsKey(server.Key))
@@ -32,7 +39,10 @@ public class DynamicButtonAdd : MonoBehaviour
         //     {
         //         // Destroy object
         //     }
-        // }  
+        // }
+
+        if (buttonAdded.Count == 0 && !Loading.activeSelf)
+            Loading.SetActive(true);  
     }
 
     void AddButton(string name, string ip)
