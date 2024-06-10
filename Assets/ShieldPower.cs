@@ -46,8 +46,8 @@ public class ShieldPower : NetworkBehaviour
     }
     private IEnumerator SpawnShield()
     {
-        yield return new WaitForSeconds(.1f);
-        SRPC_ActivateShield(_shieldObj, false);
+        yield return new WaitForSeconds(1);
+        //SRPC_ActivateShield(_shieldObj, false);
 
         yield return null;
     }

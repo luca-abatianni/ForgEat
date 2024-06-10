@@ -75,16 +75,12 @@ public class PowerBehavior : NetworkBehaviour
         {
             _speed = 0f;
             var shield = collision.gameObject.GetComponent<ShieldPower>();
-            var bHit = true;
             if (shield != null)
             {
-                bHit = false;
                 if (powerEffect != null && !shield._isShielded)
                 {
                     ORPC_PowerEffectHit(powerEffect, _powerType);
-                    //powerEffect.Hit(_powerType);
                     Debug.Log("Collision " + _powerType);
-                    bHit = true;
                 }
             }
             else
@@ -92,7 +88,7 @@ public class PowerBehavior : NetworkBehaviour
                 Debug.Log("SHIELD NULL");
             }
         }
-        if (_impactEffect != null)// se è uno scudo l'impatto non ha effetto
+        if (_impactEffect != null)
         {
             ORPC_OnImpact(_impactEffect, pos, rot);
             SRPC_OnImpact(_impactEffect, pos, rot);
