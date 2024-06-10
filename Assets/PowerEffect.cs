@@ -44,6 +44,7 @@ public class PowerEffect : NetworkBehaviour
             Debug.Log("Hit MIND" + powerType);
             StartCoroutine(MindBulletHit(powerType));
         }
+        //WindBullet applica l'effetto da sè
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {

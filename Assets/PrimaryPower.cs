@@ -62,6 +62,11 @@ public class PrimaryPower : NetworkBehaviour
             _primaryPower = PowerBehavior.PowerType.MindBullet;
             SRPC_SwitchPower(this, PowerBehavior.PowerType.MindBullet);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            _primaryPower = PowerBehavior.PowerType.WindBullet;
+            SRPC_SwitchPower(this, PowerBehavior.PowerType.WindBullet);
+        }
     }
     [ServerRpc (RequireOwnership =false)]
     void SRPC_SwitchPower(PrimaryPower script,PowerBehavior.PowerType type)

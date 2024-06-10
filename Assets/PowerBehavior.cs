@@ -18,6 +18,7 @@ public class PowerBehavior : NetworkBehaviour
     {
         IceBullet = 0,
         MindBullet = 1,
+        WindBullet = 2,
     }
     // Start is called before the first frame update
     public override void OnStartClient()
@@ -40,6 +41,7 @@ public class PowerBehavior : NetworkBehaviour
         {
             case PowerType.IceBullet:
             case PowerType.MindBullet:
+            case PowerType.WindBullet:
                 transform.position += _direction * (_speed * Time.deltaTime);
                 break;
         }
@@ -66,12 +68,12 @@ public class PowerBehavior : NetworkBehaviour
     {
         Debug.Log("P1 collision");
         var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 pos = contact.point;
         if (collision.transform.tag == "Player")
         {
             _speed = 0f;
-            ContactPoint contact = collision.contacts[0];
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-            Vector3 pos = contact.point;
             var shield = collision.gameObject.GetComponent<ShieldPower>();
             var bHit = true;
             if (shield != null)
@@ -89,10 +91,11 @@ public class PowerBehavior : NetworkBehaviour
             {
                 Debug.Log("SHIELD NULL");
             }
-            if (_impactEffect != null && bHit)// se è uno scudo l'impatto non ha effetto
-            {
-                ORPC_OnImpact(_impactEffect, pos, rot);
-            }
+        }
+        if (_impactEffect != null)// se è uno scudo l'impatto non ha effetto
+        {
+            ORPC_OnImpact(_impactEffect, pos, rot);
+            SRPC_OnImpact(_impactEffect, pos, rot);
         }
         ServerManager.Despawn(gameObject);
         Destroy(gameObject);
@@ -115,6 +118,12 @@ public class PowerBehavior : NetworkBehaviour
 
     [ObserversRpc]
     public void ORPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
+    {
+        var obj = Instantiate(_impact, pos, rot);
+        ServerManager.Spawn(obj);
+    }
+    [ServerRpc]
+    public void SRPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);
