@@ -39,7 +39,7 @@ public class GameManager : NetworkBehaviour
 
     private GameState game_state;
 
-    [SerializeField] private SpawnBarriers spawn_barriers; 
+    [SerializeField] private SpawnBarriers spawn_barriers;
 
 
     public override void OnStartServer()
@@ -65,7 +65,7 @@ public class GameManager : NetworkBehaviour
         if (base.IsServer && !phase_timer)
         {
             switch (game_state)
-            { 
+            {
                 case GameState.WaitingOnClients:
                     WaitForPlayers();
                     break;
@@ -98,12 +98,12 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
-            game_state++; 
+            game_state++;
         }
         return;
     }
 
-    void WaitingFirstPhase ()
+    void WaitingFirstPhase()
     {
         phase_timer = true;
         StartCoroutine(PhaseTimer(between_phase_period));
@@ -165,7 +165,7 @@ public class GameManager : NetworkBehaviour
         {
             if (i < player_list.Length)
             {
-                player_list[i].GetComponent<PlayerController>().TransportPlayerToPosition(spawn.position);
+                player_list[i].GetComponent<TeletransportPlayer>().TransportPlayerToPosition(spawn.position);
                 i++;
             }
             else break;

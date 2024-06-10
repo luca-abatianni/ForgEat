@@ -32,12 +32,12 @@ public class AnimationStateController : NetworkBehaviour
         if (fpc.isWalking)
         {
             animator.SetBool("isWalking", true);
-            Debug.Log("Porco");
+            //Debug.Log("Porco");
         }
         if (!fpc.isWalking)
         {
             animator.SetBool("isWalking", false);
-            Debug.Log("Dio");
+            //Debug.Log("Dio");
         }
         if (fpc.isMoonwalking)
         {
@@ -62,6 +62,14 @@ public class AnimationStateController : NetworkBehaviour
         if (!fpc.isWalkingRight)
         {
             animator.SetBool("isWalkingRight", false);
+        }
+        if (fpc.isJumping)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        if (!fpc.isJumping)
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 }
