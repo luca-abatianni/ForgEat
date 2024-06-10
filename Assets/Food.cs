@@ -16,9 +16,9 @@ public class Food : NetworkBehaviour
     public bool is_food;
 
     [SerializeField]
-    private GameObject food_model;
+    public GameObject food_model;
     [SerializeField]
-    private GameObject trash_model;
+    public GameObject trash_model;
 
 
     public override void OnStartClient()
@@ -45,7 +45,7 @@ public class Food : NetworkBehaviour
 
     public void SetFood()
     {
-        if (appears_food) return;
+        //if (appears_food) return;
         DisableTrash();
         food_model.GetComponent<BoxCollider>().enabled = true;
         food_model.SetActive(true);
@@ -53,7 +53,7 @@ public class Food : NetworkBehaviour
 
     public void SetTrash()
     {
-        if (!appears_food) return; // is trash
+        //if (!appears_food) return; // is trash
         DisableFood();
         trash_model.GetComponent<BoxCollider>().enabled = true;
         trash_model.SetActive(true);

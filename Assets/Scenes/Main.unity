@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -47966,6 +47966,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.data[0]
+      value: 
+      objectReference: {fileID: 4271395200046020034, guid: 34f8f1367936f794892f629c791e2ca0, type: 3}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.data[1]
+      value: 
+      objectReference: {fileID: 6040479139844415789, guid: 4a5cc6659d7a8f344bb685117dbcf4c3, type: 3}
     - target: {fileID: 4817145115491577589, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: m_Name
       value: FoodSpawner

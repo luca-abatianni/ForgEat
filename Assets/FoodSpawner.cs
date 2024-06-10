@@ -8,10 +8,12 @@ using FishNet.Connection;
 
 public class FoodSpawner : NetworkBehaviour
 {
-    public GameObject food_prefab;
-    public GameObject trash_prefab;
+    public int food_prefab = 0;
+    public int trash_prefab = 0;
     public GameObject food_parent;
     public GameObject spawn_points;
+    public List<Food> food_spawnlist = new List<Food>();
+    public List<GameObject> trash_spawnlist = new List<GameObject>();
     public List<GameObject> spawnedObject = new List<GameObject>();
     public List<GameObject> food_list = new List<GameObject>();     // Set private later... Public for testing.
     public List<GameObject> trash_list = new List<GameObject>();    // Set private later... Public for testing.
@@ -39,11 +41,20 @@ public class FoodSpawner : NetworkBehaviour
         }
     }
 
-    
+    //[ServerRpc]
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
+        if(food_prefab == 24) food_or_trash=false;
+        if(trash_prefab == 24) food_or_trash=true;
+        if(food_or_trash){
+            food_prefab++;
+        } else {
+            trash_prefab++;
+            }
+
         Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
-        GameObject spawned = Instantiate((food_or_trash ? food_prefab : trash_prefab), position, rotation, food_parent.transform);
+        //GameObject spawned = Instantiate((food_or_trash ? food_prefab : trash_prefab), position, rotation, food_parent.transform);
+        GameObject spawned = Instantiate((food_or_trash ? SelectFoodList(true) : SelectFoodList(false)), position, rotation, food_parent.transform);
         ServerManager.Spawn(spawned);
         if (food_or_trash)
         {
@@ -53,6 +64,24 @@ public class FoodSpawner : NetworkBehaviour
         {
             script.trash_list.Add(spawned);
         }
+    }
+
+    private GameObject SelectFoodList(bool food_or_fake)
+    {
+        int itemIndex = Random.Range (0,(food_spawnlist.Count));
+        if(food_or_fake) {
+            food_spawnlist[itemIndex].SetFood();
+            }
+        else {
+            food_spawnlist[itemIndex].SetTrash();
+            }
+        return food_spawnlist[itemIndex].gameObject;
+    }
+
+    private GameObject SelectTrashList()
+    {
+        int itemIndex = Random.Range (0,(trash_spawnlist.Count));
+        return trash_spawnlist[itemIndex].gameObject;
     }
 
     private void SetClientsFoodTrashList()
