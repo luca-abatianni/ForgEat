@@ -40,8 +40,7 @@ public class PrimaryPower : NetworkBehaviour
         {
 
             _cooldown = Time.time + 1f;
-            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)_primaryPower];
+
             StartCoroutine(SpawnMagic());
         }
         else
@@ -56,20 +55,37 @@ public class PrimaryPower : NetworkBehaviour
         {
             _primaryPower = PowerBehavior.PowerType.IceBullet;
             SRPC_SwitchPower(this, PowerBehavior.PowerType.IceBullet);
+            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)_primaryPower];
+            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             _primaryPower = PowerBehavior.PowerType.MindBullet;
             SRPC_SwitchPower(this, PowerBehavior.PowerType.MindBullet);
+            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)_primaryPower];
+            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             _primaryPower = PowerBehavior.PowerType.WindBullet;
             SRPC_SwitchPower(this, PowerBehavior.PowerType.WindBullet);
+            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)_primaryPower];
+            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            _primaryPower = PowerBehavior.PowerType.TrickBullet;
+            SRPC_SwitchPower(this, PowerBehavior.PowerType.TrickBullet);
+            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
+            _sigilToSpawn = _listSigils[(int)_primaryPower];
+            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
         }
     }
-    [ServerRpc (RequireOwnership =false)]
-    void SRPC_SwitchPower(PrimaryPower script,PowerBehavior.PowerType type)
+    [ServerRpc(RequireOwnership = false)]
+    void SRPC_SwitchPower(PrimaryPower script, PowerBehavior.PowerType type)
     {
         script._primaryPower = type;
     }

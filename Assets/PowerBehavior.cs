@@ -11,7 +11,7 @@ public class PowerBehavior : NetworkBehaviour
     [SerializeField] GameObject _muzzle;
 
     GameObject _spawner;
-    float _speed = 20f;
+    float _speed = 25f;
     private Vector3 _direction;
     private GameObject _initialPosition;
     public enum PowerType
@@ -19,6 +19,7 @@ public class PowerBehavior : NetworkBehaviour
         IceBullet = 0,
         MindBullet = 1,
         WindBullet = 2,
+        TrickBullet = 3,
     }
     // Start is called before the first frame update
     public override void OnStartClient()
@@ -43,6 +44,9 @@ public class PowerBehavior : NetworkBehaviour
             case PowerType.MindBullet:
             case PowerType.WindBullet:
                 transform.position += _direction * (_speed * Time.deltaTime);
+                break;
+            case PowerType.TrickBullet:
+                transform.position += _direction * (.5f * _speed * Time.deltaTime);
                 break;
         }
     }
