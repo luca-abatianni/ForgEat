@@ -86,7 +86,9 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 5193799370680592763}
   _networkObjectCache: {fileID: 5193799370680592763}
-  timeout: 3
+  _timeout: 5
+  _WithTimer: 0
+  _trickSigil: {fileID: 0}
 --- !u!114 &-916113686040025666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4079,7 +4081,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 0.8
-    light: {fileID: 8601812422388091244, guid: dbeab83d26ac13b45a31780304289c1a, type: 3}
+    light: {fileID: 8601812422388091244, guid: 0371ed504e8edeb42a9da8739b853df5, type: 3}
     randomDistribution: 1
     color: 1
     range: 1

@@ -9796,7 +9796,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 15
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -9816,7 +9816,8 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 6863398932969843912}
   _networkObjectCache: {fileID: 6863398932969843912}
-  timeout: 5
+  _timeout: 5
+  _WithTimer: 0
 --- !u!199 &7782952892992966619
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -14708,7 +14709,7 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 6863398932969843912}
   _networkObjectCache: {fileID: 6863398932969843912}
-  _trash_prefab: {fileID: 6203678770711478126, guid: d0731e38b82610044a8a77500cafc52c, type: 3}
+  _trash_prefab: {fileID: 6203678770711478126, guid: 707d3011382876d41872e030ef82a2ce, type: 3}
 --- !u!1 &8092175574291557984
 GameObject:
   m_ObjectHideFlags: 0

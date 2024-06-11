@@ -71,17 +71,17 @@ public class Food : NetworkBehaviour
         food_model.GetComponent<BoxCollider>().enabled = false;
         food_model.SetActive(false);
     }
-    public void ActivateTimer()
-    {//Opzione per il TrickPower
-        _hasTimer = true;
-        _timer = Time.time + 1f;// 60f;
-    }
+    //public void ActivateTimer()
+    //{//Opzione per il TrickPower
+    //    _hasTimer = true;
+    //    _timer = Time.time + 1f;// 60f;
+    //}
     private void Update()
     {
-        if (_hasTimer && Time.time > _timer)//timer attivato e tempo scaduto
-        {
-            SRPC_Despawn(gameObject);
-        }
+        //if (_hasTimer && Time.time > _timer)//timer attivato e tempo scaduto
+        //{
+        //    SRPC_Despawn(gameObject);
+        //}
     }
     [ServerRpc]
     void SRPC_Despawn(GameObject go)

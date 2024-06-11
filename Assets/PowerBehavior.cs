@@ -46,7 +46,7 @@ public class PowerBehavior : NetworkBehaviour
                 transform.position += _direction * (_speed * Time.deltaTime);
                 break;
             case PowerType.TrickBullet:
-                transform.position += _direction * (.5f * _speed * Time.deltaTime);
+                transform.position += _direction * (.4f * _speed * Time.deltaTime);
                 break;
         }
     }

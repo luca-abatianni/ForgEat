@@ -5043,7 +5043,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 263517703158268434}
   _networkObjectCache: {fileID: 263517703158268434}
-  _powerType: 0
+  _powerType: 3
   _impactEffect: {fileID: 5358492753972987438, guid: 702c0086f15a30f408e7f84a32308edf, type: 3}
   _muzzle: {fileID: 9144647493770579239, guid: 75869ed4d386a49438b3a31e3cd0b9a3, type: 3}
 --- !u!54 &-2428957788094947788
@@ -15138,8 +15138,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7055678, g: 0.27945885, b: 0.9433962, a: 1}
-      maxColor: {r: 0.53333336, g: 0.3647059, b: 0.627451, a: 1}
+      minColor: {r: 0.9490196, g: 0.4, b: 0.023529412, a: 1}
+      maxColor: {r: 0.9490196, g: 0.4, b: 0.023529412, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
