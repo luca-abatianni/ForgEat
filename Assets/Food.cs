@@ -26,8 +26,10 @@ public class Food : NetworkBehaviour
     [SerializeField]
     public GameObject food_model;
     [SerializeField]
-    public GameObject trash_model;
-
+    private GameObject trash_model;
+    
+    private float _timer = -1f;
+    private bool _hasTimer = false;
 
     public override void OnStartClient()
     {
@@ -88,5 +90,23 @@ public class Food : NetworkBehaviour
     public float getValue()
     {
         return this.value;
+    }
+    //public void ActivateTimer()
+    //{//Opzione per il TrickPower
+    //    _hasTimer = true;
+    //    _timer = Time.time + 1f;// 60f;
+    //}
+    private void Update()
+    {
+        //if (_hasTimer && Time.time > _timer)//timer attivato e tempo scaduto
+        //{
+        //    SRPC_Despawn(gameObject);
+        //}
+    }
+    
+    [ServerRpc]
+    void SRPC_Despawn(GameObject go)
+    {
+        ServerManager.Despawn(go);
     }
 }

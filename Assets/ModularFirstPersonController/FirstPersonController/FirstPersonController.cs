@@ -84,7 +84,7 @@ public class FirstPersonController : NetworkBehaviour
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
-    public float sprintFOV = 80f;
+    public float sprintFOV = 60f;
     public float sprintFOVStepTime = 10f;
 
     // Sprint Bar
@@ -216,6 +216,12 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Update()
     {
+        #region Cursor
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.Locked;
+        #endregion
         #region Camera
 
         // Control camera movement
@@ -315,6 +321,7 @@ public class FirstPersonController : NetworkBehaviour
             {
                 // Regain sprint while not sprinting
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+                playerCamera.fieldOfView = fov;
             }
 
             // Handles sprint cooldown 

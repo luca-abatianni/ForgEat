@@ -11,13 +11,15 @@ public class PowerBehavior : NetworkBehaviour
     [SerializeField] GameObject _muzzle;
 
     GameObject _spawner;
-    float _speed = 20f;
+    float _speed = 25f;
     private Vector3 _direction;
     private GameObject _initialPosition;
     public enum PowerType
     {
         IceBullet = 0,
         MindBullet = 1,
+        WindBullet = 2,
+        TrickBullet = 3,
     }
     // Start is called before the first frame update
     public override void OnStartClient()
@@ -40,7 +42,11 @@ public class PowerBehavior : NetworkBehaviour
         {
             case PowerType.IceBullet:
             case PowerType.MindBullet:
+            case PowerType.WindBullet:
                 transform.position += _direction * (_speed * Time.deltaTime);
+                break;
+            case PowerType.TrickBullet:
+                transform.position += _direction * (.4f * _speed * Time.deltaTime);
                 break;
         }
     }
@@ -66,33 +72,30 @@ public class PowerBehavior : NetworkBehaviour
     {
         Debug.Log("P1 collision");
         var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 pos = contact.point;
         if (collision.transform.tag == "Player")
         {
             _speed = 0f;
-            ContactPoint contact = collision.contacts[0];
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-            Vector3 pos = contact.point;
             var shield = collision.gameObject.GetComponent<ShieldPower>();
-            var bHit = true;
             if (shield != null)
             {
-                bHit = false;
                 if (powerEffect != null && !shield._isShielded)
                 {
                     ORPC_PowerEffectHit(powerEffect, _powerType);
-                    //powerEffect.Hit(_powerType);
                     Debug.Log("Collision " + _powerType);
-                    bHit = true;
                 }
             }
             else
             {
                 Debug.Log("SHIELD NULL");
             }
-            if (_impactEffect != null && bHit)// se è uno scudo l'impatto non ha effetto
-            {
-                ORPC_OnImpact(_impactEffect, pos, rot);
-            }
+        }
+        if (_impactEffect != null)
+        {
+            ORPC_OnImpact(_impactEffect, pos, rot);
+            SRPC_OnImpact(_impactEffect, pos, rot);
         }
         ServerManager.Despawn(gameObject);
         Destroy(gameObject);
@@ -115,6 +118,12 @@ public class PowerBehavior : NetworkBehaviour
 
     [ObserversRpc]
     public void ORPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
+    {
+        var obj = Instantiate(_impact, pos, rot);
+        ServerManager.Spawn(obj);
+    }
+    [ServerRpc]
+    public void SRPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);
