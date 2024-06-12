@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6114,6 +6114,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cba268cefb022c4bbda1f7a3d8b5968, type: 3}
+--- !u!4 &267878059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2227910677021382404, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+  m_PrefabInstance: {fileID: 6456262682227324034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &268888115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32917,6 +32922,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4822051613982560, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
   m_PrefabInstance: {fileID: 1223191178}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1494255312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1494255313}
+  m_Layer: 0
+  m_Name: trash
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1494255313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494255312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 267878059}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1497198818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34741,6 +34777,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4998963928943986, guid: a49cb5119836afc4ca52bd0aae995eb9, type: 3}
   m_PrefabInstance: {fileID: 1076685623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1581702544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581702545}
+  m_Layer: 0
+  m_Name: food
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1581702545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581702544}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 267878059}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1582101598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35858,7 +35925,7 @@ MonoBehaviour:
   - {fileID: 1957894769}
   - {fileID: 282340239}
   SerializedTransformProperties:
-    Position: {x: 1253, y: 452, z: 0}
+    Position: {x: 540, y: 304, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
     LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
@@ -41435,6 +41502,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a49cb5119836afc4ca52bd0aae995eb9, type: 3}
+--- !u!114 &1854806249 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+  m_PrefabInstance: {fileID: 6456262682227324034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2ff0218dd217b4ebdefa2325d27e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1856557698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4822051613982560, guid: 40eb716a37b593847af5e571c13d3f58, type: 3}
@@ -47909,6 +47987,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596139646585878400, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _clientAddress
+      value: localhost
+      objectReference: {fileID: 0}
     - target: {fileID: 4186098670487449232, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -47966,13 +48048,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_parent
+      value: 
+      objectReference: {fileID: 1581702544}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: trash_parent
+      value: 
+      objectReference: {fileID: 1494255312}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.data[0]
+      value: 
+      objectReference: {fileID: 4271395200046020034, guid: 34f8f1367936f794892f629c791e2ca0, type: 3}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.data[1]
+      value: 
+      objectReference: {fileID: 6040479139844415789, guid: 4a5cc6659d7a8f344bb685117dbcf4c3, type: 3}
     - target: {fileID: 4817145115491577589, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: m_Name
       value: FoodSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 4894692142594862409, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.050232
+      value: -7.05032
       objectReference: {fileID: 0}
     - target: {fileID: 4894692142594862409, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: m_LocalPosition.y
@@ -48020,7 +48122,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2227910677021382404, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581702545}
+    - targetCorrespondingSourceObject: {fileID: 2227910677021382404, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1494255313}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
 --- !u!1001 &8641471736446711237
@@ -48048,6 +48156,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 672366148}
     - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
+      propertyPath: max_clients
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
+      propertyPath: food_spawner
+      value: 
+      objectReference: {fileID: 1854806249}
+    - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: player_spawns
       value: 
       objectReference: {fileID: 1464414992}
@@ -48055,6 +48171,10 @@ PrefabInstance:
       propertyPath: spawn_barriers
       value: 
       objectReference: {fileID: 1085483743}
+    - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
+      propertyPath: phase_one_period
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 8005128298019871200, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: <SceneId>k__BackingField
       value: 1693455144843777481
