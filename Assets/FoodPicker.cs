@@ -40,7 +40,7 @@ public class FoodPicker : NetworkBehaviour
             GameObject food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().value;
+                points += food.GetComponent<Food>().getValue();
                 NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
