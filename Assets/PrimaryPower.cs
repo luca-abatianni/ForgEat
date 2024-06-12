@@ -51,7 +51,7 @@ public class PrimaryPower : NetworkBehaviour
     }
     void SwitchPower()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || _effectToSpawn == null)
         {
             _primaryPower = PowerBehavior.PowerType.IceBullet;
             SRPC_SwitchPower(this, PowerBehavior.PowerType.IceBullet);
@@ -109,6 +109,7 @@ public class PrimaryPower : NetworkBehaviour
         var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);
+        ORPC_SetParent(_firePoint, spawned);
     }
     [ServerRpc]
     void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
@@ -117,6 +118,12 @@ public class PrimaryPower : NetworkBehaviour
         var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_firePoint.transform);
+        ORPC_SetParent(_firePoint, spawned);
+    }
+    [ObserversRpc]
+    void ORPC_SetParent(GameObject parent, GameObject spawned)
+    {
+        spawned.transform.SetParent(parent.transform);
     }
     [ServerRpc]
     void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player, Vector3 spawn_forward, Quaternion spawn_rot)

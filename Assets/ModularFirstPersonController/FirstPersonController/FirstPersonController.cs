@@ -216,6 +216,12 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Update()
     {
+        #region Cursor
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.Locked;
+        #endregion
         #region Camera
 
         // Control camera movement
