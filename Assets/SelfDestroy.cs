@@ -30,7 +30,7 @@ public class SelfDestroy : NetworkBehaviour
         if (transform.childCount == 0)
         {
             ORPC_Despawn(gameObject);
-            SRPC_Despawn(gameObject);
+            //SRPC_Despawn(gameObject);
             //Destroy(gameObject);
         }
         float now = Time.time;
@@ -42,7 +42,7 @@ public class SelfDestroy : NetworkBehaviour
         if (_WithTimer && now > _timer)
         {
             ORPC_Despawn(gameObject);
-            SRPC_Despawn(gameObject);
+            //SRPC_Despawn(gameObject);
 
         }
     }
@@ -63,7 +63,7 @@ public class SelfDestroy : NetworkBehaviour
     void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _spawnPoint)
     {
         var p = _spawnPoint.transform.position;
-        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
+        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), _spawnPoint.transform.rotation);
         ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_spawnPoint.transform);
     }

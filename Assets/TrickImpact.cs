@@ -19,7 +19,7 @@ public class TrickImpact : NetworkBehaviour
         if (!_hasSpawned)
         {
             ORPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
-            SRPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
+            //SRPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
         }
         _hasSpawned = true;
 
@@ -29,30 +29,27 @@ public class TrickImpact : NetworkBehaviour
         if (!_hasSpawned)
         {
             ORPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
-            SRPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
+            //SRPC_SpawnTrash(_trash_prefab, gameObject.transform.position, gameObject.transform.rotation);
         }
         _hasSpawned = true;
     }
-    [ServerRpc]
-    void SRPC_SpawnTrash(GameObject trash, Vector3 position, Quaternion rotation)
-    {
-        GameObject spawned = Instantiate(_trash_prefab, position, rotation);
-        var food = spawned.GetComponent<Food>();
-        food.SetFood();
-        //spawned.AddComponent<SelfDestroy>();
-        //spawned.GetComponent<SelfDestroy>().SetSelfDestroy(spawned, 1f);
+    //[ServerRpc]
+    //void SRPC_SpawnTrash(GameObject trash, Vector3 position, Quaternion rotation)
+    //{
+    //    GameObject spawned = Instantiate(_trash_prefab, position, rotation);
+    //    var food = spawned.GetComponent<Food>();
+    //    food.SetFood();
+    //    //spawned.AddComponent<SelfDestroy>();
+    //    //spawned.GetComponent<SelfDestroy>().SetSelfDestroy(spawned, 1f);
 
-        ServerManager.Spawn(spawned);
+    //    ServerManager.Spawn(spawned);
 
-    }
+    //}
     [ObserversRpc]
     void ORPC_SpawnTrash(GameObject trash, Vector3 position, Quaternion rotation)
     {
         GameObject spawned = Instantiate(_trash_prefab, position, rotation);
-        var food = spawned.GetComponent<Food>();
-        food.SetFood();
-
+        var trashSpawn = spawned.GetComponent<Food>();
         ServerManager.Spawn(spawned);
-
     }
 }

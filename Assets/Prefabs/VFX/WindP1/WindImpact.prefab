@@ -4880,7 +4880,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3553424365502748807}
   serializedVersion: 8
-  lengthInSec: 2
+  lengthInSec: 3
   simulationSpeed: 1
   stopAction: 2
   cullingMode: 0
@@ -5126,8 +5126,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.06
-      minScalar: 0.03
+      scalar: 0.15
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -6396,7 +6396,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -19554,7 +19554,10 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 6863398932969843912}
   _networkObjectCache: {fileID: 6863398932969843912}
-  timeout: 5
+  _timeout: 5
+  _WithTimer: 0
+  _effectSpawned: 0
+  _trickSigil: {fileID: 0}
 --- !u!199 &7782952892992966619
 ParticleSystemRenderer:
   serializedVersion: 6
