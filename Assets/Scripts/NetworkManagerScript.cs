@@ -5,18 +5,19 @@ using UnityEngine;
 public class NetworkManagerScript : MonoBehaviour
 {
     public static Tugboat _tugboat;
-    string serverIP = MenuChoices.serverIP;
+    string serverIP;
 
-    public GameObject GameManager;
+    //public GameObject GameManager;
 
     void Awake()
     {
-        Debug.Log("Is game manager active? " + GameManager.activeSelf);
-        if(!GameManager.activeSelf)
-        {
-            Debug.Log("Game manager is not active");
-            GameManager.SetActive(true);
-        }
+        serverIP = MenuChoices.serverIP;
+        // Debug.Log("Is game manager active? " + GameManager.activeSelf);
+        // if(!GameManager.activeSelf)
+        // {
+        //     Debug.Log("Game manager is not active");
+        //     GameManager.SetActive(true);
+        // }
         
     }
 
@@ -32,12 +33,12 @@ public class NetworkManagerScript : MonoBehaviour
         Debug.Log("Server selected in menu: " + serverIP);
         _tugboat.SetClientAddress(serverIP);
 
-        GameManager.SetActive(true);
+        //GameManager.SetActive(true);
     }
 
     private void Update()
     {
-        Debug.Log("Is game manager active? " + GameManager.activeSelf);
+        //Debug.Log("Is game manager active? " + GameManager.activeSelf);
     }
 
 }
