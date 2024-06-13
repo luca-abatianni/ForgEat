@@ -85,6 +85,7 @@ GameObject:
   - component: {fileID: -658878598068961507}
   - component: {fileID: -7526638300079609564}
   - component: {fileID: -6973251670309719362}
+  - component: {fileID: -217114833100331164}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -265,7 +266,7 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  pick_distance: 2
+  pick_distance: 4
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &3531994882973546020
@@ -461,6 +462,18 @@ MonoBehaviour:
   _shieldPrefab: {fileID: 1444638899229730, guid: 18ed84bba105fb0419e3b2b89496b375, type: 3}
   _isShielded: 0
   _shieldObj: {fileID: 0}
+--- !u!114 &-217114833100331164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4553bee36d05df54da8a2a5bac5191c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4095230670155074645
 GameObject:
   m_ObjectHideFlags: 0

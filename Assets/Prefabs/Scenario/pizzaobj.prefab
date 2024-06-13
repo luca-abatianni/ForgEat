@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7168934958367041666}
   - component: {fileID: 4086516638879503372}
   - component: {fileID: 6040479139844415789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pizzaobj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,8 +57,8 @@ MonoBehaviour:
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    LocalScale: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -111,7 +111,8 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 7168934958367041666}
   _networkObjectCache: {fileID: 7168934958367041666}
-  value: 2
+  value_as_trash: -2
+  value_as_food: 2
   appears_food: 0
   is_food: 1
   food_model: {fileID: 4390417110732939683}
@@ -127,6 +128,10 @@ PrefabInstance:
     - target: {fileID: 3894880375354682955, guid: 0c0ea431ace4f624895e2c41a184d71c, type: 3}
       propertyPath: m_Name
       value: Pizza Margarita
+      objectReference: {fileID: 0}
+    - target: {fileID: 3894880375354682955, guid: 0c0ea431ace4f624895e2c41a184d71c, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4415416304364139761, guid: 0c0ea431ace4f624895e2c41a184d71c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,6 +223,10 @@ PrefabInstance:
     - target: {fileID: 1746310170333924, guid: 3c57b87dd91db65449a6b66a7bdad5af, type: 3}
       propertyPath: m_Name
       value: Mushroom2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746310170333924, guid: 3c57b87dd91db65449a6b66a7bdad5af, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1746310170333924, guid: 3c57b87dd91db65449a6b66a7bdad5af, type: 3}
       propertyPath: m_IsActive

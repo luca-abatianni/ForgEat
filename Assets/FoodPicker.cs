@@ -36,6 +36,7 @@ public class FoodPicker : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("Picking!");
             animator.SetBool("isPickingFood", true);
             GameObject food = CheckFoodCollision();
             if (food != null)
