@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Menu.unity.meta
 guid: 31981ef4dc67644b08a84fc84c08aca4
+========
+guid: 246f31a0e00fea74a93125fec6d80da8
+>>>>>>>> main:Assets/FishNet/CodeGenerating/cecil-0.11.4/Mono.Cecil.sln.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

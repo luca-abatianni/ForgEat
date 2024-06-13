@@ -40,24 +40,24 @@ public class MagicPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (on_cooldown)
-        {
-            //Debug.Log("On cooldown...");
-            return;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            Transform pov_t = Camera.main.transform;
-            if (base.IsHost)
-            {
-                ShootMagic(pov_t.position, pov_t.forward);
-            }
-            else
-            {
-                Server_ShootMagic(pov_t.position, pov_t.forward);
-            }
-            StartCoroutine(CooldownTimer());
-        }
+        //if (on_cooldown)
+        //{
+        //    Debug.Log("On cooldown...");
+        //    return;
+        //}
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Transform pov_t = Camera.main.transform;
+        //    if (base.IsHost)
+        //    {
+        //        ShootMagic(pov_t.position, pov_t.forward);
+        //    }
+        //    else
+        //    {
+        //        Server_ShootMagic(pov_t.position, pov_t.forward);
+        //    }
+        //    StartCoroutine(CooldownTimer());
+        //}
     }
 
     private void ShootMagic(Vector3 position, Vector3 direction)

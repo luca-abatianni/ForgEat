@@ -39,10 +39,11 @@ public class GameManager : NetworkBehaviour
 
     private GameState game_state;
 
+    [SerializeField] private SpawnBarriers spawn_barriers;
+    [SerializeField] private FoodSpawner food_spawner;
+
     private bool isPaused = false;
-
-    [SerializeField] private SpawnBarriers spawn_barriers; 
-
+    
     public void RetrieveFirstPhaseLen()
     {
         Debug.Log("1st phase length: " + MenuChoices.firstPhaseLen);
@@ -61,6 +62,7 @@ public class GameManager : NetworkBehaviour
         RetrieveFirstPhaseLen();
         RetrieveSecondPhaseLen();
         base.OnStartServer();
+
         phase_timer = false;
         game_state = GameState.WaitingOnClients;
     }
@@ -70,15 +72,15 @@ public class GameManager : NetworkBehaviour
         base.OnStartClient();
         if (base.IsClient && !base.IsServer)
         {
-            GetComponent<GameManager>().enabled = false;
+            GetComponent<GameManager>().enabled = false; // Update() will be run only by server.
         }
         return;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame // Executed only by server.
     void Update()
     {
-        if (base.IsServer && !phase_timer)
+        if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
             {
@@ -133,6 +135,7 @@ public class GameManager : NetworkBehaviour
     {
         Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
+        food_spawner.SpawnFoodTrash();
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
         NetworkManager.Log("Barriers off!");
@@ -144,8 +147,8 @@ public class GameManager : NetworkBehaviour
     {
         Debug.Log(game_state.ToString() + " phase started");
         phase_timer = true;
-        FindAnyObjectByType<FoodSpawner>().Server_TransformTrashInFood();
-        FindAnyObjectByType<FoodSpawner>().Observer_TransformTrashInFood();
+        food_spawner.Server_TransformTrashInFood();
+        food_spawner.Observer_TransformTrashInFood();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
         StartCoroutine(PhaseTimer(between_phase_period));

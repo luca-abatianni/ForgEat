@@ -44,6 +44,7 @@ public class PowerEffect : NetworkBehaviour
             Debug.Log("Hit MIND" + powerType);
             StartCoroutine(MindBulletHit(powerType));
         }
+        //WindBullet applica l'effetto da sè
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
@@ -82,14 +83,15 @@ public class PowerEffect : NetworkBehaviour
 
             ServerManager.Spawn(spawned);
             spawned.transform.SetParent(_spawnPoint.transform);
-            ORPC_SetSpawnedEffect(script, spawned, duration);
+            ORPC_SetSpawnedEffect(script, _spawnPoint, spawned, duration);
         }
         else
             Debug.LogError("HitEffect is Null");
     }
     [ObserversRpc]
-    void ORPC_SetSpawnedEffect(PowerEffect script, GameObject spawned, float duration)
+    void ORPC_SetSpawnedEffect(PowerEffect script, GameObject _spawnPoint, GameObject spawned, float duration)
     {
+        spawned.transform.SetParent(_spawnPoint.transform);
         script._listSpawned.Add((spawned, duration));
     }
     // Update is called once per frame

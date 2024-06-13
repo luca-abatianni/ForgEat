@@ -64,7 +64,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 3
+  <PrefabId>k__BackingField: 15
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -111,7 +111,8 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: -4055075474244319262}
   _networkObjectCache: {fileID: -4055075474244319262}
-  value: 1
+  value_as_trash: -1
+  value_as_food: 1
   appears_food: 0
   is_food: 1
   food_model: {fileID: 8755660699616908150}
@@ -284,6 +285,10 @@ PrefabInstance:
     - target: {fileID: 6365616183192419695, guid: 5e287f359423fc5478a3ed90107f5603, type: 3}
       propertyPath: m_Name
       value: trash_model
+      objectReference: {fileID: 0}
+    - target: {fileID: 6365616183192419695, guid: 5e287f359423fc5478a3ed90107f5603, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6365616183192419695, guid: 5e287f359423fc5478a3ed90107f5603, type: 3}
       propertyPath: m_IsActive

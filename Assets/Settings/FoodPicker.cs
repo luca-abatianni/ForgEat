@@ -36,11 +36,12 @@ public class FoodPicker : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("Picking!");
             animator.SetBool("isPickingFood", true);
             GameObject food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().value;
+                points += food.GetComponent<Food>().getValue();
                 NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
