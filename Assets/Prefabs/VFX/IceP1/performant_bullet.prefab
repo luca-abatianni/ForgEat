@@ -154,8 +154,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2970602416638479455}
-  - component: {fileID: 3769697729060145533}
-  - component: {fileID: -8339651401797889592}
   - component: {fileID: 2926975643493980395}
   m_Layer: 0
   m_Name: performant_bullet
@@ -183,39 +181,6 @@ Transform:
   - {fileID: 3981904277423113480}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3769697729060145533
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035807379073529396}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3, y: 0.3, z: 1}
-  m_Center: {x: 0, y: 0, z: 0.1}
---- !u!114 &-8339651401797889592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035807379073529396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d719565fb7c75054095514fbf0b7c768, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2926975643493980395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,9 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81935706fd9f21548b508edfdf382de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0.5
+  _speed: 20
   Identification: 0
   OwnerID: 0
+  exclude_mask:
+    serializedVersion: 2
+    m_Bits: 8
+  max_distance: 0
   drawGizmos: 0
 --- !u!1 &6572710683544616792
 GameObject:

@@ -1,6 +1,9 @@
 using FishNet;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -13,6 +16,14 @@ public class Bullet : MonoBehaviour
     public int Identification;
     public int OwnerID;
 
+    [SerializeField]
+    private LayerMask exclude_mask; // Excluding player from raycast
+
+    //private float distance_to_collision;
+    [SerializeField]
+    private float max_distance;
+
+
     [Header("Debugging")]
     [SerializeField]
     private bool drawGizmos = true;
@@ -21,6 +32,7 @@ public class Bullet : MonoBehaviour
     {
         if (InstanceFinder.IsServer)
             InstanceFinder.TimeManager.OnTick += OnTick;
+        exclude_mask = ~exclude_mask;
     }
     // Start is called before the first frame update
     public void Initialize(Vector3 direction, float speed, int bulletID, int ownerID)
@@ -30,12 +42,27 @@ public class Bullet : MonoBehaviour
         Bullets.Add(bulletID, this);
         Identification = bulletID;
         OwnerID = ownerID;
+        //distance_to_collision = DistanceToCollision();
+        //Debug.Log($"[ID: {bulletID}] Distance to collision: {distance_to_collision}");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += _direction * Time.deltaTime * _speed;    
+        float increment = Time.deltaTime * _speed;
+        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, _direction, out hit, increment, exclude_mask))
+        {
+            Debug.Log($"Collision with {hit.collider.transform.name}");
+            OnCollision();
+        }
+        else transform.position += _direction * increment;
+    }
+
+    private void OnCollision()
+    {
+        DestroyBullet();
     }
 
     private void OnTick()
@@ -44,8 +71,7 @@ public class Bullet : MonoBehaviour
         {
             PastStates.RemoveAt(0);
         }
-/*
-        PastStates.Add(new State() { Position - transform.position });
+        PastStates.Add(new State() { Position = transform.position });
 
         foreach (var player in PlayerCollisionRollback.Players.Values)
         {
@@ -54,11 +80,23 @@ public class Bullet : MonoBehaviour
             if (player.CheckPastCollisions(this))
             {
                 // This bullet hit a player.
+                Debug.Log("Player Collision!");
+                DestroyBullet();
             }
   
         }
-*/
     }
+
+    //private float DistanceToCollision()
+    //{
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(transform.position, _direction, out hit))
+    //    {
+    //        return hit.distance;
+    //    }
+    //    return max_distance;
+    //}
+
 
     public void DestroyBullet()
     {
@@ -68,6 +106,8 @@ public class Bullet : MonoBehaviour
         Bullets.Remove(Identification);
         Destroy(gameObject);
     }
+
+    /*
     void OnCollisionEnter(Collision collision)
     {
         // Handle collision logic here
@@ -76,6 +116,7 @@ public class Bullet : MonoBehaviour
         // Optionally, destroy the bullet after collision
         Destroy(gameObject);
     }
+    */
 
     public class State
     {

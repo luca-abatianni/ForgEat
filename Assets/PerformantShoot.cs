@@ -10,7 +10,7 @@ public class PerformantShoot : NetworkBehaviour
 
     private List<Bullet> spawned_bullets = new List<Bullet>();
     // Start is called before the first frame update
-
+    //
     // Update is called once per frame
 
     public void Shoot(float fire_offset)
