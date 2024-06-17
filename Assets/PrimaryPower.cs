@@ -76,8 +76,13 @@ public class PrimaryPower : NetworkBehaviour
         SRPC_SpawnSigilFoot(_sigilToSpawn, _firePoint);
         animator.SetBool("attackFreeze", true);
         yield return new WaitForSeconds(.3f);
+<<<<<<< Updated upstream
         GetComponent<PerformantBullet>().Shoot(_effectToSpawn, _fireOffset, _primaryPower);
 
+=======
+        //SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
+        GetComponent<PerformantShoot>().Shoot(0.5f);
+>>>>>>> Stashed changes
         yield return null;
     }
 
