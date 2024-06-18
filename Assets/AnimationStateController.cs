@@ -11,7 +11,7 @@ public class AnimationStateController : NetworkBehaviour
 {
     Animator animator;
     NetworkAnimator netAnim;
-    public FirstPersonController fpc;
+    public PlayerController pc;
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -29,45 +29,45 @@ public class AnimationStateController : NetworkBehaviour
     }
     void Update()
     {
-        if (fpc.isWalking)
+        if (pc.isWalking)
         {
             animator.SetBool("isWalking", true);
             //Debug.Log("Porco");
         }
-        if (!fpc.isWalking)
+        if (!pc.isWalking)
         {
             animator.SetBool("isWalking", false);
             //Debug.Log("Dio");
         }
-        if (fpc.isMoonwalking)
+        if (pc.isMoonwalking)
         {
             animator.SetBool("isMoonwalking", true);
         }
-        if (!fpc.isMoonwalking)
+        if (!pc.isMoonwalking)
         {
             animator.SetBool("isMoonwalking", false);
         }
-        if (fpc.isWalkingLeft)
+        if (pc.isWalkingLeft)
         {
             animator.SetBool("isWalkingLeft", true);
         }
-        if (!fpc.isWalkingLeft)
+        if (!pc.isWalkingLeft)
         {
             animator.SetBool("isWalkingLeft", false);
         }
-        if (fpc.isWalkingRight)
+        if (pc.isWalkingRight)
         {
             animator.SetBool("isWalkingRight", true);
         }
-        if (!fpc.isWalkingRight)
+        if (!pc.isWalkingRight)
         {
             animator.SetBool("isWalkingRight", false);
         }
-        if (fpc.isJumping)
+        if (pc.isJumping)
         {
             animator.SetBool("isJumping", true);
         }
-        if (!fpc.isJumping)
+        if (!pc.isJumping)
         {
             animator.SetBool("isJumping", false);
         }
