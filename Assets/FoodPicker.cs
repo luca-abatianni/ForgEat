@@ -2,17 +2,20 @@ using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Component.Animating;
 
 public class FoodPicker : NetworkBehaviour
 {
     [SerializeField] float pick_distance;
     ScoreCounter score_counter;
     private float points = 0;
+    public Animator animator;
+    public NetworkAnimator netAnim;
     // Start is called before the first frame update
     public override void OnStartClient()
     { // This is needed to avoid other clients controlling our character. 
         base.OnStartClient();
-        if (!base.IsOwner) 
+        if (!base.IsOwner)
         {
             GetComponent<FoodPicker>().enabled = false;
             return;
@@ -22,7 +25,7 @@ public class FoodPicker : NetworkBehaviour
     private void Start()
     {
         score_counter = FindObjectOfType<ScoreCounter>();
-        if (score_counter != null )
+        if (score_counter != null)
         {
             Debug.Log("Score counter found at start()");
         }
@@ -33,15 +36,21 @@ public class FoodPicker : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("Picking!");
+            animator.SetBool("isPickingFood", true);
             GameObject food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().value;
+                points += food.GetComponent<Food>().getValue();
                 NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                 fs.RemoveObject(food);
             }
+        }
+        else
+        {
+            animator.SetBool("isPickingFood", false);
         }
     }
 

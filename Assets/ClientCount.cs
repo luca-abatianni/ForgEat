@@ -9,6 +9,20 @@ using System.Threading;
 public class ClientCount : NetworkBehaviour
 {
     private int client_count;
+    private Dictionary<int, Player> _players = new Dictionary<int, Player>();
+    private static ClientCount instance;
+    public static void InitializeNewPlayer(int clientID)
+    {
+        instance._players.Add(clientID, new Player());
+    }
+    public static void UpdateScore(int player, int amount)
+    {
+        if (instance._players.TryGetValue(player, out Player thisPlayer))
+        {
+            thisPlayer.Score += amount;
+        }
+
+    }
     // Start is called before the first frame update
     public override void OnStartServer()
     {
@@ -19,6 +33,9 @@ public class ClientCount : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
+        _players.Add(OwnerId, this.GetComponent<Player>());
+        InitializeNewPlayer(OwnerId);
+        GameUIManager.PlayerJoined(OwnerId);
         if (!base.IsOwner)
         {
             GetComponent<ClientCount>().enabled = false;
@@ -31,12 +48,13 @@ public class ClientCount : NetworkBehaviour
         NetworkManager.Log("Player count: " + client_count);
     }
 
-    public override void OnStopClient ()
+    public override void OnStopClient()
     {
         if (base.IsOwner)
         {
             DecrementClientCount();
         }
+        GameUIManager.PlayerLeft(OwnerId);
     }
 
     [ServerRpc]
@@ -54,5 +72,9 @@ public class ClientCount : NetworkBehaviour
     public int getClientCount()
     {
         return client_count;
+    }
+    class Player
+    {
+        public int Score = 0;
     }
 }

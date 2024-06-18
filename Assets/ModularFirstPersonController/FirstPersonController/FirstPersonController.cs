@@ -43,9 +43,9 @@ public class FirstPersonController : NetworkBehaviour
 
     #region Camera Zoom Variables
 
-    public bool enableZoom = true;
+    public bool enableZoom = false;
     public bool holdToZoom = false;
-    public KeyCode zoomKey = KeyCode.Mouse1;
+    public KeyCode zoomKey = KeyCode.Mouse2;
     public float zoomFOV = 30f;
     public float zoomStepTime = 5f;
 
@@ -73,6 +73,8 @@ public class FirstPersonController : NetworkBehaviour
     public bool isWalkingLeft = false;
     [HideInInspector]
     public bool isWalkingRight = false;
+    [HideInInspector]
+    public bool isJumping = false;
 
     #region Sprint
 
@@ -82,7 +84,7 @@ public class FirstPersonController : NetworkBehaviour
     public float sprintSpeed = 7f;
     public float sprintDuration = 5f;
     public float sprintCooldown = .5f;
-    public float sprintFOV = 80f;
+    public float sprintFOV = 60f;
     public float sprintFOVStepTime = 10f;
 
     // Sprint Bar
@@ -214,6 +216,12 @@ public class FirstPersonController : NetworkBehaviour
 
     private void Update()
     {
+        #region Cursor
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.Locked;
+        #endregion
         #region Camera
 
         // Control camera movement
@@ -313,6 +321,7 @@ public class FirstPersonController : NetworkBehaviour
             {
                 // Regain sprint while not sprinting
                 sprintRemaining = Mathf.Clamp(sprintRemaining += 1 * Time.deltaTime, 0, sprintDuration);
+                playerCamera.fieldOfView = fov;
             }
 
             // Handles sprint cooldown 
@@ -346,6 +355,11 @@ public class FirstPersonController : NetworkBehaviour
         if (enableJump && Input.GetKeyDown(jumpKey) && isGrounded)
         {
             Jump();
+            isJumping = true;
+        }
+        else
+        {
+            isJumping = false;
         }
 
         #endregion
@@ -409,19 +423,19 @@ public class FirstPersonController : NetworkBehaviour
             // Will allow head bob
             if (targetVelocity.z < 0 && isGrounded)
             {
-                isWalking = true;
-            }
-            else
-            {
-                isWalking = false;
-            }
-            if (targetVelocity.z > 0 && isGrounded)
-            {
                 isMoonwalking = true;
             }
             else
             {
                 isMoonwalking = false;
+            }
+            if (targetVelocity.z > 0 && isGrounded)
+            {
+                isWalking = true;
+            }
+            else
+            {
+                isWalking = false;
             }
             if (targetVelocity.x > 0 && isGrounded)
             {

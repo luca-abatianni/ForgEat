@@ -11,19 +11,21 @@ public class PowerBehavior : NetworkBehaviour
     [SerializeField] GameObject _muzzle;
 
     GameObject _spawner;
-    float _speed = 20f;
+    float _speed = 25f;
     private Vector3 _direction;
     private GameObject _initialPosition;
     public enum PowerType
     {
         IceBullet = 0,
         MindBullet = 1,
+        WindBullet = 2,
+        TrickBullet = 3,
     }
     // Start is called before the first frame update
     public override void OnStartClient()
     {
         if (_muzzle != null)
-            SRPC_Muzzle(this, gameObject, _muzzle, _initialPosition);
+            ORPC_Muzzle(this, gameObject, _muzzle, _initialPosition);
         base.OnStartClient();
         if (!base.IsServer)
         {
@@ -40,7 +42,11 @@ public class PowerBehavior : NetworkBehaviour
         {
             case PowerType.IceBullet:
             case PowerType.MindBullet:
+            case PowerType.WindBullet:
                 transform.position += _direction * (_speed * Time.deltaTime);
+                break;
+            case PowerType.TrickBullet:
+                transform.position += _direction * (.4f * _speed * Time.deltaTime);
                 break;
         }
     }
@@ -56,7 +62,7 @@ public class PowerBehavior : NetworkBehaviour
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;
-        Debug.Log("Set "+_powerType);
+        Debug.Log("Set " + _powerType);
     }
     public void SetSpawner(GameObject spawner)
     {
@@ -65,19 +71,31 @@ public class PowerBehavior : NetworkBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("P1 collision");
-        _speed = 0f;
+        var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
-        var powerEffect = collision.gameObject.GetComponent<PowerEffect>();
-        if (powerEffect != null)
+        if (collision.transform.tag == "Player")
         {
-            powerEffect.Hit(_powerType);
-            Debug.Log("Collision " + _powerType);
+            _speed = 0f;
+            var shield = collision.gameObject.GetComponent<ShieldPower>();
+            if (shield != null)
+            {
+                if (powerEffect != null && !shield._isShielded)
+                {
+                    ORPC_PowerEffectHit(powerEffect, _powerType);
+                    Debug.Log("Collision " + _powerType);
+                }
+            }
+            else
+            {
+                Debug.Log("SHIELD NULL");
+            }
         }
         if (_impactEffect != null)
         {
-            ORPC_OnImpact( _impactEffect, pos, rot);
+            ORPC_OnImpact(_impactEffect, pos, rot);
+            SRPC_OnImpact(_impactEffect, pos, rot);
         }
         ServerManager.Despawn(gameObject);
         Destroy(gameObject);
@@ -85,16 +103,27 @@ public class PowerBehavior : NetworkBehaviour
 
 
     [ObserversRpc]
-    public void SRPC_Muzzle(PowerBehavior script, GameObject bulletObj, GameObject muzzle, GameObject parent)
+    public void ORPC_PowerEffectHit(PowerEffect script, PowerType type)
+    {
+        script.Hit(type);
+    }
+    [ObserversRpc]
+    public void ORPC_Muzzle(PowerBehavior script, GameObject bulletObj, GameObject muzzle, GameObject parent)
     {
         var obj = Instantiate(muzzle, parent.transform.position, Camera.main.transform.rotation);
         obj.transform.forward = bulletObj.transform.forward;
         ServerManager.Spawn(obj);
         //obj.transform.SetParent(parent.transform);  
     }
-    
+
     [ObserversRpc]
-    public void ORPC_OnImpact( GameObject _impact, Vector3 pos, Quaternion rot)
+    public void ORPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
+    {
+        var obj = Instantiate(_impact, pos, rot);
+        ServerManager.Spawn(obj);
+    }
+    [ServerRpc]
+    public void SRPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
     {
         var obj = Instantiate(_impact, pos, rot);
         ServerManager.Spawn(obj);

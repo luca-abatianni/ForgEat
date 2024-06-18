@@ -39,12 +39,14 @@ public class GameManager : NetworkBehaviour
 
     private GameState game_state;
 
-    [SerializeField] private SpawnBarriers spawn_barriers; 
+    [SerializeField] private SpawnBarriers spawn_barriers;
+    [SerializeField] private FoodSpawner food_spawner;
 
 
     public override void OnStartServer()
     {
         base.OnStartServer();
+
         phase_timer = false;
         game_state = GameState.WaitingOnClients;
     }
@@ -54,18 +56,18 @@ public class GameManager : NetworkBehaviour
         base.OnStartClient();
         if (base.IsClient && !base.IsServer)
         {
-            GetComponent<GameManager>().enabled = false;
+            GetComponent<GameManager>().enabled = false; // Update() will be run only by server.
         }
         return;
     }
 
-    // Update is called once per frame
+    // Update is called once per frame // Executed only by server.
     void Update()
     {
-        if (base.IsServer && !phase_timer)
+        if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
-            { 
+            {
                 case GameState.WaitingOnClients:
                     WaitForPlayers();
                     break;
@@ -98,12 +100,12 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
-            game_state++; 
+            game_state++;
         }
         return;
     }
 
-    void WaitingFirstPhase ()
+    void WaitingFirstPhase()
     {
         phase_timer = true;
         StartCoroutine(PhaseTimer(between_phase_period));
@@ -114,6 +116,7 @@ public class GameManager : NetworkBehaviour
     void PhaseOne()
     {
         phase_timer = true;
+        food_spawner.SpawnFoodTrash();
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
         NetworkManager.Log("Barriers off!");
@@ -124,8 +127,8 @@ public class GameManager : NetworkBehaviour
     void WaitingSecondPhase()
     {
         phase_timer = true;
-        FindAnyObjectByType<FoodSpawner>().Server_TransformTrashInFood();
-        FindAnyObjectByType<FoodSpawner>().Observer_TransformTrashInFood();
+        food_spawner.Server_TransformTrashInFood();
+        food_spawner.Observer_TransformTrashInFood();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
         StartCoroutine(PhaseTimer(between_phase_period));
@@ -165,7 +168,7 @@ public class GameManager : NetworkBehaviour
         {
             if (i < player_list.Length)
             {
-                player_list[i].GetComponent<PlayerController>().TransportPlayerToPosition(spawn.position);
+                player_list[i].GetComponent<TeletransportPlayer>().TransportPlayerToPosition(spawn.position);
                 i++;
             }
             else break;

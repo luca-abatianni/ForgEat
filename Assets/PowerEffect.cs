@@ -9,6 +9,7 @@ public class PowerEffect : NetworkBehaviour
 {
     [SerializeField] public List<GameObject> _hitEffects = new List<GameObject>();
     [HideInInspector] public List<(GameObject, float)> _listSpawned = new List<(GameObject, float)>();
+    private ShieldPower _shield;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -31,6 +32,8 @@ public class PowerEffect : NetworkBehaviour
     }
     public void Hit(PowerBehavior.PowerType powerType)
     {
+        if (_shield != null && _shield._isShielded)//Client spawna comunque l'effetto di Hit
+            return;
         if (powerType == PowerBehavior.PowerType.IceBullet)
         {
             Debug.Log("Hit ICE" + powerType);
@@ -41,6 +44,7 @@ public class PowerEffect : NetworkBehaviour
             Debug.Log("Hit MIND" + powerType);
             StartCoroutine(MindBulletHit(powerType));
         }
+        //WindBullet applica l'effetto da sè
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
@@ -69,7 +73,7 @@ public class PowerEffect : NetworkBehaviour
     {
         ServerManager.Despawn(_effectToSpawn);
     }
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     void SRPC_SpawnHitEffect(PowerEffect script, GameObject _effectToSpawn, GameObject _spawnPoint, float duration)
     {
         if (_effectToSpawn != null)
@@ -78,21 +82,25 @@ public class PowerEffect : NetworkBehaviour
             var spawned = Instantiate(_effectToSpawn, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
 
             ServerManager.Spawn(spawned);
-            ORPC_SetSpawnedEffect(script, spawned, duration);
             spawned.transform.SetParent(_spawnPoint.transform);
+            ORPC_SetSpawnedEffect(script, _spawnPoint, spawned, duration);
         }
         else
             Debug.LogError("HitEffect is Null");
     }
     [ObserversRpc]
-    void ORPC_SetSpawnedEffect(PowerEffect script, GameObject spawned, float duration)
+    void ORPC_SetSpawnedEffect(PowerEffect script, GameObject _spawnPoint, GameObject spawned, float duration)
     {
+        spawned.transform.SetParent(_spawnPoint.transform);
         script._listSpawned.Add((spawned, duration));
     }
     // Update is called once per frame
     void Update()
     {
         CheckEffectsDuration();
+        if (_shield == null)
+            _shield = gameObject.GetComponent<ShieldPower>();
+
     }
     //List non è modificabile, per cui
     //ad ogni ciclo controllo le durate degli effetti e aggiorno sottraendo il tempo dall'ultimo frame
