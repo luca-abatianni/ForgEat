@@ -8,7 +8,7 @@ public class WindImpact : NetworkBehaviour
 {//Dovrebbe essere Server Owned
     [SerializeField] public float _pushForce = 500f;
     private PowerBehavior.PowerType _powerType = PowerBehavior.PowerType.WindBullet;
-    
+
 
     // Update is called once per frame
     void Update()
@@ -18,29 +18,21 @@ public class WindImpact : NetworkBehaviour
     [ObserversRpc]
     void ORPC_WindImpact(GameObject other)
     {
-        Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+        var plyer = other.GetComponent<PlayerController>();
         Vector3 direction = other.transform.position - transform.position;
         direction.y = 0; // Ensure the force is horizontal (you can remove this line if you want a vertical component too)
         direction.Normalize();
 
         // Apply an upward and away force
         Vector3 pushDirection = (direction + Vector3.up * 0.01f).normalized;
-        playerRigidbody.AddForce(pushDirection * _pushForce, ForceMode.Impulse);
+        plyer.AddForce(pushDirection * _pushForce);
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+
     }
     private void OnTriggerStay(Collider other)
     {
-        // Check if the colliding object has the tag "Player"
-        //if (other.CompareTag("Player"))//Pushare via anche i proiettili
-        {
-            Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
-            if (playerRigidbody != null)
-            {
-                ORPC_WindImpact(other.gameObject);
-            }
-        }
+        ORPC_WindImpact(other.gameObject);
     }
 }

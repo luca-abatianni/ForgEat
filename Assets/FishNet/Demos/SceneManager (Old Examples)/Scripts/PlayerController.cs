@@ -4,6 +4,8 @@ using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using UnityEngine.PlayerLoop;
+using UnityEditor.Experimental.GraphView;
 
 //This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour
@@ -15,11 +17,13 @@ public class PlayerController : NetworkBehaviour
     public float gravity = 15.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
-
+    private float walkFOV = 60f;
+    private float runFOV = 70f;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
+    public bool confusePlayerMovement = false;
     public bool canMove = true;
 
     [SerializeField]
@@ -49,13 +53,38 @@ public class PlayerController : NetworkBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    private IEnumerator MoveOverTime(Vector3 direction, float seconds)
+    {
+        float duration = seconds + Time.time;
+        while (Time.time < duration)
+        {
+            characterController.Move(direction * Time.deltaTime);
+            yield return new WaitForSeconds(.05f);
+        }
+        yield return null;
+    }
+    public void AddForce(Vector3 direction)
+    {
+        StartCoroutine(MoveOverTime(direction, .5f));
+    }
 
     void Update()
     {
+        #region Cursor
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+            Cursor.lockState = CursorLockMode.Locked;
+        #endregion
         isRunning = false;
 
         // Press Left Shift to run
         isRunning = Input.GetKey(KeyCode.LeftShift);
+        if (isRunning)
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, runFOV, .5f);
+        else
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, walkFOV, .5f);
+
         isWalking = Input.GetKey(KeyCode.W);
         isMoonwalking = Input.GetKey(KeyCode.S);
         isWalkingLeft = Input.GetKey(KeyCode.A);
@@ -65,11 +94,17 @@ public class PlayerController : NetworkBehaviour
         // We are grounded, so recalculate move direction based on axis
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-
         float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        if (confusePlayerMovement)
+        {
+            moveDirection = (-forward * curSpeedX) + (-right * curSpeedY);
+        }
+        else
+        {
+            moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        }
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
@@ -93,10 +128,20 @@ public class PlayerController : NetworkBehaviour
         // Player and Camera rotation
         if (canMove && playerCamera != null)
         {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            if (confusePlayerMovement)
+            {
+                rotationX += Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, -Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
+            else
+            {
+                rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            }
         }
 
     }

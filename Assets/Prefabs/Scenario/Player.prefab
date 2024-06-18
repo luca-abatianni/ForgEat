@@ -129,12 +129,13 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  walkingSpeed: 7.5
-  runningSpeed: 11.5
-  jumpSpeed: 8
-  gravity: 20
+  walkingSpeed: 6
+  runningSpeed: 10
+  jumpSpeed: 10
+  gravity: 15
   lookSpeed: 2
   lookXLimit: 45
+  confusePlayerMovement: 0
   canMove: 1
   cameraYOffset: 2
   isWalking: 0
@@ -214,7 +215,6 @@ MonoBehaviour:
   - {fileID: -7526638300079609564}
   - {fileID: -6973251670309719362}
   - {fileID: -217114833100331164}
-  - {fileID: 0}
   - {fileID: 181231208194721968}
   - {fileID: 8613745216421192631}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -420,7 +420,7 @@ MonoBehaviour:
   _firePoint: {fileID: 1583900551122322469}
   _sigilPoint: {fileID: 4095230670155074645}
   _listEffects:
-  - {fileID: 5035807379073529396, guid: 84686585f70384444800899d97fa54c5, type: 3}
+  - {fileID: 5035807379073529396, guid: f60b050890c72eb4cafc47776557c9f5, type: 3}
   - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
   - {fileID: 5035807379073529396, guid: 6ff2c7bc879aba5478e35f01b11e9b64, type: 3}
   - {fileID: 5035807379073529396, guid: d526e045c5df48041a94b9f74047cc4d, type: 3}
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6828b52d25b4a50ba7e06e698c1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 11
+  _componentIndexCache: 10
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pc: {fileID: 2176458008890118076}
@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 12
+  _componentIndexCache: 11
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   IgnoredParameters: []

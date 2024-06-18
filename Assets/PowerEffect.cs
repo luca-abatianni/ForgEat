@@ -48,23 +48,28 @@ public class PowerEffect : NetworkBehaviour
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
-        float duration = 10f;
+        float duration = 4f;
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        gameObject.GetComponent<FirstPersonController>().confusePlayerMovement = true;
+        gameObject.GetComponent<PlayerController>().confusePlayerMovement = true;
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<FirstPersonController>().confusePlayerMovement = false;
+        gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
         yield return null;
     }
     private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
     {
-        float duration = 3f, alteredSensitivity = .5f;
+        float duration = 3f, alteredSensitivity = .5f, alteredSpeed = 1;
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        gameObject.GetComponent<FirstPersonController>().SetPlayerCanMove(false);
-        var originalSensitivity = gameObject.GetComponent<FirstPersonController>().mouseSensitivity;
-        gameObject.GetComponent<FirstPersonController>().mouseSensitivity = alteredSensitivity;
+        var playerC = gameObject.GetComponent<PlayerController>();
+        var originalWalking = playerC.walkingSpeed;
+        var originalRunning = playerC.runningSpeed;
+        var originalSensitivity = playerC.lookSpeed;
+        playerC.lookSpeed = alteredSensitivity;
+        playerC.runningSpeed = alteredSpeed;
+        playerC.walkingSpeed = alteredSpeed;
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<FirstPersonController>().mouseSensitivity = originalSensitivity;
-        gameObject.GetComponent<FirstPersonController>().SetPlayerCanMove(true);
+        playerC.lookSpeed = originalSensitivity;
+        playerC.runningSpeed = originalRunning;
+        playerC.walkingSpeed = originalWalking;
         yield return null;
     }
 
