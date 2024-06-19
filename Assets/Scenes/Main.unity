@@ -48064,6 +48064,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barriers
       objectReference: {fileID: 0}
+    - target: {fileID: 6286170540323648935, guid: 251ddb55848374a9eae5d376e494b510, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8826520579828458678, guid: 251ddb55848374a9eae5d376e494b510, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5

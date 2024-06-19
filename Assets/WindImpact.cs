@@ -6,7 +6,7 @@ using static PowerBehavior;
 
 public class WindImpact : NetworkBehaviour
 {//Dovrebbe essere Server Owned
-    [SerializeField] public float _pushForce = 500f;
+    [SerializeField] public float _pushForce = 1000f;
     private PowerBehavior.PowerType _powerType = PowerBehavior.PowerType.WindBullet;
 
 
@@ -24,15 +24,15 @@ public class WindImpact : NetworkBehaviour
         direction.Normalize();
 
         // Apply an upward and away force
-        Vector3 pushDirection = (direction + Vector3.up * 0.01f).normalized;
+        Vector3 pushDirection = (direction).normalized;
         plyer.AddForce(pushDirection * _pushForce);
     }
     private void OnTriggerEnter(Collider other)
     {
-
+        ORPC_WindImpact(other.gameObject);
+        other.gameObject.GetComponent<PowerEffect>().Hit(PowerType.WindBullet);
     }
     private void OnTriggerStay(Collider other)
     {
-        ORPC_WindImpact(other.gameObject);
     }
 }

@@ -5,7 +5,6 @@ using FishNet.Connection;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine.PlayerLoop;
-using UnityEditor.Experimental.GraphView;
 
 //This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour
@@ -25,6 +24,9 @@ public class PlayerController : NetworkBehaviour
 
     public bool confusePlayerMovement = false;
     public bool canMove = true;
+
+    private int windUpdate = 0;
+    private Vector3 windDirection = Vector3.zero;
 
     [SerializeField]
     private float cameraYOffset = 1f;
@@ -55,19 +57,33 @@ public class PlayerController : NetworkBehaviour
     }
     private IEnumerator MoveOverTime(Vector3 direction, float seconds)
     {
+        canMove = false;
         float duration = seconds + Time.time;
-        while (Time.time < duration)
-        {
-            characterController.Move(direction * Time.deltaTime);
-            yield return new WaitForSeconds(.05f);
-        }
+        //while (Time.time < duration)
+        //{
+        //    characterController.Move(direction * Time.deltaTime);
+        //    yield return new WaitForSeconds(.05f);
+        //}
+        characterController.Move(direction);//TOO SHARP
+        //gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, direction, duration); ;
+        canMove = true;
         yield return null;
     }
     public void AddForce(Vector3 direction)
-    {
-        StartCoroutine(MoveOverTime(direction, .5f));
+    {//USED BY WINDPOWER IMPACT
+        const int frameDuration = 30;
+        windUpdate = frameDuration;//add direction for n fixedUpdates
+        windDirection = direction * 2 * windUpdate / frameDuration;
+        //StartCoroutine(MoveOverTime(direction, .5f));
     }
+    private void FixedUpdate()
+    {
+        if (windUpdate > 0)
+        {
+            windUpdate--;
 
+        }
+    }
     void Update()
     {
         #region Cursor
@@ -121,7 +137,8 @@ public class PlayerController : NetworkBehaviour
         {
             moveDirection.y -= gravity * Time.deltaTime;
         }
-
+        if (windUpdate != 0)
+            moveDirection += windDirection;
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
