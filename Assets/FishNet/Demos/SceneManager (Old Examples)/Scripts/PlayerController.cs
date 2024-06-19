@@ -10,14 +10,14 @@ using UnityEngine.PlayerLoop;
 public class PlayerController : NetworkBehaviour
 {
     [Header("Base setup")]
-    public float walkingSpeed = 5.5f;
-    public float runningSpeed = 10.5f;
+    public float walkingSpeed = 5f;
+    public float runningSpeed = 10f;
     public float jumpSpeed = 7.0f;
     public float gravity = 15.0f;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
-    private float walkFOV = 60f;
-    private float runFOV = 70f;
+    private float walkFOV = 70f;
+    private float runFOV = 90f;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -38,7 +38,7 @@ public class PlayerController : NetworkBehaviour
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
+            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z+.5f);
             playerCamera.transform.SetParent(transform);
         }
         else

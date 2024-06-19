@@ -129,8 +129,8 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  walkingSpeed: 6
-  runningSpeed: 10
+  walkingSpeed: 5
+  runningSpeed: 8
   jumpSpeed: 10
   gravity: 15
   lookSpeed: 2
