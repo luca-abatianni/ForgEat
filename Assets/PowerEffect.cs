@@ -36,15 +36,23 @@ public class PowerEffect : NetworkBehaviour
             return;
         if (powerType == PowerBehavior.PowerType.IceBullet)
         {
-            Debug.Log("Hit ICE" + powerType);
             StartCoroutine(IceBulletHit(powerType));
         }
         if (powerType == PowerBehavior.PowerType.MindBullet)
         {
-            Debug.Log("Hit MIND" + powerType);
             StartCoroutine(MindBulletHit(powerType));
         }
-        //WindBullet applica l'effetto da sè
+        if (powerType == PowerBehavior.PowerType.WindBullet)
+        {
+            Debug.Log("Hit WIND" + powerType);
+            StartCoroutine(WindBulletHit(powerType));
+        }
+    }
+    private IEnumerator WindBulletHit(PowerBehavior.PowerType powerHit)
+    {//Effetto gestito da WindiImpact + PlayerController
+        float duration = 1f;
+        SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+        yield return null;
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
