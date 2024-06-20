@@ -74,17 +74,6 @@ public class PerformantShoot : NetworkBehaviour
         SpawnLocal(spawn_position, rotation, sigil_point, power, bulletID, ownerID);
     }
 
-    void LocalSpawnSigil(Transform _firePoint, int power)
-    {
-        _sigilToSpawn = _listSigils[power];
-        var spawned_sigil = Instantiate(_sigilToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
-        spawned_sigil.transform.SetParent(_firePoint.transform);
-
-        var p = _firePoint.transform.position;
-        var spawned_sigil_foot = Instantiate(_sigilToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
-        spawned_sigil_foot.transform.SetParent(_firePoint.transform);
-    }
-
     [ServerRpc(RequireOwnership = false)]
     void SRPC_SpawnSigil(Transform _firePoint, int power)
     {
