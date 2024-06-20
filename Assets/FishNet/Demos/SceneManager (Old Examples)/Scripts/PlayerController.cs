@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Connection;
 using FishNet.Object;
-using FishNet.Object.Synchronizing;
-using UnityEngine.PlayerLoop;
-using UnityEditor.Experimental.GraphView;
+//using FishNet.Object.Synchronizing;
+//using UnityEngine.PlayerLoop;
+//using UnityEditor.Experimental.GraphView;
 
 //This is made by Bobsi Unity - Youtube
 public class PlayerController : NetworkBehaviour

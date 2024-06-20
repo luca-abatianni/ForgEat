@@ -86,6 +86,8 @@ GameObject:
   - component: {fileID: -7526638300079609564}
   - component: {fileID: -6973251670309719362}
   - component: {fileID: -217114833100331164}
+  - component: {fileID: 2912226967753948286}
+  - component: {fileID: 6154455631174496861}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -215,6 +217,8 @@ MonoBehaviour:
   - {fileID: -7526638300079609564}
   - {fileID: -6973251670309719362}
   - {fileID: -217114833100331164}
+  - {fileID: 2912226967753948286}
+  - {fileID: 6154455631174496861}
   - {fileID: 181231208194721968}
   - {fileID: 8613745216421192631}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -417,19 +421,7 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  _firePoint: {fileID: 1583900551122322469}
-  _sigilPoint: {fileID: 4095230670155074645}
-  _listEffects:
-  - {fileID: 5035807379073529396, guid: f60b050890c72eb4cafc47776557c9f5, type: 3}
-  - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
-  - {fileID: 5035807379073529396, guid: 6ff2c7bc879aba5478e35f01b11e9b64, type: 3}
-  - {fileID: 5035807379073529396, guid: d526e045c5df48041a94b9f74047cc4d, type: 3}
-  _listSigils:
-  - {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
-  - {fileID: 4151754271603140014, guid: 951306b980b448242a585282cb8ee997, type: 3}
-  - {fileID: 4151754271603140014, guid: 03d8d21fa7bb6d84fb7c0e4ce43062d7, type: 3}
-  - {fileID: 4151754271603140014, guid: b2e81f3e913a5c348a0f8250f2e5979d, type: 3}
-  _primaryPower: 0
+  performant_shoot: {fileID: 2912226967753948286}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &-7526638300079609564
@@ -482,6 +474,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 9
+  _addedNetworkObject: {fileID: 3252535994773736344}
+  _networkObjectCache: {fileID: 3252535994773736344}
+--- !u!114 &2912226967753948286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ba869152113df84d9634941f9336698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 10
+  _addedNetworkObject: {fileID: 3252535994773736344}
+  _networkObjectCache: {fileID: 3252535994773736344}
+  bullet_speed: 5
+  bullet_prefab: {fileID: 5035807379073529396, guid: f60b050890c72eb4cafc47776557c9f5, type: 3}
+  _firePoint: {fileID: 1583900551122322469}
+  _sigilPoint: {fileID: 4095230670155074645}
+  _primaryPower: 0
+  _listEffects:
+  - {fileID: 5035807379073529396, guid: f60b050890c72eb4cafc47776557c9f5, type: 3}
+  - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
+  - {fileID: 5035807379073529396, guid: 6ff2c7bc879aba5478e35f01b11e9b64, type: 3}
+  - {fileID: 5035807379073529396, guid: d526e045c5df48041a94b9f74047cc4d, type: 3}
+  _listSigils:
+  - {fileID: 4151754271603140014, guid: c7f40b12aa688a041969c9f1258b1760, type: 3}
+  - {fileID: 4151754271603140014, guid: 951306b980b448242a585282cb8ee997, type: 3}
+  - {fileID: 4151754271603140014, guid: 03d8d21fa7bb6d84fb7c0e4ce43062d7, type: 3}
+  - {fileID: 4151754271603140014, guid: b2e81f3e913a5c348a0f8250f2e5979d, type: 3}
+  _effectToSpawn: {fileID: 0}
+  _sigilToSpawn: {fileID: 0}
+--- !u!114 &6154455631174496861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec013cc2713a7445beb19b1f14d1d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 11
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
 --- !u!1 &4095230670155074645
@@ -898,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6828b52d25b4a50ba7e06e698c1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 10
+  _componentIndexCache: 12
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pc: {fileID: 2176458008890118076}
@@ -914,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 11
+  _componentIndexCache: 13
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   IgnoredParameters: []

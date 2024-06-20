@@ -1,4 +1,6 @@
 using FishNet;
+using FishNet.Managing.Server;
+using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -35,16 +37,18 @@ public class Bullet : MonoBehaviour
         exclude_mask = ~exclude_mask;
     }
     // Start is called before the first frame update
-    public void Initialize(Vector3 direction, float speed, int bulletID, int ownerID)
+    public void Initialize(Vector3 direction, int bulletID, int ownerID)
     {
         _direction = direction;
-        //_speed = speed;
         Bullets.Add(bulletID, this);
         Identification = bulletID;
         OwnerID = ownerID;
         //distance_to_collision = DistanceToCollision();
         //Debug.Log($"[ID: {bulletID}] Distance to collision: {distance_to_collision}");
     }
+
+
+
 
     // Update is called once per frame
     void Update()
@@ -55,13 +59,14 @@ public class Bullet : MonoBehaviour
         if (Physics.Raycast(transform.position, _direction, out hit, increment, exclude_mask))
         {
             Debug.Log($"Collision with {hit.collider.transform.name}");
-            OnCollision();
+            OnCollision(false);
         }
         else transform.position += _direction * increment;
     }
 
-    private void OnCollision()
+    private void OnCollision(bool is_player_collision)
     {
+        GetComponent<PowerBehavior>().CollisionEvent(this.gameObject, null);
         DestroyBullet();
     }
 
@@ -79,7 +84,7 @@ public class Bullet : MonoBehaviour
 
             if (player.CheckPastCollisions(this))
             {
-                // This bullet hit a player.
+                this.GetComponent<PowerBehavior>().CollisionEvent(this.gameObject, player.transform.gameObject);
                 Debug.Log("Player Collision!");
                 DestroyBullet();
             }
