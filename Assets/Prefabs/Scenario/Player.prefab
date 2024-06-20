@@ -235,7 +235,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 7
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -496,6 +496,8 @@ MonoBehaviour:
   _firePoint: {fileID: 1583900551122322469}
   _sigilPoint: {fileID: 4095230670155074645}
   _primaryPower: 0
+  sigil_delay: 0.3
+  fire_offset: 0.5
   _listEffects:
   - {fileID: 5035807379073529396, guid: f60b050890c72eb4cafc47776557c9f5, type: 3}
   - {fileID: 5035807379073529396, guid: 56c056f4a9ca28840948eccfe3095537, type: 3}
