@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour
         else transform.position += _direction * increment;
     }
 
-    private void OnTick()
+    private void OnTick() // SERVER SIDE ONLY
     {
         if (PastStates.Count > InstanceFinder.TimeManager.TickRate)
         {
