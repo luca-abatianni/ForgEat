@@ -1,3 +1,4 @@
+using FishNet.Connection;
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +31,9 @@ public class PowerEffect : NetworkBehaviour
         }
         return false;
     }
-    public void Hit(PowerBehavior.PowerType powerType)
+
+    [TargetRpc]
+    public void Hit(NetworkConnection owner, PowerBehavior.PowerType powerType)
     {
         if (_shield != null && _shield._isShielded)//Client spawna comunque l'effetto di Hit
             return;

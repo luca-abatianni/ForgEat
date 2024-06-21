@@ -25,14 +25,6 @@ public class PowerBehavior : MonoBehaviour
         TrickBullet = 3,
     }
 
-    void Start()
-    {
-        //SpawnSigil();
-        //SpawnSigilFoot();
-    }
-
-
-
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;
@@ -44,47 +36,37 @@ public class PowerBehavior : MonoBehaviour
     }
     public void CollisionEvent(GameObject bullet, GameObject player)
     {
-        Debug.Log("P1 collision");
-        var powerEffect = bullet.gameObject.GetComponent<PowerEffect>();
-        Vector3 pos = bullet.transform.position;
-        if (player != null && player.GetComponent<NetworkBehaviour>().IsOwner && powerEffect != null)
-        {
-            PowerEffectHit(powerEffect, _powerType);
-            Debug.Log("Collision " + _powerType);
-
-        }
         if (_impactEffect != null)
         {
-            OnImpact(_impactEffect, pos, bullet.transform.rotation);
+            OnImpact(_impactEffect, bullet.transform.position, bullet.transform.rotation);
+        }
+        if (player != null)
+        {
+            var powerEffect = player.GetComponent<PowerEffect>();
+            if (powerEffect != null)
+            {
+                NetworkConnection owner = player.GetComponent<NetworkBehaviour>().Owner;
+                PowerEffectHit(owner, powerEffect, _powerType);
+                Debug.Log("Collision " + _powerType);
+            }
+
         }
     }
 
 
-    //[ObserversRpc]
-    public void PowerEffectHit(PowerEffect script, PowerType type)
+    public void PowerEffectHit(NetworkConnection owner, PowerEffect script, PowerType type)
     {
-        script.Hit(type);
+        script.Hit(owner, type);
     }
-    //[ObserversRpc]
+
     public void Muzzle(PowerBehavior script, GameObject bulletObj, GameObject muzzle, GameObject parent)
     {
         var obj = Instantiate(muzzle, parent.transform.position, Camera.main.transform.rotation);
         obj.transform.forward = bulletObj.transform.forward;
-        //obj.transform.SetParent(parent.transform);  
     }
 
-   // [ObserversRpc]
     public void OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
     {
-        Debug.Log("Impact effect!");
         Instantiate(_impact, pos, rot);
     }
-    /*
-    //[ServerRpc]
-    public void SRPC_OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
-    {
-        var obj = Instantiate(_impact, pos, rot);
-        Instantiate(obj);
-    }
-    */
 }

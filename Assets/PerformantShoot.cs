@@ -26,6 +26,7 @@ public class PerformantShoot : NetworkBehaviour
 
     public void Shoot()
     {
+        //if (!base.IsOwner) return;
         //LocalSpawnSigil(_firePoint.transform, (int) _primaryPower);
         SRPC_SpawnSigil(_firePoint.transform, (int)_primaryPower);
         StartCoroutine(ShootingCoroutine());

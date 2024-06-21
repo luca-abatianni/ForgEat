@@ -19,22 +19,25 @@ public class Bullet : MonoBehaviour
     public int OwnerID;
 
     [SerializeField]
-    private LayerMask exclude_mask; // Excluding player from raycast
+    private LayerMask layer_mask; // Excluding player from raycast on server side.
 
     //private float distance_to_collision;
     [SerializeField]
     private float max_distance;
 
-
-    [Header("Debugging")]
-    [SerializeField]
-    private bool drawGizmos = true;
-
     private void Awake()
     {
-        if (InstanceFinder.IsServer)
+        if (InstanceFinder.IsServer) // if server
+        {
+            Debug.Log("I'm server side bullet!");
+            layer_mask = ~(1 << 3); // raycast on everything but player which has collider rollback instead.
             InstanceFinder.TimeManager.OnTick += OnTick;
-        exclude_mask = ~exclude_mask;
+        }
+        else // if client
+        {
+            Debug.Log("I'm client side bullet!");
+            layer_mask = ~0; // raycast on everything
+        }
     }
     // Start is called before the first frame update
     public void Initialize(Vector3 direction, int bulletID, int ownerID)
@@ -43,10 +46,8 @@ public class Bullet : MonoBehaviour
         Bullets.Add(bulletID, this);
         Identification = bulletID;
         OwnerID = ownerID;
-        //distance_to_collision = DistanceToCollision();
-        //Debug.Log($"[ID: {bulletID}] Distance to collision: {distance_to_collision}");
+        Debug.Log($"Initializing bullet {bulletID} of {ownerID}.");
     }
-
 
 
 
@@ -54,20 +55,17 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         float increment = Time.deltaTime * _speed;
-        
+        max_distance -= increment; 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, _direction, out hit, increment, exclude_mask))
+        if (Physics.Raycast(transform.position, _direction, out hit, increment, layer_mask))
         {
             Debug.Log($"Collision with {hit.collider.transform.name}");
-            OnCollision(false);
+            PowerBehavior pb = GetComponent<PowerBehavior>();
+            pb.CollisionEvent(this.gameObject, null); 
+            DestroyBullet();
         }
+        if (max_distance < 0) DestroyBullet();
         else transform.position += _direction * increment;
-    }
-
-    private void OnCollision(bool is_player_collision)
-    {
-        GetComponent<PowerBehavior>().CollisionEvent(this.gameObject, null);
-        DestroyBullet();
     }
 
     private void OnTick()
@@ -80,6 +78,8 @@ public class Bullet : MonoBehaviour
 
         foreach (var player in PlayerCollisionRollback.Players.Values)
         {
+            Debug.Log($"Checking bullet {Identification} for collision with {player.name}");
+
             if (Vector3.Distance(transform.position, player.transform.position) > 3f) continue;
 
             if (player.CheckPastCollisions(this))
@@ -91,17 +91,6 @@ public class Bullet : MonoBehaviour
   
         }
     }
-
-    //private float DistanceToCollision()
-    //{
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(transform.position, _direction, out hit))
-    //    {
-    //        return hit.distance;
-    //    }
-    //    return max_distance;
-    //}
-
 
     public void DestroyBullet()
     {

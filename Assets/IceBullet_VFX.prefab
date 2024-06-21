@@ -209,14 +209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81935706fd9f21548b508edfdf382de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 15
+  _speed: 2
   Identification: 0
   OwnerID: 0
-  exclude_mask:
+  layer_mask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   max_distance: 10000
-  drawGizmos: 1
 --- !u!1 &6572710683544616792
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ public class WindImpact : NetworkBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ORPC_WindImpact(other.gameObject);
-        other.gameObject.GetComponent<PowerEffect>().Hit(PowerType.WindBullet);
+        //other.gameObject.GetComponent<PowerEffect>().Hit(PowerType.WindBullet);
     }
     private void OnTriggerStay(Collider other)
     {
