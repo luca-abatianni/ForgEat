@@ -36,10 +36,6 @@ public class PowerBehavior : MonoBehaviour
     }
     public void CollisionEvent(GameObject bullet, GameObject player)
     {
-        if (_impactEffect != null)
-        {
-            OnImpact(_impactEffect, bullet.transform.position, bullet.transform.rotation);
-        }
         if (player != null)
         {
             var powerEffect = player.GetComponent<PowerEffect>();
@@ -51,6 +47,10 @@ public class PowerBehavior : MonoBehaviour
             }
 
         }
+        //if (_impactEffect != null)
+        //{
+        //    OnImpact(_impactEffect, bullet.transform.position, bullet.transform.rotation);
+        //}
     }
 
 
@@ -65,8 +65,8 @@ public class PowerBehavior : MonoBehaviour
         obj.transform.forward = bulletObj.transform.forward;
     }
 
-    public void OnImpact(GameObject _impact, Vector3 pos, Quaternion rot)
+    public void OnImpact(Vector3 pos, Quaternion rot)
     {
-        Instantiate(_impact, pos, rot);
+        Instantiate(_impactEffect, pos, rot);
     }
 }

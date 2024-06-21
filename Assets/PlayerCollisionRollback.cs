@@ -81,7 +81,7 @@ public class PlayerCollisionRollback : NetworkBehaviour
     private void DestroyBullet(int bulletID)
     {
         if (Bullet.Bullets.TryGetValue(bulletID, out Bullet bullet))
-            bullet.DestroyBullet();
+            bullet.DestroyBullet(true);
     }
 
     private Vector3 ClosestPointOnLineSegment(Vector3 a, Vector3 b, Vector3 bulletPosition)

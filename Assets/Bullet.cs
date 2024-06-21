@@ -59,12 +59,11 @@ public class Bullet : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, _direction, out hit, increment, layer_mask))
         {
-            Debug.Log($"Collision with {hit.collider.transform.name}");
             PowerBehavior pb = GetComponent<PowerBehavior>();
             pb.CollisionEvent(this.gameObject, null); 
-            DestroyBullet();
+            DestroyBullet(true);
         }
-        if (max_distance < 0) DestroyBullet();
+        if (max_distance < 0) DestroyBullet(false);
         else transform.position += _direction * increment;
     }
 
@@ -78,24 +77,22 @@ public class Bullet : MonoBehaviour
 
         foreach (var player in PlayerCollisionRollback.Players.Values)
         {
-            Debug.Log($"Checking bullet {Identification} for collision with {player.name}");
-
             if (Vector3.Distance(transform.position, player.transform.position) > 3f) continue;
 
             if (player.CheckPastCollisions(this))
             {
                 this.GetComponent<PowerBehavior>().CollisionEvent(this.gameObject, player.transform.gameObject);
-                Debug.Log("Player Collision!");
-                DestroyBullet();
             }
   
         }
     }
 
-    public void DestroyBullet()
+    public void DestroyBullet(bool spawn_effect)
     {
         if (InstanceFinder.IsServer)
             InstanceFinder.TimeManager.OnTick -= OnTick;
+
+        if (spawn_effect) GetComponent<PowerBehavior>().OnImpact(this.transform.position, this.transform.rotation);
 
         Bullets.Remove(Identification);
         Destroy(gameObject);
