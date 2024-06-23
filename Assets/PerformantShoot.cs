@@ -24,18 +24,18 @@ public class PerformantShoot : NetworkBehaviour
     public GameObject _sigilToSpawn;
 
 
-    public void Shoot()
+    public void Shoot(float offset)
     {
         //if (!base.IsOwner) return;
         //LocalSpawnSigil(_firePoint.transform, (int) _primaryPower);
         SRPC_SpawnSigil(_firePoint.transform, (int)_primaryPower);
-        StartCoroutine(ShootingCoroutine());
+        StartCoroutine(ShootingCoroutine(offset));
     }
 
-    private IEnumerator ShootingCoroutine()
+    private IEnumerator ShootingCoroutine(float offset)
     {
         Transform camera_transform = Camera.main.transform;
-        Vector3 start_position = camera_transform.position + camera_transform.forward * fire_offset;
+        Vector3 start_position = camera_transform.position + camera_transform.forward * offset;
         Quaternion rotation = camera_transform.rotation;
         Vector3 direction = camera_transform.forward;
 

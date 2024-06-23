@@ -47,10 +47,6 @@ public class PowerBehavior : MonoBehaviour
             }
 
         }
-        //if (_impactEffect != null)
-        //{
-        //    OnImpact(_impactEffect, bullet.transform.position, bullet.transform.rotation);
-        //}
     }
 
 

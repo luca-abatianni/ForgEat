@@ -7,10 +7,13 @@ using FishNet.Object.Synchronizing;
 using FishNet.Component.Animating;
 using UnityEngine.VFX;
 using Unity.VisualScripting;
+using System.Threading;
+
 public class PrimaryPower : NetworkBehaviour
 {
     [SerializeField]
     private PerformantShoot performant_shoot;
+    [SerializeField]
 
     private float _cooldown = 0f;
     public Animator animator;
@@ -33,10 +36,21 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
         {
-
+            float offset = 0.5f;
+            var player_controller = GetComponent<PlayerController>();
             _cooldown = Time.time + 1f;
             animator.SetBool("attackFreeze", true);
-            performant_shoot.Shoot();
+            if (player_controller.isRunning)
+            {
+                offset *= 3;
+            }
+            else if (player_controller.isWalking)
+            {
+                offset *= 2;
+            }
+
+            Debug.Log("Offset: " + offset);
+            performant_shoot.Shoot(offset);
         }
         else
         {
