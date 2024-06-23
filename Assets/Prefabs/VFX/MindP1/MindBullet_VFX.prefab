@@ -212,11 +212,10 @@ MonoBehaviour:
   _speed: 15
   Identification: 0
   OwnerID: 0
-  exclude_mask:
+  layer_mask:
     serializedVersion: 2
     m_Bits: 0
-  max_distance: 0
-  drawGizmos: 1
+  max_distance: 10000
 --- !u!1 &6572710683544616792
 GameObject:
   m_ObjectHideFlags: 0
