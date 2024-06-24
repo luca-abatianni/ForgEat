@@ -36,17 +36,17 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
         {
-            float offset = 0.5f;
+            float offset = 1f;
             var player_controller = GetComponent<PlayerController>();
             _cooldown = Time.time + 1f;
             animator.SetBool("attackFreeze", true);
             if (player_controller.isRunning)
             {
-                offset *= 3;
+                offset = 3.5f;
             }
             else if (player_controller.isWalking)
             {
-                offset *= 2;
+                offset = 2.5f;
             }
 
             Debug.Log("Offset: " + offset);
