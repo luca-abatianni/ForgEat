@@ -8,7 +8,10 @@ public class FoodPicker : NetworkBehaviour
 {
     [SerializeField] float pick_distance;
     ScoreCounter score_counter;
-    private float points = 0;
+
+    [SerializeField]
+    Score score;
+
     public Animator animator;
     public NetworkAnimator netAnim;
     // Start is called before the first frame update
@@ -41,7 +44,8 @@ public class FoodPicker : NetworkBehaviour
             Food food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().getValue();
+                float points = food.GetComponent<Food>().getValue();
+                score.AddPoints(Mathf.RoundToInt(points));
                 NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
@@ -71,7 +75,7 @@ public class FoodPicker : NetworkBehaviour
 
     public float GetScore()
     {
-        return this.points;
+        return this.score.current_score;
     }
 
     [ObserversRpc]

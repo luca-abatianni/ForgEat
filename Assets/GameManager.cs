@@ -5,6 +5,7 @@ using FishNet.Object;
 using FishNet.Demo.AdditiveScenes;
 using FishNet;
 using System;
+using FishNet.Connection;
 
 public class GameManager : NetworkBehaviour
 {
@@ -42,6 +43,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private SpawnBarriers spawn_barriers;
     [SerializeField] private FoodSpawner food_spawner;
 
+    [HideInInspector]
+    public Dictionary<int, GameObject> player_dictionary = new Dictionary<int, GameObject>();
 
     public override void OnStartServer()
     {
@@ -100,10 +103,13 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
+            SetPlayerDictionary();
             game_state++;
         }
         return;
     }
+
+
 
     void WaitingFirstPhase()
     {
@@ -117,6 +123,7 @@ public class GameManager : NetworkBehaviour
     {
         phase_timer = true;
         food_spawner.SpawnFoodTrash();
+
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
         NetworkManager.Log("Barriers off!");
@@ -129,6 +136,7 @@ public class GameManager : NetworkBehaviour
         phase_timer = true;
         food_spawner.Server_TransformTrashInFood();
         food_spawner.Observer_TransformTrashInFood();
+        SetUpPlayersRoundScore();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
         StartCoroutine(PhaseTimer(between_phase_period));
@@ -182,6 +190,26 @@ public class GameManager : NetworkBehaviour
             FoodPicker f_picker = player.GetComponent<FoodPicker>();
             f_picker.Client_FoodPickerSetEnabled(setting);
             f_picker.enabled = setting;
+        }
+    }
+
+    void SetPlayerDictionary()
+    {
+        GameObject[] player_list = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject player in player_list)
+        {
+            int owner_id = player.GetComponent<NetworkBehaviour>().OwnerId;
+            player_dictionary.Add(owner_id, player);
+        }
+    }
+
+    void SetUpPlayersRoundScore()
+    {
+        foreach (GameObject player in player_dictionary.Values)
+        {
+            NetworkConnection net_connection = player.GetComponent<NetworkConnection>();
+            player.GetComponent<Score>().SetUpRoundScore(net_connection, food_spawner.food_count);
         }
     }
 }
