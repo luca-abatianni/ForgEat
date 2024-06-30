@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using FishNet.Example;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,6 +16,11 @@ public class GameStartAskPermission : MonoBehaviour
     {
         Server = new UdpClient(port);
         Server.BeginReceive(OnReceive, null);
+    }
+
+    void OnReceive(IAsyncResult res) 
+    {
+
     }
 
     // Update is called once per frame
