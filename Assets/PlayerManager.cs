@@ -34,15 +34,15 @@ public class PlayerManager : NetworkBehaviour
 
         if (base.IsOwner)
         {
-            var joint = transform.Find("Joint");
-            playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
-            playerCamera.transform.SetParent(joint);
+            //var joint = transform.Find("Joint");
+            //playerCamera = Camera.main;
+            //playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
+            //playerCamera.transform.SetParent(joint);
 
-            var fpc = GetComponent<FirstPersonController>();
-            fpc.joint = playerCamera.transform;
-            fpc.playerCamera = Camera.main;
-            fpc.enabled = true;
+            //var fpc = GetComponent<FirstPersonController>();
+            //fpc.joint = playerCamera.transform;
+            //fpc.playerCamera = Camera.main;
+            //fpc.enabled = true;
 
         }
         else

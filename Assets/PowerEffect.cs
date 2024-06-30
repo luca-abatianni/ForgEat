@@ -1,3 +1,4 @@
+using FishNet.Connection;
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,41 +31,56 @@ public class PowerEffect : NetworkBehaviour
         }
         return false;
     }
-    public void Hit(PowerBehavior.PowerType powerType)
+
+    [TargetRpc]
+    public void Hit(NetworkConnection owner, PowerBehavior.PowerType powerType)
     {
         if (_shield != null && _shield._isShielded)//Client spawna comunque l'effetto di Hit
             return;
         if (powerType == PowerBehavior.PowerType.IceBullet)
         {
-            Debug.Log("Hit ICE" + powerType);
             StartCoroutine(IceBulletHit(powerType));
         }
         if (powerType == PowerBehavior.PowerType.MindBullet)
         {
-            Debug.Log("Hit MIND" + powerType);
             StartCoroutine(MindBulletHit(powerType));
         }
-        //WindBullet applica l'effetto da sè
+        if (powerType == PowerBehavior.PowerType.WindBullet)
+        {
+            Debug.Log("Hit WIND" + powerType);
+            StartCoroutine(WindBulletHit(powerType));
+        }
+    }
+    private IEnumerator WindBulletHit(PowerBehavior.PowerType powerHit)
+    {//Effetto gestito da WindiImpact + PlayerController
+        float duration = 1f;
+        SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+        yield return null;
     }
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
-        float duration = 10f;
+        float duration = 4f;
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        gameObject.GetComponent<FirstPersonController>().confusePlayerMovement = true;
+        gameObject.GetComponent<PlayerController>().confusePlayerMovement = true;
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<FirstPersonController>().confusePlayerMovement = false;
+        gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
         yield return null;
     }
     private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
     {
-        float duration = 3f, alteredSensitivity = .5f;
+        float duration = 3f, alteredSensitivity = .5f, alteredSpeed = 1;
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        gameObject.GetComponent<FirstPersonController>().SetPlayerCanMove(false);
-        var originalSensitivity = gameObject.GetComponent<FirstPersonController>().mouseSensitivity;
-        gameObject.GetComponent<FirstPersonController>().mouseSensitivity = alteredSensitivity;
+        var playerC = gameObject.GetComponent<PlayerController>();
+        var originalWalking = playerC.walkingSpeed;
+        var originalRunning = playerC.runningSpeed;
+        var originalSensitivity = playerC.lookSpeed;
+        playerC.lookSpeed = alteredSensitivity;
+        playerC.runningSpeed = alteredSpeed;
+        playerC.walkingSpeed = alteredSpeed;
         yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<FirstPersonController>().mouseSensitivity = originalSensitivity;
-        gameObject.GetComponent<FirstPersonController>().SetPlayerCanMove(true);
+        playerC.lookSpeed = originalSensitivity;
+        playerC.runningSpeed = originalRunning;
+        playerC.walkingSpeed = originalWalking;
         yield return null;
     }
 

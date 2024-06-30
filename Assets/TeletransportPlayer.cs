@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class TeletransportPlayer : NetworkBehaviour
 {
-    Rigidbody rb;
+    CharacterController cc;
 
     private void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
+        cc = this.GetComponent<CharacterController>();
     }
 
     [ObserversRpc]
     public void TransportPlayerToPosition (Vector3 position)
     {
         if (!base.IsOwner) return;
-        if (rb == null) rb = this.GetComponent<Rigidbody>();
-        rb.position = position;
-        return;
+        if (cc == null) cc = this.GetComponent<CharacterController>();
+        cc.Move(position);
+        Debug.Log("TELEPORTING");
     }
 }

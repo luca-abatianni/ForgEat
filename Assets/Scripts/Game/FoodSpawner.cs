@@ -8,8 +8,8 @@ using FishNet.Connection;
 
 public class FoodSpawner : NetworkBehaviour
 {
-    public int food_prefab = 0;
-    public int trash_prefab = 0;
+    public int food_count = 0;
+    public int trash_count = 0;
     public GameObject food_parent;
     public GameObject trash_parent;
     public GameObject spawn_points;
@@ -34,15 +34,15 @@ public class FoodSpawner : NetworkBehaviour
 
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
-        if (food_prefab == 24) food_or_trash = false;
-        if (trash_prefab == 24) food_or_trash = true;
+        if (food_count == 24) food_or_trash = false;
+        if (trash_count == 24) food_or_trash = true;
         if (food_or_trash)
         {
-            food_prefab++;
+            food_count++;
         }
         else
         {
-            trash_prefab++;
+            trash_count++;
         }
 
         Debug.Log("Spawning " + (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");

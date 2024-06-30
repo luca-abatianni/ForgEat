@@ -8,7 +8,10 @@ public class FoodPicker : NetworkBehaviour
 {
     [SerializeField] float pick_distance;
     ScoreCounter score_counter;
-    private float points = 0;
+
+    [SerializeField]
+    Score score;
+
     public Animator animator;
     public NetworkAnimator netAnim;
     // Start is called before the first frame update
@@ -38,14 +41,15 @@ public class FoodPicker : NetworkBehaviour
         {
             Debug.Log("Picking!");
             animator.SetBool("isPickingFood", true);
-            GameObject food = CheckFoodCollision();
+            Food food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().getValue();
+                float points = food.GetComponent<Food>().getValue();
+                score.AddPoints(Mathf.RoundToInt(points));
                 NetworkManager.Log("Got some food! My score is: " + points);
                 score_counter.SetPoints(Mathf.RoundToInt(points));
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
-                fs.RemoveObject(food);
+                fs.RemoveObject(food.gameObject);
             }
         }
         else
@@ -55,16 +59,15 @@ public class FoodPicker : NetworkBehaviour
     }
 
 
-    private GameObject CheckFoodCollision()
+    private Food CheckFoodCollision()
     {
-        int food_layer = 1 << 6;
         RaycastHit hit;
         Transform pov_t = Camera.main.transform;
-        if (Physics.Raycast(pov_t.position, pov_t.forward, out hit, pick_distance, food_layer))
+        if (Physics.Raycast(pov_t.position, pov_t.forward, out hit, pick_distance))
         {
 
             Debug.DrawRay(pov_t.position, pov_t.forward * hit.distance, Color.yellow);
-            return hit.transform.gameObject;
+            return hit.transform.gameObject.GetComponent<Food>();
         }
         Debug.DrawRay(pov_t.position, pov_t.forward * pick_distance, Color.white);
         return null;
@@ -72,7 +75,7 @@ public class FoodPicker : NetworkBehaviour
 
     public float GetScore()
     {
-        return this.points;
+        return this.score.current_score;
     }
 
     [ObserversRpc]

@@ -9689,7 +9689,7 @@ GameObject:
   - component: {fileID: 8144037599045065202}
   - component: {fileID: 4678103677468820507}
   - component: {fileID: 3359297173717597582}
-  - component: {fileID: -7159128198946187408}
+  - component: {fileID: 8910665977894974138}
   m_Layer: 0
   m_Name: IceDebuff
   m_TagString: Untagged
@@ -9707,7 +9707,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1.2, z: 1}
+  m_LocalScale: {x: 1, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6473147762260024843}
@@ -14520,7 +14520,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &-7159128198946187408
+--- !u!114 &8910665977894974138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
