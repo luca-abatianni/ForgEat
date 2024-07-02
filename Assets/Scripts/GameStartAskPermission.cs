@@ -31,9 +31,9 @@ public class GameStartAskPermission : MonoBehaviour
 
     IEnumerator WaitABitThenCloseFakeServer(float duration)
     {
-        Debug.Log("Waiting " + duration);
+        //Debug.Log("Waiting " + duration);
         yield return new WaitForSeconds(duration);
-        Debug.Log("Closing server after " + duration);
+        //Debug.Log("Closing server after " + duration);
         Server.Close();
     }
 }

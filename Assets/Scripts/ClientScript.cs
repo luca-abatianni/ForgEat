@@ -25,7 +25,8 @@ public class ClientScript : MonoBehaviour
         NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
         foreach(NetworkInterface I in Interfaces)
         {
-            if ((I.NetworkInterfaceType == NetworkInterfaceType.Ethernet || I.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) && I.OperationalStatus == OperationalStatus.Up)
+            //I.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+            if ((I.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) && I.OperationalStatus == OperationalStatus.Up)
             {
                 foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
                 {
@@ -47,10 +48,13 @@ public class ClientScript : MonoBehaviour
         // List<IPAddress> list = GetEndpoints();
         // foreach (IPAddress l in list)
         // {
-
+        //     Debug.Log("Address found: " + l.ToString());
         // }
 
-        Client = new UdpClient();
+        IPAddress ipAddress = GetEndpoints()[0];
+        IPEndPoint ipLocalEndPoint = new IPEndPoint(ipAddress, 11000);
+
+        Client = new UdpClient(ipLocalEndPoint);
         Client.EnableBroadcast = true;
         broadcast_endpoint = new IPEndPoint(IPAddress.Broadcast, port);
         Debug.Log("Broadcast to " + IPAddress.Broadcast + " at port " + port);
