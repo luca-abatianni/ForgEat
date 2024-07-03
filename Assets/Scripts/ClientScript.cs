@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,9 +25,8 @@ public class ClientScript : MonoBehaviour
         List<IPAddress> AddressList = new List<IPAddress>();
         NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
         foreach(NetworkInterface I in Interfaces)
-        {
-            //I.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-            if ((I.NetworkInterfaceType == NetworkInterfaceType.Wireless80211) && I.OperationalStatus == OperationalStatus.Up)
+        {            //I.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
+            if (I.OperationalStatus == OperationalStatus.Up && I.NetworkInterfaceType != NetworkInterfaceType.Loopback)
             {
                 foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
                 {
@@ -45,16 +45,14 @@ public class ClientScript : MonoBehaviour
         startSearch = true;
         serversFound = new Dictionary<string, string>();
 
-        // List<IPAddress> list = GetEndpoints();
-        // foreach (IPAddress l in list)
-        // {
-        //     Debug.Log("Address found: " + l.ToString());
-        // }
-
         IPAddress ipAddress = GetEndpoints()[0];
-        IPEndPoint ipLocalEndPoint = new IPEndPoint(ipAddress, 11000);
+        IPEndPoint ipLocalEndPoint = new IPEndPoint(ipAddress, 8888);
 
-        Client = new UdpClient(ipLocalEndPoint);
+        if (ipLocalEndPoint != null)
+            Client = new UdpClient(ipLocalEndPoint);
+        else 
+            Client = new UdpClient();
+
         Client.EnableBroadcast = true;
         broadcast_endpoint = new IPEndPoint(IPAddress.Broadcast, port);
         Debug.Log("Broadcast to " + IPAddress.Broadcast + " at port " + port);
