@@ -6,6 +6,8 @@ using FishNet.Demo.AdditiveScenes;
 using FishNet;
 using System;
 using FishNet.Connection;
+using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class GameManager : NetworkBehaviour
 {
@@ -211,5 +213,11 @@ public class GameManager : NetworkBehaviour
             NetworkConnection net_connection = player.GetComponent<NetworkConnection>();
             player.GetComponent<Score>().SetUpRoundScore(net_connection, food_spawner.food_count);
         }
+    }
+[ObserversRpc]
+    public void ORPC_GMSpawn(GameObject go, Vector3 pos, Quaternion rot)
+    {
+        GameObject spawned = Instantiate(go, pos, rot);
+        ServerManager.Spawn(spawned);
     }
 }

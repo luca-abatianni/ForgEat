@@ -65,4 +65,12 @@ public class PowerBehavior : MonoBehaviour
     {
         Instantiate(_impactEffect, pos, rot);
     }
+    public void OnImpact_SRPC(Vector3 pos, Quaternion rot)
+    {
+        var GM = FindObjectOfType<GameManager>();
+        if (GM != null)
+        {
+            GM.ORPC_GMSpawn(_impactEffect, pos, rot);
+        }
+    }
 }

@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using static PowerBehavior;
 
 public class Bullet : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
     //private float distance_to_collision;
     [SerializeField]
     private float max_distance;
-
+    PowerType _powerType;
     private void Awake()
     {
         if (InstanceFinder.IsServer) // if server
@@ -48,19 +49,22 @@ public class Bullet : MonoBehaviour
         OwnerID = ownerID;
         Debug.Log($"Initializing bullet {bulletID} of {ownerID}.");
     }
-
+    public void SetPowerType(PowerBehavior.PowerType type)
+    {
+        _powerType = type;
+    }
 
 
     // Update is called once per frame
     void Update()
     {
         float increment = Time.deltaTime * _speed;
-        max_distance -= increment; 
+        max_distance -= increment;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, _direction, out hit, increment, layer_mask))
         {
             PowerBehavior pb = GetComponent<PowerBehavior>();
-            pb.CollisionEvent(this.gameObject, null); 
+            pb.CollisionEvent(this.gameObject, null);
             DestroyBullet(true);
         }
         if (max_distance < 0) DestroyBullet(false);
@@ -83,7 +87,7 @@ public class Bullet : MonoBehaviour
             {
                 this.GetComponent<PowerBehavior>().CollisionEvent(this.gameObject, player.transform.gameObject);
             }
-  
+
         }
     }
 
@@ -92,8 +96,13 @@ public class Bullet : MonoBehaviour
         if (InstanceFinder.IsServer)
             InstanceFinder.TimeManager.OnTick -= OnTick;
 
-        if (spawn_effect) GetComponent<PowerBehavior>().OnImpact(this.transform.position, this.transform.rotation);
-
+        if (spawn_effect)
+        {
+            if (_powerType == PowerType.IceBullet || _powerType == PowerType.MindBullet)
+                GetComponent<PowerBehavior>().OnImpact(this.transform.position, this.transform.rotation);
+            else
+                GetComponent<PowerBehavior>().OnImpact_SRPC(this.transform.position, this.transform.rotation);
+        }
         Bullets.Remove(Identification);
         Destroy(gameObject);
     }

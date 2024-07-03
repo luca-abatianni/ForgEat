@@ -22947,7 +22947,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.5
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -24943,6 +24943,7 @@ MonoBehaviour:
   between_phase_period: 5
   phase_two_period: 20
   spawn_barriers: {fileID: 1085483743}
+  food_spawner: {fileID: 0}
 --- !u!4 &1074502303
 Transform:
   m_ObjectHideFlags: 0
@@ -41976,10 +41977,13 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1771583507}
   _networkObjectCache: {fileID: 1771583507}
-  food_prefab: {fileID: 3430438424208488013, guid: 34f8f1367936f794892f629c791e2ca0, type: 3}
-  trash_prefab: {fileID: 6203678770711478126, guid: d0731e38b82610044a8a77500cafc52c, type: 3}
+  food_count: 0
+  trash_count: 0
   food_parent: {fileID: 882187693}
+  trash_parent: {fileID: 0}
   spawn_points: {fileID: 2099683097}
+  food_spawnlist: []
+  trash_spawnlist: []
   spawnedObject: []
   food_list: []
   trash_list: []
