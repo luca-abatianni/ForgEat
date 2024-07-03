@@ -25,14 +25,32 @@ public class ClientScript : MonoBehaviour
         List<IPAddress> AddressList = new List<IPAddress>();
         NetworkInterface[] Interfaces = NetworkInterface.GetAllNetworkInterfaces();
         foreach(NetworkInterface I in Interfaces)
-        {            //I.NetworkInterfaceType == NetworkInterfaceType.Ethernet ||
-            if (I.OperationalStatus == OperationalStatus.Up && I.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+        {     
+            OperatingSystem os = Environment.OSVersion;
+
+            if (os.Platform == PlatformID.Win32NT) 
             {
-                foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
+                if (I.OperationalStatus == OperationalStatus.Up && I.NetworkInterfaceType != NetworkInterfaceType.Loopback && I.NetworkInterfaceType != NetworkInterfaceType.Ethernet)
                 {
-                    if (Unicast.Address.AddressFamily == AddressFamily.InterNetwork)
+                    foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
                     {
-                        AddressList.Add(Unicast.Address);
+                        if (Unicast.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            AddressList.Add(Unicast.Address);
+                        }
+                    }
+                }
+            }
+            else 
+            {
+                if (I.OperationalStatus == OperationalStatus.Up && I.NetworkInterfaceType != NetworkInterfaceType.Loopback)
+                {
+                    foreach (var Unicast in I.GetIPProperties().UnicastAddresses)
+                    {
+                        if (Unicast.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            AddressList.Add(Unicast.Address);
+                        }
                     }
                 }
             }
@@ -55,7 +73,7 @@ public class ClientScript : MonoBehaviour
 
         Client.EnableBroadcast = true;
         broadcast_endpoint = new IPEndPoint(IPAddress.Broadcast, port);
-        Debug.Log("Broadcast to " + IPAddress.Broadcast + " at port " + port);
+        Debug.Log("Starting broadcast to " + IPAddress.Broadcast + " at port " + port + " from address " + ipAddress);
         broadcast_timer = broadcast_interval;
     }
 
