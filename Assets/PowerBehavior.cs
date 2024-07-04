@@ -24,7 +24,7 @@ public class PowerBehavior : MonoBehaviour
         WindBullet = 2,
         TrickBullet = 3,
     }
-
+    static public int[] vecPowerCost = new int[] { 8, 20, 15, 35 };
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;

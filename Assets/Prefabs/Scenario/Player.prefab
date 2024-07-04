@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: -217114833100331164}
   - component: {fileID: 2912226967753948286}
   - component: {fileID: 6154455631174496861}
+  - component: {fileID: 1901438925041069958}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -237,7 +238,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 6
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -443,6 +444,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 3252535994773736344}
   performant_shoot: {fileID: 2912226967753948286}
   _cooldown: 0
+  _manaController: {fileID: 1901438925041069958}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &-7526638300079609564
@@ -482,6 +484,7 @@ MonoBehaviour:
   _shieldPrefab: {fileID: 1444638899229730, guid: 18ed84bba105fb0419e3b2b89496b375, type: 3}
   _isShielded: 0
   _shieldObj: {fileID: 0}
+  _manaController: {fileID: 1901438925041069958}
 --- !u!114 &-217114833100331164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +549,26 @@ MonoBehaviour:
   _componentIndexCache: 12
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
+--- !u!114 &1901438925041069958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147122664987308133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a711a4611d20e41bcfb74213bea062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMana: 100
+  maxMana: 100
+  isFull: 1
+  isShielding: 1
+  shieldCost: 10
+  manaRegen: 3
+  manaProgressUI: {fileID: 0}
+  sliderCanvasGroup: {fileID: 0}
 --- !u!1 &4095230670155074645
 GameObject:
   m_ObjectHideFlags: 0
