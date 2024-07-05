@@ -9,11 +9,11 @@ using System;
 public class Food : NetworkBehaviour
 {
     // Points that will be awarded to the player.
-    private float value;
+    public float value;
 
     // Editable from editor. Values awarded to player when object is set as trash or set as food.
-    [SerializeField] private int value_as_trash;
-    [SerializeField] private int value_as_food;
+    [SerializeField] public int value_as_trash;
+    [SerializeField] public int value_as_food;
 
 
     // Trash is not food but can appear as such.

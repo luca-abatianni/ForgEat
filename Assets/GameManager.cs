@@ -6,6 +6,7 @@ using FishNet.Demo.AdditiveScenes;
 using FishNet;
 using System;
 using FishNet.Connection;
+using System.Linq;
 
 public class GameManager : NetworkBehaviour
 {
@@ -97,13 +98,10 @@ public class GameManager : NetworkBehaviour
 
     void WaitForPlayers()
     {
-
-        //num_clients = GameObject.FindGameObjectsWithTag("Player").Length;
         num_clients = InstanceFinder.ServerManager.Clients.Count;
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
-            SetPlayerDictionary();
             game_state++;
         }
         return;
@@ -176,7 +174,7 @@ public class GameManager : NetworkBehaviour
         {
             if (i < player_list.Length)
             {
-                player_list[i].GetComponent<TeletransportPlayer>().TransportPlayerToPosition(spawn.position);
+                player_list[i].GetComponent<PlayerController>().TransportPlayerToPosition(spawn.position);
                 i++;
             }
             else break;
@@ -196,7 +194,7 @@ public class GameManager : NetworkBehaviour
     void SetPlayerDictionary()
     {
         GameObject[] player_list = GameObject.FindGameObjectsWithTag("Player");
-
+        Debug.Log(player_list.Length);
         foreach (GameObject player in player_list)
         {
             int owner_id = player.GetComponent<NetworkBehaviour>().OwnerId;
@@ -206,10 +204,12 @@ public class GameManager : NetworkBehaviour
 
     void SetUpPlayersRoundScore()
     {
-        foreach (GameObject player in player_dictionary.Values)
+        GameObject[] player_list = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in player_list)
         {
-            NetworkConnection net_connection = player.GetComponent<NetworkConnection>();
-            player.GetComponent<Score>().SetUpRoundScore(net_connection, food_spawner.food_count);
+            NetworkConnection net_connection = player.GetComponent<NetworkBehaviour>().Owner;
+            Debug.Log(net_connection);
+            player.GetComponent<Score>().TRPC_SetUpRoundScore(net_connection, food_spawner.total_food_points/10);
         }
     }
 }

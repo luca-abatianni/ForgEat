@@ -17,12 +17,11 @@ public class FoodPicker : NetworkBehaviour
     // Start is called before the first frame update
     public override void OnStartClient()
     { // This is needed to avoid other clients controlling our character. 
-        base.OnStartClient();
         if (!base.IsOwner)
         {
             GetComponent<FoodPicker>().enabled = false;
-            return;
         }
+        base.OnStartClient();
     }
 
     private void Start()
@@ -39,15 +38,12 @@ public class FoodPicker : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Picking!");
             animator.SetBool("isPickingFood", true);
             Food food = CheckFoodCollision();
             if (food != null)
             {
                 float points = food.GetComponent<Food>().getValue();
-                score.AddPoints(Mathf.RoundToInt(points));
-                NetworkManager.Log("Got some food! My score is: " + points);
-                score_counter.SetPoints(Mathf.RoundToInt(points));
+                score.AddPoints(points);
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                 fs.RemoveObject(food.gameObject);
             }
@@ -81,6 +77,7 @@ public class FoodPicker : NetworkBehaviour
     [ObserversRpc]
     public void Client_FoodPickerSetEnabled(bool setting)
     {
+        if (!base.IsOwner) return;
         Debug.Log($"FoodPicker enabled? : {setting}");
         this.enabled = setting;
         return;

@@ -49,7 +49,6 @@ public class PrimaryPower : NetworkBehaviour
                 offset = 2.5f;
             }
 
-            Debug.Log("Offset: " + offset);
             performant_shoot.Shoot(offset);
         }
         else

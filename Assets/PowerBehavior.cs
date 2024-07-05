@@ -28,7 +28,6 @@ public class PowerBehavior : MonoBehaviour
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;
-        Debug.Log("Set " + _powerType);
     }
     public void SetSpawner(GameObject spawner)
     {
@@ -43,7 +42,7 @@ public class PowerBehavior : MonoBehaviour
             {
                 NetworkConnection owner = player.GetComponent<NetworkBehaviour>().Owner;
                 PowerEffectHit(owner, powerEffect, _powerType);
-                Debug.Log("Collision " + _powerType);
+                //Debug.Log("Collision " + _powerType);
             }
 
         }
