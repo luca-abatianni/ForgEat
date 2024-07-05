@@ -15978,7 +15978,7 @@ RectTransform:
   m_GameObject: {fileID: 672366147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1597691173}
@@ -37804,7 +37804,7 @@ MonoBehaviour:
   SerializedTransformProperties:
     Position: {x: 540, y: 304, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+    LocalScale: {x: 0.5625, y: 0.5625, z: 0.5625}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
@@ -50595,7 +50595,7 @@ PrefabInstance:
       objectReference: {fileID: 672366148}
     - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: max_clients
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: num_clients

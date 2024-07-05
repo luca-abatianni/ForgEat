@@ -26,7 +26,7 @@ public class FoodPicker : NetworkBehaviour
 
     private void Start()
     {
-        score_counter = FindObjectOfType<ScoreCounter>();
+        //score_counter = FindObjectOfType<ScoreCounter>();
         if (score_counter != null)
         {
             Debug.Log("Score counter found at start()");
