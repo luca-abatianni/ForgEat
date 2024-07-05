@@ -13,11 +13,10 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 public class ScoreBoard : NetworkBehaviour
 {
-    // Start is called before the first frame update
-    //public Dictionary<int, ScoreboardEntry> scores_dicrionary = new Dictionary<int, ScoreboardEntry>();
 
     [SyncObject]
     private readonly SyncDictionary<NetworkConnection, ScoreboardEntry> scores_syncdictionary = new();
+
     private Dictionary<NetworkConnection, GameObject> UI_elements = new();
 
     [SerializeField]
@@ -44,7 +43,6 @@ public class ScoreBoard : NetworkBehaviour
         {
             //Adds key with value.
             case SyncDictionaryOperation.Add:
-                //Debug.Log("Spawning ui element!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 spawnUiElement(key, value);
                 break;
             //Removes key.
@@ -122,164 +120,11 @@ public class ScoreBoard : NetworkBehaviour
         //scores_syncdictionary.Dirty(client);
     }
 
-    /*
-    public void spawnPlayerScore(NetworkConnection owner)
-    {
-        StartCoroutine(initRoutine(owner));
-    }
-
-
-    IEnumerator initRoutine(NetworkConnection owner)
-    {
-        SRPC_syncDictiornary(owner);
-        while (!full_sync)
-        {
-            yield return null;
-        }
-        local_spawnPlayerScore(owner);
-        SRPC_spawnPlayerScore(owner);
-    }
-
-
-    [ServerRpc(RequireOwnership = false)]
-    public void SRPC_syncDictiornary(NetworkConnection client)
-    {
-        int count = scores_dicrionary.Keys.Count;
-        foreach (int ClientId in scores_dicrionary.Keys)
-        {
-            count--;
-            Debug.Log("Sending trpc");
-            ScoreboardEntry entry = scores_dicrionary[ClientId];
-            TRPC_syncDictionary(client, ClientId, entry.slider.value, entry.background_color);
-        }
-        TRPC_syncDone(client);
-    }
-
-    [TargetRpc]
-    public void TRPC_syncDone(NetworkConnection client)
-    {
-        full_sync = true;
-    }
-
-    [TargetRpc]
-    public void TRPC_syncDictionary(NetworkConnection client, int key, float percentage, UnityEngine.Color color)
-    {
-        ScoreboardEntry tmp;
-
-        
-        Debug.Log($"Syncy dictionary: ClientID: {key}, percentage: {percentage}, color: {color}");
-        if (scores_dicrionary.TryGetValue(key, out tmp))
-        {
-            tmp.slider.value = percentage;
-        }
-        else
-        {
-            tmp.UI_element = Instantiate(player_score_prefab, scoreboard_parent);
-            tmp.slider = tmp.UI_element.GetComponentInChildren<Slider>();
-            tmp.slider.value = percentage;
-            tmp.UI_element.transform.Find("Background").GetComponent<Image>().color = color;
-            scores_dicrionary.Add(key, tmp);
-            if (scoreboard_count < 5) scoreboard_count++;
-        }
-    }
-
-    public void local_spawnPlayerScore(NetworkConnection owner)
-    {
-        ScoreboardEntry new_entry = new ScoreboardEntry();
-        new_entry.UI_element = Instantiate(player_score_prefab, scoreboard_parent);
-        new_entry.slider = new_entry.UI_element.GetComponentInChildren<Slider>();
-        new_entry.slider.value = 0f;
-        new_entry.background_color = colors[scoreboard_count];
-        new_entry.UI_element.transform.Find("Background").GetComponent<Image>().color = new_entry.background_color;
-        scoreboard_count++;
-
-        scores_dicrionary.Add(owner.ClientId, new_entry);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void SRPC_spawnPlayerScore(NetworkConnection owner)
-    {
-        /*
-        ScoreboardEntry new_entry = new ScoreboardEntry();
-        new_entry.UI_element = null;
-        new_entry.slider = null;
-        new_entry.slider.value = 0f;
-        new_entry.background_color = colors[scoreboard_count];
-
-        scoreboard_count++;
-
-        scores_dicrionary.Add(owner.ClientId, new_entry);
-        
-        ORPC_spawnPlayerScore(owner);
-    }
-
-    [ObserversRpc(ExcludeOwner = true)]
-    public void ORPC_spawnPlayerScore(NetworkConnection owner)
-    {
-        if (owner == base.Owner) return;
-        local_spawnPlayerScore(owner);
-    }
-
-    public void updateScore(float percentage, NetworkConnection owner)
-    {
-        ScoreboardEntry tmp;        
-        tmp = scores_dicrionary[owner.ClientId];
-        if (tmp == null)
-        {
-            spawnPlayerScore(owner);
-            updateScore(percentage, owner);
-        }
-        else
-        {
-            tmp.slider.value = percentage;
-        }
-        SRPC_updateScore(percentage, owner);
-    }
-
-    [ServerRpc(RequireOwnership = false)]
-    public void SRPC_updateScore(float percentage, NetworkConnection owner)
-    {
-        ORPC_updateScore(percentage, owner);
-    }
-
-    [ObserversRpc(ExcludeOwner = true)]
-    public void ORPC_updateScore(float percentage, NetworkConnection owner)
-    {
-        if (owner == base.Owner) return;
-        ScoreboardEntry tmp;
-        tmp = scores_dicrionary[owner.ClientId];
-        if (tmp != null)
-        {
-            tmp.slider.value = percentage;
-        }
-        else
-        {
-            SRPC_syncDictiornary(base.Owner);
-        }
-    }
-    */
-
     [System.Serializable]
     public class ScoreboardEntry
     {
         public UnityEngine.Color background_color;
         public float percentage;
     }
-
-    /*
-
-      public void SRPC_setScore(Score script, float percentage, float score)
-      {
-          script.current_percentage = percentage;
-          script.GetComponentInChildren<Slider>().value = current_percentage;
-          script.current_score = score;
-          ORPC_setScore(script, percentage, score);
-      }
-
-      public void ORPC_setScore(Score script, float percentage, float score)
-      {
-          script.GetComponentInChildren<Slider>().value = current_percentage;
-      }
-    */
 
 }
