@@ -15,7 +15,7 @@ public class ScoreBoard : NetworkBehaviour
 {
 
     [SyncObject]
-    private readonly SyncDictionary<NetworkConnection, ScoreboardEntry> scores_syncdictionary = new();
+    private readonly SyncDictionary<NetworkConnection, ScoreboardEntry> scores_dictionary = new();
 
     private Dictionary<NetworkConnection, GameObject> UI_elements = new();
 
@@ -33,7 +33,7 @@ public class ScoreBoard : NetworkBehaviour
 
     private void Awake()
     {
-        scores_syncdictionary.OnChange += Scoreboard_OnChange;
+        scores_dictionary.OnChange += Scoreboard_OnChange;
     }
 
     private void Scoreboard_OnChange(SyncDictionaryOperation op,
@@ -96,9 +96,9 @@ public class ScoreBoard : NetworkBehaviour
     private void addPlayerEntry(NetworkConnection client)
     {
         ScoreboardEntry new_entry = new ScoreboardEntry();
-        new_entry.background_color = colors[scores_syncdictionary.Count];
+        new_entry.background_color = colors[scores_dictionary.Count];
         new_entry.percentage = 0;
-        scores_syncdictionary.Add(client, new_entry);
+        scores_dictionary.Add(client, new_entry);
     }
 
     private void spawnUiElement(NetworkConnection key, ScoreboardEntry value)
@@ -114,9 +114,9 @@ public class ScoreBoard : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void updateScore(float percentage, NetworkConnection client)
     {
-        ScoreboardEntry tmp = scores_syncdictionary[client];
+        ScoreboardEntry tmp = scores_dictionary[client];
         tmp.percentage = percentage;
-        scores_syncdictionary[client] = tmp;
+        scores_dictionary[client] = tmp;
         //scores_syncdictionary.Dirty(client);
     }
 
