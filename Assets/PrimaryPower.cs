@@ -17,6 +17,8 @@ public class PrimaryPower : NetworkBehaviour
     public Animator animator;
     public NetworkAnimator netAnim;
     int _powerCost = 0;
+    [SerializeField] private CanvasGroup _powerCanvasGroup = null;
+    private bool _powerCanvasInit = true;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -33,7 +35,13 @@ public class PrimaryPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (_powerCanvasGroup == null)
+            _powerCanvasGroup = GameObject.FindGameObjectWithTag("PowerSelectionGroup").GetComponent<CanvasGroup>();
+        else if (_powerCanvasGroup != null && _powerCanvasInit)
+        {
+            _powerCanvasInit = false;
+            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
+        }
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
         {
             if (_manaController.playerMana > _powerCost)
@@ -70,22 +78,35 @@ public class PrimaryPower : NetworkBehaviour
     }
     void SwitchPower()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) )
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.IceBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.MindBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.MindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.WindBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.WindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.TrickBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.TrickBullet);
         }
         _powerCost = PowerBehavior.vecPowerCost[(int)performant_shoot._primaryPower];
+    }
+
+    void UpdatePowerHUD(PowerBehavior.PowerType powerType)
+    {
+        int nType = (int)powerType;
+        for (int i = 0; i < 4; i++)//Disattivo tutti gli altri e attivo il selezionato
+            _powerCanvasGroup.transform.GetChild(i).transform.Find("BackgroundSel").gameObject.SetActive(false);
+        var selectedPower = _powerCanvasGroup.transform.GetChild(nType);
+        selectedPower.transform.Find("BackgroundSel").gameObject.SetActive(true);
     }
 }

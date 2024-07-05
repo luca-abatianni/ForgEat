@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - ManaImageSlider
   - ManaCanvasGroup
+  - PowerSelectionGroup
   layers:
   - Default
   - TransparentFX
