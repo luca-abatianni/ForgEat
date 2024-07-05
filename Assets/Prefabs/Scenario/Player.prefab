@@ -308,7 +308,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pick_distance: 4
-  score: {fileID: 0}
+  score: {fileID: 7315321199175480877}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
 --- !u!114 &7315321199175480877

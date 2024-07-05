@@ -5,6 +5,7 @@ using FishNet.Object.Synchronizing;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,6 +53,7 @@ public class ScoreBoard : NetworkBehaviour
             //Sets key to a new value.
             case SyncDictionaryOperation.Set:
                 local_updateScore(key, value);
+                local_reorderScores();
                 break;
             //Clears the dictionary.
             case SyncDictionaryOperation.Clear:
@@ -59,6 +61,16 @@ public class ScoreBoard : NetworkBehaviour
             //Like SyncList, indicates all operations are complete.
             case SyncDictionaryOperation.Complete:
                 break;
+        }
+    }
+
+    private void local_reorderScores()
+    {
+        Transform[] children = scoreboard_parent.Cast<Transform>().ToArray();
+        Transform[] sortedChildren = children.OrderByDescending(child => child.GetComponentInChildren<Slider>().value).ToArray();
+        for (int i = 0; i < sortedChildren.Length; i++)
+        {
+            sortedChildren[i].SetSiblingIndex(i);
         }
     }
 
