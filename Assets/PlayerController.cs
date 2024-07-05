@@ -39,8 +39,9 @@ public class PlayerController : NetworkBehaviour
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z+.5f);
+            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z+.35f);
             playerCamera.transform.SetParent(transform);
+            playerCamera.nearClipPlane = .2f;
         }
         else
         {

@@ -24,7 +24,7 @@ public class PowerBehavior : MonoBehaviour
         WindBullet = 2,
         TrickBullet = 3,
     }
-
+    static public int[] vecPowerCost = new int[] { 8, 20, 15, 35 };
     public void SetPowerType(PowerBehavior.PowerType type)
     {
         _powerType = type;
@@ -63,5 +63,13 @@ public class PowerBehavior : MonoBehaviour
     public void OnImpact(Vector3 pos, Quaternion rot)
     {
         Instantiate(_impactEffect, pos, rot);
+    }
+    public void OnImpact_SRPC(Vector3 pos, Quaternion rot)
+    {
+        var GM = FindObjectOfType<GameManager>();
+        if (GM != null)
+        {
+            GM.ORPC_GMSpawn(_impactEffect, pos, rot);
+        }
     }
 }

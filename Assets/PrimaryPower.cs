@@ -11,13 +11,12 @@ using System.Threading;
 
 public class PrimaryPower : NetworkBehaviour
 {
-    [SerializeField]
-    private PerformantShoot performant_shoot;
-    [SerializeField]
-
-    private float _cooldown = 0f;
+    [SerializeField] private PerformantShoot performant_shoot;
+    [SerializeField] private float _cooldown = 0f;
+    [SerializeField] ManaController _manaController;
     public Animator animator;
     public NetworkAnimator netAnim;
+    int _powerCost = 0;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -34,22 +33,34 @@ public class PrimaryPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
         {
-            float offset = 1f;
-            var player_controller = GetComponent<PlayerController>();
-            _cooldown = Time.time + 1f;
-            animator.SetBool("attackFreeze", true);
-            if (player_controller.isRunning)
+            if (_manaController.playerMana > _powerCost)
             {
-                offset = 3.5f;
-            }
-            else if (player_controller.isWalking)
-            {
-                offset = 2.5f;
-            }
+                _manaController.playerMana -= _powerCost;
+                float offset = 1f;
+                var player_controller = GetComponent<PlayerController>();
+                _cooldown = Time.time + .5f;
+                if (player_controller.isRunning)
+                {
+                    offset = 3.5f;
+                }
+                else if (player_controller.isWalking)
+                {
+                    offset = 2.5f;
+                }
 
-            performant_shoot.Shoot(offset);
+
+                Debug.Log("Offset: " + offset);
+                performant_shoot.Shoot(offset);
+                animator.SetBool("attackFreeze", true);
+            }
+            else
+            {
+                _manaController.NotEnoughMana();
+                animator.SetBool("attackFreeze", false);
+            }
         }
         else
         {
@@ -59,7 +70,7 @@ public class PrimaryPower : NetworkBehaviour
     }
     void SwitchPower()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) || performant_shoot._effectToSpawn == null)
+        if (Input.GetKeyDown(KeyCode.Alpha1) )
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.IceBullet;
         }
@@ -75,5 +86,6 @@ public class PrimaryPower : NetworkBehaviour
         {
             performant_shoot._primaryPower = PowerBehavior.PowerType.TrickBullet;
         }
+        _powerCost = PowerBehavior.vecPowerCost[(int)performant_shoot._primaryPower];
     }
 }
