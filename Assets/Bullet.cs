@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
         Bullets.Add(bulletID, this);
         Identification = bulletID;
         OwnerID = ownerID;
-        Debug.Log($"Initializing bullet {bulletID} of {ownerID}.");
+        //Debug.Log($"Initializing bullet {bulletID} of {ownerID}.");
     }
     public void SetPowerType(PowerBehavior.PowerType type)
     {

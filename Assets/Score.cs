@@ -37,26 +37,19 @@ public class Score : NetworkBehaviour
         base.OnStartClient();
     }
 
-    private void Update()
-    {
-        Debug.Log($"Points: {current_score}/{points_to_win} = {current_percentage}");
-    }
-
     public void AddPoints(float points)
     {
-        current_score += points;
-        if (current_score <= 0)
+        current_score = current_score + points;
+        if (current_score < 0)
         {
             current_percentage = 0;
             current_score = 0;
         }
         else
         {
-
             current_percentage = (current_score / points_to_win);
-            scoreboard.updateScore(current_percentage, base.Owner);
-
         }
+        scoreboard.updateScore(current_percentage, base.Owner);
     }
 
     [TargetRpc]

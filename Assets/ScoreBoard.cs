@@ -120,6 +120,12 @@ public class ScoreBoard : NetworkBehaviour
         UI_element.GetComponentInChildren<Slider>().value = value.percentage;
         UI_element.transform.Find("Background").GetComponent<Image>().color = value.background_color;
 
+        if (key.ClientId == InstanceFinder.ClientManager.Connection.ClientId)
+        {
+            Debug.Log("Enabling outline --------------------------------------------");
+            UI_element.GetComponentInChildren<Outline>().enabled = true;   
+        }
+
         UI_elements.Add(key, UI_element);
     }
 
