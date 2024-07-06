@@ -26,6 +26,13 @@ public class ScoreBoard : NetworkBehaviour
     [SerializeField]
     Transform scoreboard_parent;
 
+    [SerializeField]
+    GameObject full_scoreboard_parent;
+
+    [SerializeField]
+    private GameObject full_score_prefab;
+
+
     //int scoreboard_count = 0;
     //bool full_sync = false;
 
@@ -35,7 +42,21 @@ public class ScoreBoard : NetworkBehaviour
     private void Awake()
     {
         scores_dictionary.OnChange += Scoreboard_OnChange;
+        full_scoreboard_parent.SetActive(false);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            full_scoreboard_parent.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            full_scoreboard_parent.SetActive(false);
+        }
+    }
+
 
     private void Scoreboard_OnChange(SyncDictionaryOperation op,
     NetworkConnection key, ScoreboardEntry value, bool asServer)
@@ -143,6 +164,7 @@ public class ScoreBoard : NetworkBehaviour
     {
         public UnityEngine.Color background_color;
         public float percentage;
+        public int rounds_won;
     }
 
 }
