@@ -71,16 +71,13 @@ public class PowerEffect : NetworkBehaviour
         float duration = 3f, alteredSensitivity = .5f, alteredSpeed = 1;
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
         var playerC = gameObject.GetComponent<PlayerController>();
-        var originalWalking = playerC.walkingSpeed;
-        var originalRunning = playerC.runningSpeed;
-        var originalSensitivity = playerC.lookSpeed;
         playerC.lookSpeed = alteredSensitivity;
         playerC.runningSpeed = alteredSpeed;
         playerC.walkingSpeed = alteredSpeed;
         yield return new WaitForSeconds(duration);
-        playerC.lookSpeed = originalSensitivity;
-        playerC.runningSpeed = originalRunning;
-        playerC.walkingSpeed = originalWalking;
+        playerC.lookSpeed = playerC.lookSpeedBackup;
+        playerC.runningSpeed = playerC.runningSpeedBackup;
+        playerC.walkingSpeed = playerC.walkingSpeedBackup;
         yield return null;
     }
 

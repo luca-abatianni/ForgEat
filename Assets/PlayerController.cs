@@ -12,10 +12,14 @@ public class PlayerController : NetworkBehaviour
 {
     [Header("Base setup")]
     public float walkingSpeed = 5f;
+    [HideInInspector] public float walkingSpeedBackup = 5f;
     public float runningSpeed = 10f;
+    [HideInInspector] public float runningSpeedBackup = 10f;
     public float jumpSpeed = 7.0f;
-    public float gravity = 15.0f;
+    [HideInInspector] public float jumpSpeedBackup = 7.0f;
     public float lookSpeed = 2.0f;
+    [HideInInspector] public float lookSpeedBackup = 2.0f;
+    public float gravity = 15.0f;
     public float lookXLimit = 45.0f;
     private float walkFOV = 70f;
     private float runFOV = 90f;
@@ -39,7 +43,7 @@ public class PlayerController : NetworkBehaviour
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z+.35f);
+            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z + .35f);
             playerCamera.transform.SetParent(transform);
             playerCamera.nearClipPlane = .2f;
         }
@@ -47,6 +51,10 @@ public class PlayerController : NetworkBehaviour
         {
             gameObject.GetComponent<PlayerController>().enabled = false;
         }
+        lookSpeedBackup = lookSpeed;
+        runningSpeedBackup = runningSpeed;
+        walkingSpeedBackup = walkingSpeed;
+        jumpSpeedBackup = jumpSpeed;
     }
 
     void Start()
