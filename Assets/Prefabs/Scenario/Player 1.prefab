@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6154455631174496861}
   - component: {fileID: 1901438925041069958}
   m_Layer: 3
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 3141099425069084536
+  <AssetPathHash>k__BackingField: 14397613002541472130
 --- !u!143 &6608566661263585229
 CharacterController:
   m_ObjectHideFlags: 0
@@ -898,10 +898,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PolyArtWizardStandardMat
       objectReference: {fileID: 0}
-    - target: {fileID: 1335278543749856, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4463868907105534, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -950,6 +946,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 137784740806856926, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c056accf838a4c03936ccb57f23feaf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
