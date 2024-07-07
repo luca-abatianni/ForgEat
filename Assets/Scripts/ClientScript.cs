@@ -71,6 +71,7 @@ public class ClientScript : MonoBehaviour
         else 
             Client = new UdpClient();
 
+        //pippo
         Client.EnableBroadcast = true;
         broadcast_endpoint = new IPEndPoint(IPAddress.Broadcast, port);
         Debug.Log("Starting broadcast to " + IPAddress.Broadcast + " at port " + port + " from address " + ipAddress);
