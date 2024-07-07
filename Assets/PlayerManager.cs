@@ -10,7 +10,6 @@ public class PlayerManager : NetworkBehaviour
 {
     [SerializeField]
     private float cameraYOffset = 0f;
-    private Camera playerCamera;
     //private static PlayerManager instance;
     //private Dictionary<int, Player> _players = new Dictionary<int, Player>();
 
@@ -51,10 +50,12 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
-    /*class Player
+    class PlayerData
     {
-        public int Score = 0;
-    }*/
+        public int playerID;
+        public string name;
+        public Color color;
+    }
 
     // Update is called once per frame
     void Update()

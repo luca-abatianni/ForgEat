@@ -10,6 +10,9 @@ TagManager:
   - Laser
   - Bullet
   - Shield
+  - ManaImageSlider
+  - ManaCanvasGroup
+  - PowerSelectionGroup
   layers:
   - Default
   - TransparentFX

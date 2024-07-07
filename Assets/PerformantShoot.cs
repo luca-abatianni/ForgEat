@@ -56,6 +56,7 @@ public class PerformantShoot : NetworkBehaviour
         GameObject bullet = Instantiate(_effectToSpawn, start_position, rotation);
 
         bullet.GetComponent<Bullet>().Initialize(direction, bulletID, ownerID);
+        bullet.GetComponent<Bullet>().SetPowerType((PowerBehavior.PowerType) power);
         bullet.GetComponent<PowerBehavior>().SetPowerType((PowerBehavior.PowerType) power);
 
     }

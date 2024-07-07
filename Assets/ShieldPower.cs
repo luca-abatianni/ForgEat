@@ -9,6 +9,7 @@ public class ShieldPower : NetworkBehaviour
     [SerializeField] public GameObject _shieldPrefab;
     [HideInInspector] public bool _isShielded = false;
     [HideInInspector] public ShieldCollision _shieldObj;
+    [SerializeField] ManaController _manaController;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -31,18 +32,34 @@ public class ShieldPower : NetworkBehaviour
         }
         else
         {
-
+            if (_manaController.playerMana <= 0f)
+            {
+                _manaController.NotEnoughMana();
+                _isShielded = false;
+                SRPC_ActivateShield(_shieldObj, false);
+            }
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
-                _isShielded = true;
-                SRPC_ActivateShield(_shieldObj, true);
+                if (_manaController.playerMana > _manaController.shieldCost)
+                {
+
+                    _isShielded = true;
+                    SRPC_ActivateShield(_shieldObj, true);
+                }
+                else
+                {
+                    _manaController.NotEnoughMana();
+                    _isShielded = false;
+                    SRPC_ActivateShield(_shieldObj, false);
+                }
             }
-            else if (Input.GetKeyUp(KeyCode.Mouse1))
+            else if (_isShielded && Input.GetKeyUp(KeyCode.Mouse1))
             {
                 _isShielded = false;
                 SRPC_ActivateShield(_shieldObj, false);
             }
         }
+        _manaController.isShielding = _isShielded;
     }
     private IEnumerator SpawnShield()
     {

@@ -9,6 +9,7 @@ using FishNet.Connection;
 public class FoodSpawner : NetworkBehaviour
 {
     public int food_count = 0;
+    public float total_food_points;
     public int trash_count = 0;
     public GameObject food_parent;
     public GameObject trash_parent;
@@ -24,12 +25,14 @@ public class FoodSpawner : NetworkBehaviour
     //[ObserversRpc]
     public void SpawnFoodTrash() // Called only by game manager (server only).
     {
+        total_food_points = 0f;
         //GlobalConsole.Instance.Log("Spawning food!");
         foreach (Transform spawn_point in spawn_points.transform)
         {
             NetworkManager.Log("Spawning food!");
             SpawnObject(Random.value > 0.5, spawn_point.position, spawn_point.rotation, this);
         }
+        Debug.Log("total points of food: " +  total_food_points);
     }
 
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
@@ -45,8 +48,8 @@ public class FoodSpawner : NetworkBehaviour
             trash_count++;
         }
 
-        Debug.Log("Spawning " + (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
-        GameObject spawned = Instantiate(SelectFoodList(), position, rotation);
+        GameObject spawned = Instantiate(SelectFoodList(), position, rotation);//, food_parent.transform); //
+        total_food_points += spawned.GetComponent<Food>().value_as_food;
         ServerManager.Spawn(spawned);
         SetClientFoodTrash_ORPC(food_or_trash, spawned);
     }
@@ -61,14 +64,12 @@ public class FoodSpawner : NetworkBehaviour
     {
         if (food_or_trash)
         {
-            Debug.Log("Spawned food");
             spawned.transform.SetParent(food_parent.transform);
             spawned.GetComponent<Food>().InitAsFood();
             food_list.Add(spawned);
         }
         else
         {
-            Debug.Log("Spawned trash");
             spawned.transform.SetParent(trash_parent.transform);
             spawned.GetComponent<Food>().InitAsTrash();
             trash_list.Add(spawned);
