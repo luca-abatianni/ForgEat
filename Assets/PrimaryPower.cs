@@ -46,7 +46,7 @@ public class PrimaryPower : NetworkBehaviour
         {
             if (_manaController.playerMana > _powerCost)
             {
-                _manaController.playerMana -= _powerCost;
+                _manaController.UpdateMana( - _powerCost);
                 float offset = 1f;
                 var player_controller = GetComponent<PlayerController>();
                 _cooldown = Time.time + .5f;

@@ -11,6 +11,7 @@ public class ManaController : MonoBehaviour
     [SerializeField] private float maxMana = 100f;
     [HideInInspector] public bool isFull = true;
     [HideInInspector] public bool isShielding = false;
+    [HideInInspector] public bool UnlimitedPower = false;
 
     [Header("Mana Regen Parameters")]
     [Range(0, 50)][SerializeField] public float shieldCost = 10f;
@@ -27,6 +28,15 @@ public class ManaController : MonoBehaviour
     private void Start()
     {
     }
+    public void UpdateMana(float mana)
+    {
+        if (UnlimitedPower)//mana massimo e non decrementa
+            playerMana = maxMana;
+        else
+            playerMana += mana;
+        if (playerMana > maxMana)
+            playerMana = maxMana;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,20 +48,22 @@ public class ManaController : MonoBehaviour
             manaProgressUI = GameObject.FindGameObjectWithTag("ManaImageSlider").GetComponent<Image>();
         if (_manaNotEnough == null)
             _manaNotEnough = sliderCanvasGroup.transform.Find("ManaNotEnough").GetComponent<Image>();
+
+
+
         if (isShielding)
         {
-            playerMana -= shieldCost * Time.deltaTime;
+            UpdateMana(-shieldCost * Time.deltaTime);
             regenDelay = Time.time + .1f;
         }
         else
         {
             if (playerMana <= maxMana - 0.01 && Time.time > regenDelay)
             {
-                playerMana += manaRegen * Time.deltaTime;
+                UpdateMana(manaRegen * Time.deltaTime);
             }
         }
-        if (playerMana > maxMana)
-            playerMana = maxMana;
+
         manaProgressUI.fillAmount = playerMana / maxMana;
     }
     private IEnumerator ThreadNotEnoughMana()

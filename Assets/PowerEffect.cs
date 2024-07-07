@@ -22,7 +22,8 @@ public class PowerEffect : NetworkBehaviour
     {
         Frost = 1,
         Confusion = 2,
-
+        IronStomach = 3,//effetto passivo da cibo, no effetti negativi da cibo
+        UnlimitedPower = 4,//effetto passivo da cibo, mana infinito a tempo
     }
     public override void OnStartClient()
     {
@@ -83,6 +84,34 @@ public class PowerEffect : NetworkBehaviour
             yield return new WaitForSeconds(duration);
             gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
             _dictStatus.Remove(StatusType.Confusion);
+        }
+        yield return null;
+    }
+    private IEnumerator IronStomach()
+    {
+        float duration = 10f;
+        StatusType status = StatusType.IronStomach;
+        if (!_dictStatus.ContainsKey(status))
+        {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            gameObject.GetComponent<FoodPicker>().IronStomach = true;
+            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<FoodPicker>().IronStomach = false;
+            _dictStatus.Remove(status);
+        }
+        yield return null;
+    }
+    private IEnumerator UnlimitedPower()
+    {
+        float duration = 10f;
+        StatusType status = StatusType.UnlimitedPower;
+        if (!_dictStatus.ContainsKey(status))
+        {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            gameObject.GetComponent<ManaController>().UnlimitedPower = true;
+            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<ManaController>().UnlimitedPower = false;
+            _dictStatus.Remove(status);
         }
         yield return null;
     }
@@ -149,7 +178,7 @@ public class PowerEffect : NetworkBehaviour
         CheckEffectsDuration();
         if (_shield == null)
             _shield = gameObject.GetComponent<ShieldPower>();
-        if (false)//Input.GetKey(KeyCode.LeftShift)) //DEBUUUUUG
+        if (Input.GetKey(KeyCode.LeftShift)) //DEBUUUUUG
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -158,6 +187,14 @@ public class PowerEffect : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 StartCoroutine(MindBulletHit(PowerType.MindBullet));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                StartCoroutine(IronStomach());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                StartCoroutine(UnlimitedPower());
             }
         }
     }

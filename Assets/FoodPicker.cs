@@ -14,6 +14,7 @@ public class FoodPicker : NetworkBehaviour
 
     public Animator animator;
     public NetworkAnimator netAnim;
+    [HideInInspector] public bool IronStomach = false;//effetto passivo da cibo, no effetti negativi da cibo
     // Start is called before the first frame update
     public override void OnStartClient()
     { // This is needed to avoid other clients controlling our character. 
@@ -43,6 +44,8 @@ public class FoodPicker : NetworkBehaviour
             if (food != null)
             {
                 float points = food.GetComponent<Food>().getValue();
+                if (IronStomach)
+                    points = Mathf.Abs(points);
                 score.AddPoints(points);
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                 fs.RemoveObject(food.gameObject);
