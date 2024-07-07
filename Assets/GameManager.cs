@@ -41,6 +41,8 @@ public class GameManager : NetworkBehaviour
 
     private bool phase_timer;
 
+    private Coroutine timer_coroutine;
+
     private GameState game_state;
 
     [SerializeField] private SpawnBarriers spawn_barriers;
@@ -114,7 +116,7 @@ public class GameManager : NetworkBehaviour
     void WaitingFirstPhase()
     {
         phase_timer = true;
-        StartCoroutine(PhaseTimer(between_phase_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period));
         return;
     }
 
@@ -127,7 +129,7 @@ public class GameManager : NetworkBehaviour
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
         NetworkManager.Log("Barriers off!");
-        StartCoroutine(PhaseTimer(phase_one_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(phase_one_period));
         return;
     }
 
@@ -139,7 +141,7 @@ public class GameManager : NetworkBehaviour
         SetUpPlayersRoundScore();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
-        StartCoroutine(PhaseTimer(between_phase_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period));
     }
 
     void SecondPhase()
@@ -147,7 +149,7 @@ public class GameManager : NetworkBehaviour
         phase_timer = true;
         spawn_barriers.BarriersOff();
         EnableFoodPicking(true);
-        StartCoroutine(PhaseTimer(phase_two_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(phase_two_period));
     }
 
     void EndRound()
@@ -157,8 +159,17 @@ public class GameManager : NetworkBehaviour
         spawn_barriers.BarriersOn();
     }
 
+    public void PlayerWon(NetworkConnection winner_client)
+    {
+        Debug.Log($"Player_{winner_client.ClientId} [{winner_client}] won!");
+        StopCoroutine(timer_coroutine);
+        game_state = GameState.End;
+        EndRound();
+    }
+
     IEnumerator PhaseTimer(float time)
     {
+
         yield return new WaitForSeconds(time);
         phase_timer = false;
         NetworkManager.Log("Timer finished.");
@@ -189,7 +200,7 @@ public class GameManager : NetworkBehaviour
         {
             FoodPicker f_picker = player.GetComponent<FoodPicker>();
             f_picker.Client_FoodPickerSetEnabled(setting);
-            f_picker.enabled = setting;
+            //f_picker.enabled = setting;
         }
     }
 

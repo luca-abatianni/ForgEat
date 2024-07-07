@@ -15,7 +15,7 @@ public class DetailedScoreEntry : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI score;
 
-    public float score_value;
+    public float score_value = 0;
 
     [SerializeField]
     private Image image;

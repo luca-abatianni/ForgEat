@@ -27,7 +27,10 @@ public class ScoreBoard : NetworkBehaviour
     Transform scoreboard_parent;
 
     [SerializeField]
-    GameObject full_scoreboard_parent;
+    GameObject full_scoreboard;
+
+    [SerializeField]
+    Transform full_scoreboard_entries;
 
     [SerializeField]
     private GameObject full_score_prefab;
@@ -42,18 +45,18 @@ public class ScoreBoard : NetworkBehaviour
     private void Awake()
     {
         scores_dictionary.OnChange += Scoreboard_OnChange;
-        full_scoreboard_parent.SetActive(false);
+        full_scoreboard.SetActive(false);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            full_scoreboard_parent.SetActive(true);
+            full_scoreboard.SetActive(true);
         }
         else if (Input.GetKeyUp(KeyCode.Tab))
         {
-            full_scoreboard_parent.SetActive(false);
+            full_scoreboard.SetActive(false);
         }
     }
 
@@ -88,18 +91,17 @@ public class ScoreBoard : NetworkBehaviour
     private void local_reorderScores()
     {
         Transform[] children = scoreboard_parent.Cast<Transform>().ToArray();
-        Transform[] table_children = full_scoreboard_parent.transform.Cast<Transform>().ToArray();
-        Transform[] sortedChildren = children.OrderByDescending(child => child.GetComponentInChildren<Slider>().value).ToArray();
-        for (int i = 0; i < sortedChildren.Length; i++)
+        Transform[] sorted_children = children.OrderByDescending(child => child.GetComponentInChildren<Slider>().value).ToArray();
+        for (int i = 0; i < sorted_children.Length; i++)
         {
-            sortedChildren[i].SetSiblingIndex(i);
+            sorted_children[i].SetSiblingIndex(i);
         }
-
-        children = full_scoreboard_parent.transform.Cast<Transform>().ToArray();
-        sortedChildren = children.OrderByDescending(child => child.GetComponentInChildren<DetailedScoreEntry>().score_value).ToArray();
-        for (int i = 0; i < sortedChildren.Length; i++)
+        
+        children = full_scoreboard_entries.Cast<Transform>().ToArray();
+        sorted_children = children.OrderByDescending(entry => entry.GetComponentInChildren<DetailedScoreEntry>().score_value).ToArray();
+        for (int i = 0; i < sorted_children.Length; i++)
         {
-            sortedChildren[i].SetSiblingIndex(i);
+            sorted_children[i].SetSiblingIndex(i);
         }
     }
 
@@ -107,6 +109,9 @@ public class ScoreBoard : NetworkBehaviour
     {
         Destroy(UI_elements[key]);
         UI_elements.Remove(key);
+        
+        Destroy(table_elements[key]);
+        table_elements.Remove(key);
     }
 
     private void local_updateScore(NetworkConnection key, ScoreboardEntry value)
@@ -114,7 +119,7 @@ public class ScoreBoard : NetworkBehaviour
         GameObject table_ui_element = table_elements[key];
         GameObject ui_element = UI_elements[key];
         ui_element.GetComponentInChildren<Slider>().value = value.percentage;
-
+        
         table_ui_element.GetComponent<DetailedScoreEntry>().SetScore(value.score);
     }
 
@@ -155,7 +160,7 @@ public class ScoreBoard : NetworkBehaviour
         UI_element.GetComponentInChildren<Slider>().value = value.percentage;
         UI_element.transform.Find("Background").GetComponent<Image>().color = value.background_color;
 
-        GameObject UI_table_entry = Instantiate(full_score_prefab, full_scoreboard_parent.transform);
+        GameObject UI_table_entry = Instantiate(full_score_prefab, full_scoreboard_entries.transform);
         DetailedScoreEntry table_entry = UI_table_entry.GetComponent<DetailedScoreEntry>();
         table_entry.SetScore(0f);
         table_entry.SetName("Player_" + key.ClientId);
@@ -180,7 +185,10 @@ public class ScoreBoard : NetworkBehaviour
         tmp.score = score;
         scores_dictionary[client] = tmp;
 
-        
+        if(tmp.percentage > 1.0f)
+        {
+            FindAnyObjectByType<GameManager>().PlayerWon(client);
+        }
         //scores_syncdictionary.Dirty(client);
     }
 
