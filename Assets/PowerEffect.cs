@@ -1,9 +1,14 @@
 using FishNet.Connection;
 using FishNet.Object;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static PowerBehavior;
 
 public class PowerEffect : NetworkBehaviour
@@ -11,6 +16,14 @@ public class PowerEffect : NetworkBehaviour
     [SerializeField] public List<GameObject> _hitEffects = new List<GameObject>();
     [HideInInspector] public List<(GameObject, float)> _listSpawned = new List<(GameObject, float)>();
     private ShieldPower _shield;
+    private CanvasGroup statusGroup = null;
+    private Dictionary<StatusType, Coroutine> _dictStatus = new Dictionary<StatusType, Coroutine>();
+    enum StatusType
+    {
+        Frost = 1,
+        Confusion = 2,
+
+    }
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -20,6 +33,7 @@ public class PowerEffect : NetworkBehaviour
             return;
         }
     }
+
     //Controlla che il personaggio non sia già sotto effetto di questo potere
     public bool CheckHitList(PowerBehavior.PowerType powerType)
     {
@@ -31,6 +45,7 @@ public class PowerEffect : NetworkBehaviour
         }
         return false;
     }
+
 
     [TargetRpc]
     public void Hit(NetworkConnection owner, PowerBehavior.PowerType powerType)
@@ -60,24 +75,34 @@ public class PowerEffect : NetworkBehaviour
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
         float duration = 4f;
-        SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        gameObject.GetComponent<PlayerController>().confusePlayerMovement = true;
-        yield return new WaitForSeconds(duration);
-        gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
+        if (!_dictStatus.ContainsKey(StatusType.Confusion))
+        {
+            _dictStatus.Add(StatusType.Confusion, StartCoroutine(UpdateStatusHUD(StatusType.Confusion, duration)));
+            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+            gameObject.GetComponent<PlayerController>().confusePlayerMovement = true;
+            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
+            _dictStatus.Remove(StatusType.Confusion);
+        }
         yield return null;
     }
     private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
     {
         float duration = 3f, alteredSensitivity = .5f, alteredSpeed = 1;
-        SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-        var playerC = gameObject.GetComponent<PlayerController>();
-        playerC.lookSpeed = alteredSensitivity;
-        playerC.runningSpeed = alteredSpeed;
-        playerC.walkingSpeed = alteredSpeed;
-        yield return new WaitForSeconds(duration);
-        playerC.lookSpeed = playerC.lookSpeedBackup;
-        playerC.runningSpeed = playerC.runningSpeedBackup;
-        playerC.walkingSpeed = playerC.walkingSpeedBackup;
+        if (!_dictStatus.ContainsKey(StatusType.Frost))
+        {
+            _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
+            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+            var playerC = gameObject.GetComponent<PlayerController>();
+            playerC.lookSpeed = alteredSensitivity;
+            playerC.runningSpeed = alteredSpeed;
+            playerC.walkingSpeed = alteredSpeed;
+            yield return new WaitForSeconds(duration);
+            playerC.lookSpeed = playerC.lookSpeedBackup;
+            playerC.runningSpeed = playerC.runningSpeedBackup;
+            playerC.walkingSpeed = playerC.walkingSpeedBackup;
+            _dictStatus.Remove(StatusType.Frost);
+        }
         yield return null;
     }
 
@@ -107,14 +132,111 @@ public class PowerEffect : NetworkBehaviour
         spawned.transform.SetParent(_spawnPoint.transform);
         script._listSpawned.Add((spawned, duration));
     }
+
+    void InitStatusGroup()
+    {
+        foreach (var s in Enum.GetValues(typeof(StatusType)))
+            statusGroup.transform.Find(s.ToString()).gameObject.SetActive(false);
+    }
     // Update is called once per frame
     void Update()
     {
+        if (statusGroup == null)
+        {
+            statusGroup = GameObject.FindGameObjectWithTag("StatusGroup").GetComponent<CanvasGroup>();
+            InitStatusGroup();
+        }
         CheckEffectsDuration();
         if (_shield == null)
             _shield = gameObject.GetComponent<ShieldPower>();
-
+        if (false)//Input.GetKey(KeyCode.LeftShift)) //DEBUUUUUG
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                StartCoroutine(IceBulletHit(PowerType.IceBullet));
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                StartCoroutine(MindBulletHit(PowerType.MindBullet));
+            }
+        }
     }
+
+    private IEnumerator UpdateStatusHUD(StatusType eStatus, float duration, bool spawnText = true)
+    {
+        var oStatus = statusGroup.transform.Find(eStatus.ToString());//group con Background, Slider, Icon e Description
+        oStatus.gameObject.SetActive(true);
+
+
+        var slider = oStatus.transform.Find("Slider").GetComponent<UnityEngine.UI.Slider>();
+        StartCoroutine(CountdownSlider(slider, duration));
+        //_dictStatus.Add(eStatus, coroutine);
+        var oText = oStatus.transform.Find("Description");
+        var text = oText.GetComponent<TextMeshProUGUI>();
+        if (spawnText)
+            StartCoroutine(TextFadeOut(text, 1f));
+        yield return new WaitForSeconds(duration);
+        _dictStatus.Remove(eStatus);
+        oStatus.gameObject.SetActive(false);//Se nessun thread sta girando per questo status, lo posso spegnere
+        yield return null;
+    }
+    private IEnumerator CountdownSlider(UnityEngine.UI.Slider slider, float duration)
+    {
+        float startValue = slider.maxValue;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            slider.value = Mathf.Lerp(startValue, 0, timeElapsed / duration);
+            yield return null;  // Wait for the next frame
+        }
+
+        // Ensure the slider value is set to 0 at the end
+        slider.value = 0;
+        yield return null;  // Wait for the next frame
+    }
+    IEnumerator TextFadeOut(TextMeshProUGUI text, float duration)
+    {
+        float startAlpha = 1f;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
+            Color newColor = new Color(text.color.r, text.color.g, text.color.b, alpha);
+            text.color = newColor;
+            yield return null;  // Wait for the nnext frame
+        }
+
+        // Ensure the alpha is set to 0 at the end
+        Color finalColor = new Color(text.color.r, text.color.g, text.color.b, 0);
+        text.color = finalColor;
+        yield return null;  // Wait for the nnext frame
+    }
+    private IEnumerator ImageFadeOut(UnityEngine.UI.Image image, float duration)
+    {
+        float startAlpha = 1f;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
+            Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            image.color = newColor;
+            yield return null;  // Wait for the next frame
+        }
+
+        // Ensure the alpha is set to 0 at the end
+        Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
+        image.color = finalColor;
+    }
+
+
+
+
     //List non è modificabile, per cui
     //ad ogni ciclo controllo le durate degli effetti e aggiorno sottraendo il tempo dall'ultimo frame
     //se il tempo è finito despawno l'oggetto,
