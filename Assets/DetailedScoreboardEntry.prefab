@@ -195,10 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0c1dba5a914cd41929775b9880f3db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: {fileID: 0}
-  rounds_won: {fileID: 0}
-  score: {fileID: 0}
-  highlight_colour: {r: 0, g: 0, b: 0, a: 0}
+  player_name: {fileID: 6462245206741948334}
+  rounds_won: {fileID: 4796754168742019533}
+  score: {fileID: 8451611608578613033}
+  image: {fileID: 479963521488207663}
+  highlight_colour: {r: 0, g: 0.82026196, b: 1, a: 0.54509807}
 --- !u!1 &3360760087379104367
 GameObject:
   m_ObjectHideFlags: 0

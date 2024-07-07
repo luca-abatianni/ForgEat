@@ -6,40 +6,43 @@ using UnityEngine.UI;
 
 public class DetailedScoreEntry : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI player_name;
 
-    private TextMeshPro name;
-    private TextMeshPro rounds_won;
-    private TextMeshPro score;
+    [SerializeField]
+    private TextMeshProUGUI rounds_won;
 
-    public Color highlight_colour;
-    //public Color base_colour;
+    [SerializeField]
+    private TextMeshProUGUI score;
 
-    private void Awake()
+    public float score_value;
+
+    [SerializeField]
+    private Image image;
+
+    [SerializeField]
+    private Color highlight_colour;
+
+
+    public void SetRoundsWon(int value)
     {
-        name = transform.Find("Name").GetComponent<TextMeshPro>();
-        score = transform.Find("Score").GetComponent<TextMeshPro>();
-        rounds_won = transform.Find("Rounds won").GetComponent<TextMeshPro>();
+        rounds_won.text = value.ToString();
     }
-    public void SetRoundsWon(string rounds_won)
+
+    public void SetScore(float value)
     {
-        this.rounds_won.text = rounds_won;
+        score.text = value.ToString();
+        this.score_value = value;
     }
 
-    public void SetScore(string rounds_won)
+    public void SetName(string name)
     {
-        this.rounds_won.text = rounds_won;
-    }
-
-    public void SetName(string rounds_won)
-    {
-        this.rounds_won.text = rounds_won;
+        player_name.text = name;
     }
 
     public void HighlightPlayer()
     {
-        Color color = Color.white;
-        color.a = 0.5f;
-        this.GetComponent<Image>().color = highlight_colour;
+        this.image.color = highlight_colour;    
     }
 
 }

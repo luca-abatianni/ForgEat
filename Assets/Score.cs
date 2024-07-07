@@ -49,7 +49,7 @@ public class Score : NetworkBehaviour
         {
             current_percentage = (current_score / points_to_win);
         }
-        scoreboard.updateScore(current_percentage, base.Owner);
+        scoreboard.updateScore(current_percentage, current_score, base.Owner);
     }
 
     [TargetRpc]
