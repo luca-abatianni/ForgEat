@@ -1,5 +1,8 @@
 using UnityEngine;
+using System;
 using FishNet.Transporting.Tugboat;
+using System.Collections.Generic;
+using Random = System.Random;
 
 public class MenuChoices : MonoBehaviour
 {
@@ -50,7 +53,20 @@ public class MenuChoices : MonoBehaviour
     public static void SetPlayer()
     {
         playerName = PlayerNameConfigurator.playerName;
+        if (string.IsNullOrWhiteSpace(playerName))
+            playerName = RandomPlayerName();
         playerSkin = PlayerSelection.currentPG;
+    }
+
+    public static string RandomPlayerName()
+    {
+        string[] names = new [] {
+            "CrunchyPotato", "SpicyTaco", "ChocoMuffin", "SavorySteak", "JuicyBurger", "FrostyPopsicle", "SweetBerryPie", "CheesyNachos", "TangyLemon", "CrispyBacon", "ButteryPopcorn", "BerrySmoothie", "HotPepperoni", "GarlicBreadKing", "NuttyBrownie", "HoneyGlazedHam", "MeltyCheese", "FierySalsa", "GummyBear", "SushiSamurai"
+        };
+
+        Random random = new Random();
+        int index = random.Next(names.Length);
+        return names[index];
     }
     
 }

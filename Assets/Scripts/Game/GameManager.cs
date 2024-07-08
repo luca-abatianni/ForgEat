@@ -57,6 +57,7 @@ public class GameManager : NetworkBehaviour
         playerName = MenuChoices.playerName;
         playerSkin = MenuChoices.playerSkin;
         PlayerSpawner._selectedSkin = playerSkin;
+        //prova
     }
     
     public void RetrieveFirstPhaseLen()
