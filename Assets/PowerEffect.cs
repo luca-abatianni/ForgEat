@@ -24,6 +24,8 @@ public class PowerEffect : NetworkBehaviour
         Confusion = 2,
         IronStomach = 3,//effetto passivo da cibo, no effetti negativi da cibo
         UnlimitedPower = 4,//effetto passivo da cibo, mana infinito a tempo
+        Agility = 5,//effetto passivo da cibo, velocità +5
+        Poisoning = 6,
     }
     public override void OnStartClient()
     {
@@ -80,9 +82,9 @@ public class PowerEffect : NetworkBehaviour
         {
             _dictStatus.Add(StatusType.Confusion, StartCoroutine(UpdateStatusHUD(StatusType.Confusion, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-            gameObject.GetComponent<PlayerController>().confusePlayerMovement = true;
+            gameObject.GetComponent<PlayerController>().confusion = true;
             yield return new WaitForSeconds(duration);
-            gameObject.GetComponent<PlayerController>().confusePlayerMovement = false;
+            gameObject.GetComponent<PlayerController>().confusion = false;
             _dictStatus.Remove(StatusType.Confusion);
         }
         yield return null;
@@ -115,21 +117,46 @@ public class PowerEffect : NetworkBehaviour
         }
         yield return null;
     }
+    private IEnumerator Agility()
+    {
+        float duration = 10f;
+        StatusType status = StatusType.Agility;
+        if (!_dictStatus.ContainsKey(status))
+        {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            var playerC = gameObject.GetComponent<PlayerController>();
+            playerC.Agility = true;
+            yield return new WaitForSeconds(duration);
+            playerC.Agility = false;
+            _dictStatus.Remove(status);
+        }
+        yield return null;
+    }
+    private IEnumerator Poisoning()
+    {
+        float duration = 5f;
+        StatusType status = StatusType.Poisoning;
+        if (!_dictStatus.ContainsKey(status))
+        {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            gameObject.GetComponent<ManaController>().Poisoning= true;
+            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<ManaController>().Poisoning= false;
+            _dictStatus.Remove(status);
+        }
+        yield return null;
+    }
     private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
     {
-        float duration = 3f, alteredSensitivity = .5f, alteredSpeed = 1;
+        float duration = 3f;
         if (!_dictStatus.ContainsKey(StatusType.Frost))
         {
             _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
             var playerC = gameObject.GetComponent<PlayerController>();
-            playerC.lookSpeed = alteredSensitivity;
-            playerC.runningSpeed = alteredSpeed;
-            playerC.walkingSpeed = alteredSpeed;
+            playerC.frost = true;
             yield return new WaitForSeconds(duration);
-            playerC.lookSpeed = playerC.lookSpeedBackup;
-            playerC.runningSpeed = playerC.runningSpeedBackup;
-            playerC.walkingSpeed = playerC.walkingSpeedBackup;
+            playerC.frost = false;
             _dictStatus.Remove(StatusType.Frost);
         }
         yield return null;
@@ -196,25 +223,30 @@ public class PowerEffect : NetworkBehaviour
             {
                 StartCoroutine(UnlimitedPower());
             }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                StartCoroutine(Agility());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                StartCoroutine(Poisoning());
+            }
         }
     }
 
     private IEnumerator UpdateStatusHUD(StatusType eStatus, float duration, bool spawnText = true)
     {
-        var oStatus = statusGroup.transform.Find(eStatus.ToString());//group con Background, Slider, Icon e Description
+        var oStatus = statusGroup.transform.Find(eStatus.ToString());//Canvas group con Background, Slider, Icon e Description
         oStatus.gameObject.SetActive(true);
-
-
         var slider = oStatus.transform.Find("Slider").GetComponent<UnityEngine.UI.Slider>();
         StartCoroutine(CountdownSlider(slider, duration));
-        //_dictStatus.Add(eStatus, coroutine);
         var oText = oStatus.transform.Find("Description");
         var text = oText.GetComponent<TextMeshProUGUI>();
         if (spawnText)
             StartCoroutine(TextFadeOut(text, 1f));
         yield return new WaitForSeconds(duration);
         _dictStatus.Remove(eStatus);
-        oStatus.gameObject.SetActive(false);//Se nessun thread sta girando per questo status, lo posso spegnere
+        oStatus.gameObject.SetActive(false);
         yield return null;
     }
     private IEnumerator CountdownSlider(UnityEngine.UI.Slider slider, float duration)

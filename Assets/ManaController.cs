@@ -12,6 +12,7 @@ public class ManaController : MonoBehaviour
     [HideInInspector] public bool isFull = true;
     [HideInInspector] public bool isShielding = false;
     [HideInInspector] public bool UnlimitedPower = false;
+    [HideInInspector] public bool Poisoning = false;
 
     [Header("Mana Regen Parameters")]
     [Range(0, 50)][SerializeField] public float shieldCost = 10f;
@@ -30,6 +31,10 @@ public class ManaController : MonoBehaviour
     }
     public void UpdateMana(float mana)
     {
+        if (Poisoning)
+        {
+            mana = -Mathf.Abs(mana);
+        }
         if (UnlimitedPower)//mana massimo e non decrementa
             playerMana = maxMana;
         else
