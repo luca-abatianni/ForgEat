@@ -19,6 +19,7 @@ public class PrimaryPower : NetworkBehaviour
     int _powerCost = 0;
     [SerializeField] private CanvasGroup _powerCanvasGroup = null;
     private bool _powerCanvasInit = true;
+    [HideInInspector] public bool Silence = false;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -46,22 +47,24 @@ public class PrimaryPower : NetworkBehaviour
         {
             if (_manaController.playerMana > _powerCost)
             {
-                _manaController.UpdateMana( - _powerCost);
-                float offset = 1f;
-                var player_controller = GetComponent<PlayerController>();
-                _cooldown = Time.time + .5f;
-                if (player_controller.isRunning)
+                if (!Silence)
                 {
-                    offset = 3.5f;
-                }
-                else if (player_controller.isWalking)
-                {
-                    offset = 2.5f;
-                }
 
-
-                Debug.Log("Offset: " + offset);
-                performant_shoot.Shoot(offset);
+                    _manaController.UpdateMana(-_powerCost);
+                    float offset = 1f;
+                    var player_controller = GetComponent<PlayerController>();
+                    _cooldown = Time.time + .5f;
+                    if (player_controller.isRunning)
+                    {
+                        offset = 3.5f;
+                    }
+                    else if (player_controller.isWalking)
+                    {
+                        offset = 2.5f;
+                    }
+                    Debug.Log("Offset: " + offset);
+                    performant_shoot.Shoot(offset);
+                }
                 animator.SetBool("attackFreeze", true);
             }
             else

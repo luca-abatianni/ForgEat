@@ -33,7 +33,7 @@ public class PlayerController : NetworkBehaviour
     private float cameraYOffset = 1f;
     private Camera playerCamera;
     [HideInInspector] public bool isWalking = false, isMoonwalking = false, isWalkingLeft = false, isWalkingRight = false, isJumping = false, isRunning = false;
-    [HideInInspector] public bool frost = false, Agility = false;
+    [HideInInspector] public bool frost = false, Agility = false, Heft = false;
 
     public override void OnStartClient()
     {
@@ -129,6 +129,12 @@ public class PlayerController : NetworkBehaviour
             updWalkingSpeed = updWalkingSpeed * 1.5f;
             updRunningSpeed = updRunningSpeed * 1.5f;
             updJumpSpeed *= 1.2f;
+        }
+        if(Heft)
+        {
+            updWalkingSpeed = updWalkingSpeed * .5f;
+            updRunningSpeed = updRunningSpeed * .5f;
+            updGravity *= 5;
         }
         #endregion
         // We are grounded, so recalculate move direction based on axis

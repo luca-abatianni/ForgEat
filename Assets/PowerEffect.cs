@@ -3,6 +3,7 @@ using FishNet.Object;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
@@ -24,8 +25,10 @@ public class PowerEffect : NetworkBehaviour
         Confusion = 2,
         IronStomach = 3,//effetto passivo da cibo, no effetti negativi da cibo
         UnlimitedPower = 4,//effetto passivo da cibo, mana infinito a tempo
-        Agility = 5,//effetto passivo da cibo, velocità +5
-        Poisoning = 6,
+        Agility = 5,//effetto passivo da cibo, velocità e salto ++
+        Poisoning = 6,//effetto passivo da cibo, mana positivo diventa negativo
+        Silence = 7,//effetto passivo da cibo, impossibile castare spells
+        Heft = 8,//effetto passivo da cibo, slow down + gravity up
     }
     public override void OnStartClient()
     {
@@ -68,6 +71,22 @@ public class PowerEffect : NetworkBehaviour
             Debug.Log("Hit WIND" + powerType);
             StartCoroutine(WindBulletHit(powerType));
         }
+    }
+
+    private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
+    {
+        float duration = 3f;
+        if (!_dictStatus.ContainsKey(StatusType.Frost))
+        {
+            _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
+            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+            var playerC = gameObject.GetComponent<PlayerController>();
+            playerC.frost = true;
+            yield return new WaitForSeconds(duration);
+            playerC.frost = false;
+            _dictStatus.Remove(StatusType.Frost);
+        }
+        yield return null;
     }
     private IEnumerator WindBulletHit(PowerBehavior.PowerType powerHit)
     {//Effetto gestito da WindiImpact + PlayerController
@@ -139,25 +158,38 @@ public class PowerEffect : NetworkBehaviour
         if (!_dictStatus.ContainsKey(status))
         {
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
-            gameObject.GetComponent<ManaController>().Poisoning= true;
+            gameObject.GetComponent<ManaController>().Poisoning = true;
             yield return new WaitForSeconds(duration);
-            gameObject.GetComponent<ManaController>().Poisoning= false;
+            gameObject.GetComponent<ManaController>().Poisoning = false;
             _dictStatus.Remove(status);
         }
         yield return null;
     }
-    private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
+    private IEnumerator Silence()
     {
-        float duration = 3f;
-        if (!_dictStatus.ContainsKey(StatusType.Frost))
+        float duration = 7f;
+        StatusType status = StatusType.Silence;
+        if (!_dictStatus.ContainsKey(status))
         {
-            _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
-            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
-            var playerC = gameObject.GetComponent<PlayerController>();
-            playerC.frost = true;
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            gameObject.GetComponent<PrimaryPower>().Silence = true;
             yield return new WaitForSeconds(duration);
-            playerC.frost = false;
-            _dictStatus.Remove(StatusType.Frost);
+            gameObject.GetComponent<PrimaryPower>().Silence = false;
+            _dictStatus.Remove(status);
+        }
+        yield return null;
+    }
+    private IEnumerator Heft()
+    {
+        float duration = 10f;
+        StatusType status = StatusType.Heft;
+        if (!_dictStatus.ContainsKey(status))
+        {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            gameObject.GetComponent<PlayerController>().Heft = true;
+            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<PlayerController>().Heft = false;
+            _dictStatus.Remove(status);
         }
         yield return null;
     }
@@ -230,6 +262,14 @@ public class PowerEffect : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 StartCoroutine(Poisoning());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
+                StartCoroutine(Silence());
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
+                StartCoroutine(Heft());
             }
         }
     }
