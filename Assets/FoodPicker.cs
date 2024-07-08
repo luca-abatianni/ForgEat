@@ -45,7 +45,8 @@ public class FoodPicker : NetworkBehaviour
             {
                 float points = food.GetComponent<Food>().getValue();
                 if (IronStomach)
-                    points = Mathf.Abs(points);
+                    if (points < 0)
+                        points = 0;
                 score.AddPoints(points);
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                 fs.RemoveObject(food.gameObject);

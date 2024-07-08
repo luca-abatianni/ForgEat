@@ -12,13 +12,9 @@ public class PlayerController : NetworkBehaviour
 {
     [Header("Base setup")]
     public float walkingSpeed = 5f;
-    [HideInInspector] public float walkingSpeedBackup = 5f;
     public float runningSpeed = 10f;
-    [HideInInspector] public float runningSpeedBackup = 10f;
     public float jumpSpeed = 7.0f;
-    [HideInInspector] public float jumpSpeedBackup = 7.0f;
     public float lookSpeed = 2.0f;
-    [HideInInspector] public float lookSpeedBackup = 2.0f;
     public float gravity = 15.0f;
     public float lookXLimit = 45.0f;
     private float walkFOV = 70f;
@@ -27,7 +23,7 @@ public class PlayerController : NetworkBehaviour
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
-    public bool confusePlayerMovement = false;
+    public bool confusion = false;
     public bool canMove = true;
 
     private int windUpdate = 0;
@@ -37,6 +33,8 @@ public class PlayerController : NetworkBehaviour
     private float cameraYOffset = 1f;
     private Camera playerCamera;
     [HideInInspector] public bool isWalking = false, isMoonwalking = false, isWalkingLeft = false, isWalkingRight = false, isJumping = false, isRunning = false;
+    [HideInInspector] public bool frost = false, Agility = false;
+
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -51,10 +49,6 @@ public class PlayerController : NetworkBehaviour
         {
             gameObject.GetComponent<PlayerController>().enabled = false;
         }
-        lookSpeedBackup = lookSpeed;
-        runningSpeedBackup = runningSpeed;
-        walkingSpeedBackup = walkingSpeed;
-        jumpSpeedBackup = jumpSpeed;
     }
 
     void Start()
@@ -106,6 +100,7 @@ public class PlayerController : NetworkBehaviour
 
         // Press Left Shift to run
         isRunning = Input.GetKey(KeyCode.LeftShift);
+        #region Animation
         if (isRunning)
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, runFOV, .5f);
         else
@@ -115,15 +110,34 @@ public class PlayerController : NetworkBehaviour
         isMoonwalking = Input.GetKey(KeyCode.S);
         isWalkingLeft = Input.GetKey(KeyCode.A);
         isWalkingRight = Input.GetKey(KeyCode.D);
+        #endregion
 
-
+        float updWalkingSpeed = walkingSpeed;
+        float updRunningSpeed = runningSpeed;
+        float updLookSpeed = lookSpeed;
+        float updJumpSpeed = jumpSpeed;
+        float updGravity = gravity;
+        #region PassiveEffects
+        if (frost)
+        {
+            updWalkingSpeed = updWalkingSpeed * .1f;
+            updRunningSpeed = updRunningSpeed * .1f;
+            updLookSpeed = updLookSpeed * .3f;
+        }
+        if (Agility)
+        {
+            updWalkingSpeed = updWalkingSpeed * 1.5f;
+            updRunningSpeed = updRunningSpeed * 1.5f;
+            updJumpSpeed *= 1.2f;
+        }
+        #endregion
         // We are grounded, so recalculate move direction based on axis
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
-        float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? (isRunning ? updRunningSpeed : updWalkingSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? updRunningSpeed : updWalkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
-        if (confusePlayerMovement)
+        if (confusion)
         {
             moveDirection = (-forward * curSpeedX) + (-right * curSpeedY);
         }
@@ -134,7 +148,7 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
-            moveDirection.y = jumpSpeed;
+            moveDirection.y = updJumpSpeed;
             isJumping = true;
         }
         else
@@ -145,7 +159,7 @@ public class PlayerController : NetworkBehaviour
 
         if (!characterController.isGrounded)
         {
-            moveDirection.y -= gravity * Time.deltaTime;
+            moveDirection.y -= updGravity * Time.deltaTime;
         }
         if (windUpdate != 0)
             moveDirection += windDirection;
@@ -155,19 +169,19 @@ public class PlayerController : NetworkBehaviour
         // Player and Camera rotation
         if (canMove && playerCamera != null)
         {
-            if (confusePlayerMovement)
+            if (confusion)
             {
-                rotationX += Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX += Input.GetAxis("Mouse Y") * updLookSpeed;
                 rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
                 playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-                transform.rotation *= Quaternion.Euler(0, -Input.GetAxis("Mouse X") * lookSpeed, 0);
+                transform.rotation *= Quaternion.Euler(0, -Input.GetAxis("Mouse X") * updLookSpeed, 0);
             }
             else
             {
-                rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotationX += -Input.GetAxis("Mouse Y") * updLookSpeed;
                 rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
                 playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+                transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * updLookSpeed, 0);
             }
         }
 
