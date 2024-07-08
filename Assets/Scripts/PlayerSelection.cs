@@ -7,7 +7,7 @@ public class PlayerSelection : MonoBehaviour
 {
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
-    private int currentPG;
+    public static int currentPG;
 
     private void Awake()
     {

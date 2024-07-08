@@ -8,6 +8,8 @@ public class MenuChoices : MonoBehaviour
     public static float firstPhaseLen = 10;
     public static float secondPhaseLen = 5;
     public static bool amIServer = false;
+    public static string playerName = "";
+    public static int playerSkin = 0;
 
     void Awake()
     {
@@ -43,6 +45,12 @@ public class MenuChoices : MonoBehaviour
     {
         Debug.Log("You have been setted as server in MainManager");
         amIServer = true;
+    }
+
+    public static void SetPlayer()
+    {
+        playerName = PlayerNameConfigurator.playerName;
+        playerSkin = PlayerSelection.currentPG;
     }
     
 }

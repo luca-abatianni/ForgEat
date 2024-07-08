@@ -9,6 +9,7 @@ using FishNet.Connection;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using FishNet.Component.Spawning;
 
 public class GameManager : NetworkBehaviour
 {
@@ -47,6 +48,16 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private FoodSpawner food_spawner;
 
     private bool isPaused = false;
+    private string playerName = "";
+    private int playerSkin = 0;
+
+    public void RetrievePlayerSettings()
+    {
+        Debug.Log("PLAYER: " + MenuChoices.playerName + " with skin " + MenuChoices.playerSkin);
+        playerName = MenuChoices.playerName;
+        playerSkin = MenuChoices.playerSkin;
+        PlayerSpawner._selectedSkin = playerSkin;
+    }
     
     public void RetrieveFirstPhaseLen()
     {
@@ -68,6 +79,7 @@ public class GameManager : NetworkBehaviour
     {
         RetrieveFirstPhaseLen();
         RetrieveSecondPhaseLen();
+        RetrievePlayerSettings();
         base.OnStartServer();
 
         phase_timer = false;

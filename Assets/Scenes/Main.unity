@@ -28212,6 +28212,8 @@ GameObject:
   - component: {fileID: 1153625274}
   - component: {fileID: 1153625278}
   - component: {fileID: 1153625277}
+  - component: {fileID: 1153625275}
+  - component: {fileID: 1153625276}
   m_Layer: 5
   m_Name: Score
   m_TagString: Score
@@ -38851,7 +38853,8 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours: []
   <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
+  <ChildNetworkObjects>k__BackingField:
+  - {fileID: 1153625275}
   SerializedTransformProperties:
     Position: {x: 960, y: 540, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -48304,7 +48307,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8641471736446711238}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameUIManager, Assembly-CSharp
         m_MethodName: OnClickResume
         m_Mode: 1
@@ -52512,6 +52515,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4186098670487449245, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _playerPrefab.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186098670487449245, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _playerPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 3252535994773736344, guid: 4ed8d494e137b104e98ab1a3678c7e1e, type: 3}
+    - target: {fileID: 4186098670487449245, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _playerPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 3252535994773736344, guid: 68670f9b32d4443f48b3ede519a8e75b, type: 3}
+    - target: {fileID: 4186098670487449245, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _playerPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 3252535994773736344, guid: 5fe9c802c366244f992a2303bdd32bbd, type: 3}
+    - target: {fileID: 4186098670487449245, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
+      propertyPath: _playerPrefab.Array.data[3]
+      value: 
+      objectReference: {fileID: 3252535994773736344, guid: 4025e5b58e983474789783d80dd71a10, type: 3}
     - target: {fileID: 7035671339569859083, guid: 9ae43aaa5d4264b0cb7852111206b949, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -52776,17 +52799,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
---- !u!114 &8641471736446711238 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1408894503628384522, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
-  m_PrefabInstance: {fileID: 8641471736446711237}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a7c164147c0a4471b0b9c89eb1695ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
