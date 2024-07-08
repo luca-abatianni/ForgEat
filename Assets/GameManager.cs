@@ -9,6 +9,7 @@ using FishNet.Connection;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class GameManager : NetworkBehaviour
 {
@@ -31,17 +32,20 @@ public class GameManager : NetworkBehaviour
     private GameObject player_spawns;
 
     [SerializeField]
-    private float phase_one_period;
+    private int phase_one_period;
 
     [SerializeField]
-    private float between_phase_period;
+    private int between_phase_period;
 
     [SerializeField]
-    private float phase_two_period;
+    private int phase_two_period;
 
     private bool phase_timer;
 
     private Coroutine timer_coroutine;
+
+    [SerializeField]
+    TextMeshProUGUI timer_ui;
 
     private GameState game_state;
 
@@ -106,7 +110,9 @@ public class GameManager : NetworkBehaviour
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
-            game_state++;
+            phase_timer = true;
+            StartCoroutine(PhaseTimer(5, false));
+            //game_state++;
         }
         return;
     }
@@ -116,7 +122,7 @@ public class GameManager : NetworkBehaviour
     void WaitingFirstPhase()
     {
         phase_timer = true;
-        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period, true));
         return;
     }
 
@@ -129,7 +135,7 @@ public class GameManager : NetworkBehaviour
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
         NetworkManager.Log("Barriers off!");
-        timer_coroutine = StartCoroutine(PhaseTimer(phase_one_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(phase_one_period, true));
         return;
     }
 
@@ -141,7 +147,7 @@ public class GameManager : NetworkBehaviour
         SetUpPlayersRoundScore();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
-        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period, true));
     }
 
     void SecondPhase()
@@ -149,7 +155,7 @@ public class GameManager : NetworkBehaviour
         phase_timer = true;
         spawn_barriers.BarriersOff();
         EnableFoodPicking(true);
-        timer_coroutine = StartCoroutine(PhaseTimer(phase_two_period));
+        timer_coroutine = StartCoroutine(PhaseTimer(phase_two_period, true));
     }
 
     void EndRound()
@@ -167,12 +173,11 @@ public class GameManager : NetworkBehaviour
         EndRound();
     }
 
-    IEnumerator PhaseTimer(float time)
+    IEnumerator PhaseTimer(int time, bool show_clients)
     {
-
+        if (show_clients) GetComponent<Timer>().ORPC_StartTimer(time, TimeManager.Tick);
         yield return new WaitForSeconds(time);
         phase_timer = false;
-        NetworkManager.Log("Timer finished.");
         game_state++;
         yield return null;
     }

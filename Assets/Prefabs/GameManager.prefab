@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4323712929007804517}
   - component: {fileID: 8005128298019871200}
   - component: {fileID: 4430674228755578884}
+  - component: {fileID: 4504400309118032952}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -55,6 +56,7 @@ MonoBehaviour:
   phase_one_period: 30
   between_phase_period: 5
   phase_two_period: 30
+  timer_ui: {fileID: 0}
   spawn_barriers: {fileID: 0}
   food_spawner: {fileID: 0}
 --- !u!114 &8005128298019871200
@@ -74,6 +76,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 4323712929007804517}
+  - {fileID: 4430674228755578884}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -85,7 +88,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 0
+  <PrefabId>k__BackingField: 30
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 394288251
   <SceneId>k__BackingField: 0
@@ -107,9 +110,27 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 8005128298019871200}
   player_score_prefab: {fileID: 7944211374054567184, guid: cceb13be92289844d9090fead58b80fb, type: 3}
   scoreboard_parent: {fileID: 0}
+  full_scoreboard: {fileID: 0}
+  full_scoreboard_entries: {fileID: 0}
+  full_score_prefab: {fileID: 0}
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0, g: 0.10618591, b: 1, a: 0}
   - {r: 0, g: 1, b: 0.15562725, a: 0}
   - {r: 1, g: 0.8711908, b: 0, a: 0}
   - {r: 1, g: 0, b: 0.88722086, a: 0}
+--- !u!114 &4504400309118032952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347683456376765294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4c79692e63481458a053d5ed0ff5ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 8005128298019871200}
+  _networkObjectCache: {fileID: 8005128298019871200}
