@@ -44,9 +44,6 @@ public class GameManager : NetworkBehaviour
 
     private Coroutine timer_coroutine;
 
-    [SerializeField]
-    TextMeshProUGUI timer_ui;
-
     private GameState game_state;
 
     [SerializeField] private SpawnBarriers spawn_barriers;
@@ -162,6 +159,13 @@ public class GameManager : NetworkBehaviour
     {
         phase_timer = true;
         PlayersBackToSpawn();
+
+        NetworkConnection winner = FindAnyObjectByType<ScoreBoard>().getWinner();
+        if (winner != null)
+        {
+            GetComponent<GameAnnouncement>().ORPC_Winner(winner);
+        }
+
         spawn_barriers.BarriersOn();
     }
 
@@ -230,7 +234,8 @@ public class GameManager : NetworkBehaviour
             player.GetComponent<Score>().TRPC_SetUpRoundScore(net_connection, food_spawner.total_food_points/10);
         }
     }
-[ObserversRpc]
+
+    [ObserversRpc]
     public void ORPC_GMSpawn(GameObject go, Vector3 pos, Quaternion rot)
     {
         GameObject spawned = Instantiate(go, pos, rot);

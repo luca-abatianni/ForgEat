@@ -192,6 +192,26 @@ public class ScoreBoard : NetworkBehaviour
         //scores_syncdictionary.Dirty(client);
     }
 
+    public NetworkConnection getWinner()
+    {
+        if (scores_dictionary.Count == 0)
+            return null;
+
+        NetworkConnection winner = null;
+        float highestScore = float.MinValue;
+
+        foreach (var entry in scores_dictionary)
+        {
+            if (entry.Value.score > highestScore)
+            {
+                highestScore = entry.Value.score;
+                winner = entry.Key;
+            }
+        }
+
+        return winner;
+    }
+
     [System.Serializable]
     public class ScoreboardEntry
     {
@@ -200,5 +220,6 @@ public class ScoreBoard : NetworkBehaviour
         public float score;
         public int rounds_won;
     }
+
 
 }

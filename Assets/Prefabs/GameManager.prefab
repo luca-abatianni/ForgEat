@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8005128298019871200}
   - component: {fileID: 4430674228755578884}
   - component: {fileID: 4504400309118032952}
+  - component: {fileID: 7305052183678377367}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,7 +57,6 @@ MonoBehaviour:
   phase_one_period: 30
   between_phase_period: 5
   phase_two_period: 30
-  timer_ui: {fileID: 0}
   spawn_barriers: {fileID: 0}
   food_spawner: {fileID: 0}
 --- !u!114 &8005128298019871200
@@ -134,3 +134,20 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 8005128298019871200}
   _networkObjectCache: {fileID: 8005128298019871200}
+  timer_ui: {fileID: 0}
+--- !u!114 &7305052183678377367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347683456376765294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30e9e7af0f33ae4898cb15284bca829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 8005128298019871200}
+  _networkObjectCache: {fileID: 8005128298019871200}
+  announcement_ui: {fileID: 0}
