@@ -6,12 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using static Unity.Burst.Intrinsics.X86.Avx;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class ScoreBoard : NetworkBehaviour
 {
