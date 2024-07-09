@@ -10,6 +10,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 using FishNet.Component.Spawning;
+using Cursor = UnityEngine.Cursor;
 
 public class GameManager : NetworkBehaviour
 {
@@ -47,7 +48,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private SpawnBarriers spawn_barriers;
     [SerializeField] private FoodSpawner food_spawner;
 
-    private bool isPaused = false;
+    public static bool isPaused = false;
+    public GameObject pauseMenuCanvas;
     private string playerName = "";
     private int playerSkin = 0;
 
@@ -100,6 +102,14 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame // Executed only by server.
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P)) 
+        {
+            Debug.Log("P PRESSED");
+            isPaused = !isPaused; 
+            ShowPauseMenu();
+        }
+            
+        
         if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
@@ -140,8 +150,6 @@ public class GameManager : NetworkBehaviour
         return;
     }
 
-
-
     void WaitingFirstPhase()
     {
         Debug.Log(game_state.ToString() + " phase started");
@@ -149,7 +157,6 @@ public class GameManager : NetworkBehaviour
         StartCoroutine(PhaseTimer(between_phase_period));
         return;
     }
-
 
     void PhaseOne()
     {
@@ -250,10 +257,35 @@ public class GameManager : NetworkBehaviour
             player.GetComponent<Score>().TRPC_SetUpRoundScore(net_connection, food_spawner.total_food_points/10);
         }
     }
-[ObserversRpc]
+
+    [ObserversRpc]
     public void ORPC_GMSpawn(GameObject go, Vector3 pos, Quaternion rot)
     {
         GameObject spawned = Instantiate(go, pos, rot);
         ServerManager.Spawn(spawned);
     }
+
+    public void ShowPauseMenu()
+    {
+        if (isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            pauseMenuCanvas.SetActive(true);
+        }
+        else if (!isPaused)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pauseMenuCanvas.SetActive(false);
+        }
+    }
+    //hai
+
+    public void ResumeFromPauseMenu()
+    {
+        isPaused = false;
+        pauseMenuCanvas.SetActive(false);
+    }
+
 }

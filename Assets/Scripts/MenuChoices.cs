@@ -13,6 +13,8 @@ public class MenuChoices : MonoBehaviour
     public static bool amIServer = false;
     public static string playerName = "";
     public static int playerSkin = 0;
+    public static float musicVolume = 100;
+    public static float sfxVolume = 100;
 
     void Awake()
     {
@@ -56,6 +58,17 @@ public class MenuChoices : MonoBehaviour
         if (string.IsNullOrWhiteSpace(playerName))
             playerName = RandomPlayerName();
         playerSkin = PlayerSelection.currentPG;
+    }
+    public void SetMusicVolume(float vol)
+    {
+        Debug.Log(vol);
+        musicVolume = vol;
+    }
+
+    public static void SetSFXVolume(float vol)
+    {
+        Debug.Log(vol);
+        sfxVolume = vol;
     }
 
     public static string RandomPlayerName()

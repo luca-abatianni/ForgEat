@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CameraRotationMenu : MonoBehaviour
@@ -8,22 +9,24 @@ public class CameraRotationMenu : MonoBehaviour
     private float cameraSpeed = 3.0f;
     public Camera cam;
 
+    public bool isMoving = false;
+
     void Start()
     {
         cam = GetComponent<Camera>();
     }
 
-    public void RotateCamera()
-    {
-        transform.Rotate(new Vector3(0.0f, 7.0f, 0.0f));
-        transform.position += new Vector3 (0.0f, 0.0f, 80.0f);
-    }
+    // public void RotateCamera()
+    // {
+    //     transform.Rotate(new Vector3(0.0f, 7.0f, 0.0f));
+    //     transform.position += new Vector3 (0.0f, 0.0f, 80.0f);
+    // }
 
-    public void RotateBackCamera()
-    {
-        transform.Rotate(new Vector3(0.0f, -7.0f, 0.0f));
-        transform.position -= new Vector3 (0.0f, 0.0f, 80.0f);
-    }
+    // public void RotateBackCamera()
+    // {
+    //     transform.Rotate(new Vector3(0.0f, -7.0f, 0.0f));
+    //     transform.position -= new Vector3 (0.0f, 0.0f, 80.0f);
+    // }
 
     IEnumerator LerpRotateCamera()
     {
@@ -39,6 +42,7 @@ public class CameraRotationMenu : MonoBehaviour
             // If the object has arrived, stop the coroutine
             if (transform.position == newPosition)
             {
+                isMoving = false;
                 yield break;
             }
 
@@ -47,9 +51,19 @@ public class CameraRotationMenu : MonoBehaviour
         }
     }
 
-    public void LerpRotateCameraWrapper()
+    public async void LerpRotateCameraWrapper()
     {
-        StartCoroutine(LerpRotateCamera());
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateCamera());
+        } 
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateCamera());
+        }
     }
 
     IEnumerator LerpRotateBackCamera()
@@ -66,6 +80,7 @@ public class CameraRotationMenu : MonoBehaviour
             // If the object has arrived, stop the coroutine
             if (transform.position == newPosition)
             {
+                isMoving = false;
                 yield break;
             }
 
@@ -74,9 +89,19 @@ public class CameraRotationMenu : MonoBehaviour
         }
     }
 
-    public void LerpRotateBackCameraWrapper()
+    public async void LerpRotateBackCameraWrapper()
     {
-        StartCoroutine(LerpRotateBackCamera());
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCamera());
+        }
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCamera());
+        }
     }
 
     IEnumerator LerpRotateCameraGameSettings()
@@ -94,6 +119,7 @@ public class CameraRotationMenu : MonoBehaviour
             // If the object has arrived, stop the coroutine
             if (transform.position == newPosition)
             {
+                isMoving = false;
                 yield break;
             }
 
@@ -103,9 +129,19 @@ public class CameraRotationMenu : MonoBehaviour
         }
     }
 
-    public void LerpRotateCameraGameSettingsWrapper()
+    public async void LerpRotateCameraGameSettingsWrapper()
     {
-        StartCoroutine(LerpRotateCameraGameSettings());
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateCameraGameSettings());
+        }
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateCameraGameSettings());
+        }
     }
 
     IEnumerator LerpRotateBackCameraGameSettings()
@@ -123,6 +159,7 @@ public class CameraRotationMenu : MonoBehaviour
             // If the object has arrived, stop the coroutine
             if (transform.position == newPosition)
             {
+                isMoving = false;
                 yield break;
             }
 
@@ -131,8 +168,96 @@ public class CameraRotationMenu : MonoBehaviour
         }
     }
 
-    public void LerpRotateBackCameraGameSettingsWrapper()
+    public async void LerpRotateBackCameraGameSettingsWrapper()
     {
-        StartCoroutine(LerpRotateBackCameraGameSettings());
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCameraGameSettings());
+        }
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCameraGameSettings());
+        }
+    }
+
+    IEnumerator LerpRotateCameraOptions()
+    {
+        float timeSinceStarted = 0f;
+        Vector3 newPosition = transform.position + new Vector3 (13.7f, 11.1f, -40.0f);
+        Quaternion newRotation = transform.rotation * Quaternion.Euler(0.0f, 7.0f, 0.0f);
+        
+        while (true)
+        {
+            timeSinceStarted += Time.deltaTime;
+            transform.SetPositionAndRotation(Vector3.Lerp(transform.position, newPosition, timeSinceStarted), Quaternion.Lerp(transform.rotation, newRotation, timeSinceStarted));
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 5.0f, Time.deltaTime * cameraSpeed);
+
+            // If the object has arrived, stop the coroutine
+            if (transform.position == newPosition)
+            {
+                isMoving = false;
+                yield break;
+            }
+
+            // Otherwise, continue next frame
+            yield return null;
+        }
+    }
+
+    public async void LerpRotateCameraOptionsWrapper()
+    {
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateCameraOptions());
+        }
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateCameraOptions());
+        }
+    }
+
+    IEnumerator LerpRotateBackCameraOptions()
+    {
+        float timeSinceStarted = 0f;
+        Vector3 newPosition = transform.position + new Vector3 (-13.7f, -11.1f, 40.0f);
+        Quaternion newRotation = transform.rotation * Quaternion.Euler(0.0f, -7.0f, 0.0f);
+        
+        while (true)
+        {
+            timeSinceStarted += Time.deltaTime;
+            transform.SetPositionAndRotation(Vector3.Lerp(transform.position, newPosition, timeSinceStarted), Quaternion.Lerp(transform.rotation, newRotation, timeSinceStarted));
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 9.0f, Time.deltaTime * cameraSpeed);
+
+            // If the object has arrived, stop the coroutine
+            if (transform.position == newPosition)
+            {
+                isMoving = false;
+                yield break;
+            }
+
+            // Otherwise, continue next frame
+            yield return null;
+        }
+    }
+
+    public async void LerpRotateBackCameraOptionsWrapper()
+    {
+        if (!isMoving)
+        {
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCameraOptions());
+        }
+        else 
+        {
+            await Task.Delay(500);
+            isMoving = true;
+            StartCoroutine(LerpRotateBackCameraOptions());
+        }
     }
 }
