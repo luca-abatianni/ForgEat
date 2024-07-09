@@ -6,7 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class ScoreBoard : NetworkBehaviour
@@ -117,8 +119,9 @@ public class ScoreBoard : NetworkBehaviour
         GameObject table_ui_element = table_elements[key];
         GameObject ui_element = UI_elements[key];
         ui_element.GetComponentInChildren<Slider>().value = value.percentage;
-        
-        table_ui_element.GetComponent<DetailedScoreEntry>().SetScore(value.score);
+        DetailedScoreEntry entry = table_ui_element.GetComponentInChildren<DetailedScoreEntry>();
+        entry.SetScore(value.score);
+        entry.SetRoundsWon(value.rounds_won);
     }
 
     public void spawnPlayerScore(NetworkConnection client)
@@ -215,9 +218,8 @@ public class ScoreBoard : NetworkBehaviour
     public bool AwardRoundPoint(NetworkConnection round_winner, int rounds_to_win) 
     {
         ScoreboardEntry tmp = scores_dictionary[round_winner];
-        tmp.rounds_won += 1;
+        tmp.rounds_won++;
         scores_dictionary[round_winner] = tmp;
-
         if (tmp.rounds_won >= rounds_to_win)
         {
             return true;
@@ -233,9 +235,20 @@ public class ScoreBoard : NetworkBehaviour
     [Server]
     public void ResetScores()
     {
+        /*
+        NetworkConnection[] keys = scores_dictionary.Keys.ToArray();
+        foreach (var key in keys)
+        {
+            ScoreboardEntry tmp = scores_dictionary[key];
+            tmp.score = 0;
+            scores_dictionary[key] = tmp;
+        }
+        */
         foreach (var entry in scores_dictionary)
         {
             entry.Value.score = 0;
+            entry.Value.percentage = 0;
+            scores_dictionary.Dirty(entry.Key);
         }
     }
 
