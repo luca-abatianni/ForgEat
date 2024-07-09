@@ -1,10 +1,12 @@
+using FishNet;
 using FishNet.Managing.Object;
+using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaController : MonoBehaviour
+public class ManaController : NetworkBehaviour
 {
     [Header("Mana Main Parameters")]
     public float playerMana = 100f;
@@ -26,11 +28,19 @@ public class ManaController : MonoBehaviour
     private FirstPersonController fpc = null;
     private float regenDelay = 0f;
     private Image _manaNotEnough = null;
-    private void Start()
+    private int clientId = 0;
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+        if (!base.IsOwner)
+        {
+            GetComponent<ManaController>().enabled = false;
+            return;
+        }
     }
     public void UpdateMana(float mana)
     {
+
         if (Poisoning)
         {
             mana = -Mathf.Abs(mana);
@@ -45,31 +55,37 @@ public class ManaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fpc == null)
-            fpc = GetComponent<FirstPersonController>();
-        if (sliderCanvasGroup == null)
-            sliderCanvasGroup = GameObject.FindGameObjectWithTag("ManaCanvasGroup").GetComponent<CanvasGroup>();
-        if (manaProgressUI == null)
-            manaProgressUI = GameObject.FindGameObjectWithTag("ManaImageSlider").GetComponent<Image>();
-        if (_manaNotEnough == null)
-            _manaNotEnough = sliderCanvasGroup.transform.Find("ManaNotEnough").GetComponent<Image>();
-
-
-
-        if (isShielding)
+        if (clientId == 0)
+            clientId = GetComponent<NetworkObject>().Owner.ClientId;
+        if (clientId == InstanceFinder.ClientManager.Connection.ClientId)
         {
-            UpdateMana(-shieldCost * Time.deltaTime);
-            regenDelay = Time.time + .1f;
-        }
-        else
-        {
-            if (playerMana <= maxMana - 0.01 && Time.time > regenDelay)
+            if (fpc == null)
+                fpc = GetComponent<FirstPersonController>();
+            if (sliderCanvasGroup == null)
+                sliderCanvasGroup = GameObject.FindGameObjectWithTag("ManaCanvasGroup").GetComponent<CanvasGroup>();
+            if (manaProgressUI == null)
+                manaProgressUI = GameObject.FindGameObjectWithTag("ManaImageSlider").GetComponent<Image>();
+            if (_manaNotEnough == null)
+                _manaNotEnough = sliderCanvasGroup.transform.Find("ManaNotEnough").GetComponent<Image>();
+
+
+
+            if (isShielding)
             {
-                UpdateMana(manaRegen * Time.deltaTime);
+                Debug.Log("IS SHIELDING");
+                UpdateMana(-shieldCost * Time.deltaTime);
+                regenDelay = Time.time + .1f;
             }
-        }
+            else
+            {
+                if (playerMana <= maxMana - 0.01 && Time.time > regenDelay)
+                {
+                    UpdateMana(manaRegen * Time.deltaTime);
+                }
+            }
 
-        manaProgressUI.fillAmount = playerMana / maxMana;
+            manaProgressUI.fillAmount = playerMana / maxMana;
+        }
     }
     private IEnumerator ThreadNotEnoughMana()
     {
