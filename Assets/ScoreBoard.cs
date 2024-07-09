@@ -6,7 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using static Unity.Burst.Intrinsics.X86.Avx;
 using static UnityEngine.UI.GridLayoutGroup;
@@ -187,11 +189,12 @@ public class ScoreBoard : NetworkBehaviour
 
         if(tmp.percentage > 1.0f)
         {
-            FindAnyObjectByType<GameManager>().PlayerWon(client);
+            FindAnyObjectByType<GameManager>().PlayerWonRound(client);
         }
         //scores_syncdictionary.Dirty(client);
     }
 
+    [Server]
     public NetworkConnection getWinner()
     {
         if (scores_dictionary.Count == 0)
@@ -210,6 +213,34 @@ public class ScoreBoard : NetworkBehaviour
         }
 
         return winner;
+    }
+
+    [Server]
+    public bool AwardRoundPoint(NetworkConnection round_winner, int rounds_to_win) 
+    {
+        ScoreboardEntry tmp = scores_dictionary[round_winner];
+        tmp.rounds_won += 1;
+        scores_dictionary[round_winner] = tmp;
+
+        if (tmp.rounds_won >= rounds_to_win)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+
+    }
+
+    [Server]
+    public void ResetScores()
+    {
+        foreach (var entry in scores_dictionary)
+        {
+            entry.Value.score = 0;
+        }
     }
 
     [System.Serializable]

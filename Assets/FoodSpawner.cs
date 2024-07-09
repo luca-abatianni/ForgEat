@@ -16,7 +16,7 @@ public class FoodSpawner : NetworkBehaviour
     public GameObject spawn_points;
     public List<Food> food_spawnlist = new List<Food>();
     public List<GameObject> trash_spawnlist = new List<GameObject>();
-    public List<GameObject> spawnedObject = new List<GameObject>();
+    //public List<GameObject> spawnedObject = new List<GameObject>();
     public List<GameObject> food_list = new List<GameObject>();     // Set private later... Public for testing.
     public List<GameObject> trash_list = new List<GameObject>();    // Set private later... Public for testing.
 
@@ -109,7 +109,23 @@ public class FoodSpawner : NetworkBehaviour
         {
             trash_list.Remove(obj);
         }
-        spawnedObject.Remove(obj);
+        //spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
+    }
+
+    [Server]
+    public void DespawnAll()
+    {
+        foreach (var trash in trash_list)
+        {
+            ServerManager.Despawn(trash);
+        }
+        trash_list.Clear();
+
+        foreach (var food in food_list)
+        {
+            ServerManager.Despawn(food);
+        }
+        food_list.Clear();
     }
 }

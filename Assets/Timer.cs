@@ -38,7 +38,6 @@ public class Timer : NetworkBehaviour
         int minutes = time / 60;
         int seconds = time % 60;
 
-        Debug.Log($"Seconds diff {seconds_diff}, decimal_diff {decimal_diff}. Total diff {total_time_diff}");
         yield return new WaitForSeconds(decimal_diff);
 
         while (minutes >= 0)

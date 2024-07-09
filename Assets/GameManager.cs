@@ -20,13 +20,17 @@ public class GameManager : NetworkBehaviour
         FirstPhase,
         WaitingSecondPhase,
         SecondPhase,
-        End
+        EndRound,
+        EndMatch
     };
 
     [SerializeField]
     private int num_clients;
     [SerializeField]
     private int max_clients;
+
+    [SerializeField]
+    private int rounds_to_win;
 
     [SerializeField]
     private GameObject player_spawns;
@@ -73,6 +77,7 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame // Executed only by server.
     void Update()
     {
+        Debug.Log("Phase: " +  game_state);
         if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
@@ -92,7 +97,7 @@ public class GameManager : NetworkBehaviour
                 case GameState.SecondPhase:
                     SecondPhase();
                     break;
-                case GameState.End:
+                case GameState.EndRound:
                     EndRound();
                     break;
                 default:
@@ -103,12 +108,19 @@ public class GameManager : NetworkBehaviour
 
     void WaitForPlayers()
     {
-        num_clients = InstanceFinder.ServerManager.Clients.Count;
+        int current_num = InstanceFinder.ServerManager.Clients.Count;
+        if (num_clients != current_num)
+        {
+            string s = "Waiting for players... " + current_num.ToString() + "/" + max_clients.ToString();
+            GetComponent<GameAnnouncement>().ORPC_Announcement(s, -1);
+            num_clients = current_num;
+        }
         NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
             phase_timer = true;
             StartCoroutine(PhaseTimer(5, false));
+            GetComponent<GameAnnouncement>().ORPC_Announcement("Starting match!", -1);
             //game_state++;
         }
         return;
@@ -116,9 +128,10 @@ public class GameManager : NetworkBehaviour
 
 
 
-    void WaitingFirstPhase()
+    void WaitingFirstPhase() // memory phase
     {
         phase_timer = true;
+        GetComponent<GameAnnouncement>().ORPC_Announcement("Look for food! Remember where it is!", between_phase_period);
         timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period, true));
         return;
     }
@@ -131,7 +144,6 @@ public class GameManager : NetworkBehaviour
 
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
-        NetworkManager.Log("Barriers off!");
         timer_coroutine = StartCoroutine(PhaseTimer(phase_one_period, true));
         return;
     }
@@ -141,6 +153,7 @@ public class GameManager : NetworkBehaviour
         phase_timer = true;
         food_spawner.Server_TransformTrashInFood();
         food_spawner.Observer_TransformTrashInFood();
+        GetComponent<GameAnnouncement>().ORPC_Announcement("Get to your food before the others!", between_phase_period);
         SetUpPlayersRoundScore();
         PlayersBackToSpawn();
         spawn_barriers.BarriersOn();
@@ -159,21 +172,32 @@ public class GameManager : NetworkBehaviour
     {
         phase_timer = true;
         PlayersBackToSpawn();
+        spawn_barriers.BarriersOn();
 
-        NetworkConnection winner = FindAnyObjectByType<ScoreBoard>().getWinner();
-        if (winner != null)
+        ScoreBoard sb = FindAnyObjectByType<ScoreBoard>();
+        NetworkConnection winner = sb.getWinner();
+
+        if (winner == null) return;
+        if (sb.AwardRoundPoint(winner, rounds_to_win)) // will return true when a player reached winning number of rounds.
         {
-            GetComponent<GameAnnouncement>().ORPC_Winner(winner);
+            GetComponent<GameAnnouncement>().ORPC_DifferentiatedAnnouncement("You lost the match!", "You won the match!", winner, 10f);
+            game_state++;
+        }
+        else
+        {
+            GetComponent<GameAnnouncement>().ORPC_DifferentiatedAnnouncement("You lost the round... Prepare for the next!", "You won the round! Prepare for the next!", winner, between_phase_period);
+            timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period, false, GameState.WaitingFirstPhase));
+            sb.ResetScores();
+            food_spawner.DespawnAll();
+            game_state = GameState.WaitingFirstPhase;
         }
 
-        spawn_barriers.BarriersOn();
     }
 
-    public void PlayerWon(NetworkConnection winner_client)
+    public void PlayerWonRound(NetworkConnection winner_client)
     {
-        Debug.Log($"Player_{winner_client.ClientId} [{winner_client}] won!");
         StopCoroutine(timer_coroutine);
-        game_state = GameState.End;
+        game_state = GameState.EndRound;
         EndRound();
     }
 
@@ -183,6 +207,15 @@ public class GameManager : NetworkBehaviour
         yield return new WaitForSeconds(time);
         phase_timer = false;
         game_state++;
+        yield return null;
+    }
+
+    IEnumerator PhaseTimer(int time, bool show_clients, GameState next_state)
+    {
+        if (show_clients) GetComponent<Timer>().ORPC_StartTimer(time, TimeManager.Tick);
+        yield return new WaitForSeconds(time);
+        phase_timer = false;
+        game_state = next_state;
         yield return null;
     }
 
