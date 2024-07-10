@@ -14,6 +14,7 @@ TagManager:
   - ManaCanvasGroup
   - PowerSelectionGroup
   - StatusGroup
+  - HitFeedback
   layers:
   - Default
   - TransparentFX

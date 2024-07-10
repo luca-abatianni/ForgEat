@@ -1,4 +1,4 @@
-using FishNet.Connection;
+ï»¿using FishNet.Connection;
 using FishNet.Object;
 using System;
 using System.Collections;
@@ -7,6 +7,7 @@ using System.Data;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -18,6 +19,7 @@ public class PowerEffect : NetworkBehaviour
     [HideInInspector] public List<(GameObject, float)> _listSpawned = new List<(GameObject, float)>();
     private ShieldPower _shield;
     private CanvasGroup statusGroup = null;
+    private CanvasGroup hitFeedbackGroup = null;
     private Dictionary<StatusType, Coroutine> _dictStatus = new Dictionary<StatusType, Coroutine>();
     enum StatusType
     {
@@ -25,7 +27,7 @@ public class PowerEffect : NetworkBehaviour
         Confusion = 2,
         IronStomach = 3,//effetto passivo da cibo, no effetti negativi da cibo
         UnlimitedPower = 4,//effetto passivo da cibo, mana infinito a tempo
-        Agility = 5,//effetto passivo da cibo, velocità e salto ++
+        Agility = 5,//effetto passivo da cibo, velocitï¿½ e salto ++
         Poisoning = 6,//effetto passivo da cibo, mana positivo diventa negativo
         Silence = 7,//effetto passivo da cibo, impossibile castare spells
         Heft = 8,//effetto passivo da cibo, slow down + gravity up
@@ -40,7 +42,7 @@ public class PowerEffect : NetworkBehaviour
         }
     }
 
-    //Controlla che il personaggio non sia già sotto effetto di questo potere
+    //Controlla che il personaggio non sia giï¿½ sotto effetto di questo potere
     public bool CheckHitList(PowerBehavior.PowerType powerType)
     {
         foreach (var spawned in _listSpawned)
@@ -78,6 +80,7 @@ public class PowerEffect : NetworkBehaviour
         float duration = 3f;
         if (!_dictStatus.ContainsKey(StatusType.Frost))
         {
+            StartCoroutine(HurtFlash());
             _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
             var playerC = gameObject.GetComponent<PlayerController>();
@@ -91,6 +94,7 @@ public class PowerEffect : NetworkBehaviour
     private IEnumerator WindBulletHit(PowerBehavior.PowerType powerHit)
     {//Effetto gestito da WindiImpact + PlayerController
         float duration = 1f;
+        StartCoroutine(HurtFlash());
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
         yield return null;
     }
@@ -99,6 +103,7 @@ public class PowerEffect : NetworkBehaviour
         float duration = 4f;
         if (!_dictStatus.ContainsKey(StatusType.Confusion))
         {
+            StartCoroutine(HurtFlash());
             _dictStatus.Add(StatusType.Confusion, StartCoroutine(UpdateStatusHUD(StatusType.Confusion, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
             gameObject.GetComponent<PlayerController>().confusion = true;
@@ -114,6 +119,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.IronStomach;
         if (!_dictStatus.ContainsKey(status))
         {
+
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<FoodPicker>().IronStomach = true;
             yield return new WaitForSeconds(duration);
@@ -128,6 +134,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.UnlimitedPower;
         if (!_dictStatus.ContainsKey(status))
         {
+
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<ManaController>().UnlimitedPower = true;
             yield return new WaitForSeconds(duration);
@@ -142,6 +149,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Agility;
         if (!_dictStatus.ContainsKey(status))
         {
+
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             var playerC = gameObject.GetComponent<PlayerController>();
             playerC.Agility = true;
@@ -157,6 +165,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Poisoning;
         if (!_dictStatus.ContainsKey(status))
         {
+            StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<ManaController>().Poisoning = true;
             yield return new WaitForSeconds(duration);
@@ -171,6 +180,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Silence;
         if (!_dictStatus.ContainsKey(status))
         {
+            StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<PrimaryPower>().Silence = true;
             yield return new WaitForSeconds(duration);
@@ -185,6 +195,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Heft;
         if (!_dictStatus.ContainsKey(status))
         {
+            StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<PlayerController>().Heft = true;
             yield return new WaitForSeconds(duration);
@@ -221,6 +232,13 @@ public class PowerEffect : NetworkBehaviour
         script._listSpawned.Add((spawned, duration));
     }
 
+    void InitFeedbackGroup()
+    {
+        for (int i = 0; i < hitFeedbackGroup.transform.childCount; i++)
+        {
+            hitFeedbackGroup.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
     void InitStatusGroup()
     {
         foreach (var s in Enum.GetValues(typeof(StatusType)))
@@ -233,6 +251,11 @@ public class PowerEffect : NetworkBehaviour
         {
             statusGroup = GameObject.FindGameObjectWithTag("StatusGroup").GetComponent<CanvasGroup>();
             InitStatusGroup();
+        }
+        if (hitFeedbackGroup == null)
+        {
+            hitFeedbackGroup = GameObject.FindGameObjectWithTag("HitFeedback").GetComponent<CanvasGroup>();
+            InitFeedbackGroup();
         }
         CheckEffectsDuration();
         if (_shield == null)
@@ -324,31 +347,10 @@ public class PowerEffect : NetworkBehaviour
         text.color = finalColor;
         yield return null;  // Wait for the nnext frame
     }
-    private IEnumerator ImageFadeOut(UnityEngine.UI.Image image, float duration)
-    {
-        float startAlpha = 1f;
-        float timeElapsed = 0.0f;
 
-        while (timeElapsed < duration)
-        {
-            timeElapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
-            Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
-            image.color = newColor;
-            yield return null;  // Wait for the next frame
-        }
-
-        // Ensure the alpha is set to 0 at the end
-        Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
-        image.color = finalColor;
-    }
-
-
-
-
-    //List non è modificabile, per cui
+    //List non ï¿½ modificabile, per cui
     //ad ogni ciclo controllo le durate degli effetti e aggiorno sottraendo il tempo dall'ultimo frame
-    //se il tempo è finito despawno l'oggetto,
+    //se il tempo ï¿½ finito despawno l'oggetto,
     //altrimenti lo rimetto in lista (con sostituzione dell'intera lista per il motivo di cui sopra)
     void CheckEffectsDuration()
     {
@@ -369,5 +371,57 @@ public class PowerEffect : NetworkBehaviour
         }
         _listSpawned.Clear();
         _listSpawned = spawned;
+    }
+
+
+    IEnumerator HurtFlash()
+    {
+        //CameraShake.Shake(.1f, 1f);
+        var hurtFlash = hitFeedbackGroup.transform.Find("RadialGradient").GetComponent<UnityEngine.UI.Image>();
+        hurtFlash.gameObject.SetActive(true);
+        hurtFlash.enabled = true;
+        StartCoroutine(ImageFadeIn(hurtFlash, .05f));
+        yield return new WaitForSeconds(.1f);
+        StartCoroutine(ImageFadeOut(hurtFlash, .05f));
+        //hurtFlash.enabled = false;
+        //hurtFlash.gameObject.SetActive(true);
+        yield return null;
+    }
+
+    private IEnumerator ImageFadeOut(UnityEngine.UI.Image image, float duration)
+    {
+        float startAlpha = 1f;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
+            Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            image.color = newColor;
+            yield return null;  // Wait for the next frame
+        }
+
+        // Ensure the alpha is set to 0 at the end
+        Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
+        image.color = finalColor;
+    }
+    private IEnumerator ImageFadeIn(UnityEngine.UI.Image image, float duration)
+    {
+        float startAlpha = 0f;
+        float timeElapsed = 0.0f;
+
+        while (timeElapsed < duration)
+        {
+            timeElapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, 1,  timeElapsed / duration);
+            Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
+            image.color = newColor;
+            yield return null;  // Wait for the next frame
+        }
+
+        // Ensure the alpha is set to 0 at the end
+        Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
+        image.color = finalColor;
     }
 }
