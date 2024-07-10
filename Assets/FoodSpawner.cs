@@ -127,5 +127,8 @@ public class FoodSpawner : NetworkBehaviour
             ServerManager.Despawn(food);
         }
         food_list.Clear();
+        food_count = 0;
+        trash_count = 0;
+        total_food_points = 0;
     }
 }
