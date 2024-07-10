@@ -145,10 +145,19 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.UnlimitedPower;
         if (!_dictStatus.ContainsKey(status))
         {
-
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            var upVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.RawImage>();
+            upVisual.color = new Color(upVisual.color.r, upVisual.color.g, upVisual.color.b, .8f);
             gameObject.GetComponent<ManaController>().UnlimitedPower = true;
-            yield return new WaitForSeconds(duration);
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                upVisual.uvRect = new Rect(upVisual.uvRect.position + new Vector2(0f, -.4f) * Time.deltaTime, upVisual.uvRect.size);
+                yield return null;
+            }
+            //yield return new WaitForSeconds(duration);
+            upVisual.color = new Color(upVisual.color.r, upVisual.color.g, upVisual.color.b, 0f);
             gameObject.GetComponent<ManaController>().UnlimitedPower = false;
             _dictStatus.Remove(status);
         }
@@ -203,6 +212,7 @@ public class PowerEffect : NetworkBehaviour
         if (!_dictStatus.ContainsKey(status))
         {
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            //TODO : OVATTARE I SUONI
             var silenceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
             Color color = new Color(silenceVisual.color.r, silenceVisual.color.g, silenceVisual.color.b, .20f);
             silenceVisual.color = color;
@@ -264,8 +274,13 @@ public class PowerEffect : NetworkBehaviour
         for (int i = 0; i < hitFeedbackGroup.transform.childCount; i++)
         {
             var image = hitFeedbackGroup.transform.GetChild(i).gameObject.GetComponent<UnityEngine.UI.Image>();
-            Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
-            image.color = finalColor;
+            if (image == null)
+            {//unica eccezion è la scrolling texture di UnlimitedPower
+                var rawimage = hitFeedbackGroup.transform.GetChild(i).gameObject.GetComponent<UnityEngine.UI.RawImage>();
+                rawimage.color = new Color(rawimage.color.r, rawimage.color.g, rawimage.color.b, 0);
+            }
+            else
+                image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
         }
     }
     void InitStatusGroup()
@@ -366,14 +381,12 @@ public class PowerEffect : NetworkBehaviour
         {
             timeElapsed += Time.deltaTime;
             float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
-            Color newColor = new Color(text.color.r, text.color.g, text.color.b, alpha);
-            text.color = newColor;
+            text.color = new Color(text.color.r, text.color.g, text.color.b, alpha);
             yield return null;  // Wait for the nnext frame
         }
 
         // Ensure the alpha is set to 0 at the end
-        Color finalColor = new Color(text.color.r, text.color.g, text.color.b, 0);
-        text.color = finalColor;
+        text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         yield return null;  // Wait for the nnext frame
     }
 
@@ -429,14 +442,12 @@ public class PowerEffect : NetworkBehaviour
         {
             timeElapsed += Time.deltaTime;
             float alpha = Mathf.Lerp(startAlpha, 0, timeElapsed / duration);
-            Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
-            image.color = newColor;
+            image.color = new Color(image.color.r, image.color.g, image.color.b, alpha);
             yield return null;  // Wait for the next frame
         }
 
         // Ensure the alpha is set to 0 at the end
-        Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
-        image.color = finalColor;
+        image.color = new Color(image.color.r, image.color.g, image.color.b, 0);
     }
     private IEnumerator ImageFadeIn(UnityEngine.UI.Image image, float duration)
     {
