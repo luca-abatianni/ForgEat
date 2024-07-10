@@ -77,16 +77,22 @@ public class PowerEffect : NetworkBehaviour
     private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
     {
         float duration = 3f;
-        if (!_dictStatus.ContainsKey(StatusType.Frost))
+        var status = StatusType.Frost;
+        if (!_dictStatus.ContainsKey(status))
         {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+
+            var iceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
+            StartCoroutine(ImageFadeIn(iceVisual, 0f));
             StartCoroutine(HurtFlash());
-            _dictStatus.Add(StatusType.Frost, StartCoroutine(UpdateStatusHUD(StatusType.Frost, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
             var playerC = gameObject.GetComponent<PlayerController>();
             playerC.frost = true;
+            StartCoroutine(ImageFadeOut(iceVisual, duration));
+
             yield return new WaitForSeconds(duration);
             playerC.frost = false;
-            _dictStatus.Remove(StatusType.Frost);
+            _dictStatus.Remove(status);
         }
         yield return null;
     }
@@ -100,15 +106,21 @@ public class PowerEffect : NetworkBehaviour
     private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
     {
         float duration = 4f;
-        if (!_dictStatus.ContainsKey(StatusType.Confusion))
+        var status = StatusType.Confusion;
+        if (!_dictStatus.ContainsKey(status))
         {
+            _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            var mindVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
+            Color color = new Color(mindVisual.color.r, mindVisual.color.g, mindVisual.color.b, .25f);
+            mindVisual.color = color;
             StartCoroutine(HurtFlash());
-            _dictStatus.Add(StatusType.Confusion, StartCoroutine(UpdateStatusHUD(StatusType.Confusion, duration)));
             SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
             gameObject.GetComponent<PlayerController>().confusion = true;
             yield return new WaitForSeconds(duration);
             gameObject.GetComponent<PlayerController>().confusion = false;
-            _dictStatus.Remove(StatusType.Confusion);
+            color = new Color(mindVisual.color.r, mindVisual.color.g, mindVisual.color.b, 0f);
+            mindVisual.color = color;
+            _dictStatus.Remove(status);
         }
         yield return null;
     }
@@ -164,10 +176,21 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Poisoning;
         if (!_dictStatus.ContainsKey(status))
         {
-            StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            StartCoroutine(HurtFlash());
             gameObject.GetComponent<ManaController>().Poisoning = true;
-            yield return new WaitForSeconds(duration);
+            gameObject.GetComponent<ManaController>().UpdateMana(15f);
+
+            var poisonVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
+            for (int i = 0; i < 5; i++)
+            {//Periodico blinking del veleno (gradient verde)
+                StartCoroutine(ImageFadeIn(poisonVisual, .3f));
+                yield return new WaitForSeconds(.3f);
+                StartCoroutine(ImageFadeOut(poisonVisual, .3f));
+
+                yield return new WaitForSeconds(.7f);
+            }
+
             gameObject.GetComponent<ManaController>().Poisoning = false;
             _dictStatus.Remove(status);
         }
@@ -179,11 +202,16 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Silence;
         if (!_dictStatus.ContainsKey(status))
         {
-            StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            var silenceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
+            Color color = new Color(silenceVisual.color.r, silenceVisual.color.g, silenceVisual.color.b, .20f);
+            silenceVisual.color = color;
+            StartCoroutine(HurtFlash());
             gameObject.GetComponent<PrimaryPower>().Silence = true;
             yield return new WaitForSeconds(duration);
             gameObject.GetComponent<PrimaryPower>().Silence = false;
+            color = new Color(silenceVisual.color.r, silenceVisual.color.g, silenceVisual.color.b, 0f);
+            silenceVisual.color = color;
             _dictStatus.Remove(status);
         }
         yield return null;
@@ -235,7 +263,9 @@ public class PowerEffect : NetworkBehaviour
     {
         for (int i = 0; i < hitFeedbackGroup.transform.childCount; i++)
         {
-            hitFeedbackGroup.transform.GetChild(i).gameObject.SetActive(false);
+            var image = hitFeedbackGroup.transform.GetChild(i).gameObject.GetComponent<UnityEngine.UI.Image>();
+            Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
+            image.color = finalColor;
         }
     }
     void InitStatusGroup()
@@ -377,7 +407,7 @@ public class PowerEffect : NetworkBehaviour
     {
         var camshake = FindFirstObjectByType<CameraShake>();
         camshake.Enable();
-        camshake.shakeDuration = .1f;
+        camshake.shakeDuration = .2f;
         //CameraShake.Shake(.1f, 1f);
         var hurtFlash = hitFeedbackGroup.transform.Find("RadialGradient").GetComponent<UnityEngine.UI.Image>();
         hurtFlash.gameObject.SetActive(true);
