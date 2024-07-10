@@ -7,7 +7,6 @@ using System.Data;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -376,6 +375,9 @@ public class PowerEffect : NetworkBehaviour
 
     IEnumerator HurtFlash()
     {
+        var camshake = FindFirstObjectByType<CameraShake>();
+        camshake.Enable();
+        camshake.shakeDuration = .1f;
         //CameraShake.Shake(.1f, 1f);
         var hurtFlash = hitFeedbackGroup.transform.Find("RadialGradient").GetComponent<UnityEngine.UI.Image>();
         hurtFlash.gameObject.SetActive(true);
@@ -414,7 +416,7 @@ public class PowerEffect : NetworkBehaviour
         while (timeElapsed < duration)
         {
             timeElapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(startAlpha, 1,  timeElapsed / duration);
+            float alpha = Mathf.Lerp(startAlpha, 1, timeElapsed / duration);
             Color newColor = new Color(image.color.r, image.color.g, image.color.b, alpha);
             image.color = newColor;
             yield return null;  // Wait for the next frame
