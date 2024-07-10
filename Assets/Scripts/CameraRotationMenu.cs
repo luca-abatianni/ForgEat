@@ -107,7 +107,7 @@ public class CameraRotationMenu : MonoBehaviour
     IEnumerator LerpRotateCameraGameSettings()
     {
         float timeSinceStarted = 0f;
-        Vector3 newPosition = transform.position + new Vector3 (52.2f, 2.7f, -130.6f);
+        Vector3 newPosition = transform.position + new Vector3 (52.2f, 2.0f, -130.6f);
         Quaternion newRotation = transform.rotation * Quaternion.Euler(0.0f, 38.0f, 0.0f);
         
         while (true)
@@ -147,7 +147,7 @@ public class CameraRotationMenu : MonoBehaviour
     IEnumerator LerpRotateBackCameraGameSettings()
     {
         float timeSinceStarted = 0f;
-        Vector3 newPosition = transform.position + new Vector3 (-52.2f, -2.7f, 130.6f);
+        Vector3 newPosition = transform.position + new Vector3 (-52.2f, -2.0f, 130.6f);
         Quaternion newRotation = transform.rotation * Quaternion.Euler(0.0f, -38.0f, 0.0f);
         
         while (true)

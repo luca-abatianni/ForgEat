@@ -7,6 +7,7 @@ public class PlayerSelection : MonoBehaviour
 {
     [SerializeField] private Button previousButton;
     [SerializeField] private Button nextButton;
+    [SerializeField] public GameObject tabDots;
     public static int currentPG;
 
     private void Awake()
@@ -24,9 +25,21 @@ public class PlayerSelection : MonoBehaviour
         }
     }
 
+    private void SelectDot(int _index)
+    {
+        for (int i=0; i < tabDots.transform.childCount; i++)
+        {
+            if (i == _index)
+                tabDots.transform.GetChild(i).GetComponent<Image>().color = new Color32(255,130,0,255);
+            else 
+                tabDots.transform.GetChild(i).GetComponent<Image>().color = new Color32(255,255,255,255);
+        }
+    }
+
     public void ChangePG(int _change)
     {
         currentPG += _change;
         SelectPG(currentPG);
+        SelectDot(currentPG);
     }
 }
