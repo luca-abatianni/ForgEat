@@ -12,6 +12,7 @@ public class FoodPicker : NetworkBehaviour
     [SerializeField]
     Score score;
 
+    private ScoreBoard scoreboard;
     public Animator animator;
     public NetworkAnimator netAnim;
     [HideInInspector] public bool IronStomach = false;//effetto passivo da cibo, no effetti negativi da cibo
@@ -21,6 +22,10 @@ public class FoodPicker : NetworkBehaviour
         if (!base.IsOwner)
         {
             GetComponent<FoodPicker>().enabled = false;
+        }
+        else
+        {
+            StartCoroutine(locateScoreboard());
         }
         base.OnStartClient();
     }
@@ -47,7 +52,7 @@ public class FoodPicker : NetworkBehaviour
                 if (IronStomach)
                     if (points < 0)
                         points = 0;
-                score.AddPoints(points);
+                scoreboard.addPoints(points, base.Owner);
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                 fs.RemoveObject(food.gameObject);
             }
@@ -73,9 +78,16 @@ public class FoodPicker : NetworkBehaviour
         return null;
     }
 
-    public float GetScore()
+    IEnumerator locateScoreboard()
     {
-        return this.score.current_score;
+
+        scoreboard = FindAnyObjectByType<ScoreBoard>();
+        while (scoreboard == null)
+        {
+            yield return null;
+            scoreboard = FindAnyObjectByType<ScoreBoard>();
+        }
+        scoreboard.spawnPlayerScore(base.Owner);
     }
 
     [ObserversRpc]

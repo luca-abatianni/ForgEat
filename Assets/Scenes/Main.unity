@@ -52093,6 +52093,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 797256781}
     - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
+      propertyPath: scoreboard
+      value: 
+      objectReference: {fileID: 1257634508}
+    - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: max_clients
       value: 2
       objectReference: {fileID: 0}
@@ -52100,6 +52104,10 @@ PrefabInstance:
       propertyPath: num_clients
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
+      propertyPath: announcement
+      value: 
+      objectReference: {fileID: 1257634514}
     - target: {fileID: 4323712929007804517, guid: 9ac5d9b68dafb460e99fee7cfae25293, type: 3}
       propertyPath: food_spawner
       value: 

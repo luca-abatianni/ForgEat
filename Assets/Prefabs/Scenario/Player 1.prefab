@@ -79,7 +79,6 @@ GameObject:
   - component: {fileID: 6608566661263585229}
   - component: {fileID: -8236390473868420945}
   - component: {fileID: 5064347402816963343}
-  - component: {fileID: 7315321199175480877}
   - component: {fileID: 3531994882973546020}
   - component: {fileID: -1953266018061299003}
   - component: {fileID: -6898850313665061967}
@@ -136,10 +135,10 @@ MonoBehaviour:
   walkingSpeed: 5
   runningSpeed: 8
   jumpSpeed: 7
-  gravity: 15
   lookSpeed: 2
+  gravity: 15
   lookXLimit: 45
-  confusePlayerMovement: 0
+  confusion: 0
   canMove: 1
   cameraYOffset: 2
   isWalking: 0
@@ -148,6 +147,9 @@ MonoBehaviour:
   isWalkingRight: 0
   isJumping: 0
   isRunning: 0
+  frost: 0
+  Agility: 0
+  Heft: 0
 --- !u!114 &4909591337073164744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   - {fileID: 2176458008890118076}
   - {fileID: 4909591337073164744}
   - {fileID: 5064347402816963343}
-  - {fileID: 7315321199175480877}
+  - {fileID: 0}
   - {fileID: 3531994882973546020}
   - {fileID: -1953266018061299003}
   - {fileID: -6898850313665061967}
@@ -308,26 +310,10 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pick_distance: 4
-  score: {fileID: 7315321199175480877}
+  score: {fileID: 0}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
---- !u!114 &7315321199175480877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2147122664987308133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14050a321a99e1c4c89b268d5ef2acf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 3252535994773736344}
-  _networkObjectCache: {fileID: 3252535994773736344}
-  current_score: 0
-  rounds_won: 0
+  IronStomach: 0
 --- !u!114 &3531994882973546020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +434,7 @@ MonoBehaviour:
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
   _powerCanvasGroup: {fileID: 0}
+  Silence: 0
 --- !u!114 &-7526638300079609564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,10 +549,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a711a4611d20e41bcfb74213bea062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 3252535994773736344}
+  _networkObjectCache: {fileID: 0}
   playerMana: 100
   maxMana: 100
   isFull: 1
   isShielding: 1
+  UnlimitedPower: 0
+  Poisoning: 0
   shieldCost: 10
   manaRegen: 3
   manaProgressUI: {fileID: 0}

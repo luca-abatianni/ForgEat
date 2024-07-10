@@ -201,7 +201,7 @@ public class PlayerController : NetworkBehaviour
     public void TransportPlayerToPosition(Vector3 new_position)
     {
         if (!base.IsOwner) return;
-        Debug.Log("Changing player position");
+        
         this.characterController.enabled = false;
         this.transform.position = new_position;
         this.characterController.enabled = true;

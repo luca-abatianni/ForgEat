@@ -32,6 +32,8 @@ public class ScoreBoard : NetworkBehaviour
     [SerializeField]
     private GameObject full_score_prefab;
 
+    private float points_to_win;
+
 
     //int scoreboard_count = 0;
     //bool full_sync = false;
@@ -190,6 +192,35 @@ public class ScoreBoard : NetworkBehaviour
         //scores_syncdictionary.Dirty(client);
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void addPoints(float points, NetworkConnection client)
+    {
+        ScoreboardEntry tmp = scores_dictionary[client];
+        tmp.score += points;
+        if (tmp.score < 0)
+        {
+            tmp.score = 0;
+            tmp.percentage = 0;
+        }
+        else
+        {
+            tmp.percentage = tmp.score / points_to_win;
+        }
+        scores_dictionary[client] = tmp;
+
+        if (tmp.percentage > 1.0f)
+        {
+            FindAnyObjectByType<GameManager>().PlayerWonRound(client);
+        }
+    }
+
+    [Server]
+    public void SetUpRoundScore(float points)
+    {
+        this.points_to_win = points;
+    }
+
+
     [Server]
     public NetworkConnection getWinner()
     {
@@ -198,6 +229,7 @@ public class ScoreBoard : NetworkBehaviour
 
         NetworkConnection winner = null;
         float highestScore = float.MinValue;
+        int parity_counter = 0;
 
         foreach (var entry in scores_dictionary)
         {
@@ -205,10 +237,16 @@ public class ScoreBoard : NetworkBehaviour
             {
                 highestScore = entry.Value.score;
                 winner = entry.Key;
+                parity_counter = 0;
+            }
+            else if (entry.Value.score == highestScore)
+            {
+                parity_counter++;
             }
         }
 
-        return winner;
+
+        return (parity_counter > 0 ? null : winner);
     }
 
     [Server]
