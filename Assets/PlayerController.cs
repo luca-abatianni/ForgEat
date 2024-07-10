@@ -88,6 +88,8 @@ public class PlayerController : NetworkBehaviour
 
         }
     }
+
+    [Client]
     void Update()
     {
         #region Cursor
@@ -104,7 +106,9 @@ public class PlayerController : NetworkBehaviour
         if (isRunning)
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, runFOV, .5f);
         else
+        {
             playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, walkFOV, .5f);
+        }
 
         isWalking = Input.GetKey(KeyCode.W);
         isMoonwalking = Input.GetKey(KeyCode.S);
