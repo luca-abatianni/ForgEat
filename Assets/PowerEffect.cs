@@ -153,7 +153,7 @@ public class PowerEffect : NetworkBehaviour
             while (elapsedTime < duration)
             {
                 elapsedTime += Time.deltaTime;
-                upVisual.uvRect = new Rect(upVisual.uvRect.position + new Vector2(0f, -.4f) * Time.deltaTime, upVisual.uvRect.size);
+                upVisual.uvRect = new Rect(upVisual.uvRect.position + new Vector2(0f, -.8f) * Time.deltaTime, upVisual.uvRect.size);
                 yield return null;
             }
             //yield return new WaitForSeconds(duration);

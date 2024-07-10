@@ -103,12 +103,7 @@ public class PlayerController : NetworkBehaviour
         // Press Left Shift to run
         isRunning = Input.GetKey(KeyCode.LeftShift);
         #region Animation
-        if (isRunning)
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, runFOV, .5f);
-        else
-        {
-            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, walkFOV, .5f);
-        }
+
 
         isWalking = Input.GetKey(KeyCode.W);
         isMoonwalking = Input.GetKey(KeyCode.S);
@@ -134,7 +129,7 @@ public class PlayerController : NetworkBehaviour
             updRunningSpeed = updRunningSpeed * 1.5f;
             updJumpSpeed *= 1.2f;
         }
-        if(Heft)
+        if (Heft)
         {
             updWalkingSpeed = updWalkingSpeed * .5f;
             updRunningSpeed = updRunningSpeed * .5f;
@@ -175,7 +170,12 @@ public class PlayerController : NetworkBehaviour
             moveDirection += windDirection;
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
-
+        if ((isRunning) && (Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z) != 0))
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, runFOV, .5f);
+        else
+        {
+            playerCamera.fieldOfView = Mathf.Lerp(playerCamera.fieldOfView, walkFOV, 1f);
+        }
         // Player and Camera rotation
         if (canMove && playerCamera != null)
         {
@@ -201,7 +201,7 @@ public class PlayerController : NetworkBehaviour
     public void TransportPlayerToPosition(Vector3 new_position)
     {
         if (!base.IsOwner) return;
-        
+
         this.characterController.enabled = false;
         this.transform.position = new_position;
         this.characterController.enabled = true;
