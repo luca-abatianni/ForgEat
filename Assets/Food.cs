@@ -9,11 +9,11 @@ using System;
 public class Food : NetworkBehaviour
 {
     // Points that will be awarded to the player.
-    private float value;
+    public float value;
 
     // Editable from editor. Values awarded to player when object is set as trash or set as food.
-    [SerializeField] private int value_as_trash;
-    [SerializeField] private int value_as_food;
+    [SerializeField] public int value_as_trash;
+    [SerializeField] public int value_as_food;
 
 
     // Trash is not food but can appear as such.
@@ -46,7 +46,9 @@ public class Food : NetworkBehaviour
         appears_food = false;
         is_food = true;
         value = value_as_food;
-        SetFoodModel();
+        food_model.GetComponent<BoxCollider>().enabled = true;
+        food_model.SetActive(true);
+        DisableTrash();
     }
 
     public void InitAsTrash()
@@ -54,7 +56,9 @@ public class Food : NetworkBehaviour
         appears_food = false;
         is_food = false;
         value = value_as_trash;
-        SetTrashModel();
+        trash_model.GetComponent<BoxCollider>().enabled = true;
+        trash_model.SetActive(true);
+        DisableFood();
     }
 
     public void SetFoodModel()
@@ -62,7 +66,7 @@ public class Food : NetworkBehaviour
         if (appears_food || is_food) return;
         appears_food = true;
         DisableTrash();
-        //food_model.GetComponent<BoxCollider>().enabled = true;
+        food_model.GetComponent<BoxCollider>().enabled = true;
         food_model.SetActive(true);
     }
 
@@ -71,19 +75,19 @@ public class Food : NetworkBehaviour
         if (!appears_food) return; // is trash
         DisableFood();
         appears_food = false;
-        //trash_model.GetComponent<BoxCollider>().enabled = true;
+        trash_model.GetComponent<BoxCollider>().enabled = true;
         trash_model.SetActive(true);
     }
 
     private void DisableTrash()
     {
-        //trash_model.GetComponent<BoxCollider>().enabled = false;
+        trash_model.GetComponent<BoxCollider>().enabled = false;
         trash_model.SetActive(false);
     }
 
     private void DisableFood()
     {
-        //food_model.GetComponent<BoxCollider>().enabled = false;
+        food_model.GetComponent<BoxCollider>().enabled = false;
         food_model.SetActive(false);
     }
 

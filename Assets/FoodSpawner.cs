@@ -8,14 +8,15 @@ using FishNet.Connection;
 
 public class FoodSpawner : NetworkBehaviour
 {
-    public int food_prefab = 0;
-    public int trash_prefab = 0;
+    public int food_count = 0;
+    public float total_food_points;
+    public int trash_count = 0;
     public GameObject food_parent;
     public GameObject trash_parent;
     public GameObject spawn_points;
     public List<Food> food_spawnlist = new List<Food>();
     public List<GameObject> trash_spawnlist = new List<GameObject>();
-    public List<GameObject> spawnedObject = new List<GameObject>();
+    //public List<GameObject> spawnedObject = new List<GameObject>();
     public List<GameObject> food_list = new List<GameObject>();     // Set private later... Public for testing.
     public List<GameObject> trash_list = new List<GameObject>();    // Set private later... Public for testing.
 
@@ -24,30 +25,31 @@ public class FoodSpawner : NetworkBehaviour
     //[ObserversRpc]
     public void SpawnFoodTrash() // Called only by game manager (server only).
     {
+        total_food_points = 0f;
         //GlobalConsole.Instance.Log("Spawning food!");
         foreach (Transform spawn_point in spawn_points.transform)
         {
             NetworkManager.Log("Spawning food!");
             SpawnObject(Random.value > 0.5, spawn_point.position, spawn_point.rotation, this);
         }
+        Debug.Log("total points of food: " +  total_food_points);
     }
 
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
     {
-        if (food_prefab == 24) food_or_trash = false;
-        if (trash_prefab == 24) food_or_trash = true;
+        if (food_count == 24) food_or_trash = false;
+        if (trash_count == 24) food_or_trash = true;
         if (food_or_trash)
         {
-            food_prefab++;
+            food_count++;
         }
         else
         {
-            trash_prefab++;
+            trash_count++;
         }
 
-        Debug.Log("Spawning " + (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
-        //GameObject spawned = Instantiate((food_or_trash ? food_prefab : trash_prefab), position, rotation, food_parent.transform);
-        GameObject spawned = Instantiate(SelectFoodList(), position, rotation);
+        GameObject spawned = Instantiate(SelectFoodList(), position, rotation);//, food_parent.transform); //
+        total_food_points += spawned.GetComponent<Food>().value_as_food;
         ServerManager.Spawn(spawned);
         SetClientFoodTrash_ORPC(food_or_trash, spawned);
     }
@@ -62,14 +64,12 @@ public class FoodSpawner : NetworkBehaviour
     {
         if (food_or_trash)
         {
-            Debug.Log("Spawned food");
             spawned.transform.SetParent(food_parent.transform);
             spawned.GetComponent<Food>().InitAsFood();
             food_list.Add(spawned);
         }
         else
         {
-            Debug.Log("Spawned trash");
             spawned.transform.SetParent(trash_parent.transform);
             spawned.GetComponent<Food>().InitAsTrash();
             trash_list.Add(spawned);
@@ -109,67 +109,26 @@ public class FoodSpawner : NetworkBehaviour
         {
             trash_list.Remove(obj);
         }
-        spawnedObject.Remove(obj);
+        //spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
     }
-    /*
 
-    //[ServerRpc]
-    private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
+    [Server]
+    public void DespawnAll()
     {
-        if(food_prefab == 24) food_or_trash=false;
-        if(trash_prefab == 24) food_or_trash=true;
-        if(food_or_trash){
-            food_prefab++;
-        } else {
-            trash_prefab++;
-            }
+        foreach (var trash in trash_list)
+        {
+            ServerManager.Despawn(trash);
+        }
+        trash_list.Clear();
 
-        Debug.Log("Spawning " +  (food_or_trash ? "food" : "trash") + "(" + food_or_trash + ")");
-        //GameObject spawned = Instantiate((food_or_trash ? food_prefab : trash_prefab), position, rotation, food_parent.transform);
-        GameObject spawned = Instantiate(SelectFoodList(), position, rotation, food_or_trash ? food_parent.transform : trash_parent.transform);
-        ServerManager.Spawn(spawned);
-        if (food_or_trash)
+        foreach (var food in food_list)
         {
-            Debug.Log("Spawned food");
-            spawned.GetComponent<Food>().InitAsFood();
-            script.food_list.Add(spawned);
+            ServerManager.Despawn(food);
         }
-        else
-        {
-            Debug.Log("Spawned trash");
-            spawned.GetComponent<Food>().InitAsTrash();
-            script.trash_list.Add(spawned);
-        }
+        food_list.Clear();
+        food_count = 0;
+        trash_count = 0;
+        total_food_points = 0;
     }
-
-
-    private GameObject SelectTrashList()
-    {
-        int itemIndex = Random.Range (0,(trash_spawnlist.Count));
-        return trash_spawnlist[itemIndex].gameObject;
-    }
-
-    private void SetClientsFoodTrashList()
-    {
-        FoodSpawner script = GetComponent<FoodSpawner>();
-        foreach (Transform t in food_parent.transform)
-        {
-            var food = t.GetComponent<Food>();
-            food.InitAsFood();
-            food.SetFood();
-            food_list.Add(t.gameObject);
-        }
-        foreach (Transform t in trash_parent.transform)
-        {
-            var trash = t.GetComponent<Food>();
-            trash.InitAsTrash();
-            trash.SetFood();
-            trash_list.Add(t.gameObject);
-        }
-    }
-
-
-
-    */
 }

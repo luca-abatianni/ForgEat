@@ -3,21 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDestroy : NetworkBehaviour
+public class SelfDestroy : MonoBehaviour
 {
     public float _timeout = 5f;
     float _timer = 0f;
     public bool _WithTimer = false, _effectSpawned = false;
     public GameObject _trickSigil;
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-        if (!base.IsServer)
-        {
-            GetComponent<SelfDestroy>().enabled = false;
-            return;
-        }
-    }
+
     private void Start()
     {
         if (GetComponent<Food>() != null)
@@ -29,42 +21,32 @@ public class SelfDestroy : NetworkBehaviour
     {
         if (transform.childCount == 0)
         {
-            ORPC_Despawn(gameObject);
+            Despawn(gameObject);
             //SRPC_Despawn(gameObject);
             //Destroy(gameObject);
         }
         float now = Time.time;
         if (_WithTimer && now > (_timer - .8f) && _trickSigil != null && !_effectSpawned)//circa un secondo prima parte l'effetto
         {
-            SRPC_SpawnSigilFoot(_trickSigil, gameObject);
+            SpawnSigilFoot(_trickSigil, gameObject);
             _effectSpawned = true;
         }
         if (_WithTimer && now > _timer)
         {
-            ORPC_Despawn(gameObject);
+            Despawn(gameObject);
             //SRPC_Despawn(gameObject);
 
         }
     }
 
-    [ServerRpc]
-    public void SRPC_Despawn(GameObject obj)
+    public void Despawn(GameObject obj)
     {
-        Debug.Log("Despawn VFX");
-        ServerManager.Despawn(obj);
+        Destroy(obj);
     }
-    [ObserversRpc]
-    public void ORPC_Despawn(GameObject obj)
-    {
-        Debug.Log("Despawn VFX");
-        ServerManager.Despawn(obj);
-    }
-    [ObserversRpc]
-    void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _spawnPoint)
+    void SpawnSigilFoot(GameObject _effectToSpawn, GameObject _spawnPoint)
     {
         var p = _spawnPoint.transform.position;
         var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), _spawnPoint.transform.rotation);
-        ServerManager.Spawn(spawned);
         spawned.transform.SetParent(_spawnPoint.transform);
     }
 }

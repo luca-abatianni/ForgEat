@@ -158,7 +158,6 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 1297937835789724352}
-  - {fileID: -8631992497001958908}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -170,7 +169,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 12
+  <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -218,6 +217,8 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: -5736793131862025157}
   _networkObjectCache: {fileID: -5736793131862025157}
   value: -1
+  value_as_trash: 0
+  value_as_food: 0
   appears_food: 0
   is_food: 0
   food_model: {fileID: 3779552329203747164}
@@ -234,10 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225e4e74ec6fcd046840b1a8a368a78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
-  _addedNetworkObject: {fileID: -5736793131862025157}
-  _networkObjectCache: {fileID: -5736793131862025157}
-  _timeout: 10
+  _timeout: 20
   _WithTimer: 1
   _effectSpawned: 0
   _trickSigil: {fileID: 4151754271603140014, guid: b2e81f3e913a5c348a0f8250f2e5979d, type: 3}

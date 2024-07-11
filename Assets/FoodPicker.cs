@@ -8,23 +8,31 @@ public class FoodPicker : NetworkBehaviour
 {
     [SerializeField] float pick_distance;
     ScoreCounter score_counter;
-    private float points = 0;
+
+    [SerializeField]
+    Score score;
+
+    private ScoreBoard scoreboard;
     public Animator animator;
     public NetworkAnimator netAnim;
+    [HideInInspector] public bool IronStomach = false;//effetto passivo da cibo, no effetti negativi da cibo
     // Start is called before the first frame update
     public override void OnStartClient()
     { // This is needed to avoid other clients controlling our character. 
-        base.OnStartClient();
         if (!base.IsOwner)
         {
             GetComponent<FoodPicker>().enabled = false;
-            return;
         }
+        else
+        {
+            StartCoroutine(locateScoreboard());
+        }
+        base.OnStartClient();
     }
 
     private void Start()
     {
-        score_counter = FindObjectOfType<ScoreCounter>();
+        //score_counter = FindObjectOfType<ScoreCounter>();
         if (score_counter != null)
         {
             Debug.Log("Score counter found at start()");
@@ -37,14 +45,16 @@ public class FoodPicker : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             animator.SetBool("isPickingFood", true);
-            GameObject food = CheckFoodCollision();
+            Food food = CheckFoodCollision();
             if (food != null)
             {
-                points += food.GetComponent<Food>().getValue();
-                NetworkManager.Log("Got some food! My score is: " + points);
-                score_counter.SetPoints(Mathf.RoundToInt(points));
+                float points = food.GetComponent<Food>().getValue();
+                if (IronStomach)
+                    if (points < 0)
+                        points = 0;
+                scoreboard.addPoints(points, base.Owner);
                 FoodSpawner fs = FindObjectOfType<FoodSpawner>();
-                fs.RemoveObject(food);
+                fs.RemoveObject(food.gameObject);
             }
         }
         else
@@ -54,29 +64,36 @@ public class FoodPicker : NetworkBehaviour
     }
 
 
-    private GameObject CheckFoodCollision()
+    private Food CheckFoodCollision()
     {
-        int food_layer = 1 << 6;
         RaycastHit hit;
         Transform pov_t = Camera.main.transform;
-        if (Physics.Raycast(pov_t.position, pov_t.forward, out hit, pick_distance, food_layer))
+        if (Physics.Raycast(pov_t.position, pov_t.forward, out hit, pick_distance))
         {
 
             Debug.DrawRay(pov_t.position, pov_t.forward * hit.distance, Color.yellow);
-            return hit.transform.gameObject;
+            return hit.transform.gameObject.GetComponent<Food>();
         }
         Debug.DrawRay(pov_t.position, pov_t.forward * pick_distance, Color.white);
         return null;
     }
 
-    public float GetScore()
+    IEnumerator locateScoreboard()
     {
-        return this.points;
+
+        scoreboard = FindAnyObjectByType<ScoreBoard>();
+        while (scoreboard == null)
+        {
+            yield return null;
+            scoreboard = FindAnyObjectByType<ScoreBoard>();
+        }
+        scoreboard.spawnPlayerScore(base.Owner);
     }
 
     [ObserversRpc]
     public void Client_FoodPickerSetEnabled(bool setting)
     {
+        if (!base.IsOwner) return;
         Debug.Log($"FoodPicker enabled? : {setting}");
         this.enabled = setting;
         return;

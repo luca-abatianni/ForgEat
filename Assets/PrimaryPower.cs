@@ -7,19 +7,19 @@ using FishNet.Object.Synchronizing;
 using FishNet.Component.Animating;
 using UnityEngine.VFX;
 using Unity.VisualScripting;
+using System.Threading;
+
 public class PrimaryPower : NetworkBehaviour
 {
-    [SerializeField] public GameObject _firePoint;
-    [SerializeField] public GameObject _sigilPoint;
-    [SerializeField] public List<GameObject> _listEffects = new List<GameObject>();
-    [SerializeField] public List<GameObject> _listSigils = new List<GameObject>();
-    [SerializeField] public PowerBehavior.PowerType _primaryPower = PowerBehavior.PowerType.IceBullet;
-    private GameObject _effectToSpawn;
-    private GameObject _sigilToSpawn;
-
-    private float _cooldown = 0f;
+    [SerializeField] private PerformantShoot performant_shoot;
+    [SerializeField] private float _cooldown = 0f;
+    [SerializeField] ManaController _manaController;
     public Animator animator;
     public NetworkAnimator netAnim;
+    int _powerCost = 0;
+    [SerializeField] private CanvasGroup _powerCanvasGroup = null;
+    private bool _powerCanvasInit = true;
+    [HideInInspector] public bool Silence = false;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -28,7 +28,7 @@ public class PrimaryPower : NetworkBehaviour
             GetComponent<PrimaryPower>().enabled = false;
             return;
         }
-        if (_listEffects.Count == 0)
+        if (performant_shoot._listEffects.Count == 0)
             return;
     }
 
@@ -36,12 +36,42 @@ public class PrimaryPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && _listEffects.Count > 0)
+        if (_powerCanvasGroup == null)
+            _powerCanvasGroup = GameObject.FindGameObjectWithTag("PowerSelectionGroup").GetComponent<CanvasGroup>();
+        else if (_powerCanvasGroup != null && _powerCanvasInit)
         {
+            _powerCanvasInit = false;
+            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
+        }
+        if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
+        {
+            if (_manaController.playerMana > _powerCost)
+            {
+                if (!Silence)
+                {
 
-            _cooldown = Time.time + 1f;
-
-            StartCoroutine(SpawnMagic());
+                    _manaController.UpdateMana(-_powerCost);
+                    float offset = 1f;
+                    var player_controller = GetComponent<PlayerController>();
+                    _cooldown = Time.time + .5f;
+                    if (player_controller.isRunning)
+                    {
+                        offset = 3.5f;
+                    }
+                    else if (player_controller.isWalking)
+                    {
+                        offset = 2.5f;
+                    }
+                    Debug.Log("Offset: " + offset);
+                    performant_shoot.Shoot(offset);
+                }
+                animator.SetBool("attackFreeze", true);
+            }
+            else
+            {
+                _manaController.NotEnoughMana();
+                animator.SetBool("attackFreeze", false);
+            }
         }
         else
         {
@@ -51,102 +81,35 @@ public class PrimaryPower : NetworkBehaviour
     }
     void SwitchPower()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) || _effectToSpawn == null)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            _primaryPower = PowerBehavior.PowerType.IceBullet;
-            SRPC_SwitchPower(this, PowerBehavior.PowerType.IceBullet);
-            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)_primaryPower];
-            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+            performant_shoot._primaryPower = PowerBehavior.PowerType.IceBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _primaryPower = PowerBehavior.PowerType.MindBullet;
-            SRPC_SwitchPower(this, PowerBehavior.PowerType.MindBullet);
-            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)_primaryPower];
-            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+            performant_shoot._primaryPower = PowerBehavior.PowerType.MindBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.MindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            _primaryPower = PowerBehavior.PowerType.WindBullet;
-            SRPC_SwitchPower(this, PowerBehavior.PowerType.WindBullet);
-            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)_primaryPower];
-            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+            performant_shoot._primaryPower = PowerBehavior.PowerType.WindBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.WindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            _primaryPower = PowerBehavior.PowerType.TrickBullet;
-            SRPC_SwitchPower(this, PowerBehavior.PowerType.TrickBullet);
-            _effectToSpawn = _listEffects[(int)_primaryPower];//Left click - Power 1
-            _sigilToSpawn = _listSigils[(int)_primaryPower];
-            SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
+            performant_shoot._primaryPower = PowerBehavior.PowerType.TrickBullet;
+            UpdatePowerHUD(PowerBehavior.PowerType.TrickBullet);
         }
-    }
-    [ServerRpc(RequireOwnership = false)]
-    void SRPC_SwitchPower(PrimaryPower script, PowerBehavior.PowerType type)
-    {
-        script._primaryPower = type;
-    }
-    private IEnumerator SpawnMagic()
-    {
-        Vector3 spawn_forward = Camera.main.transform.forward;
-        Quaternion spawn_rot = Camera.main.transform.rotation;
-
-        SRPC_SpawnSigil(_sigilToSpawn, _firePoint);
-        SRPC_SpawnSigilFoot(_sigilToSpawn, _sigilPoint);
-        animator.SetBool("attackFreeze", true);
-        yield return new WaitForSeconds(.3f);
-        SRPC_SpawnMagic(this, _effectToSpawn, _firePoint, gameObject, spawn_forward, spawn_rot);
-
-        yield return null;
+        _powerCost = PowerBehavior.vecPowerCost[(int)performant_shoot._primaryPower];
     }
 
-    [ServerRpc]
-    void SRPC_SpawnSigil(GameObject _effectToSpawn, GameObject _firePoint)
+    void UpdatePowerHUD(PowerBehavior.PowerType powerType)
     {
-        var spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
-        ServerManager.Spawn(spawned);
-        spawned.transform.SetParent(_firePoint.transform);
-        ORPC_SetParent(_firePoint, spawned);
+        int nType = (int)powerType;
+        for (int i = 0; i < 4; i++)//Disattivo tutti gli altri e attivo il selezionato
+            _powerCanvasGroup.transform.GetChild(i).transform.Find("BackgroundSel").gameObject.SetActive(false);
+        var selectedPower = _powerCanvasGroup.transform.GetChild(nType);
+        selectedPower.transform.Find("BackgroundSel").gameObject.SetActive(true);
     }
-    [ServerRpc]
-    void SRPC_SpawnSigilFoot(GameObject _effectToSpawn, GameObject _firePoint)
-    {
-        var p = _firePoint.transform.position;
-        var spawned = Instantiate(_effectToSpawn, new Vector3(p.x, p.y, p.z), Quaternion.LookRotation(Vector3.up));
-        ServerManager.Spawn(spawned);
-        spawned.transform.SetParent(_firePoint.transform);
-        ORPC_SetParent(_firePoint, spawned);
-    }
-    [ObserversRpc]
-    void ORPC_SetParent(GameObject parent, GameObject spawned)
-    {
-        spawned.transform.SetParent(parent.transform);
-    }
-    [ServerRpc]
-    void SRPC_SpawnMagic(PrimaryPower script, GameObject _effectToSpawn, GameObject _firePoint, GameObject player, Vector3 spawn_forward, Quaternion spawn_rot)
-    {
-        GameObject spawned;
-        if (_firePoint != null)
-        {
-            spawned = Instantiate(_effectToSpawn, _firePoint.transform.position, _firePoint.transform.rotation);
-            ServerManager.Spawn(spawned);
-            spawned.GetComponent<PowerBehavior>().SetDirection(spawn_forward);
-            spawned.GetComponent<PowerBehavior>().SetParent(_firePoint);
-            spawned.GetComponent<PowerBehavior>().SetSpawner(player);
-            spawned.GetComponent<PowerBehavior>().SetPowerType(_primaryPower);
-            Physics.IgnoreCollision(player.GetComponent<Collider>(), spawned.GetComponent<Collider>(), true);
-        }
-        else
-        {
-            Debug.LogError("ERR PrimaryPower - Missing FirePoint");
-        }
-    }
-    //[ObserversRpc]
-    //public void SetSpawnedMagic(PrimaryPower script, GameObject spawned)
-    //{
-    //    script._effectToSpawn = spawned;
-    //}
 }
