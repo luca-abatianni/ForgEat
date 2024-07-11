@@ -42,12 +42,15 @@ public class SpawnBarriers : NetworkBehaviour
     public void BarriersOn()
     {
         if (!barriers_on) SetBarriers(true);
+
+        GetComponent<AudioSource>().Play();
     }
 
     [ObserversRpc(BufferLast = true)]
     public void BarriersOff()
     {
         if (barriers_on) SetBarriers(false);
+        GetComponent<AudioSource>().Stop();
     }
 
     private void SetBarriers(bool setting)
