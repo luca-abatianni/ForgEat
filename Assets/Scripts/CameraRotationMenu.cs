@@ -16,6 +16,8 @@ public class CameraRotationMenu : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
+    // Commento
+
     // public void RotateCamera()
     // {
     //     transform.Rotate(new Vector3(0.0f, 7.0f, 0.0f));
