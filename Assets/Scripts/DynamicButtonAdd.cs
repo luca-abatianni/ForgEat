@@ -54,6 +54,9 @@ public class DynamicButtonAdd : MonoBehaviour
         script.Initialize(ip);
         
         newButton.transform.SetParent(Parent);
+        newButton.transform.position = Parent.transform.position;
+        newButton.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+        newButton.transform.localScale = new Vector3 (1.0f, 1.0f, 1.0f);
 
         buttonAdded.Add(ip, newButton);
     }
