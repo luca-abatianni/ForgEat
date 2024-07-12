@@ -14,6 +14,7 @@ public class CameraRotationMenu : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
+        cam.transform.position = new Vector3(-452.7f, 35.9f, 245.0f);
     }
 
     // Commento

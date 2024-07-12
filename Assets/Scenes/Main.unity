@@ -26547,7 +26547,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1257634510}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ResumeFromPauseMenu
         m_Mode: 1
@@ -48954,7 +48954,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1257634510}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ResumeFromPauseMenu
         m_Mode: 1
@@ -52993,8 +52993,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5573126026117368223, guid: 251ddb55848374a9eae5d376e494b510, type: 3}
+      propertyPath: _scenePathHash
+      value: 394288251
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573126026117368223, guid: 251ddb55848374a9eae5d376e494b510, type: 3}
       propertyPath: <SceneId>k__BackingField
-      value: 1693455146145419463
+      value: 1693455144584598746
       objectReference: {fileID: 0}
     - target: {fileID: 6286170540323648935, guid: 251ddb55848374a9eae5d376e494b510, type: 3}
       propertyPath: m_Name
