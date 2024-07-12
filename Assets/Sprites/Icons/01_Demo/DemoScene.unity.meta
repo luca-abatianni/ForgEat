@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprites/Icons/01_Demo/DemoScene.unity.meta
 guid: 54c4e57121552bd4abacdc52cc90ccb6
+========
+guid: 7bed8e552da3f0f468db50676104331c
+>>>>>>>> Luca:Assets/20 Logos PSD/Demo/Demo.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

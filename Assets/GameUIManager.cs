@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private Transform playerCardParent;
     [SerializeField] private GameObject scoreboard;
     private Dictionary<int, PlayerCard> _playerCards = new Dictionary<int, PlayerCard>();
+
+    public static bool isPaused = false;
+    public GameObject pauseMenu;
 
     private void Awake()
     {
@@ -39,6 +43,28 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
+    void PauseGame()
+    {
+        isPaused = !isPaused;
+        if(isPaused)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            pauseMenu.SetActive(true);
+        }
+        else 
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pauseMenu.SetActive(false);
+        }
+    }
+
+    public void OnClickResume()
+    {
+        PauseGame();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -46,5 +72,8 @@ public class GameUIManager : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Tab))
             scoreboard.SetActive(false);
+
+        if(Input.GetKeyDown(KeyCode.P))
+            PauseGame();
     }
 }
