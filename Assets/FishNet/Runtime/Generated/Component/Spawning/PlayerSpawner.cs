@@ -28,7 +28,13 @@ namespace FishNet.Component.Spawning
         /// </summary>
         [Tooltip("Prefab to spawn for the player.")]
         [SerializeField]
-        private NetworkObject _playerPrefab;
+        private NetworkObject[] _playerPrefab;
+        /// <summary>
+        /// Skin selected in menu
+        /// </summary>
+        [Tooltip("Selected skin")]
+        [SerializeField]
+        public static int _selectedSkin;
         /// <summary>
         /// True to add player to the active scene when no global scenes are specified through the SceneManager.
         /// </summary>
@@ -88,17 +94,18 @@ namespace FishNet.Component.Spawning
         {
             if (!asServer)
                 return;
-            if (_playerPrefab == null)
+            if (_playerPrefab == null || _selectedSkin == -1)
             {
                 Debug.LogWarning($"Player prefab is empty and cannot be spawned for connection {conn.ClientId}.");
                 return;
             }
 
+            
             Vector3 position;
             Quaternion rotation;
-            SetSpawn(_playerPrefab.transform, out position, out rotation);
+            SetSpawn(_playerPrefab[_selectedSkin].transform, out position, out rotation);
 
-            NetworkObject nob = _networkManager.GetPooledInstantiated(_playerPrefab, position, rotation, true);
+            NetworkObject nob = _networkManager.GetPooledInstantiated(_playerPrefab[_selectedSkin], position, rotation, true);
             _networkManager.ServerManager.Spawn(nob, conn);
 
             //If there are no global scenes 
