@@ -38,13 +38,13 @@ public class GameManager : NetworkBehaviour
     private GameObject player_spawns;
 
     [SerializeField]
-    private int phase_one_period;
+    public static float phase_one_period;
 
     [SerializeField]
     private int between_phase_period;
 
     [SerializeField]
-    private int phase_two_period;
+    public static float phase_two_period;
 
     public static bool phase_timer;
 
@@ -187,7 +187,7 @@ public class GameManager : NetworkBehaviour
 
         spawn_barriers.BarriersOff();
         EnableFoodPicking(false);
-        timer_coroutine = StartCoroutine(PhaseTimer(phase_one_period, true));
+        timer_coroutine = StartCoroutine(PhaseTimer((int)phase_one_period, true));
         return;
     }
 
@@ -210,7 +210,7 @@ public class GameManager : NetworkBehaviour
         phase_timer = true;
         spawn_barriers.BarriersOff();
         EnableFoodPicking(true);
-        timer_coroutine = StartCoroutine(PhaseTimer(phase_two_period, true));
+        timer_coroutine = StartCoroutine(PhaseTimer((int)phase_two_period, true));
     }
 
     void EndRound()
@@ -240,6 +240,8 @@ public class GameManager : NetworkBehaviour
         }
 
     }
+
+    //commento
 
     private void PrepareNextRound()
     {
