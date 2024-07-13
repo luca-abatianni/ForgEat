@@ -319,7 +319,8 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 3252535994773736344}
   pick_distance: 4
   score: {fileID: 0}
-  grabSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  grabFoodSound: {fileID: 8300000, guid: 8b95f610c9db4a5498df359ebffc08d1, type: 3}
+  grabPoisonSound: {fileID: 8300000, guid: b5ffdecc44bf9e540acb2d7d58ba02db, type: 3}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
   IronStomach: 0
@@ -442,7 +443,7 @@ MonoBehaviour:
   _componentIndexCache: 8
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  teleportSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  teleportSound: {fileID: 8300000, guid: fd3bec05cb132424abeb6d9d14abeb2f, type: 3}
 --- !u!114 &2912226967753948286
 MonoBehaviour:
   m_ObjectHideFlags: 0

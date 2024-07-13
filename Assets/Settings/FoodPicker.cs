@@ -11,7 +11,8 @@ public class FoodPicker : NetworkBehaviour
 
     [SerializeField]
     Score score;
-    [SerializeField] AudioClip grabSound;
+    [SerializeField] AudioClip grabFoodSound;
+    [SerializeField] AudioClip grabPoisonSound;
 
     private ScoreBoard scoreboard;
     public Animator animator;
@@ -49,13 +50,14 @@ public class FoodPicker : NetworkBehaviour
         else
         {
             if (Input.GetKeyDown(KeyCode.E) && _gameManager.game_state == GameManager.GameState.SecondPhase)
-            {//solo durante fase due si può mangiare
+            {//solo durante fase due si puï¿½ mangiare
                 Food food = CheckFoodCollision();
                 if (food != null)
                 {
-                    GetComponent<AudioSource>().PlayOneShot(grabSound);
                     animator.SetBool("isPickingFood", true);
                     float points = food.GetComponent<Food>().getValue();
+                    if (points > 0) GetComponent<AudioSource>().PlayOneShot(grabFoodSound); 
+                    else GetComponent<AudioSource>().PlayOneShot(grabPoisonSound);
                     if (IronStomach)
                         if (points < 0)
                             points = 0;
