@@ -13,15 +13,19 @@ public class ShieldCollision : NetworkBehaviour
     Material mat;
     public void ActivateShield(bool bActivate)
     {
-        gameObject.GetComponent<SphereCollider>().enabled = bActivate;    
+        gameObject.GetComponent<SphereCollider>().enabled = bActivate;
         gameObject.GetComponent<MeshRenderer>().enabled = bActivate;
+        gameObject.GetComponent<AudioSource>().loop = true;
+        if (bActivate)
+            gameObject.GetComponent<AudioSource>().Play();
+        else
+            gameObject.GetComponent<AudioSource>().Stop();
         _sphereGridObj.SetActive(bActivate);
         _sphereInsideObj.SetActive(bActivate);
     }
     public override void OnStartClient()
     {
         base.OnStartClient();
-        ActivateShield(false);
         if (!base.IsOwner)
         {
             GetComponent<ShieldCollision>().enabled = false;
@@ -31,6 +35,7 @@ public class ShieldCollision : NetworkBehaviour
         {
             mat = GetComponent<Renderer>().sharedMaterial;
         }
+        ActivateShield(false);
     }
 
     void Update()

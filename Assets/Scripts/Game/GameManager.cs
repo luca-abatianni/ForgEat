@@ -15,7 +15,7 @@ using Cursor = UnityEngine.Cursor;
 
 public class GameManager : NetworkBehaviour
 {
-    enum GameState
+    public enum GameState
     {
         WaitingOnClients,
         WaitingFirstPhase,
@@ -50,7 +50,7 @@ public class GameManager : NetworkBehaviour
 
     private Coroutine timer_coroutine;
 
-    private GameState game_state;
+    public GameState game_state;
 
     [SerializeField] private SpawnBarriers spawn_barriers;
     [SerializeField] private FoodSpawner food_spawner;

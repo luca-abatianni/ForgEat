@@ -34,14 +34,23 @@ public class PlayerController : NetworkBehaviour
     private Camera playerCamera;
     [HideInInspector] public bool isWalking = false, isMoonwalking = false, isWalkingLeft = false, isWalkingRight = false, isJumping = false, isRunning = false;
     [HideInInspector] public bool frost = false, Agility = false, Heft = false;
+    private bool init = true;
+    [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioClip walkSound;
+    private float stepWalkTimer = 0f;
+    [SerializeField] AudioClip runSound;
+    private float stepRunTimer = 0f;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip landSound;
 
+    [SerializeField] SkinnedMeshRenderer playerMesh;
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z + .35f);
+            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
             playerCamera.transform.SetParent(transform);
             playerCamera.nearClipPlane = .2f;
         }
@@ -92,6 +101,15 @@ public class PlayerController : NetworkBehaviour
     [Client]
     void Update()
     {
+        if (init)
+        {
+            //var smr = transform.gameObject.transform.Find("WizardBody").GetComponent<SkinnedMeshRenderer>();
+            if (playerMesh != null)
+            {
+                playerMesh.enabled = false;
+                init = false;
+            }
+        }
         #region Cursor
         if (Input.GetKeyDown(KeyCode.LeftAlt))
             Cursor.lockState = CursorLockMode.None;
@@ -155,9 +173,12 @@ public class PlayerController : NetworkBehaviour
         {
             moveDirection.y = updJumpSpeed;
             isJumping = true;
+            _audioSource.PlayOneShot(jumpSound);
         }
         else
         {
+            if (isJumping)
+                _audioSource.PlayOneShot(landSound);
             isJumping = false;
             moveDirection.y = movementDirectionY;
         }
@@ -194,7 +215,30 @@ public class PlayerController : NetworkBehaviour
                 transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * updLookSpeed, 0);
             }
         }
+        #region Sounds
+        if (characterController.isGrounded && (forward.magnitude != 0 || right.magnitude != 0))
+        {
+            if (isRunning)
+            {
+                stepRunTimer -= Time.deltaTime;
+                if (stepRunTimer <= 0)
+                {
+                    _audioSource.PlayOneShot(runSound);
+                    stepRunTimer = 0.3f;
+                }
+            }
+            else
+            {
+                stepWalkTimer -= Time.deltaTime;
+                if (stepWalkTimer <= 0)
+                {
+                    _audioSource.PlayOneShot(walkSound);
+                    stepWalkTimer = 0.54f;
+                }
 
+            }
+        }
+        #endregion
     }
 
     [ObserversRpc]

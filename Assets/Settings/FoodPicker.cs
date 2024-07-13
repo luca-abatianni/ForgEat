@@ -11,11 +11,13 @@ public class FoodPicker : NetworkBehaviour
 
     [SerializeField]
     Score score;
+    [SerializeField] AudioClip grabSound;
 
     private ScoreBoard scoreboard;
     public Animator animator;
     public NetworkAnimator netAnim;
     [HideInInspector] public bool IronStomach = false;//effetto passivo da cibo, no effetti negativi da cibo
+    private GameManager _gameManager = null;
     // Start is called before the first frame update
     public override void OnStartClient()
     { // This is needed to avoid other clients controlling our character. 
@@ -42,24 +44,30 @@ public class FoodPicker : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            animator.SetBool("isPickingFood", true);
-            Food food = CheckFoodCollision();
-            if (food != null)
-            {
-                float points = food.GetComponent<Food>().getValue();
-                if (IronStomach)
-                    if (points < 0)
-                        points = 0;
-                scoreboard.addPoints(points, base.Owner);
-                FoodSpawner fs = FindObjectOfType<FoodSpawner>();
-                fs.RemoveObject(food.gameObject);
-            }
-        }
+        if (_gameManager == null)
+            _gameManager = FindAnyObjectByType<GameManager>();
         else
         {
-            animator.SetBool("isPickingFood", false);
+            if (Input.GetKeyDown(KeyCode.E) && _gameManager.game_state == GameManager.GameState.SecondPhase)
+            {//solo durante fase due si può mangiare
+                Food food = CheckFoodCollision();
+                if (food != null)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(grabSound);
+                    animator.SetBool("isPickingFood", true);
+                    float points = food.GetComponent<Food>().getValue();
+                    if (IronStomach)
+                        if (points < 0)
+                            points = 0;
+                    scoreboard.addPoints(points, base.Owner);
+                    FoodSpawner fs = FindObjectOfType<FoodSpawner>();
+                    fs.RemoveObject(food.gameObject);
+                }
+            }
+            else
+            {
+                animator.SetBool("isPickingFood", false);
+            }
         }
     }
 

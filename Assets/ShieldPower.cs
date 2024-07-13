@@ -8,6 +8,7 @@ public class ShieldPower : NetworkBehaviour
 {
     [SerializeField] public GameObject _shieldPrefab;
     [HideInInspector] public bool _isShielded = false;
+    [HideInInspector] bool _init = true;
     [HideInInspector] public ShieldCollision _shieldObj;
     [SerializeField] ManaController _manaController;
     public override void OnStartClient()
@@ -58,6 +59,13 @@ public class ShieldPower : NetworkBehaviour
                 _isShielded = false;
                 SRPC_ActivateShield(_shieldObj, false);
             }
+            //else if (_init && !_isShielded && !Input.GetKey(KeyCode.Mouse1))
+            //{
+            //    if (_shieldObj.GetComponent<MeshRenderer>().enabled)
+            //        SRPC_ActivateShield(_shieldObj, false);
+            //    else
+            //        _init = false;
+            //}
         }
         _manaController.isShielding = _isShielded;
     }
@@ -68,28 +76,6 @@ public class ShieldPower : NetworkBehaviour
 
         yield return null;
     }
-    //[ObserversRpc]
-    //void ORPC_AssignShield(ShieldPower script, GameObject spawned)
-    //{
-    //    script._shieldObj = spawned.GetComponent<ShieldCollision>();
-    //    script._shieldObj.ActivateShield(false);
-    //}
-    //[ServerRpc]
-    //void SRPC_SpawnShield(ShieldPower script, GameObject shield, GameObject player)
-    //{
-    //    GameObject spawned;
-    //    if (player != null && shield != null)
-    //    {
-    //        spawned = Instantiate(shield, player.transform.position, player.transform.rotation);
-    //        ServerManager.Spawn(spawned);
-    //        spawned.transform.SetParent(player.transform);
-    //        ORPC_AssignShield(script, spawned);
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("ERR ShieldPower - Missing FirePoint");
-    //    }
-    //}
     [ObserversRpc]
     void ORPC_ActivateShield(ShieldCollision script, bool bActivate)
     {

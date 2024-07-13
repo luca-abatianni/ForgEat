@@ -1,6 +1,7 @@
 using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static PowerBehavior;
 
@@ -14,6 +15,12 @@ public class WindImpact : NetworkBehaviour
     void Update()
     {
 
+    }
+    void Start()
+    {
+        var audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
+        audioSource.Play();
     }
     [ObserversRpc]
     void ORPC_WindImpact(GameObject other)

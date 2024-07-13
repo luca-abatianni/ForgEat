@@ -14,6 +14,7 @@ public class PrimaryPower : NetworkBehaviour
     [SerializeField] private PerformantShoot performant_shoot;
     [SerializeField] private float _cooldown = 0f;
     [SerializeField] ManaController _manaController;
+    [SerializeField] AudioClip audioClipSwitch;
     public Animator animator;
     public NetworkAnimator netAnim;
     int _powerCost = 0;
@@ -41,7 +42,7 @@ public class PrimaryPower : NetworkBehaviour
         else if (_powerCanvasGroup != null && _powerCanvasInit)
         {
             _powerCanvasInit = false;
-            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
+            UpdatePower(PowerBehavior.PowerType.IceBullet);
         }
         if (Time.time > _cooldown && Input.GetKeyDown(KeyCode.Mouse0) && performant_shoot._listEffects.Count > 0)
         {
@@ -83,29 +84,27 @@ public class PrimaryPower : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            performant_shoot._primaryPower = PowerBehavior.PowerType.IceBullet;
-            UpdatePowerHUD(PowerBehavior.PowerType.IceBullet);
+            UpdatePower(PowerBehavior.PowerType.IceBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            performant_shoot._primaryPower = PowerBehavior.PowerType.MindBullet;
-            UpdatePowerHUD(PowerBehavior.PowerType.MindBullet);
+            UpdatePower(PowerBehavior.PowerType.MindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            performant_shoot._primaryPower = PowerBehavior.PowerType.WindBullet;
-            UpdatePowerHUD(PowerBehavior.PowerType.WindBullet);
+            UpdatePower(PowerBehavior.PowerType.WindBullet);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            performant_shoot._primaryPower = PowerBehavior.PowerType.TrickBullet;
-            UpdatePowerHUD(PowerBehavior.PowerType.TrickBullet);
+            UpdatePower(PowerBehavior.PowerType.TrickBullet);
         }
         _powerCost = PowerBehavior.vecPowerCost[(int)performant_shoot._primaryPower];
     }
 
-    void UpdatePowerHUD(PowerBehavior.PowerType powerType)
+    void UpdatePower(PowerBehavior.PowerType powerType)
     {
+        GetComponent<AudioSource>().PlayOneShot(audioClipSwitch);
+        performant_shoot._primaryPower = powerType;
         int nType = (int)powerType;
         for (int i = 0; i < 4; i++)//Disattivo tutti gli altri e attivo il selezionato
             _powerCanvasGroup.transform.GetChild(i).transform.Find("BackgroundSel").gameObject.SetActive(false);

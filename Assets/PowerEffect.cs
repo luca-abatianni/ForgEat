@@ -15,11 +15,13 @@ using static PowerBehavior;
 public class PowerEffect : NetworkBehaviour
 {
     [SerializeField] public List<GameObject> _hitEffects = new List<GameObject>();
+    [SerializeField] public List<AudioClip> statusClips;
     [HideInInspector] public List<(GameObject, float)> _listSpawned = new List<(GameObject, float)>();
     private ShieldPower _shield;
     private CanvasGroup statusGroup = null;
     private CanvasGroup hitFeedbackGroup = null;
     private Dictionary<StatusType, Coroutine> _dictStatus = new Dictionary<StatusType, Coroutine>();
+
     enum StatusType
     {
         Frost = 1,
@@ -81,7 +83,7 @@ public class PowerEffect : NetworkBehaviour
         if (!_dictStatus.ContainsKey(status))
         {
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
-
+            StatusSound(status);
             var iceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
             StartCoroutine(ImageFadeIn(iceVisual, 0f));
             StartCoroutine(HurtFlash());
@@ -109,6 +111,7 @@ public class PowerEffect : NetworkBehaviour
         var status = StatusType.Confusion;
         if (!_dictStatus.ContainsKey(status))
         {
+            StatusSound(status);
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             var mindVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
             Color color = new Color(mindVisual.color.r, mindVisual.color.g, mindVisual.color.b, .25f);
@@ -130,7 +133,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.IronStomach;
         if (!_dictStatus.ContainsKey(status))
         {
-
+            StatusSound(status);
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<FoodPicker>().IronStomach = true;
             yield return new WaitForSeconds(duration);
@@ -145,6 +148,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.UnlimitedPower;
         if (!_dictStatus.ContainsKey(status))
         {
+            StatusSound(status);
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             var upVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.RawImage>();
             upVisual.color = new Color(upVisual.color.r, upVisual.color.g, upVisual.color.b, .8f);
@@ -169,7 +173,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Agility;
         if (!_dictStatus.ContainsKey(status))
         {
-
+            StatusSound(status);
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             var playerC = gameObject.GetComponent<PlayerController>();
             playerC.Agility = true;
@@ -186,6 +190,7 @@ public class PowerEffect : NetworkBehaviour
         if (!_dictStatus.ContainsKey(status))
         {
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            StatusSound(status);
             StartCoroutine(HurtFlash());
             gameObject.GetComponent<ManaController>().Poisoning = true;
             gameObject.GetComponent<ManaController>().UpdateMana(15f);
@@ -212,6 +217,7 @@ public class PowerEffect : NetworkBehaviour
         if (!_dictStatus.ContainsKey(status))
         {
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
+            StatusSound(status);
             //TODO : OVATTARE I SUONI
             var silenceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
             Color color = new Color(silenceVisual.color.r, silenceVisual.color.g, silenceVisual.color.b, .20f);
@@ -232,6 +238,7 @@ public class PowerEffect : NetworkBehaviour
         StatusType status = StatusType.Heft;
         if (!_dictStatus.ContainsKey(status))
         {
+            StatusSound(status);
             StartCoroutine(HurtFlash());
             _dictStatus.Add(status, StartCoroutine(UpdateStatusHUD(status, duration)));
             gameObject.GetComponent<PlayerController>().Heft = true;
@@ -466,5 +473,16 @@ public class PowerEffect : NetworkBehaviour
         // Ensure the alpha is set to 0 at the end
         Color finalColor = new Color(image.color.r, image.color.g, image.color.b, 0);
         image.color = finalColor;
+    }
+    void StatusSound(StatusType status)
+    {
+        AudioClip clip = null;
+        if (statusClips.Count >= (int)status)
+            clip = statusClips.ElementAt((int)status);
+        if (clip == null)
+        {
+            clip = Resources.Load<AudioClip>("Sounds/placeholder.wav");
+        }
+        GetComponent<AudioSource>().PlayOneShot(clip);
     }
 }
