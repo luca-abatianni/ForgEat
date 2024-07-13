@@ -8,7 +8,7 @@ using System.Threading;
 
 public class SpawnBarriers : NetworkBehaviour
 {
-    private List<GameObject> barriers = new List<GameObject>(); 
+    private List<GameObject> barriers = new List<GameObject>();
     private bool barriers_on;
     // Start is called before the first frame update
 
@@ -43,6 +43,7 @@ public class SpawnBarriers : NetworkBehaviour
     {
         if (!barriers_on) SetBarriers(true);
 
+        GetComponent<AudioSource>().loop = true;    
         GetComponent<AudioSource>().Play();
     }
 

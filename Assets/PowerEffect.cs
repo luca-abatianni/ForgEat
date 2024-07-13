@@ -476,7 +476,6 @@ public class PowerEffect : NetworkBehaviour
     }
     void StatusSound(StatusType status)
     {
-        return;
         AudioClip clip = null;
         if (statusClips.Count >= (int)status)
             clip = statusClips.ElementAt((int)status);

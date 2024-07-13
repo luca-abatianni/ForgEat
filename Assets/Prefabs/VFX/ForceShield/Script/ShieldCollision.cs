@@ -13,8 +13,13 @@ public class ShieldCollision : NetworkBehaviour
     Material mat;
     public void ActivateShield(bool bActivate)
     {
-        gameObject.GetComponent<SphereCollider>().enabled = bActivate;    
+        gameObject.GetComponent<SphereCollider>().enabled = bActivate;
         gameObject.GetComponent<MeshRenderer>().enabled = bActivate;
+        gameObject.GetComponent<AudioSource>().loop = true;
+        if (bActivate)
+            gameObject.GetComponent<AudioSource>().Play();
+        else
+            gameObject.GetComponent<AudioSource>().Stop();
         _sphereGridObj.SetActive(bActivate);
         _sphereInsideObj.SetActive(bActivate);
     }
