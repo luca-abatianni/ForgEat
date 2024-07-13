@@ -21,7 +21,6 @@ public class ShieldCollision : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        ActivateShield(false);
         if (!base.IsOwner)
         {
             GetComponent<ShieldCollision>().enabled = false;
@@ -31,6 +30,7 @@ public class ShieldCollision : NetworkBehaviour
         {
             mat = GetComponent<Renderer>().sharedMaterial;
         }
+        ActivateShield(false);
     }
 
     void Update()

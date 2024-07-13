@@ -34,14 +34,15 @@ public class PlayerController : NetworkBehaviour
     private Camera playerCamera;
     [HideInInspector] public bool isWalking = false, isMoonwalking = false, isWalkingLeft = false, isWalkingRight = false, isJumping = false, isRunning = false;
     [HideInInspector] public bool frost = false, Agility = false, Heft = false;
-
+    private bool init = true;
+    [SerializeField] SkinnedMeshRenderer playerMesh;
     public override void OnStartClient()
     {
         base.OnStartClient();
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z + .35f);
+            playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y + cameraYOffset, transform.position.z);
             playerCamera.transform.SetParent(transform);
             playerCamera.nearClipPlane = .2f;
         }
@@ -92,6 +93,15 @@ public class PlayerController : NetworkBehaviour
     [Client]
     void Update()
     {
+        if (init)
+        {
+            //var smr = transform.gameObject.transform.Find("WizardBody").GetComponent<SkinnedMeshRenderer>();
+            if (playerMesh != null)
+            {
+                playerMesh.enabled = false;
+                init = false;
+            }
+        }
         #region Cursor
         if (Input.GetKeyDown(KeyCode.LeftAlt))
             Cursor.lockState = CursorLockMode.None;

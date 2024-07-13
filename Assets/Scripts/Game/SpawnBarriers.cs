@@ -59,6 +59,7 @@ public class SpawnBarriers : NetworkBehaviour
         foreach (GameObject barrier in barriers)
         {
             barrier.GetComponent<BoxCollider>().enabled = setting;
+            barrier.GetComponent<MeshRenderer>().enabled = setting;
         }
     }
 }
