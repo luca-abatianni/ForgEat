@@ -56,11 +56,12 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private FoodSpawner food_spawner;
     [SerializeField] private ScoreBoard scoreboard;
     [SerializeField] private GameAnnouncement announcement;
-
+   
     public static bool isPaused = false;
     public GameObject pauseMenuCanvas;
     private string playerName = "";
     private int playerSkin = 0;
+    public int roundNumber = 0;
 
     public void RetrievePlayerSettings()
     {
@@ -70,7 +71,7 @@ public class GameManager : NetworkBehaviour
         PlayerSpawner._selectedSkin = playerSkin;
         //prova
     }
-    
+
     public void RetrieveFirstPhaseLen()
     {
         Debug.Log("1st phase length: " + MenuChoices.firstPhaseLen);
@@ -83,7 +84,7 @@ public class GameManager : NetworkBehaviour
         // From minutes to seconds
         phase_two_period = MenuChoices.secondPhaseLen * 60;
     }
-    
+
     [HideInInspector]
     public Dictionary<int, GameObject> player_dictionary = new Dictionary<int, GameObject>();
 
@@ -93,7 +94,7 @@ public class GameManager : NetworkBehaviour
         RetrieveSecondPhaseLen();
         RetrievePlayerSettings();
         base.OnStartServer();
-
+        roundNumber = 0;
         phase_timer = false;
         game_state = GameState.WaitingOnClients;
     }
@@ -107,19 +108,19 @@ public class GameManager : NetworkBehaviour
         }
         return;
     }
-
+   
     // Update is called once per frame // Executed only by server.
     void Update()
     {
-        Debug.Log("Phase: " +  game_state);
-        if (Input.GetKeyDown(KeyCode.P)) 
+        Debug.Log("Phase: " + game_state);
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("P PRESSED");
-            isPaused = !isPaused; 
+            isPaused = !isPaused;
             ShowPauseMenu();
         }
-            
-        
+
+
         if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
@@ -249,6 +250,7 @@ public class GameManager : NetworkBehaviour
         scoreboard.ResetScores();
         food_spawner.DespawnAll();
         game_state = GameState.WaitingFirstPhase;
+        roundNumber++;
     }
 
     public void PlayerWonRound(NetworkConnection winner_client)
@@ -316,7 +318,7 @@ public class GameManager : NetworkBehaviour
 
     void SetUpPlayersRoundScore()
     {
-        scoreboard.SetUpRoundScore(food_spawner.total_food_points/8);
+        scoreboard.SetUpRoundScore(food_spawner.total_food_points / 8);
     }
 
     [ObserversRpc]

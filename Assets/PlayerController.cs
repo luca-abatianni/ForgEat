@@ -216,7 +216,7 @@ public class PlayerController : NetworkBehaviour
             }
         }
         #region Sounds
-        if (characterController.isGrounded && (forward.magnitude != 0 || right.magnitude != 0))
+        if (characterController.isGrounded && (isWalking || isWalkingLeft || isWalkingRight || isMoonwalking))
         {
             if (isRunning)
             {
