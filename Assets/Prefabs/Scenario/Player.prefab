@@ -248,7 +248,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 10
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -376,7 +376,7 @@ MonoBehaviour:
   performant_shoot: {fileID: 2912226967753948286}
   _cooldown: 0
   _manaController: {fileID: 1901438925041069958}
-  audioClipSwitch: {fileID: 0}
+  audioClipSwitch: {fileID: 8300000, guid: 5ec387e5b180a7a4b93137db8d3340d1, type: 3}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
   _powerCanvasGroup: {fileID: 0}

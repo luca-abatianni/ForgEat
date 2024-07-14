@@ -152,9 +152,9 @@ MonoBehaviour:
   Agility: 0
   Heft: 0
   _audioSource: {fileID: 1476146822493309679}
-  walkSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  runSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  jumpSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  walkSound: {fileID: 8300000, guid: 8f660e739281e264eb46f27616718aa7, type: 3}
+  runSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
+  jumpSound: {fileID: 8300000, guid: 7e1fb0f3f5040b34ea836e3c9a285572, type: 3}
   landSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
   playerMesh: {fileID: 2910248453896176161}
 --- !u!114 &4909591337073164744
@@ -318,7 +318,8 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 3252535994773736344}
   pick_distance: 4
   score: {fileID: 0}
-  grabSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  grabFoodSound: {fileID: 8300000, guid: 8b95f610c9db4a5498df359ebffc08d1, type: 3}
+  grabPoisonSound: {fileID: 8300000, guid: b5ffdecc44bf9e540acb2d7d58ba02db, type: 3}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
   IronStomach: 0
@@ -439,7 +440,7 @@ MonoBehaviour:
   performant_shoot: {fileID: 2912226967753948286}
   _cooldown: 0
   _manaController: {fileID: 1901438925041069958}
-  audioClipSwitch: {fileID: 0}
+  audioClipSwitch: {fileID: 8300000, guid: 5ec387e5b180a7a4b93137db8d3340d1, type: 3}
   animator: {fileID: 2943575670645553969}
   netAnim: {fileID: 8613745216421192631}
   _powerCanvasGroup: {fileID: 0}
@@ -456,9 +457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e91ec8208fa2b4d8dc5e28aee97f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 6
+  _componentIndexCache: 7
   _addedNetworkObject: {fileID: 3252535994773736344}
-  _networkObjectCache: {fileID: 3252535994773736344, guid: 4ed8d494e137b104e98ab1a3678c7e1e, type: 3}
+  _networkObjectCache: {fileID: 3252535994773736344}
   _hitEffects:
   - {fileID: 9017484664307500583, guid: 9813e24821b56244db2aee4506b5b00c, type: 3}
   - {fileID: 7053385775836331393, guid: d966c44d4e695bc4ea09313c4f04e970, type: 3}
@@ -506,7 +507,7 @@ MonoBehaviour:
   _componentIndexCache: 9
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
-  teleportSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  teleportSound: {fileID: 8300000, guid: fd3bec05cb132424abeb6d9d14abeb2f, type: 3}
 --- !u!114 &2912226967753948286
 MonoBehaviour:
   m_ObjectHideFlags: 0

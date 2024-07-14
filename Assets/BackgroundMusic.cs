@@ -67,14 +67,14 @@ public class BackgroundMusic : NetworkBehaviour
                         _audioSource.clip = phase2OST.ElementAt(_gameManager.roundNumber % phase2OST.Count);//una ost diversa per numero di round
                         _audioSource.Play();
                         break;
-                    //case GameState.EndRound:
-                    //    if (_audioSource.isPlaying)
-                    //    {
-                    //        _audioSource.Stop();
-                    //        _audioSource.clip = endroundOST;
-                    //        _audioSource.Play();
-                    //    }
-                    //    break;
+                    case GameState.EndRound:
+                        if (_audioSource.isPlaying)
+                        {
+                            _audioSource.Stop();
+                            _audioSource.clip = endroundOST;
+                            _audioSource.Play();
+                        }
+                        break;
                     default:
                         return;
                 }
