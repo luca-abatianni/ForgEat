@@ -63,11 +63,11 @@ public class PowerEffect : NetworkBehaviour
             return;
         if (powerType == PowerBehavior.PowerType.IceBullet)
         {
-            StartCoroutine(IceBulletHit(powerType));
+            StartCoroutine(IceBulletHit());
         }
         if (powerType == PowerBehavior.PowerType.MindBullet)
         {
-            StartCoroutine(MindBulletHit(powerType));
+            StartCoroutine(MindBulletHit());
         }
         if (powerType == PowerBehavior.PowerType.WindBullet)
         {
@@ -76,7 +76,7 @@ public class PowerEffect : NetworkBehaviour
         }
     }
 
-    private IEnumerator IceBulletHit(PowerBehavior.PowerType powerHit)
+    private IEnumerator IceBulletHit()
     {
         float duration = 3f;
         var status = StatusType.Frost;
@@ -87,7 +87,7 @@ public class PowerEffect : NetworkBehaviour
             var iceVisual = hitFeedbackGroup.transform.Find(status.ToString()).GetComponent<UnityEngine.UI.Image>();
             StartCoroutine(ImageFadeIn(iceVisual, 0f));
             StartCoroutine(HurtFlash());
-            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+            SRPC_SpawnHitEffect(this, _hitEffects[(int)PowerType.IceBullet], gameObject, duration);
             var playerC = gameObject.GetComponent<PlayerController>();
             playerC.frost = true;
             StartCoroutine(ImageFadeOut(iceVisual, duration));
@@ -105,7 +105,7 @@ public class PowerEffect : NetworkBehaviour
         SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
         yield return null;
     }
-    private IEnumerator MindBulletHit(PowerBehavior.PowerType powerHit)
+    private IEnumerator MindBulletHit()
     {
         float duration = 4f;
         var status = StatusType.Confusion;
@@ -117,7 +117,7 @@ public class PowerEffect : NetworkBehaviour
             Color color = new Color(mindVisual.color.r, mindVisual.color.g, mindVisual.color.b, .25f);
             mindVisual.color = color;
             StartCoroutine(HurtFlash());
-            SRPC_SpawnHitEffect(this, _hitEffects[(int)powerHit], gameObject, duration);
+            SRPC_SpawnHitEffect(this, _hitEffects[(int)PowerType.MindBullet], gameObject, duration);
             gameObject.GetComponent<PlayerController>().confusion = true;
             yield return new WaitForSeconds(duration);
             gameObject.GetComponent<PlayerController>().confusion = false;
@@ -144,7 +144,7 @@ public class PowerEffect : NetworkBehaviour
     }
     private IEnumerator UnlimitedPower()
     {
-        float duration = 10f;
+        float duration = 5f;
         StatusType status = StatusType.UnlimitedPower;
         if (!_dictStatus.ContainsKey(status))
         {
@@ -212,7 +212,7 @@ public class PowerEffect : NetworkBehaviour
     }
     private IEnumerator Silence()
     {
-        float duration = 7f;
+        float duration = 6f;
         StatusType status = StatusType.Silence;
         if (!_dictStatus.ContainsKey(status))
         {
@@ -234,7 +234,7 @@ public class PowerEffect : NetworkBehaviour
     }
     private IEnumerator Heft()
     {
-        float duration = 10f;
+        float duration = 9f;
         StatusType status = StatusType.Heft;
         if (!_dictStatus.ContainsKey(status))
         {
@@ -315,11 +315,11 @@ public class PowerEffect : NetworkBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                StartCoroutine(IceBulletHit(PowerType.IceBullet));
+                StartCoroutine(IceBulletHit());
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                StartCoroutine(MindBulletHit(PowerType.MindBullet));
+                StartCoroutine(MindBulletHit());
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
@@ -347,7 +347,39 @@ public class PowerEffect : NetworkBehaviour
             }
         }
     }
+    public void ActivateStatus(int status)
+    {
+        switch (status)
+        {
+            case 0:
+                StartCoroutine(IceBulletHit());
+                break;
+            case 1:
+                StartCoroutine(MindBulletHit());
+                break;
+            case 2:
+                StartCoroutine(IronStomach());
+                break;
+            case 3:
+                StartCoroutine(UnlimitedPower());
+                break;
+            case 4:
+                StartCoroutine(Agility());
+                break;
+            case 5:
+                StartCoroutine(Poisoning());
+                break;
+            case 6:
+                StartCoroutine(Silence());
+                break;
+            case 7:
+                StartCoroutine(Heft());
+                break;
+            default:
+                break;
 
+        }
+    }
     private IEnumerator UpdateStatusHUD(StatusType eStatus, float duration, bool spawnText = true)
     {
         var oStatus = statusGroup.transform.Find(eStatus.ToString());//Canvas group con Background, Slider, Icon e Description
