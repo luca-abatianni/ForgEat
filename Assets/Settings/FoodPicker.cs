@@ -41,7 +41,6 @@ public class FoodPicker : NetworkBehaviour
             Debug.Log("Score counter found at start()");
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -56,11 +55,11 @@ public class FoodPicker : NetworkBehaviour
                 {
                     animator.SetBool("isPickingFood", true);
                     float points = food.GetComponent<Food>().getValue();
-                    if (points > 0) GetComponent<AudioSource>().PlayOneShot(grabFoodSound); 
-                    else GetComponent<AudioSource>().PlayOneShot(grabPoisonSound);
                     if (IronStomach)
                         if (points < 0)
                             points = 0;
+                    AssignStatus(points);
+
                     scoreboard.addPoints(points, base.Owner);
                     FoodSpawner fs = FindObjectOfType<FoodSpawner>();
                     fs.RemoveObject(food.gameObject);
@@ -73,6 +72,50 @@ public class FoodPicker : NetworkBehaviour
         }
     }
 
+    void AssignStatus(float points)
+    {
+        List<int> numbers = new List<int> { 0, 1, 2, 3 };
+        List<float> weights = new List<float> { 0.4f, 0.25f, 0.05f, 0.3f }; // Weights for each number
+
+        int randomNumber = RandomNumberGenerator.GenerateWeightedRandomNumber(numbers, weights);
+
+        if (points > 0)
+        {
+            GetComponent<AudioSource>().PlayOneShot(grabFoodSound);
+            switch (randomNumber)
+            {
+                case 1:
+                    GetComponent<PowerEffect>().ActivateStatus(2);//Iron Stomach
+                    break;
+                case 2:
+                    GetComponent<PowerEffect>().ActivateStatus(3);//Unlimited Power
+                    break;
+                case 3:
+                    GetComponent<PowerEffect>().ActivateStatus(4);//Agility
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(grabPoisonSound);
+            switch (randomNumber)
+            {
+                case 1:
+                    GetComponent<PowerEffect>().ActivateStatus(5);//Poisoning
+                    break;
+                case 2:
+                    GetComponent<PowerEffect>().ActivateStatus(6);//Silence
+                    break;
+                case 3:
+                    GetComponent<PowerEffect>().ActivateStatus(7);//Heft
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     private Food CheckFoodCollision()
     {
