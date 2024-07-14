@@ -153,9 +153,9 @@ MonoBehaviour:
   Agility: 0
   Heft: 0
   _audioSource: {fileID: 5960133378666088954}
-  walkSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  runSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  jumpSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
+  walkSound: {fileID: 8300000, guid: 8f660e739281e264eb46f27616718aa7, type: 3}
+  runSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
+  jumpSound: {fileID: 8300000, guid: 7e1fb0f3f5040b34ea836e3c9a285572, type: 3}
   landSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
   playerMesh: {fileID: 2910248453896176161}
 --- !u!114 &4909591337073164744
@@ -248,7 +248,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 4
+  <PrefabId>k__BackingField: 10
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
