@@ -44,6 +44,7 @@ public class BackgroundMusic : NetworkBehaviour
                         {
                             _audioSource.Stop();
                         }
+                        _audioSource.loop=true;
                         _audioSource.clip = waitOST;
                         _audioSource.Play();
                         break;
@@ -53,6 +54,7 @@ public class BackgroundMusic : NetworkBehaviour
                         {
                             _audioSource.Stop();
                         }
+                        _audioSource.loop=true;
                         _audioSource.clip = phase1OST;
                         _audioSource.Play();
                         break;
@@ -61,6 +63,7 @@ public class BackgroundMusic : NetworkBehaviour
                         {
                             _audioSource.Stop();
                         }
+                        _audioSource.loop=true;
                         _audioSource.clip = phase2OST.ElementAt(_gameManager.roundNumber % phase2OST.Count);//una ost diversa per numero di round
                         _audioSource.Play();
                         break;
