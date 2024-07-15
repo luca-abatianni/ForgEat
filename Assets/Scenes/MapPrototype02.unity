@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.6339384, g: 0.7140164, b: 0.740649, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8459,7 +8460,7 @@ PrefabInstance:
       objectReference: {fileID: 875489800}
     - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: food_spawnlist.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: food_spawnlist.Array.data[0]
@@ -8469,6 +8470,10 @@ PrefabInstance:
       propertyPath: food_spawnlist.Array.data[1]
       value: 
       objectReference: {fileID: 6040479139844415789, guid: 4a5cc6659d7a8f344bb685117dbcf4c3, type: 3}
+    - target: {fileID: 137585685664915005, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
+      propertyPath: food_spawnlist.Array.data[2]
+      value: 
+      objectReference: {fileID: 7350717505199018317, guid: 5fa6a49b40ec6a84aa24d29e65556165, type: 3}
     - target: {fileID: 369533590572460440, guid: 3dc77e2709c1b4f32859f46c68bf04ea, type: 3}
       propertyPath: m_LocalPosition.y
       value: 28.418
