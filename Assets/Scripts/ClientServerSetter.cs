@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class ClientServerSetter : MonoBehaviour
 {    
-    NetworkHudCanvases canvas;
+    [SerializeField] public NetworkHudCanvases canvas;
     // Start is called before the first frame update
     void Start()
     {
         //gameObject.SetActive(true);
-        canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
+        //canvas = GameObject.FindFirstObjectByType<NetworkHudCanvases>();
         Debug.Log("We found canvas: " + canvas);
         StartCoroutine(WaitABitThenSet(1));
     }
