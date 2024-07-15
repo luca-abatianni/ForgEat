@@ -123,32 +123,33 @@ public class ScoreBoard : NetworkBehaviour
         entry.SetRoundsWon(value.rounds_won);
     }
 
-    public void spawnPlayerScore(NetworkConnection client)
+    public void spawnPlayerScore(NetworkConnection client, string player_name)
     {
         if (client.IsHost)
         {
-            addPlayerEntry(client);
+            addPlayerEntry(client, player_name);
         }
         else
         {
-            SRPC_addPlayerEntry(client);
+            SRPC_addPlayerEntry(client, player_name);
         }
     }
 
 
     [ServerRpc(RequireOwnership = false)]
-    public void SRPC_addPlayerEntry(NetworkConnection client)
+    public void SRPC_addPlayerEntry(NetworkConnection client, string player_name)
     {
-        addPlayerEntry(client);
+        addPlayerEntry(client, player_name);
     }
 
-    private void addPlayerEntry(NetworkConnection client)
+    private void addPlayerEntry(NetworkConnection client, string player_name)
     {
         ScoreboardEntry new_entry = new ScoreboardEntry();
         new_entry.background_color = colors[scores_dictionary.Count];
         new_entry.percentage = 0;
         new_entry.score = 0;
         new_entry.rounds_won = 0;
+        new_entry.player_name = player_name;
         scores_dictionary.Add(client, new_entry);
     }
 
@@ -163,7 +164,7 @@ public class ScoreBoard : NetworkBehaviour
         GameObject UI_table_entry = Instantiate(full_score_prefab, full_scoreboard_entries.transform);
         DetailedScoreEntry table_entry = UI_table_entry.GetComponent<DetailedScoreEntry>();
         table_entry.SetScore(0f);
-        table_entry.SetName("Player_" + key.ClientId);
+        table_entry.SetName(value.player_name);
         table_entry.SetRoundsWon(0);
 
 
@@ -291,6 +292,7 @@ public class ScoreBoard : NetworkBehaviour
     public class ScoreboardEntry
     {
         public UnityEngine.Color background_color;
+        public string player_name;
         public float percentage;
         public float score;
         public int rounds_won;

@@ -39,7 +39,7 @@ public class Score : NetworkBehaviour
             yield return null;
             scoreboard = FindAnyObjectByType<ScoreBoard>();
         }
-        scoreboard.spawnPlayerScore(base.Owner);
+        scoreboard.spawnPlayerScore(base.Owner, MenuChoices.playerName);
     }
 
     // Start is called before the first frame update
