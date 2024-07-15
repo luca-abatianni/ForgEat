@@ -16,7 +16,7 @@ public class PlayerController : NetworkBehaviour
     public float jumpSpeed = 7.0f;
     public float lookSpeed = 2.0f;
     public float gravity = 15.0f;
-    public float lookXLimit = 45.0f;
+    float lookXLimit = 60.0f;
     private float walkFOV = 70f;
     private float runFOV = 90f;
     CharacterController characterController;
@@ -42,6 +42,7 @@ public class PlayerController : NetworkBehaviour
     private float stepRunTimer = 0f;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip landSound;
+    [SerializeField] AudioClip teleportSound;
 
     [SerializeField] SkinnedMeshRenderer playerMesh;
     public override void OnStartClient()
@@ -245,6 +246,7 @@ public class PlayerController : NetworkBehaviour
     public void TransportPlayerToPosition(Vector3 new_position)
     {
         if (!base.IsOwner) return;
+        this.GetComponent<AudioSource>().PlayOneShot(teleportSound);
 
         this.characterController.enabled = false;
         this.transform.position = new_position;

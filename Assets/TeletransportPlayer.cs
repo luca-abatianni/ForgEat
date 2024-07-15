@@ -6,7 +6,6 @@ using UnityEngine;
 public class TeletransportPlayer : NetworkBehaviour
 {
     CharacterController cc;
-    [SerializeField] AudioClip teleportSound;
 
     private void Start()
     {
@@ -19,7 +18,6 @@ public class TeletransportPlayer : NetworkBehaviour
         if (!base.IsOwner) return;
         if (cc == null) cc = this.GetComponent<CharacterController>();
         cc.Move(position);
-        this.GetComponent<AudioSource>().PlayOneShot(teleportSound);
         Debug.Log("TELEPORTING");
     }
 }
