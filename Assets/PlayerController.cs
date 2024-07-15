@@ -16,7 +16,7 @@ public class PlayerController : NetworkBehaviour
     public float jumpSpeed = 7.0f;
     public float lookSpeed = 2.0f;
     public float gravity = 15.0f;
-    public float lookXLimit = 45.0f;
+    float lookXLimit = 60.0f;
     private float walkFOV = 70f;
     private float runFOV = 90f;
     CharacterController characterController;
