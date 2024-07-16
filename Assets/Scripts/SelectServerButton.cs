@@ -18,7 +18,8 @@ public class SelectServerButton : MonoBehaviour
         if (ClientScript.serversFound.ContainsKey(ip)){
             MenuChoices.SetServerIP(ip);
             Debug.Log("Correctly selected server " + ip);
+        } else {
+            Debug.Log("Key " + ip + " not found in serversFound dictionary");
         }
-            
     }
 }

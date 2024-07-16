@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
 {
     GameObject player;
     PlayerController playerController;
+    PrimaryPower primaryPower;
 
     public void GoBackToMainMenu()
     {
@@ -31,8 +32,10 @@ public class PauseMenu : MonoBehaviour
         if (player!=null)
         {
             playerController = player.GetComponent<PlayerController>();
+            primaryPower = player.GetComponent<PrimaryPower>();
             NetworkConnection net_connection = playerController.GetComponent<NetworkObject>().Owner;
             playerController.SetCanMove(net_connection, val);
+            primaryPower.canShoot = val;
         }
     }
 }

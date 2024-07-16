@@ -14,16 +14,16 @@ public class GameStartAskPermission : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        DestroyUnusefulObjects();
         Server = new UdpClient(port);
         Server.BeginReceive(OnReceive, null);
     }
 
     void OnReceive(IAsyncResult res) 
     {
-
+        // Mock function to ask network permissions on windows
     }
 
-    // Update is called once per frame
     void Update()
     {
         StartCoroutine(WaitABitThenCloseFakeServer(20));
@@ -35,5 +35,33 @@ public class GameStartAskPermission : MonoBehaviour
         yield return new WaitForSeconds(duration);
         //Debug.Log("Closing server after " + duration);
         Server.Close();
+    }
+
+    void DestroyUnusefulObjects()
+    {
+        Debug.Log("We're destroying unuseful objects");
+        
+        GameObject player;
+        GameObject networkManager;
+
+        player = GameObject.Find("Player(Clone)");
+        if(player != null)
+            Destroy(player);
+        player = GameObject.Find("Player 1(Clone)");
+        if(player != null)
+            Destroy(player);
+        player = GameObject.Find("Player 2(Clone)");
+        if(player != null)
+            Destroy(player);
+        player = GameObject.Find("Player 3(Clone)");
+        if(player != null)
+            Destroy(player);
+
+        networkManager = GameObject.Find("NetworkManager");
+        if(networkManager != null)
+            Destroy(networkManager);
+        networkManager = GameObject.Find("NetworkManager Variant");
+        if(networkManager != null)
+            Destroy(networkManager);
     }
 }
