@@ -119,7 +119,7 @@ public class ScoreBoard : NetworkBehaviour
         GameObject ui_element = UI_elements[key];
         ui_element.GetComponentInChildren<Slider>().value = value.percentage;
         DetailedScoreEntry entry = table_ui_element.GetComponentInChildren<DetailedScoreEntry>();
-        entry.SetScore(value.score);
+        entry.SetScore(value.score, points_to_win);
         entry.SetRoundsWon(value.rounds_won);
     }
 
@@ -163,7 +163,7 @@ public class ScoreBoard : NetworkBehaviour
 
         GameObject UI_table_entry = Instantiate(full_score_prefab, full_scoreboard_entries.transform);
         DetailedScoreEntry table_entry = UI_table_entry.GetComponent<DetailedScoreEntry>();
-        table_entry.SetScore(0f);
+        table_entry.SetScore(0f, points_to_win);
         table_entry.SetName(value.player_name);
         table_entry.SetRoundsWon(0);
 
@@ -271,15 +271,6 @@ public class ScoreBoard : NetworkBehaviour
     [Server]
     public void ResetScores()
     {
-        /*
-        NetworkConnection[] keys = scores_dictionary.Keys.ToArray();
-        foreach (var key in keys)
-        {
-            ScoreboardEntry tmp = scores_dictionary[key];
-            tmp.score = 0;
-            scores_dictionary[key] = tmp;
-        }
-        */
         foreach (var entry in scores_dictionary)
         {
             entry.Value.score = 0;
