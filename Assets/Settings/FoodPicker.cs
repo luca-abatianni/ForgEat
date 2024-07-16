@@ -48,9 +48,10 @@ public class FoodPicker : NetworkBehaviour
             _gameManager = FindAnyObjectByType<GameManager>();
         else
         {
+            Food food = CheckFoodCollision();
+            GetComponent<PowerEffect>().FoodSpotted(food ? true : false);//Crosshair verde quando si è in range di cibo
             if (Input.GetKeyDown(KeyCode.E) && _gameManager.game_state == GameManager.GameState.SecondPhase)
             {//solo durante fase due si pu� mangiare
-                Food food = CheckFoodCollision();
                 if (food != null)
                 {
                     animator.SetBool("isPickingFood", true);

@@ -8,6 +8,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Accessibility;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static PowerBehavior;
@@ -516,5 +517,13 @@ public class PowerEffect : NetworkBehaviour
             clip = Resources.Load<AudioClip>("Sounds/placeholder.wav");
         }
         GetComponent<AudioSource>().PlayOneShot(clip);
+    }
+    public void FoodSpotted(bool isSpotted)
+    {
+        var image = hitFeedbackGroup.transform.Find("FoodSpotted").GetComponent<UnityEngine.UI.Image>();
+        if (isSpotted)
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
+        else
+            image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
     }
 }
