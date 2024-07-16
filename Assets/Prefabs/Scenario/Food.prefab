@@ -111,6 +111,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: -4055075474244319262}
   _networkObjectCache: {fileID: -4055075474244319262}
+  value: 0
   value_as_trash: -1
   value_as_food: 1
   appears_food: 0
