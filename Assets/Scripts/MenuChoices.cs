@@ -10,6 +10,7 @@ public class MenuChoices : MonoBehaviour
     public static string serverIP;
     public static float firstPhaseLen = 10;
     public static float secondPhaseLen = 5;
+    public static int playersNumber = 3;
     public static bool amIServer = false;
     public static string playerName = "";
     public static int playerSkin = 0;
@@ -44,6 +45,12 @@ public class MenuChoices : MonoBehaviour
     {
         Debug.Log(len);
         secondPhaseLen = len;
+    }
+
+    public static void SetPlayersNumber(float num)
+    {
+        Debug.Log(num);
+        playersNumber = (int)num;
     }
 
     public static void SetMeAsServer() 

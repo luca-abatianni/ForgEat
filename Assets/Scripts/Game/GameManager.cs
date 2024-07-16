@@ -85,6 +85,13 @@ public class GameManager : NetworkBehaviour
         phase_two_period = MenuChoices.secondPhaseLen * 60;
     }
 
+    public void RetrievePlayersNumber()
+    {
+        Debug.Log("Number of players: " + MenuChoices.playersNumber);
+        // From minutes to seconds
+        max_clients = MenuChoices.playersNumber;
+    }
+
     [HideInInspector]
     public Dictionary<int, GameObject> player_dictionary = new Dictionary<int, GameObject>();
 
@@ -92,6 +99,7 @@ public class GameManager : NetworkBehaviour
     {
         RetrieveFirstPhaseLen();
         RetrieveSecondPhaseLen();
+        RetrievePlayersNumber();
         RetrievePlayerSettings();
         base.OnStartServer();
         roundNumber = 0;
