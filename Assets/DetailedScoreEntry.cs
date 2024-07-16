@@ -29,9 +29,9 @@ public class DetailedScoreEntry : MonoBehaviour
         rounds_won.text = value.ToString();
     }
 
-    public void SetScore(float value)
+    public void SetScore(float value, float points_to_win)
     {
-        score.text = value.ToString();
+        score.text = value.ToString() + "/" + points_to_win;
         this.score_value = value;
     }
 

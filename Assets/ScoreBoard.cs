@@ -119,36 +119,37 @@ public class ScoreBoard : NetworkBehaviour
         GameObject ui_element = UI_elements[key];
         ui_element.GetComponentInChildren<Slider>().value = value.percentage;
         DetailedScoreEntry entry = table_ui_element.GetComponentInChildren<DetailedScoreEntry>();
-        entry.SetScore(value.score);
+        entry.SetScore(value.score, points_to_win);
         entry.SetRoundsWon(value.rounds_won);
     }
 
-    public void spawnPlayerScore(NetworkConnection client)
+    public void spawnPlayerScore(NetworkConnection client, string player_name)
     {
         if (client.IsHost)
         {
-            addPlayerEntry(client);
+            addPlayerEntry(client, player_name);
         }
         else
         {
-            SRPC_addPlayerEntry(client);
+            SRPC_addPlayerEntry(client, player_name);
         }
     }
 
 
     [ServerRpc(RequireOwnership = false)]
-    public void SRPC_addPlayerEntry(NetworkConnection client)
+    public void SRPC_addPlayerEntry(NetworkConnection client, string player_name)
     {
-        addPlayerEntry(client);
+        addPlayerEntry(client, player_name);
     }
 
-    private void addPlayerEntry(NetworkConnection client)
+    private void addPlayerEntry(NetworkConnection client, string player_name)
     {
         ScoreboardEntry new_entry = new ScoreboardEntry();
         new_entry.background_color = colors[scores_dictionary.Count];
         new_entry.percentage = 0;
         new_entry.score = 0;
         new_entry.rounds_won = 0;
+        new_entry.player_name = player_name;
         scores_dictionary.Add(client, new_entry);
     }
 
@@ -162,8 +163,8 @@ public class ScoreBoard : NetworkBehaviour
 
         GameObject UI_table_entry = Instantiate(full_score_prefab, full_scoreboard_entries.transform);
         DetailedScoreEntry table_entry = UI_table_entry.GetComponent<DetailedScoreEntry>();
-        table_entry.SetScore(0f);
-        table_entry.SetName("Player_" + key.ClientId);
+        table_entry.SetScore(0f, points_to_win);
+        table_entry.SetName(value.player_name);
         table_entry.SetRoundsWon(0);
 
 
@@ -270,15 +271,6 @@ public class ScoreBoard : NetworkBehaviour
     [Server]
     public void ResetScores()
     {
-        /*
-        NetworkConnection[] keys = scores_dictionary.Keys.ToArray();
-        foreach (var key in keys)
-        {
-            ScoreboardEntry tmp = scores_dictionary[key];
-            tmp.score = 0;
-            scores_dictionary[key] = tmp;
-        }
-        */
         foreach (var entry in scores_dictionary)
         {
             entry.Value.score = 0;
@@ -287,10 +279,19 @@ public class ScoreBoard : NetworkBehaviour
         }
     }
 
+    public Color getPlayerColor(NetworkConnection key)
+    {
+        if (scores_dictionary.TryGetValue(key, out var entry))
+            return entry.background_color;
+        else return Color.white;
+
+    }
+
     [System.Serializable]
     public class ScoreboardEntry
     {
         public UnityEngine.Color background_color;
+        public string player_name;
         public float percentage;
         public float score;
         public int rounds_won;
