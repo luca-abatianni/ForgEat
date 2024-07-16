@@ -76,7 +76,7 @@ public class FoodPicker : NetworkBehaviour
     void AssignStatus(float points)
     {
         List<int> numbers = new List<int> { 0, 1, 2, 3 };
-        List<float> weights = new List<float> { 0.4f, 0.25f, 0.05f, 0.3f }; // Weights for each number
+        List<float> weights = new List<float> { 0.35f, 0.2f, 0.1f, 0.35f }; // Weights for each number
 
         int randomNumber = RandomNumberGenerator.GenerateWeightedRandomNumber(numbers, weights);
 
