@@ -21,6 +21,7 @@ public class PrimaryPower : NetworkBehaviour
     [SerializeField] private CanvasGroup _powerCanvasGroup = null;
     private bool _powerCanvasInit = true;
     [HideInInspector] public bool Silence = false;
+    [HideInInspector] public bool canShoot = true;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -37,6 +38,8 @@ public class PrimaryPower : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canShoot)
+            return;
         if (_powerCanvasGroup == null)
             _powerCanvasGroup = GameObject.FindGameObjectWithTag("PowerSelectionGroup").GetComponent<CanvasGroup>();
         else if (_powerCanvasGroup != null && _powerCanvasInit)
