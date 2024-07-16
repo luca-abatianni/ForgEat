@@ -288,6 +288,14 @@ public class ScoreBoard : NetworkBehaviour
         }
     }
 
+    public Color getPlayerColor(NetworkConnection key)
+    {
+        if (scores_dictionary.TryGetValue(key, out var entry))
+            return entry.background_color;
+        else return Color.white;
+
+    }
+
     [System.Serializable]
     public class ScoreboardEntry
     {
