@@ -257,7 +257,9 @@ public class PlayerController : NetworkBehaviour
     [TargetRpc]
     public void SetCanMove(NetworkConnection net_connection, bool setting)
     {
-        this.canMove = setting;
+        Debug.Log("SetCanMove called with value " + setting);
+        canMove = setting;
+        Debug.Log("And now canMove value is " + this.canMove);
     }
 }
 

@@ -120,7 +120,7 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame // Executed only by server.
     void Update()
     {
-        Debug.Log("Phase: " + game_state);
+        //Debug.Log("Phase: " + game_state);
         if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("P PRESSED");
@@ -163,10 +163,10 @@ public class GameManager : NetworkBehaviour
         if (num_clients != current_num)
         {
             string s = "Waiting for players... " + current_num.ToString() + "/" + max_clients.ToString();
-            announcement.ORPC_Announcement(s, -1);
+            //announcement.ORPC_Announcement(s, -1);
             num_clients = current_num;
         }
-        NetworkManager.Log("Number of connected players: " + num_clients);
+        //NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
             phase_timer = true;
@@ -338,17 +338,21 @@ public class GameManager : NetworkBehaviour
 
     public void ShowPauseMenu()
     {
+        PauseMenu pauseMenu = pauseMenuCanvas.GetComponent<PauseMenu>();
+
         if (isPaused)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             pauseMenuCanvas.SetActive(true);
+            pauseMenu.PlayerCanMove(false);
         }
         else if (!isPaused)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             pauseMenuCanvas.SetActive(false);
+            pauseMenu.PlayerCanMove(true);
         }
     }
     //hai
