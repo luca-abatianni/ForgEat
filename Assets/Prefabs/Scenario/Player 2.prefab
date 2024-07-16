@@ -153,11 +153,11 @@ MonoBehaviour:
   Agility: 0
   Heft: 0
   _audioSource: {fileID: -2371124870237717230}
-  walkSound: {fileID: 8300000, guid: 8f660e739281e264eb46f27616718aa7, type: 3}
+  walkSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
   runSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
-  jumpSound: {fileID: 8300000, guid: 7e1fb0f3f5040b34ea836e3c9a285572, type: 3}
+  jumpSound: {fileID: 8300000, guid: ad758961bcf7444429b083cb293874bd, type: 3}
   landSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  teleportSound: {fileID: 0}
+  teleportSound: {fileID: 8300000, guid: fd3bec05cb132424abeb6d9d14abeb2f, type: 3}
   playerMesh: {fileID: 2910248453896176161}
 --- !u!114 &4909591337073164744
 MonoBehaviour:
@@ -233,6 +233,7 @@ MonoBehaviour:
   - {fileID: 2912226967753948286}
   - {fileID: 6154455631174496861}
   - {fileID: 1901438925041069958}
+  - {fileID: 3944511996544575854}
   - {fileID: 181231208194721968}
   - {fileID: 8613745216421192631}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -249,7 +250,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 29
+  <PrefabId>k__BackingField: 32
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -447,6 +448,7 @@ MonoBehaviour:
   netAnim: {fileID: 8613745216421192631}
   _powerCanvasGroup: {fileID: 0}
   Silence: 0
+  canShoot: 1
 --- !u!114 &-7526638300079609564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,9 +693,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26b4ab0a4d7e3642b555f4d722f2a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 13
   _addedNetworkObject: {fileID: 3252535994773736344}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 3252535994773736344}
   tag_transform: {fileID: 1262515737304895079}
   name_tag: {fileID: 1706154347969685209}
 --- !u!1 &4095230670155074645
@@ -1357,7 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6828b52d25b4a50ba7e06e698c1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 13
+  _componentIndexCache: 14
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   pc: {fileID: 2176458008890118076}
@@ -1373,7 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 14
+  _componentIndexCache: 15
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   IgnoredParameters: []

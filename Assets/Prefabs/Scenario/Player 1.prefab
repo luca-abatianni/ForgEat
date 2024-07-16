@@ -153,11 +153,11 @@ MonoBehaviour:
   Agility: 0
   Heft: 0
   _audioSource: {fileID: 542467268222140326}
-  walkSound: {fileID: 8300000, guid: 8f660e739281e264eb46f27616718aa7, type: 3}
+  walkSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
   runSound: {fileID: 8300000, guid: 0af296e04bc0953449583d07f376ee7a, type: 3}
-  jumpSound: {fileID: 8300000, guid: 7e1fb0f3f5040b34ea836e3c9a285572, type: 3}
+  jumpSound: {fileID: 8300000, guid: ad758961bcf7444429b083cb293874bd, type: 3}
   landSound: {fileID: 8300000, guid: 7f63c3617f9ff3f4f909b78c36e00469, type: 3}
-  teleportSound: {fileID: 0}
+  teleportSound: {fileID: 8300000, guid: fd3bec05cb132424abeb6d9d14abeb2f, type: 3}
   playerMesh: {fileID: 2910248453896176161}
 --- !u!114 &4909591337073164744
 MonoBehaviour:
@@ -250,7 +250,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 24
+  <PrefabId>k__BackingField: 26
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -448,6 +448,7 @@ MonoBehaviour:
   netAnim: {fileID: 8613745216421192631}
   _powerCanvasGroup: {fileID: 0}
   Silence: 0
+  canShoot: 1
 --- !u!114 &-7526638300079609564
 MonoBehaviour:
   m_ObjectHideFlags: 0
