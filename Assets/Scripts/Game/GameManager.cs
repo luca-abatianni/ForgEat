@@ -56,7 +56,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private FoodSpawner food_spawner;
     [SerializeField] private ScoreBoard scoreboard;
     [SerializeField] private GameAnnouncement announcement;
-   
+
     public static bool isPaused = false;
     public GameObject pauseMenuCanvas;
     private string playerName = "";
@@ -120,7 +120,7 @@ public class GameManager : NetworkBehaviour
         }
         return;
     }
-   
+
     // Update is called once per frame // Executed only by server.
     void Update()
     {
@@ -243,7 +243,7 @@ public class GameManager : NetworkBehaviour
         else if (sb.AwardRoundPoint(winner, rounds_to_win)) // will return true when a player reached winning number of rounds.
         {
             announcement.ORPC_DifferentiatedAnnouncement("You lost the match!", "You won the match!", winner, 10f);
-            game_state++;
+            UpdateGameState(game_state + 1);
         }
         else
         {
@@ -254,20 +254,29 @@ public class GameManager : NetworkBehaviour
     }
 
     //commento
-
+    [ObserversRpc]
+    private void ORPC_UpdateGameState(GameState state)
+    {
+        game_state = state;
+    }
+    private void UpdateGameState(GameState state)
+    {
+        game_state = state;
+        ORPC_UpdateGameState(state);
+    }
     private void PrepareNextRound()
     {
         timer_coroutine = StartCoroutine(PhaseTimer(between_phase_period, false, GameState.WaitingFirstPhase));
         scoreboard.ResetScores();
         food_spawner.DespawnAll();
-        game_state = GameState.WaitingFirstPhase;
+        UpdateGameState(GameState.WaitingFirstPhase);
         roundNumber++;
     }
 
     public void PlayerWonRound(NetworkConnection winner_client)
     {
         StopCoroutine(timer_coroutine);
-        game_state = GameState.EndRound;
+        UpdateGameState(GameState.EndRound);
         EndRound();
     }
 
@@ -276,7 +285,7 @@ public class GameManager : NetworkBehaviour
         if (show_clients) GetComponent<Timer>().ORPC_StartTimer(time, TimeManager.Tick);
         yield return new WaitForSeconds(time);
         phase_timer = false;
-        game_state++;
+        UpdateGameState(game_state + 1);
         yield return null;
     }
 
@@ -285,7 +294,7 @@ public class GameManager : NetworkBehaviour
         if (show_clients) GetComponent<Timer>().ORPC_StartTimer(time, TimeManager.Tick);
         yield return new WaitForSeconds(time);
         phase_timer = false;
-        game_state = next_state;
+        UpdateGameState(next_state);
         yield return null;
     }
 

@@ -459,7 +459,7 @@ public class PowerEffect : NetworkBehaviour
     IEnumerator HurtFlash()
     {
         var camshake = FindFirstObjectByType<CameraShake>();
-        camshake.Enable();
+        //camshake.Enable();
         camshake.shakeDuration = .2f;
         //CameraShake.Shake(.1f, 1f);
         var hurtFlash = hitFeedbackGroup.transform.Find("RadialGradient").GetComponent<UnityEngine.UI.Image>();

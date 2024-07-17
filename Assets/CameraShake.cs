@@ -28,16 +28,16 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if (shakeDuration > 0)
-        {
-            transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
+        //if (shakeDuration > 0)
+        //{
+        //    transform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
 
-            shakeDuration -= Time.deltaTime * decreaseFactor;
-        }
-        else if (m_Enabled)
-        {
-            shakeDuration = 0f;
-            transform.localPosition = originalPos;
-        }
+        //    shakeDuration -= Time.deltaTime * decreaseFactor;
+        //}
+        //else if (m_Enabled)
+        //{
+        //    shakeDuration = 0f;
+        //    transform.localPosition = originalPos;
+        //}
     }
 }
