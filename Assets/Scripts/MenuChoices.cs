@@ -3,6 +3,7 @@ using System;
 using FishNet.Transporting.Tugboat;
 using System.Collections.Generic;
 using Random = System.Random;
+using Unity.VisualScripting;
 
 public class MenuChoices : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MenuChoices : MonoBehaviour
     public static bool amIServer = false;
     public static string playerName = "";
     public static int playerSkin = 0;
+    public int playerSkinNonStatic = playerSkin;
     public static float musicVolume = 100;
     public static float sfxVolume = 100;
 
@@ -77,6 +79,11 @@ public class MenuChoices : MonoBehaviour
         if (string.IsNullOrWhiteSpace(playerName))
             playerName = RandomPlayerName();
         playerSkin = PlayerSelection.currentPG;
+    }
+
+    public void Prova()
+    {
+
     }
     public void SetMusicVolume(float vol)
     {

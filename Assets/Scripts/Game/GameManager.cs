@@ -12,6 +12,7 @@ using UnityEngine.UIElements;
 using TMPro;
 using FishNet.Component.Spawning;
 using Cursor = UnityEngine.Cursor;
+using System.Threading.Tasks;
 
 public class GameManager : NetworkBehaviour
 {
@@ -60,10 +61,12 @@ public class GameManager : NetworkBehaviour
     public static bool isPaused = false;
     public GameObject pauseMenuCanvas;
     private string playerName = "";
-    private int playerSkin = 0;
+    public int playerSkin = 0;
     public int roundNumber = 0;
 
     [SerializeField] public GameObject networkManager;
+    [SerializeField] public CharacterSpawn characterSpawn;
+    private GameObject clientClone;
 
     public void RetrievePlayerSettings()
     {
@@ -114,13 +117,23 @@ public class GameManager : NetworkBehaviour
     {
         RetrievePlayerSettings();
         base.OnStartClient();
+        DelaySpawn();
+        
         if (base.IsClient && !base.IsServer)
         {
             GetComponent<GameManager>().enabled = false; // Update() will be run only by server.
         }
+
         return;
     }
 
+    public async void DelaySpawn()
+    {
+        await Task.Delay(1000);
+        clientClone = GameObject.Find("Client(Clone)");
+        clientClone.GetComponent<CharacterSpawn>().Spawn(playerSkin, LocalConnection);
+    }
+   
     // Update is called once per frame // Executed only by server.
     void Update()
     {

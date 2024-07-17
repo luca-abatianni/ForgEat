@@ -29,7 +29,7 @@ namespace FishNet.Component.Spawning
         /// </summary>
         [Tooltip("Prefab to spawn for the player.")]
         [SerializeField]
-        private NetworkObject[] _playerPrefab;
+        private NetworkObject _playerPrefab;
         /// <summary>
         /// Skin selected in menu
         /// </summary>
@@ -107,9 +107,9 @@ namespace FishNet.Component.Spawning
             
             Vector3 position;
             Quaternion rotation;
-            SetSpawn(_playerPrefab[_selectedSkin].transform, out position, out rotation);
+            SetSpawn(_playerPrefab.transform, out position, out rotation);
 
-            NetworkObject nob = _networkManager.GetPooledInstantiated(_playerPrefab[_selectedSkin], position, rotation, true);
+            NetworkObject nob = _networkManager.GetPooledInstantiated(_playerPrefab, position, rotation, true);
             _networkManager.ServerManager.Spawn(nob, conn);
 
             //If there are no global scenes 
