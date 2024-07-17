@@ -52,13 +52,16 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8005128298019871200}
   _networkObjectCache: {fileID: 8005128298019871200}
   num_clients: 0
-  max_clients: 2
+  rounds_to_win: 0
   player_spawns: {fileID: 0}
-  phase_one_period: 30
   between_phase_period: 5
-  phase_two_period: 30
+  game_state: 0
   spawn_barriers: {fileID: 0}
   food_spawner: {fileID: 0}
+  scoreboard: {fileID: 0}
+  announcement: {fileID: 0}
+  pauseMenuCanvas: {fileID: 0}
+  roundNumber: 0
 --- !u!114 &8005128298019871200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +80,8 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 4323712929007804517}
   - {fileID: 4430674228755578884}
+  - {fileID: 4504400309118032952}
+  - {fileID: 7305052183678377367}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
@@ -90,7 +95,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 30
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 394288251
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 17981935845437572623
 --- !u!114 &4430674228755578884
@@ -114,11 +119,11 @@ MonoBehaviour:
   full_scoreboard_entries: {fileID: 0}
   full_score_prefab: {fileID: 0}
   colors:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0.10618591, b: 1, a: 0}
-  - {r: 0, g: 1, b: 0.15562725, a: 0}
-  - {r: 1, g: 0.8711908, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.88722086, a: 0}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.10618591, b: 1, a: 1}
+  - {r: 0, g: 1, b: 0.15562725, a: 1}
+  - {r: 1, g: 0.8711908, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.88722086, a: 1}
 --- !u!114 &4504400309118032952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +156,4 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 8005128298019871200}
   _networkObjectCache: {fileID: 8005128298019871200}
   announcement_ui: {fileID: 0}
+  fadeout_duration: 0

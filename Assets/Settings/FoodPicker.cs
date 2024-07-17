@@ -48,9 +48,10 @@ public class FoodPicker : NetworkBehaviour
             _gameManager = FindAnyObjectByType<GameManager>();
         else
         {
+            Food food = CheckFoodCollision();
+            GetComponent<PowerEffect>().FoodSpotted(food ? true : false);//Crosshair verde quando si è in range di cibo
             if (Input.GetKeyDown(KeyCode.E) && _gameManager.game_state == GameManager.GameState.SecondPhase)
             {//solo durante fase due si pu� mangiare
-                Food food = CheckFoodCollision();
                 if (food != null)
                 {
                     animator.SetBool("isPickingFood", true);
@@ -75,7 +76,7 @@ public class FoodPicker : NetworkBehaviour
     void AssignStatus(float points)
     {
         List<int> numbers = new List<int> { 0, 1, 2, 3 };
-        List<float> weights = new List<float> { 0.4f, 0.25f, 0.05f, 0.3f }; // Weights for each number
+        List<float> weights = new List<float> { 0.35f, 0.2f, 0.1f, 0.35f }; // Weights for each number
 
         int randomNumber = RandomNumberGenerator.GenerateWeightedRandomNumber(numbers, weights);
 

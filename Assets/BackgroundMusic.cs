@@ -12,6 +12,7 @@ public class BackgroundMusic : NetworkBehaviour
     [SerializeField] AudioClip waitOST;
     [SerializeField] AudioClip phase1OST;
     [SerializeField] List<AudioClip> phase2OST;
+    [SerializeField] AudioClip endmatchOST;
     [SerializeField] AudioClip endroundOST;
     [SerializeField] AudioSource _audioSource = null;
     private GameState _audioState = GameState.EndMatch;
@@ -71,9 +72,17 @@ public class BackgroundMusic : NetworkBehaviour
                         if (_audioSource.isPlaying)
                         {
                             _audioSource.Stop();
+                        }
                             _audioSource.clip = endroundOST;
                             _audioSource.Play();
+                        break;
+                    case GameState.EndMatch:
+                        if (_audioSource.isPlaying)
+                        {
+                            _audioSource.Stop();
                         }
+                            _audioSource.clip = endmatchOST;
+                            _audioSource.Play();
                         break;
                     default:
                         return;

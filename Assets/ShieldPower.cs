@@ -11,6 +11,7 @@ public class ShieldPower : NetworkBehaviour
     [HideInInspector] bool _init = true;
     [HideInInspector] public ShieldCollision _shieldObj;
     [SerializeField] ManaController _manaController;
+    private float initTimer = 10f;
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -33,6 +34,17 @@ public class ShieldPower : NetworkBehaviour
         }
         else
         {
+            if (_init)
+            {
+                if (initTimer > 0)
+                    initTimer -= Time.deltaTime;
+                if (initTimer <= 0)
+                {
+                    SRPC_ActivateShield(_shieldObj, false);
+                    _init = false;
+                }
+            }
+
             if (_manaController.playerMana <= 0f)
             {
                 _manaController.NotEnoughMana();
