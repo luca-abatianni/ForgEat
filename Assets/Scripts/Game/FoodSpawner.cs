@@ -20,7 +20,13 @@ public class FoodSpawner : NetworkBehaviour
     public List<GameObject> food_list = new List<GameObject>();     // Set private later... Public for testing.
     public List<GameObject> trash_list = new List<GameObject>();    // Set private later... Public for testing.
 
-
+    private void Update()
+    {
+        if (trash_list == null)
+        {
+            Debug.Log("TRASH LIST NULL");
+        }
+    }
 
     //[ObserversRpc]
     public void SpawnFoodTrash() // Called only by game manager (server only).
@@ -32,7 +38,7 @@ public class FoodSpawner : NetworkBehaviour
             NetworkManager.Log("Spawning food!");
             SpawnObject(Random.value > 0.5, spawn_point.position, spawn_point.rotation, this);
         }
-        Debug.Log("total points of food: " +  total_food_points);
+        Debug.Log("total points of food: " + total_food_points);
     }
 
     private void SpawnObject(bool food_or_trash, Vector3 position, Quaternion rotation, FoodSpawner script)
@@ -55,12 +61,12 @@ public class FoodSpawner : NetworkBehaviour
     }
     private GameObject SelectFoodList()
     {
-        int itemIndex = Random.Range (0,(food_spawnlist.Count));
+        int itemIndex = Random.Range(0, (food_spawnlist.Count));
         return food_spawnlist[itemIndex].gameObject;
     }
 
     [ObserversRpc]
-    void SetClientFoodTrash_ORPC (bool food_or_trash, GameObject spawned)
+    void SetClientFoodTrash_ORPC(bool food_or_trash, GameObject spawned)
     {
         if (food_or_trash)
         {
@@ -120,13 +126,15 @@ public class FoodSpawner : NetworkBehaviour
         {
             ServerManager.Despawn(trash);
         }
-        trash_list.Clear();
+        List<GameObject> newTrash = new List<GameObject>();
+        trash_list = newTrash;
 
         foreach (var food in food_list)
         {
             ServerManager.Despawn(food);
         }
-        food_list.Clear();
+        List<GameObject> newFood = new List<GameObject>();
+        food_list = newFood;
         food_count = 0;
         trash_count = 0;
         total_food_points = 0;
