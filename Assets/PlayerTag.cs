@@ -35,14 +35,20 @@ public class PlayerTag : NetworkBehaviour
             sb = FindAnyObjectByType<ScoreBoard>();
             yield return null;
         }
-        while (color == Color.white || player_name == null)
+        while (player_name == null)
         {
-            color = sb.getPlayerColor(base.Owner);
             player_name = sb.getPlayerName(base.Owner);
             yield return null;
         }
         setName(player_name);
+
+        while (color == Color.white) 
+        {
+            color = sb.getPlayerColor(base.Owner);
+            yield return null;
+        }
         setColor(color);
+
         yield return null;
     }
 
