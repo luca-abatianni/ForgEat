@@ -46,4 +46,6 @@ public class AudioManager : MonoBehaviour
     {
         mixer.SetFloat("SFXVolume", Mathf.Log10(MenuChoices.sfxVolume)*20);
     }
+
+    //commento
 }
