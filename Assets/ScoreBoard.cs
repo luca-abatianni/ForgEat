@@ -287,6 +287,15 @@ public class ScoreBoard : NetworkBehaviour
 
     }
 
+    public string getPlayerName(NetworkConnection key)
+    {
+        if (scores_dictionary.TryGetValue(key, out var entry))
+            return entry.player_name;
+        else return null;
+
+    }
+
+
     [System.Serializable]
     public class ScoreboardEntry
     {

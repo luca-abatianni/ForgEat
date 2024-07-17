@@ -10,32 +10,39 @@ public class PlayerTag : NetworkBehaviour
     private Transform tag_transform;
     [SerializeField]
     private TextMeshProUGUI name_tag;
+
+    private string player_name = null;
+    private Color color = Color.white;
     public override void OnStartClient()
     {
         base.OnStartClient();
+        setName("");
+        setColor(color);
+        StartCoroutine(GetData());
+
         if (base.IsOwner)
         {
-            SRPC_setName(MenuChoices.playerName);
-            StartCoroutine(GetColor());
             this.enabled = false;
         }
     }
 
-    IEnumerator GetColor()
+    [Client]
+    IEnumerator GetData()
     {
         ScoreBoard sb = null;
-        Color color = Color.white;
         while(sb == null)
         {
             sb = FindAnyObjectByType<ScoreBoard>();
             yield return null;
         }
-        while (color == Color.white)
+        while (color == Color.white || player_name == null)
         {
             color = sb.getPlayerColor(base.Owner);
+            player_name = sb.getPlayerName(base.Owner);
             yield return null;
         }
-        SRPC_setColor(color);
+        setName(player_name);
+        setColor(color);
         yield return null;
     }
 
@@ -48,30 +55,16 @@ public class PlayerTag : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    void SRPC_setName(string name)
+    [Client]
+    void setName(string name)
     {
-        ORPC_setName(name);
+        if (name == null) this.name = "";
+        else this.name_tag.text = name;
         return;
     }
 
-    [ServerRpc(RequireOwnership = false)]
-    void SRPC_setColor(Color color)
-    {
-        ORPC_setColor(color);
-        return;
-    }
-
-
-    [ObserversRpc(RunLocally = false)]
-    void ORPC_setName(string name)
-    {
-        this.name_tag.text = name;
-        return;
-    }
-
-    [ObserversRpc(RunLocally = false)]
-    void ORPC_setColor(Color color)
+    [Client]
+    void setColor(Color color)
     {
         this.name_tag.color = color;
         return;
