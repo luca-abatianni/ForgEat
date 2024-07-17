@@ -17,8 +17,8 @@ public class ManaController : NetworkBehaviour
     [HideInInspector] public bool Poisoning = false;
 
     [Header("Mana Regen Parameters")]
-    [Range(0, 50)][SerializeField] public float shieldCost = 10f;
-    [Range(0, 50)][SerializeField] private float manaRegen = 3f;
+    public float shieldCost = 20f;
+    private float manaRegen = 3f;
 
     [Header("Mana UI Elements")]
     [SerializeField] private Image manaProgressUI = null;
