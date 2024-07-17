@@ -509,14 +509,12 @@ public class PowerEffect : NetworkBehaviour
     }
     void StatusSound(StatusType status)
     {
+        return;
         AudioClip clip = null;
         if (statusClips.Count >= (int)status)
             clip = statusClips.ElementAt((int)status);
-        if (clip == null)
-        {
-            clip = Resources.Load<AudioClip>("Sounds/placeholder.wav");
-        }
-        GetComponent<AudioSource>().PlayOneShot(clip);
+        if (clip != null)
+            GetComponent<AudioSource>().PlayOneShot(clip);
     }
     public void FoodSpotted(bool isSpotted)
     {
