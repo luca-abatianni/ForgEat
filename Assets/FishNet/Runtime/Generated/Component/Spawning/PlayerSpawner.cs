@@ -97,9 +97,8 @@ namespace FishNet.Component.Spawning
         /// </summary>
         private void SceneManager_OnClientLoadedStartScenes(NetworkConnection conn, bool asServer)
         {
-            Debug.Log("-----In PlayerSpawner we called the acutal spawner, with skin " + _selectedSkin);
-            // if (!asServer)
-            //     return;
+            if (!asServer)
+                return;
             if (_playerPrefab == null || _selectedSkin == -1)
             {
                 Debug.LogWarning($"Player prefab is empty and cannot be spawned for connection {conn.ClientId}.");
