@@ -72,7 +72,6 @@ public class GameManager : NetworkBehaviour
         playerSkin = MenuChoices.playerSkin;
         PlayerSpawner playerSpawner = networkManager.GetComponent<PlayerSpawner>();
         playerSpawner._selectedSkin = playerSkin;
-        playerSpawner.InitializeOnce();
         //prova
     }
 

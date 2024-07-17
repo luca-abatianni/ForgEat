@@ -27,6 +27,8 @@ public class MenuChoices : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        //
+        //comment
 
         serverIP = "";
         firstPhaseLen = 60;
