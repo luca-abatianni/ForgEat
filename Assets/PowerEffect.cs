@@ -312,7 +312,7 @@ public class PowerEffect : NetworkBehaviour
         CheckEffectsDuration();
         if (_shield == null)
             _shield = gameObject.GetComponent<ShieldPower>();
-        if (Input.GetKey(KeyCode.LeftShift)) //DEBUUUUUG
+        if (false)//(Input.GetKey(KeyCode.LeftShift)) //DEBUUUUUG
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
