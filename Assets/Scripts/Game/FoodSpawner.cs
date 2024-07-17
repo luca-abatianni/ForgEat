@@ -118,23 +118,58 @@ public class FoodSpawner : NetworkBehaviour
         //spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
     }
+    [ObserversRpc]
+    public void ORPC_DespawnAll()
+    {
+        foreach (var trash in trash_list)
+        {
+            trash_list.Remove(trash);
+        }
+        if (trash_list.Count > 0)
+        {
 
+            List<GameObject> newTrash = new List<GameObject>();
+            trash_list = newTrash;
+        }
+
+        foreach (var food in food_list)
+        {
+            food_list.Remove(food);
+        }
+        if (food_list.Count > 0)
+        {
+            List<GameObject> newFood = new List<GameObject>();
+            food_list = newFood;
+        }
+        food_count = 0;
+        trash_count = 0;
+        total_food_points = 0;
+    }
     [Server]
     public void DespawnAll()
     {
         foreach (var trash in trash_list)
         {
             ServerManager.Despawn(trash);
+            trash_list.Remove(trash);
         }
-        List<GameObject> newTrash = new List<GameObject>();
-        trash_list = newTrash;
+        if (trash_list.Count > 0)
+        {
+
+            List<GameObject> newTrash = new List<GameObject>();
+            trash_list = newTrash;
+        }
 
         foreach (var food in food_list)
         {
             ServerManager.Despawn(food);
+            food_list.Remove(food);
         }
-        List<GameObject> newFood = new List<GameObject>();
-        food_list = newFood;
+        if (food_list.Count > 0)
+        {
+            List<GameObject> newFood = new List<GameObject>();
+            food_list = newFood;
+        }
         food_count = 0;
         trash_count = 0;
         total_food_points = 0;
