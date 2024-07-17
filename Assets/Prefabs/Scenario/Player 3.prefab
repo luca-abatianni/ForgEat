@@ -629,7 +629,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 3252535994773736344}
   _networkObjectCache: {fileID: 3252535994773736344}
   tag_transform: {fileID: 3894378203819387009}
-  name_tag: {fileID: 0}
+  name_tag: {fileID: 3419613510077379670}
 --- !u!1 &4095230670155074645
 GameObject:
   m_ObjectHideFlags: 0
