@@ -4,6 +4,7 @@ using FishNet.Object;
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace FishNet.Component.Spawning
 {
@@ -34,7 +35,9 @@ namespace FishNet.Component.Spawning
         /// </summary>
         [Tooltip("Selected skin")]
         [SerializeField]
-        public static int _selectedSkin;
+        public int _selectedSkin = -1;
+        /// Skin selected in menu
+        /// </summary>
         /// <summary>
         /// True to add player to the active scene when no global scenes are specified through the SceneManager.
         /// </summary>
@@ -62,6 +65,7 @@ namespace FishNet.Component.Spawning
 
         private void Start()
         {
+            Debug.Log("-----We started PlayerSpawner");
             InitializeOnce();
         }
 
@@ -75,8 +79,9 @@ namespace FishNet.Component.Spawning
         /// <summary>
         /// Initializes this script for use.
         /// </summary>
-        private void InitializeOnce()
+        public void InitializeOnce()
         {
+            Debug.Log("-----In PlayerSpawner we called InitializedOnce");
             _networkManager = InstanceFinder.NetworkManager;
             if (_networkManager == null)
             {
@@ -92,14 +97,14 @@ namespace FishNet.Component.Spawning
         /// </summary>
         private void SceneManager_OnClientLoadedStartScenes(NetworkConnection conn, bool asServer)
         {
-            if (!asServer)
-                return;
+            Debug.Log("-----In PlayerSpawner we called the acutal spawner, with skin " + _selectedSkin);
+            // if (!asServer)
+            //     return;
             if (_playerPrefab == null || _selectedSkin == -1)
             {
                 Debug.LogWarning($"Player prefab is empty and cannot be spawned for connection {conn.ClientId}.");
                 return;
             }
-
             
             Vector3 position;
             Quaternion rotation;

@@ -8,8 +8,8 @@ public class MenuChoices : MonoBehaviour
 {
     public static MenuChoices Instance;
     public static string serverIP;
-    public static float firstPhaseLen = 10;
-    public static float secondPhaseLen = 5;
+    public static float firstPhaseLen = 60;
+    public static float secondPhaseLen = 3;
     public static int playersNumber = 3;
     public static bool amIServer = false;
     public static string playerName = "";
@@ -27,6 +27,16 @@ public class MenuChoices : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        serverIP = "";
+        firstPhaseLen = 60;
+        secondPhaseLen = 3;
+        playersNumber = 3;
+        amIServer = false;
+        playerName = "";
+        playerSkin = 0;
+        musicVolume = 100;
+        sfxVolume = 100;
     }
 
     public static void SetServerIP (string serverIP_selected) 

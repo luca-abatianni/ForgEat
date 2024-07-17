@@ -11,7 +11,6 @@ using UnityEngine.UI;
 public class ClientScript : MonoBehaviour
 {
     private static bool startSearch = false;
-
     private static UdpClient Client;
     private IPEndPoint broadcast_endpoint;
     private const int port = 8888;
@@ -139,6 +138,12 @@ public class ClientScript : MonoBehaviour
 
     // Se il client torna al menu principale ferma il broadcast
     public static void OnBackButtonClickedClient()
+    {
+        startSearch = false;
+        Client.Close();
+    }
+
+    public static void OnGameStart()
     {
         startSearch = false;
         Client.Close();

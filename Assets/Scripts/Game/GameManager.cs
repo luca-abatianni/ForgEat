@@ -63,12 +63,16 @@ public class GameManager : NetworkBehaviour
     private int playerSkin = 0;
     public int roundNumber = 0;
 
+    [SerializeField] public GameObject networkManager;
+
     public void RetrievePlayerSettings()
     {
         Debug.Log("PLAYER: " + MenuChoices.playerName + " with skin " + MenuChoices.playerSkin);
         playerName = MenuChoices.playerName;
         playerSkin = MenuChoices.playerSkin;
-        PlayerSpawner._selectedSkin = playerSkin;
+        PlayerSpawner playerSpawner = networkManager.GetComponent<PlayerSpawner>();
+        playerSpawner._selectedSkin = playerSkin;
+        playerSpawner.InitializeOnce();
         //prova
     }
 
@@ -109,6 +113,7 @@ public class GameManager : NetworkBehaviour
 
     public override void OnStartClient()
     {
+        RetrievePlayerSettings();
         base.OnStartClient();
         if (base.IsClient && !base.IsServer)
         {
@@ -120,10 +125,9 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame // Executed only by server.
     void Update()
     {
-        Debug.Log("Phase: " + game_state);
+        //Debug.Log("Phase: " + game_state);
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("P PRESSED");
             isPaused = !isPaused;
             ShowPauseMenu();
         }
@@ -166,7 +170,7 @@ public class GameManager : NetworkBehaviour
             announcement.ORPC_Announcement(s, -1);
             num_clients = current_num;
         }
-        NetworkManager.Log("Number of connected players: " + num_clients);
+        //NetworkManager.Log("Number of connected players: " + num_clients);
         if (num_clients == max_clients)
         {
             phase_timer = true;
