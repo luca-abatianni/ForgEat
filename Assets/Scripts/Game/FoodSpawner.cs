@@ -5,6 +5,7 @@ using FishNet.Object;
 using FishNet.Demo.AdditiveScenes;
 using FishNet;
 using FishNet.Connection;
+using System.Linq;
 
 public class FoodSpawner : NetworkBehaviour
 {
@@ -22,7 +23,7 @@ public class FoodSpawner : NetworkBehaviour
 
     private void Update()
     {
-        if (trash_list == null)
+        if (trash_list.Count > 0 && trash_list.ElementAt(0) == null)
         {
             Debug.Log("TRASH LIST NULL");
         }
@@ -118,58 +119,45 @@ public class FoodSpawner : NetworkBehaviour
         //spawnedObject.Remove(obj);
         ServerManager.Despawn(obj);
     }
-    [ObserversRpc]
-    public void ORPC_DespawnAll()
-    {
-        foreach (var trash in trash_list)
-        {
-            trash_list.Remove(trash);
-        }
-        if (trash_list.Count > 0)
-        {
+    //public void O_DespawnAll()
+    //{
+    //    foreach (var trash in trash_list)
+    //    {
+    //        trash_list.Remove(trash);
+    //    }
+    //    if (trash_list.Count > 0)
+    //    {
 
-            List<GameObject> newTrash = new List<GameObject>();
-            trash_list = newTrash;
-        }
+    //        List<GameObject> newTrash = new List<GameObject>();
+    //        trash_list = newTrash;
+    //    }
 
-        foreach (var food in food_list)
-        {
-            food_list.Remove(food);
-        }
-        if (food_list.Count > 0)
-        {
-            List<GameObject> newFood = new List<GameObject>();
-            food_list = newFood;
-        }
-        food_count = 0;
-        trash_count = 0;
-        total_food_points = 0;
-    }
+    //    foreach (var food in food_list)
+    //    {
+    //        food_list.Remove(food);
+    //    }
+    //    if (food_list.Count > 0)
+    //    {
+    //        List<GameObject> newFood = new List<GameObject>();
+    //        food_list = newFood;
+    //    }
+    //    food_count = 0;
+    //    trash_count = 0;
+    //    total_food_points = 0;
+    //}
     [Server]
     public void DespawnAll()
     {
         foreach (var trash in trash_list)
         {
             ServerManager.Despawn(trash);
-            trash_list.Remove(trash);
         }
-        if (trash_list.Count > 0)
-        {
-
-            List<GameObject> newTrash = new List<GameObject>();
-            trash_list = newTrash;
-        }
-
+        trash_list.Clear();
         foreach (var food in food_list)
         {
             ServerManager.Despawn(food);
-            food_list.Remove(food);
         }
-        if (food_list.Count > 0)
-        {
-            List<GameObject> newFood = new List<GameObject>();
-            food_list = newFood;
-        }
+        food_list.Clear();
         food_count = 0;
         trash_count = 0;
         total_food_points = 0;
