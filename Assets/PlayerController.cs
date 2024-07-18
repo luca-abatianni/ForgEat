@@ -41,7 +41,6 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] AudioClip runSound;
     private float stepRunTimer = 0f;
     [SerializeField] AudioClip jumpSound;
-    [SerializeField] AudioClip landSound;
     [SerializeField] AudioClip teleportSound;
 
     [SerializeField] SkinnedMeshRenderer playerMesh;
@@ -178,8 +177,6 @@ public class PlayerController : NetworkBehaviour
         }
         else
         {
-            if (isJumping)
-                _audioSource.PlayOneShot(landSound);
             isJumping = false;
             moveDirection.y = movementDirectionY;
         }
