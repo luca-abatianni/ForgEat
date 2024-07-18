@@ -7,6 +7,12 @@ using UnityEngine;
 public class CharacterSpawn : NetworkBehaviour
 {
     public List<GameObject> playerSkins = new List<GameObject>();
+    [SerializeField] public GameObject connecting;
+
+    void Awake()
+    {
+        connecting = GameObject.Find("Connecting");
+    }
 
     public override void OnStartClient()
     {
@@ -19,5 +25,6 @@ public class CharacterSpawn : NetworkBehaviour
     {
         GameObject player = Instantiate(playerSkins[skinIndex], this.transform.position, Quaternion.identity);
         Spawn(player, conn);
+        connecting.SetActive(false);
     }
 }

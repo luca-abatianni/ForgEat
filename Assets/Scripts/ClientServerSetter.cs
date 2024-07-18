@@ -7,6 +7,7 @@ using UnityEngine;
 public class ClientServerSetter : MonoBehaviour
 {    
     [SerializeField] public NetworkHudCanvases canvas;
+    [SerializeField] public GameObject connecting;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class ClientServerSetter : MonoBehaviour
 
     IEnumerator WaitABitThenSet(float duration)
     {
+        connecting.SetActive(true);
         yield return new WaitForSeconds(duration);
         SetServer();
         yield return new WaitForSeconds(duration);

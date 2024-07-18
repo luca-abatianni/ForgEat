@@ -85,6 +85,7 @@ public class PauseMenu : MonoBehaviour
             playerController = player.GetComponent<PlayerController>();
             primaryPower = player.GetComponent<PrimaryPower>();
             NetworkConnection net_connection = playerController.GetComponent<NetworkObject>().Owner;
+            Debug.Log("-----Network connection " + net_connection.ToSafeString());
             playerController.SetCanMove(net_connection, val);
             primaryPower.canShoot = val;
         }
