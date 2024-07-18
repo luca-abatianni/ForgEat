@@ -8,6 +8,7 @@ public class ConnectingText : MonoBehaviour
 {
     TMP_Text text;
     int i = 0;
+    int j = 0;
     string[] items = { "Connecting", "Connecting.", "Connecting..", "Connecting..." };
     void Start() 
     {
@@ -25,6 +26,13 @@ public class ConnectingText : MonoBehaviour
                 i=0;
 
             await Task.Delay(200);
+            j++;
+            if (j==20)
+                break;
         }
+
+        text.SetText("");
+        gameObject.SetActive(false);
+        
     }
 }
