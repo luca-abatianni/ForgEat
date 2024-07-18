@@ -161,5 +161,16 @@ public class FoodSpawner : NetworkBehaviour
         food_count = 0;
         trash_count = 0;
         total_food_points = 0;
+        ORPC_ClearFoodTrashLists();
+    }
+
+    [ObserversRpc]
+    public void ORPC_ClearFoodTrashLists()
+    {
+        trash_list.Clear();
+        food_list.Clear();
+        food_count = 0;
+        trash_count = 0;
+        total_food_points = 0;
     }
 }
