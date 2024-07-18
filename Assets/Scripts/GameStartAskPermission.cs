@@ -9,6 +9,7 @@ using UnityEngine;
 public class GameStartAskPermission : MonoBehaviour
 {
     private UdpClient Server;
+    public GameObject hostDiscovery;
     private const int port = 8899;
 
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class GameStartAskPermission : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(WaitABitThenCloseFakeServer(20));
+        StartCoroutine(WaitABitThenCloseFakeServer(10));
     }
 
     IEnumerator WaitABitThenCloseFakeServer(float duration)
@@ -63,5 +64,8 @@ public class GameStartAskPermission : MonoBehaviour
         networkManager = GameObject.Find("NetworkManager Variant");
         if(networkManager != null)
             Destroy(networkManager);
+
+        hostDiscovery.GetComponent<ServerScript>().OnApplicationQuit();
+        hostDiscovery.GetComponent<ClientScript>().OnApplicationQuit();
     }
 }

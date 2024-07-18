@@ -258,5 +258,13 @@ public class PlayerController : NetworkBehaviour
         canMove = setting;
         Debug.Log("And now canMove value is " + this.canMove);
     }
+
+    [Client]
+    public void SetCanMoveByClient(NetworkConnection net_connection, bool setting)
+    {
+        Debug.Log("SetCanMove called with value " + setting);
+        canMove = setting;
+        Debug.Log("And now canMove value is " + this.canMove);
+    }
 }
 

@@ -58,8 +58,7 @@ public class GameManager : NetworkBehaviour
     [SerializeField] private ScoreBoard scoreboard;
     [SerializeField] private GameAnnouncement announcement;
 
-    public static bool isPaused = false;
-    public GameObject pauseMenuCanvas;
+
     private string playerName = "";
     public int playerSkin = 0;
     public int roundNumber = 0;
@@ -137,14 +136,6 @@ public class GameManager : NetworkBehaviour
     // Update is called once per frame // Executed only by server.
     void Update()
     {
-        //Debug.Log("Phase: " + game_state);
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            isPaused = !isPaused;
-            ShowPauseMenu();
-        }
-
-
         if (base.IsServer && !phase_timer) // reduntant check.
         {
             switch (game_state)
@@ -360,31 +351,4 @@ public class GameManager : NetworkBehaviour
         GameObject spawned = Instantiate(go, pos, rot);
         ServerManager.Spawn(spawned);
     }
-
-    public void ShowPauseMenu()
-    {
-        PauseMenu pauseMenu = pauseMenuCanvas.GetComponent<PauseMenu>();
-
-        if (isPaused)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            pauseMenuCanvas.SetActive(true);
-            pauseMenu.PlayerCanMove(false);
-        }
-        else if (!isPaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            pauseMenuCanvas.SetActive(false);
-            pauseMenu.PlayerCanMove(true);
-        }
-    }
-
-    public void ResumeFromPauseMenu()
-    {
-        isPaused = false;
-        pauseMenuCanvas.SetActive(false);
-    }
-
 }

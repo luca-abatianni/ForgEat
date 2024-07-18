@@ -42,7 +42,7 @@ public class ServerScript : MonoBehaviour
         Server.BeginReceive(OnReceive, null);
     }
 
-    void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         Debug.Log("Server closed");
         Server.Close();

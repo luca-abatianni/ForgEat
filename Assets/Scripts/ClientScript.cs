@@ -149,7 +149,7 @@ public class ClientScript : MonoBehaviour
         Client.Close();
     }
 
-    void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         startSearch = false;
         Client.Close();

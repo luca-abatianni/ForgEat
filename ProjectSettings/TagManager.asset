@@ -15,6 +15,7 @@ TagManager:
   - PowerSelectionGroup
   - StatusGroup
   - HitFeedback
+  - MyPlayer
   layers:
   - Default
   - TransparentFX
