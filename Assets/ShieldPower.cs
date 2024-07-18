@@ -100,7 +100,7 @@ public class ShieldPower : NetworkBehaviour
             Debug.LogError("ERR ORPC ShieldPower - Missing script");
         }
     }
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void SRPC_ActivateShield(ShieldCollision script, bool bActivate)
     {
         if (script != null)
