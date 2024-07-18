@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using FishNet;
 using FishNet.Connection;
 using FishNet.Demo.AdditiveScenes;
 using FishNet.Object;
@@ -84,9 +85,10 @@ public class PauseMenu : MonoBehaviour
         {
             playerController = player.GetComponent<PlayerController>();
             primaryPower = player.GetComponent<PrimaryPower>();
-            NetworkConnection net_connection = playerController.GetComponent<NetworkObject>().Owner;
-            Debug.Log("-----Network connection " + net_connection.ToSafeString());
-            playerController.SetCanMove(net_connection, val);
+            //NetworkConnection net_connection = player.GetComponent<NetworkObject>().Owner;
+            //Debug.Log("-----Network connection " + net_connection.ToSafeString());
+
+            playerController.SetCanMoveByClient(InstanceFinder.ClientManager.Connection, val);
             primaryPower.canShoot = val;
         }
     }
