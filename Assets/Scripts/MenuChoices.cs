@@ -16,8 +16,8 @@ public class MenuChoices : MonoBehaviour
     public static string playerName = "";
     public static int playerSkin = 0;
     public int playerSkinNonStatic = playerSkin;
-    public static float musicVolume = 100;
-    public static float sfxVolume = 100;
+    public static float musicVolume = 0.5f;
+    public static float sfxVolume = 0.5f;
 
     void Awake()
     {
@@ -39,8 +39,8 @@ public class MenuChoices : MonoBehaviour
         amIServer = false;
         playerName = "";
         playerSkin = 0;
-        musicVolume = 100;
-        sfxVolume = 100;
+        musicVolume = 0.5f;
+        sfxVolume = 0.5f;
     }
 
     public static void SetServerIP (string serverIP_selected) 

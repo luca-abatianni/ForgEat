@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.clip = bgMusic;
         musicSource.Play();
+        mixer.SetFloat("MusicVolume", Mathf.Log10(MenuChoices.musicVolume)*20);
+        mixer.SetFloat("SFXVolume", Mathf.Log10(MenuChoices.sfxVolume)*20);
     }
 
     public void PlayButtonClick()
