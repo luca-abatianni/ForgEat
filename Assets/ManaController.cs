@@ -17,7 +17,7 @@ public class ManaController : NetworkBehaviour
     [HideInInspector] public bool Poisoning = false;
 
     [Header("Mana Regen Parameters")]
-    public float shieldCost = 25f;
+    public float shieldCost = 45f;
     private float manaRegen = 3f;
 
     [Header("Mana UI Elements")]
