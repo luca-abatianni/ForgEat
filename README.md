@@ -1,4 +1,4 @@
-# ForgEat - Who will be the fullest?
+# 🍕 ForgEat - Who will be the fullest?
 
 Welcome to ForgEat! A fast-paced food-based LAN multiplayer prototype, available for Windows, MacOS and Linux.\
 📹 Check out the official teaser on YouTube!
@@ -7,11 +7,11 @@ Welcome to ForgEat! A fast-paced food-based LAN multiplayer prototype, available
 
 ## Premise
 
-In a magical world, a group of powerful wizards had WAY too much fun one night.
+🪄 In a magical world, a group of powerful wizards had WAY too much fun one night.
 Come morning, all they could think about was eating a healthy meal to set themselves straight.\
-But in the state they were in, would they be able to discern and remember what was food...*from what wasn’t?*\
+✨ But in the state they were in, would they be able to discern and remember what was food...*from what wasn’t?*\
 And would their hunger lead them to use their magics against each other to fill out their belly?\
-Food can disguise itself, memory can trick you, hunger can lead you to do unimaginable things.\
+🍄 Food can disguise itself, memory can trick you, hunger can lead you to do unimaginable things.\
 Your only goal is to fill your belly before your enemies, **whatever it takes**.
 
 ## Game features 
